@@ -629,6 +629,10 @@ footer .n b{font-weight:400;color:var(--ink-62)}
   .mvhead .num{font-size:48px}
   .mvhead .ttl{font-size:23px}
   .mvhead .rng{margin-left:0;text-align:left;width:100%}
+  .mvstat{gap:8px}
+  .mvstat .w{margin-left:0;font-size:15px}
+  .mvstat .v{font-size:22px}
+  .where .loc .car{margin-bottom:4px}
   .silence{flex-wrap:wrap;gap:10px}
   .silence .w{margin-left:0;text-align:left}
   .splitmark .t{font-size:34px}
