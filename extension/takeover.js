@@ -19,6 +19,16 @@
     chrome.runtime.getURL('experience/index.html') +
     '?src=' +
     encodeURIComponent(location.href);
+  // Stage 1: extract the page's content model and stream it into the
+  // experience as soon as the iframe is ready.
+  iframe.addEventListener('load', () => {
+    try {
+      const model = window.__kaleidoweb_extract?.();
+      iframe.contentWindow.postMessage({ type: 'kw:model', model }, '*');
+    } catch (e) {
+      console.error('kaleidoweb extract failed', e);
+    }
+  });
   shadow.appendChild(iframe);
 
   // Unobtrusive escape hatch: small pill, bottom-right, inside the shadow root.

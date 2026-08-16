@@ -14,7 +14,7 @@ chrome.action.onClicked.addListener(async (tab) => {
     }
     await chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      files: ['takeover.js'],
+      files: ['extract.js', 'takeover.js'],
     });
   } catch (e) {
     console.error('Kaleidoweb injection failed', e);

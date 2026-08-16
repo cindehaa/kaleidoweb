@@ -17,7 +17,7 @@ const mediaList = JSON.parse(readFileSync(join(dir, 'media-list.json'), 'utf8'))
 
 const $ = cheerio.load(html);
 
-const clean = (t) => t.replace(/\[\d+\]|\[[a-z]\]/g, '').replace(/\s+/g, ' ').trim();
+const clean = (t) => t.replace(/\[(?:\d+|note \d+|[a-z])\]/gi, '').replace(/\s+/g, ' ').trim();
 
 // ---- infobox ----
 function extractInfobox() {
