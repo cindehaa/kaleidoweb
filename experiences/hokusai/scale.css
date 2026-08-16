@@ -108,7 +108,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .plate-tools{display:flex;gap:22px;align-items:baseline;flex:0 0 auto}
 
 /* the name changes, on their own rule above the graph */
-#namesband{position:relative;flex-shrink:0;height:30px;border-bottom:1px solid var(--hair);margin-bottom:8px}
+#namesband{position:relative;flex-shrink:0;height:36px;border-bottom:1px solid var(--hair);margin-bottom:8px}
 #plate[data-ground="ink"] #namesband{border-bottom-color:var(--hair-ink)}
 .tgl{font-family:var(--mono);font-size:var(--t105);letter-spacing:.09em;text-transform:uppercase;color:var(--mute);border-bottom:1px solid transparent;white-space:nowrap}
 .tgl[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
@@ -258,6 +258,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   position:absolute; right:0; top:0; bottom:0; width:196px;
   border-left:1px solid var(--ink); padding-left:12px; opacity:0;
   transition:opacity 500ms; pointer-events:none; overflow:hidden;
+  background:var(--bone); z-index:4; /* opaque: register labels must not show through */
 }
 #margin.on{opacity:1;pointer-events:auto}
 #margin h3{margin:0 0 8px;font-family:var(--mono);font-size:var(--t105);letter-spacing:.11em;text-transform:uppercase;color:var(--ink);font-weight:700}

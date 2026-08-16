@@ -408,11 +408,12 @@ function buildNames(A2X) {
     const w = n.n.length * 6.3 + 16;
     let row = 0;
     if (x < ends[0]) row = 1;
-    if (row === 1 && x < ends[1]) row = 0;
-    ends[row] = x + w;
+    // both rows occupied: keep whichever frees first (never fold back into a live row)
+    if (row === 1 && x < ends[1]) row = ends[0] <= ends[1] ? 0 : 1;
+    ends[row] = Math.max(ends[row], x + w);
     const d = el('div', 'ntick');
     d.style.left = x + 'px';
-    d.style.top = (row ? 15 : 0) + 'px';
+    d.style.top = (row ? 18 : 0) + 'px';
     d.append(el('span', null, n.n));
     namesEl.appendChild(d);
   });
