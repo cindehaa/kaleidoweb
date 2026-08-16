@@ -9,7 +9,7 @@ const status = document.getElementById('status');
 
 // Bundled demo experiences, keyed by Wikipedia article title.
 const DEMOS = {
-  Apollo_11: 'demos/apollo-11.html',
+  Apollo_11: 'demos/apollo-11/index.html',
 };
 
 const m = src.match(/\/wiki\/([^?#]+)/);
