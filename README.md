@@ -6,7 +6,11 @@ Wikipedia is the canonical test case. The system separates *understanding* (a ty
 
 ## Current progress
 
-**Phase: bootstrap.** Repo, mission docs, benchmark suite, initial architecture hypothesis, and taste rubric are in place. Next: design-reference research, the Playwright visual-evaluation harness, and the first vertical slice — transforming the Apollo 11 Wikipedia article into a proof-of-ceiling experience.
+**Phase: first vertical slice (Apollo 11).** Infrastructure is standing: all seven benchmark articles are snapshotted and extracted into typed Content Models; a semantic pass produced 202 fully source-attributed Apollo facts (chronology with exact UTC times, quotes, quantities); a Playwright harness renders any experience and captures scroll-through screenshots for the taste loop; and the MV3 extension works end-to-end (button → instant typographic takeover of the live article in ~100 ms → Escape restores the original), verified by an automated smoke test in headless Chromium.
+
+Art direction for Apollo 11 produced four structurally different concepts (documented in `experiences/apollo-11/CONCEPTS.md`). Selected: **Three Bodies** — the mission as a three-stave score on one shared UTC clock (Houston / *Eagle* / *Columbia*), where scroll is time, simultaneity becomes visible (the source article serializes events that were concurrent), and Collins' thirty far-side radio blackouts render as a lane going dark. Palette comes from the flight-director team colors in the article's own table; red is reserved exclusively for the 1202 alarms, the propellant calls, and Luna 15. The build is in progress under a mandatory render-inspect-critique loop.
+
+Tech research findings that shaped the architecture: GSAP is now fully free; CSS scroll-driven animations are cross-browser; MV3 forbids remote code (so experiences interpret a declarative Experience Spec rather than eval'ing generated code); Anthropic's API permits direct browser calls with a user-supplied key.
 
 ## Layout
 
