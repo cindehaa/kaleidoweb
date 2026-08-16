@@ -1,0 +1,31 @@
+{
+  "name": "kaleidoweb",
+  "version": "1.0.0",
+  "description": "**One button turns an ordinary information-dense webpage into an individually art-directed, immersive, interactive experience.**",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cindehaa/kaleidoweb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cindehaa/kaleidoweb/issues"
+  },
+  "homepage": "https://github.com/cindehaa/kaleidoweb#readme",
+  "private": "true",
+  "type": "module",
+  "devDependencies": {
+    "playwright-core": "^1.62.1"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0"
+  }
+}
