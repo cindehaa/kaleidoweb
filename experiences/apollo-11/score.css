@@ -108,9 +108,9 @@ sup{font-size:.62em;line-height:0}
 #solo .sm{display:none}
 #solo button[aria-pressed="true"]{color:var(--ink);background:var(--ink-06)}
 
-/* solo dimming — instantaneous, no transition (state change, not motion) */
+/* solo dimming — instantaneous, no transition (state change, not motion).
+   Dimmed lanes keep their prose in the find-in-page tree; nothing is display:none. */
 body[data-solo] .lane:not(.solo-on){opacity:.13}
-body[data-solo] .lane:not(.solo-on) .blk-more{display:none}
 
 /* ============================================================
    MOVEMENT INDEX — one overlay, no new visual language:
@@ -133,7 +133,7 @@ body[data-solo] .lane:not(.solo-on) .blk-more{display:none}
   border-bottom:1px solid var(--ink-30);padding-bottom:2px;
 }
 #idx .idxrow{
-  display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,300px) 110px;
+  display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,320px) 165px;
   gap:0 26px;align-items:baseline;width:100%;
   padding:14px 0;border-bottom:1px solid var(--ink-10);
 }
@@ -235,8 +235,8 @@ main{padding-top:var(--head-h)}
 
 /* --- full-bleed quote plate (density flip) --- */
 .plate-ink{background:var(--ink);color:var(--paper);padding:104px var(--pad-r) 104px var(--pad-l);margin-top:76px;margin-right:var(--map-w)}
-.plate-ink .q{font-family:var(--serif);font-size:clamp(22px,2.5vw,34px);line-height:1.34;max-width:24em;letter-spacing:-.012em}
-.plate-ink .q.small{font-size:clamp(17px,1.55vw,21px);line-height:1.5;max-width:34em;color:rgba(237,232,222,.72);margin-top:34px}
+.plate-ink .q{font-family:var(--serif);font-size:clamp(22px,2.5vw,34px);line-height:1.34;max-width:var(--w-ev);letter-spacing:-.012em}
+.plate-ink .q.small{font-size:clamp(17px,1.55vw,21px);line-height:1.5;max-width:var(--w-arg);color:rgba(237,232,222,.72);margin-top:34px}
 .plate-ink .att{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:rgba(237,232,222,.45);margin-top:30px}
 .plate-ink strong{font-weight:400;color:#fff}
 
@@ -332,7 +332,9 @@ ol.crit li::before{
   content:"";position:absolute;left:0;top:var(--ruletop,0px);bottom:var(--rulebot,0px);width:1px;background:var(--ink-18);z-index:4;
 }
 .terminus{position:absolute;left:-4px;width:9px;height:1px;background:var(--alert);z-index:8}
-.joinmark{position:absolute;left:74px;right:0;z-index:7;pointer-events:none}
+/* Structural caesurae are opaque bands, not overprints: a rule this heavy
+   occludes what it crosses rather than striking through it. */
+.joinmark{position:absolute;left:74px;right:0;z-index:2;pointer-events:none}
 .joinmark .bar{height:1px;background:var(--ink)}
 .joinmark .row{display:flex;align-items:baseline;gap:18px;padding-top:7px}
 .joinmark .t{font-family:var(--mono);font-weight:500;font-size:30px;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
@@ -454,7 +456,7 @@ ol.crit li::before{
 #fork{position:absolute;left:0;right:0;pointer-events:none;z-index:4}
 #fork svg{width:100%;height:100%;display:block;overflow:visible}
 #fork path{fill:none;stroke:var(--ink);stroke-width:1.25}
-.splitmark{position:absolute;left:74px;right:0;z-index:6;pointer-events:none}
+.splitmark{position:absolute;left:74px;right:0;z-index:2;pointer-events:none}
 .splitmark .bar{height:1px;background:var(--ink)}
 .splitmark .row{display:flex;align-items:flex-end;gap:20px;padding-top:8px}
 .splitmark .t{font-family:var(--mono);font-weight:500;font-size:56px;line-height:.9;letter-spacing:-.045em;font-variant-numeric:tabular-nums}

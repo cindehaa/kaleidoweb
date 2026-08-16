@@ -126,6 +126,7 @@
         else more.setAttribute('hidden', 'until-found');
         if (ex) ex.textContent = (openNow ? '−' : '+') + ex.textContent.slice(1);
       }
+      b._setOpen = paint;
       var toggle = function () { paint(b.dataset.open !== '1'); relayout(); };
       tg.addEventListener('click', toggle);
       tg.addEventListener('keydown', function (e) {
@@ -198,6 +199,7 @@
 
       // commit positions + ties
       st.blocks.forEach(function (b) {
+        b._h = b.offsetHeight;
         b.style.top = b._y + 'px';
         if (b._y - b._trueY > 4) {
           b.classList.add('tied');
@@ -529,7 +531,7 @@
     DISPERSE.forEach(function (s, si) {
       var p = document.createElementNS(NS, 'path');
       p.setAttribute('class', 'main');
-      p.setAttribute('d', 'M' + srcX[si] + ',0 L' + srcX[si] + ',' + yTop);
+      p.setAttribute('d', 'M' + srcX[si] + ',' + (mob ? 22 : 36) + ' L' + srcX[si] + ',' + yTop);
       p.setAttribute('vector-effect', 'non-scaling-stroke');
       svg.appendChild(p);
       var t = document.createElementNS(NS, 'text');
@@ -956,6 +958,26 @@
       lastW = window.innerWidth;
       relayout();
     });
+    /* The browser can reveal `hidden="until-found"` content on its own — the
+       find bar fires beforematch, but window.find() and printing do not.
+       Blocks are absolutely positioned at their instant, so any growth we did
+       not initiate has to be re-laid-out or the score overlaps itself. */
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(function (entries) {
+        var dirty = false;
+        entries.forEach(function (e) {
+          var b = e.target;
+          if (b._h === undefined) return;
+          if (Math.abs(b.offsetHeight - b._h) > 1) dirty = true;
+          var more = $('.blk-more', b);
+          if (more && b.dataset.open !== '1' && more.offsetHeight > 2 && b._setOpen) {
+            b._setOpen(true); dirty = true;
+          }
+        });
+        if (dirty) relayout();
+      });
+      $$('.blk').forEach(function (b) { ro.observe(b); });
+    }
     $$('img').forEach(function (im) {
       if (!im.complete) im.addEventListener('load', relayout, { once: true });
     });
