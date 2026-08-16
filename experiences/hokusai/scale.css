@@ -185,12 +185,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 }
 .sheet img{display:block;width:100%;height:100%;object-fit:fill;border:0;border-radius:0}
 .sheet .plate-fill{position:absolute;inset:0}
-.sheet .anch{
-  position:absolute; left:calc(100% + 5px); top:50%; transform:translateY(-50%);
-  font-family:var(--mono); font-size:var(--t105); letter-spacing:.06em; color:var(--mute);
-  white-space:nowrap; text-transform:none;
-}
-#plate[data-ground="ink"] .sheet .anch{color:var(--mute-ink)}
 .sheet.noimg{border:1px solid var(--hair);background:transparent}
 .sheet.noimg .slash{position:absolute;inset:0;background:
   linear-gradient(to top right,transparent calc(50% - .5px),var(--hair) 50%,transparent calc(50% + .5px))}
@@ -201,7 +195,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 #layer.noslide .sheet,#layer.noslide .bar{transition:opacity 300ms linear,transform 300ms cubic-bezier(.2,.7,.3,1)}
 .sheet:hover{outline:1px solid var(--ink);outline-offset:2px}
 .sheet:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
-.sheet.derived .anch::after{content:" ⊘"}
 
 /* range bars: a work whose date is a span. A bar that steps between two
    registers is a work whose date range crosses a level of his scale. */

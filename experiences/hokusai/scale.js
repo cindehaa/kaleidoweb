@@ -183,7 +183,8 @@ WORKS.forEach(w => {
     im.addEventListener('load', () => fill.remove());
     b.append(fill, im);
   } else b.appendChild(el('div', 'slash'));
-  b.appendChild(el('span', 'anch', w.src));
+  // provenance lives in the inspector (one affordance per block + the concordance
+  // line under the plot) — chips on the plot surface out-shouted the works themselves
   b.addEventListener('click', () => openInspector(w));
   layer.appendChild(b);
   SH[w.id] = b;
@@ -217,7 +218,7 @@ const maxAge = () => state >= 4 ? 116 : 94;
 const padL = () => narrow() ? 28 : 44;
 const padR = () => (state === 3 && !narrow()) ? 212 : (narrow() ? 14 : 30);
 const mid = w => (w.ages[0] + w.ages[1]) / 2;
-const anchW = w => narrow() ? 2 : ((w.src.length + (w.derived ? 2 : 0)) * 6.3 + 7);
+const anchW = () => 2; // sheets no longer reserve label width on the plot
 
 function layout() {
   const cw = chart.clientWidth;
@@ -479,7 +480,7 @@ const NARR = {
   2: ['One print, no label. It is resting where nothing can be plotted — above every register, past the end of his life. Drag it along the age axis to the year you think he made it, then let go; arrow keys and Enter work too. <button type="button" class="skip" id="skip-guess">Skip the guess, show me</button>',
       'Turning date ranges on replaces every dot with the span the article actually gives — a dot is less honest than a bar.'],
   3: ['This article dates ' + WORKS.length + ' works. He is said to have made about thirty thousand (p2), so this plot is less than a tenth of one per cent of him — and every gap in it is the encyclopaedia’s, not his. Tap one of his eight registers to keep only the works that fall in it.',
-      'Derived, not stated: a year <i>y</i> gives ages <i>y</i>−1761 to <i>y</i>−1760. ⊘ marks a print the article dates only through its series. Anchors: <i>p14</i> a paragraph · <i>cap</i> an image caption · <i>gal</i> the Selected works gallery.'],
+      'Derived, not stated: a year <i>y</i> gives ages <i>y</i>−1761 to <i>y</i>−1760. Tap any sheet for its date, the working, and its source in the article.'],
   4: ['Nothing on this screen can be clicked, because there is nothing on it. He forecast three more attainments — at ninety, at a hundred, at a hundred and ten — and the article records no work in any of them.',
       'Derived, not stated: 1849 − 1760 = 88. The last three registers are empty because the evidence is.']
 };
