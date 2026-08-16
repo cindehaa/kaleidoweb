@@ -349,7 +349,7 @@ main{padding-top:var(--head-h)}
 #plate .meta>div:last-child{border-bottom:0}
 #plate .meta i{font-style:normal;color:var(--ribbon-3);display:inline-block;width:13em;text-transform:uppercase;flex:0 0 auto}
 
-#thesis-svg{width:100%;height:auto;display:block;margin-top:40px;border-top:var(--rw) solid var(--ribbon);padding-top:14px}
+#thesis-svg{position:relative;z-index:2;width:100%;height:auto;display:block;margin-top:40px;border-top:var(--rw) solid var(--ribbon);padding-top:14px}
 #thesis-svg text{font-family:var(--typewriter);fill:var(--ribbon-3)}
 
 .bodies{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:var(--rw) solid var(--ribbon);border-bottom:var(--rw) solid var(--ribbon);margin-top:10px}
@@ -735,7 +735,7 @@ ol.crit li::before{
 .where .loc{font-family:var(--placard);font-weight:500;font-size:18px;line-height:1.12;letter-spacing:.02em;text-transform:uppercase}
 .where .loc span{display:block;font-family:var(--typewriter);font-weight:400;font-size:11.5px;letter-spacing:0;color:var(--ribbon-3);text-transform:uppercase;margin-top:7px}
 /* the carrier named in the diagram above, restated per row */
-.where .loc .car{color:var(--bond);background:var(--ribbon-2);display:inline-block;padding:2px 7px;margin-top:8px}
+.where .loc .car{color:var(--bond);background:var(--ribbon-2);display:block;width:fit-content;padding:2px 7px;margin-top:8px}
 .where .obj{font-family:var(--narration);font-size:17px;line-height:1.62;max-width:var(--w-arg);color:var(--ribbon-2)}
 .where .obj em{font-style:italic;color:var(--ribbon)}
 .where .obj+.obj{margin-top:9px}
@@ -932,4 +932,159 @@ footer .n b{font-weight:700;color:var(--ribbon-2)}
 .bignum{
   font-family:var(--placard);font-weight:700;font-size:clamp(24px,2.1vw,33px);
   letter-spacing:.01em;line-height:1;margin:4px 0 9px;
+}
+
+/* ============================================================
+   v4 — THE FOLD
+   Subordination is a document act, not a UI act: a ruled row with a
+   typed key and a one-line description of what is behind it, closed
+   with a typewriter cross. Nothing here uses a disclosure triangle,
+   an animation or a shadow. The body is `hidden="until-found"` in the
+   markup, so it is off the surface and still inside find-in-page.
+   ============================================================ */
+.stack{margin-top:0}
+.stackhead{
+  font-family:var(--placard);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+  background:var(--ribbon);color:var(--bond);display:flex;align-items:baseline;gap:14px;padding:6px 13px 7px;
+}
+.stackhead span{font-family:var(--typewriter);font-weight:400;font-size:11.5px;letter-spacing:0;text-transform:none;color:var(--band-2)}
+.fold{border-top:1px solid var(--rule-2)}
+.fold:first-of-type{border-top:var(--rw) solid var(--ribbon)}
+.stack>.fold:last-of-type,.sec>.fold:last-of-type{border-bottom:var(--rw) solid var(--ribbon)}
+.fold-t{
+  display:flex;align-items:baseline;gap:16px;width:100%;text-align:left;
+  background:none;border:0;padding:9px 0;margin:0;cursor:pointer;color:inherit;
+}
+.fold-t .fkey{
+  font-family:var(--placard);font-weight:500;font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ribbon);flex:0 0 auto;max-width:38%;
+}
+.fold-t .fdsc{font-family:var(--typewriter);font-size:12px;line-height:1.5;color:var(--ribbon-3);flex:1 1 auto}
+.fold-t .fplus{font-family:var(--typewriter);font-size:15px;color:var(--ribbon-3);margin-left:auto;flex:0 0 auto;padding-left:16px}
+.fold-t:hover .fk{color:var(--alert)}
+.fold-t:hover .fx{color:var(--alert)}
+.fold-t:focus-visible{outline:2px solid var(--alert);outline-offset:2px}
+.fold[data-open="1"] .fold-t .fkey{color:var(--ribbon-2)}
+.fold-b{padding:4px 0 22px var(--tab)}
+.fold-b[hidden]{padding:0}
+.fold-b>.prose p,.fold-b p{font-size:16.5px;line-height:1.62}
+/* one line, at the point of interaction, and nowhere else */
+.tapnote{font-family:var(--typewriter);font-size:11.5px;color:var(--ribbon-3);margin:9px 0 0}
+
+/* the plate's opening line, in the imported voice */
+#plate .platein{position:relative;z-index:2}
+#plate .open{
+  font-family:var(--narration);font-size:clamp(19px,1.85vw,25px);line-height:1.46;
+  max-width:var(--w-ev);color:var(--ribbon);margin:26px 0 0 var(--tab);
+}
+#plate .meta{margin-top:34px;max-width:var(--w-arg)}
+
+/* ============================================================
+   v4 — THE ENVIRONMENT LAYER
+   Three moments carry weather: the morning at the Cape, the instant
+   the two vehicles part, and the ground at Tranquility Base. Every
+   other screen is bond and stays bond.
+   ============================================================ */
+.env{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.env canvas{display:block;width:100%;height:100%}
+
+/* the morning light — the still frame is the same light, unmoving,
+   so a browser without WebGL loses nothing but the drift */
+#plate{position:relative;isolation:isolate}
+.env-dawn{
+  left:calc(-1 * var(--pad-l));right:calc(-1 * var(--pad-r));top:calc(-1 * var(--head-h));bottom:-40px;
+  background:radial-gradient(96% 62% at 26% 88%,#FFFDF6 0%,#F1ECDD 38%,var(--bond) 76%);
+}
+
+/* the split: the only inversion on the page, and it is an event —
+   from this instant there is no shared ground */
+.splitwrap.invert{
+  --bond:#07080A;--bond-2:#0E1013;
+  --ribbon:#F4F3EE;--ribbon-2:#C9C7BF;--ribbon-3:#8A8D90;--ribbon-4:#5A5E62;
+  --rule-2:#33383D;--band:#181C20;--band-2:#232A2F;
+  background:#07080A;color:#F4F3EE;position:relative;
+  padding-top:0;padding-bottom:64px;margin-top:0;margin-right:var(--map-w);
+}
+.splitwrap.invert .env-stars{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block}
+.splitwrap.invert>*:not(.env-stars){position:relative;z-index:1}
+.splitwrap.invert #forkbox path{stroke:#F4F3EE}
+.splitwrap.invert figure img{filter:grayscale(.1) contrast(1.06) brightness(.98)}
+.splitwrap.invert .shiftchip i{box-shadow:inset 0 0 0 1px #F4F3EE}
+
+/* the ground at Tranquility Base: the photograph is the environment,
+   the shader is the dust in the light above it */
+.lunarplate{
+  position:relative;margin:78px var(--map-w) 0 0;height:clamp(360px,64vh,620px);
+  overflow:hidden;background:#0C0C0D;
+}
+.lunarplate img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 62%;
+  filter:grayscale(1) contrast(1.12) brightness(.92);
+}
+.lunarplate .env-grain{
+  mix-blend-mode:overlay;opacity:.5;
+  background:linear-gradient(168deg,#8A8779 0%,#2A2925 62%,#6B6960 100%);
+}
+.lunarplate .env-grain.env-on{background:none;opacity:.55}
+.lunarplate .lpcap{
+  position:absolute;left:var(--pad-l);bottom:26px;z-index:3;max-width:var(--w-arg);
+  font-family:var(--typewriter);font-size:12px;line-height:1.6;color:#EDEBE4;
+}
+.lunarplate .lpcap b{
+  display:inline-block;font-family:var(--placard);font-weight:700;font-size:13px;letter-spacing:.18em;
+  text-transform:uppercase;background:#0C0C0D;color:#F5F3EC;padding:5px 12px 6px;
+}
+.lunarplate .lpcap span{display:block;margin-top:8px;background:#0C0C0D;padding:4px 12px 5px;box-decoration-break:clone}
+
+/* photographs at full height, and the one that is allowed to drift */
+.bleed-fig.tall img{height:clamp(420px,78vh,760px)}
+.bleed-fig.drift .clip{overflow:hidden}
+.bleed-fig.drift img{transform:scale(var(--drift,1));transform-origin:50% 46%;will-change:transform}
+@media (prefers-reduced-motion:reduce){.bleed-fig.drift img{transform:none}}
+
+/* ============================================================
+   v4 — APPARATUS THAT YIELDS
+   ============================================================ */
+/* an instrument with nothing to measure is suppressed, not blanked */
+body[data-clock="off"] #readout .k,body[data-clock="off"] #readout #ro-utc,
+body[data-clock="off"] #readout .alt,body[data-clock="off"] #readout .off{visibility:hidden}
+
+/* where the source keeps no record: a measured absence, in the
+   apparatus register, never a paragraph explaining itself */
+.norec{
+  display:flex;align-items:baseline;gap:12px;margin-left:11px;padding:9px 0 2px;
+  border-top:1px solid var(--rule-2);max-width:var(--w-arg);
+}
+.norec b{font-family:var(--placard);font-weight:700;font-size:19px;letter-spacing:.02em;color:var(--ribbon-3)}
+.norec span{font-family:var(--typewriter);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ribbon-3)}
+
+/* the dispersal: one claim per row, the paragraphs under it */
+.where .claim{font-family:var(--narration);font-size:17.5px;line-height:1.55;color:var(--ribbon);max-width:var(--w-arg)}
+.where .stack{margin-top:10px}
+.where .fold{border-top:0}
+.where .fold:first-of-type{border-top:0}
+.where .stack>.fold:last-of-type{border-bottom:0}
+.where .fold-t{padding:2px 0}
+.where .fold-t .fkey{font-size:12px;letter-spacing:.08em;color:var(--ribbon-3);max-width:none}
+.where .fold-t:hover .fk{color:var(--alert)}
+.where .fold-b{padding:8px 0 4px 0}
+
+/* the reading key, in end matter where a key belongs */
+.readkey{margin-top:6px}
+.readkey .rk-row{display:grid;grid-template-columns:76px minmax(0,1fr);gap:0 18px;align-items:center;
+  border-bottom:1px solid var(--rule-2);padding:10px 0}
+.readkey .rk-row div{font-family:var(--typewriter);font-size:12px;line-height:1.62;color:var(--ribbon-2)}
+.readkey .rk-row b{font-weight:700;color:var(--ribbon)}
+.readkey .rk-note{font-family:var(--typewriter);font-size:12px;line-height:1.7;color:var(--ribbon-2);margin:14px 0 0;max-width:var(--w-ev)}
+
+@media (max-width:900px){
+  .stackhead{display:block;padding:7px 11px 9px}
+  .stackhead span{display:block;margin-top:5px}
+  .fold-t{flex-wrap:wrap;gap:6px 12px}
+  .fold-t .fkey{max-width:none;flex:1 1 100%}
+  .fold-t .fplus{position:absolute;right:0;margin-top:-2px}
+  .fold-t{position:relative;padding-right:22px}
+  .lunarplate{height:clamp(300px,52vh,420px)}
+  .lunarplate .lpcap{left:14px;right:14px}
+  .bleed-fig.tall img{height:clamp(300px,54vh,460px)}
 }

@@ -138,6 +138,228 @@
   }
   var moreSeq = 0;
 
+  /* ---------- folds ----------
+     The same contract as .blk-more, for prose outside the staves: the
+     collapsed body is `hidden="until-found"` in the markup itself, so it is
+     subordinated before a line of script has run and find-in-page still
+     reaches it. One level deep, everywhere. */
+  function wireFolds() {
+    $$('.fold').forEach(function (f) {
+      var t = $('.fold-t', f), b = $('.fold-b', f);
+      if (!t || !b) return;
+      if (!b.id) b.id = 'fold-' + (++moreSeq);
+      t.setAttribute('aria-expanded', 'false');
+      t.setAttribute('aria-controls', b.id);
+      var x = $('.fplus', t);
+      function paint(open) {
+        f.dataset.open = open ? '1' : '0';
+        t.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) b.removeAttribute('hidden');
+        else b.setAttribute('hidden', 'until-found');
+        if (x) x.textContent = open ? '−' : '+';
+      }
+      paint(false);
+      t.addEventListener('click', function () { paint(f.dataset.open !== '1'); relayout(); });
+      b.addEventListener('beforematch', function () { paint(true); relayout(); });
+    });
+  }
+
+  /* ============================================================
+     THE ENVIRONMENT LAYER
+     Four plates in eight days carry an atmosphere; every other passage
+     on this page is flat bond and stays that way. Exactly one canvas is
+     alive at a time — each moment mounts when it comes into view and is
+     disposed the moment it leaves, so scrolling the plain passages costs
+     nothing. WebGL absent, or `prefers-reduced-motion`: the still frame.
+     ============================================================ */
+  var VENDOR = 'vendor/paper-shaders.global.js';
+  var vendorState = 0;                    // 0 untouched · 1 loading · 2 ready · 3 failed
+  var vendorQueue = [];
+  var STILL = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function needVendor(cb) {
+    if (vendorState === 2) return cb(true);
+    if (vendorState === 3) return cb(false);
+    vendorQueue.push(cb);
+    if (vendorState === 1) return;
+    vendorState = 1;
+    var sc = document.createElement('script');
+    sc.src = VENDOR;
+    sc.onload = function () {
+      vendorState = window.PaperShaders ? 2 : 3;
+      vendorQueue.splice(0).forEach(function (f) { f(vendorState === 2); });
+    };
+    sc.onerror = function () {
+      vendorState = 3;
+      vendorQueue.splice(0).forEach(function (f) { f(false); });
+    };
+    document.head.appendChild(sc);
+  }
+
+  var noGL = false;
+  /* The mount prepends its own canvas before it tests for a context, so a
+     browser without WebGL must be cleaned up after, not merely caught. */
+  function tryMount(el, frag, u, speed, cap) {
+    if (noGL) return null;
+    try {
+      return new window.PaperShaders.ShaderMount(el, frag, u, undefined, speed, 0, 1, cap);
+    } catch (e) {
+      noGL = true;
+      $$('canvas', el).forEach(function (c) { c.remove(); });
+      return null;
+    }
+  }
+
+  var noiseImg = null;
+  function noise(cb) {
+    if (noiseImg) return cb(noiseImg);
+    var im = window.PaperShaders.getShaderNoiseTexture();
+    if (!im) return cb(null);
+    if (im.complete && im.naturalWidth) { noiseImg = im; return cb(im); }
+    im.addEventListener('load', function () { noiseImg = im; cb(im); }, { once: true });
+    im.addEventListener('error', function () { cb(null); }, { once: true });
+  }
+
+  function sizing(o) {
+    var d = { u_fit: 2, u_scale: 1, u_rotation: 0, u_originX: .5, u_originY: .5,
+              u_offsetX: 0, u_offsetY: 0, u_worldWidth: 0, u_worldHeight: 0 };
+    for (var k in (o || {})) d[k] = o[k];
+    return d;
+  }
+  function colors(list, max) {
+    var C = window.PaperShaders.getShaderColorFromString;
+    var a = list.map(C);
+    while (a.length < max) a.push([0, 0, 0, 1]);
+    return a;
+  }
+
+  /* The Florida morning: 09:32 EDT, sun already high off the Atlantic.
+     Hard white light on near-white bond, which is what the launch
+     photographs actually look like — not a coloured gradient. */
+  function mountDawn(el, done) {
+    var P = window.PaperShaders;
+    noise(function (n) {
+      if (!n) return done(null);
+      var u = sizing({ u_offsetX: -.52, u_offsetY: .58, u_scale: .78 });
+      u.u_colorBack = P.getShaderColorFromString('#F7F6F3');
+      u.u_colorBloom = P.getShaderColorFromString('#FFFEF9');
+      u.u_colors = colors(['#DAD1B6', '#C2B99B', '#EDE6D2'], 5);
+      u.u_colorsCount = 3;
+      u.u_density = .48; u.u_spotty = .1; u.u_midSize = .52;
+      u.u_midIntensity = .72; u.u_intensity = .74; u.u_bloom = .45;
+      u.u_noiseTexture = n;
+      /* Speed 0: one render, then the mount stops its own rAF for good. The
+         Sun does not move in the eleven minutes this page covers of that
+         morning, and a still field costs nothing to scroll past on a machine
+         with no GPU. Rays are smooth, so rendering well under device
+         resolution and letting the canvas scale up is invisible. */
+      done(tryMount(el, P.godRaysFragmentShader, u, 0, 420000));
+    });
+  }
+
+  /* Regolith: no colour, one light source, grain all the way down.
+     It sits over the surface photograph, not over any running text. */
+  function mountGrain(el, done) {
+    var P = window.PaperShaders;
+    noise(function (n) {
+      if (!n) return done(null);
+      var u = sizing({ u_scale: 1.15, u_offsetY: -.2 });
+      u.u_colorBack = P.getShaderColorFromString('#151512');
+      u.u_colors = colors(['#B9B4A4', '#4A4840', '#8A8779'], 7);
+      u.u_colorsCount = 3;
+      u.u_softness = .82; u.u_intensity = .18; u.u_noise = 1; u.u_shape = 1;
+      u.u_noiseTexture = n;
+      /* Speed 0: the mount renders one frame and then stops its rAF entirely.
+         The Moon has no atmosphere, so there is nothing here that should move —
+         and a still plate costs nothing to scroll past. */
+      done(tryMount(el, P.grainGradientFragmentShader, u, 0, 900000));
+    });
+  }
+
+  /* The split. No library, no camera: the stars do not move, because
+     nothing about this instant is a flight through space. Drawn once. */
+  function paintStars(cv) {
+    var w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    var g = cv.getContext('2d');
+    if (!g) return;
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, w, h);
+    var seed = 20071944;                 // 20 Jul 1969, 17:44
+    function rnd() { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; }
+    var n = Math.round(w * h / 5200);
+    for (var i = 0; i < n; i++) {
+      var x = rnd() * w, y = rnd() * h, r = rnd();
+      var s = r < .82 ? .55 : (r < .97 ? .95 : 1.5);
+      g.globalAlpha = .18 + rnd() * (r < .82 ? .3 : .72);
+      g.fillStyle = '#FFFFFF';
+      g.fillRect(x, y, s, s);
+    }
+    g.globalAlpha = 1;
+  }
+
+  /* One photograph is allowed to move, and only with the reader's own scroll:
+     the stack on the crawler at 1.6 km/h. Transform only, no layout. */
+  var drifts = [];
+  function wireDrift() {
+    if (STILL) return;
+    drifts = $$('.bleed-fig.drift');
+  }
+  function paintDrift() {
+    for (var i = 0; i < drifts.length; i++) {
+      var f = drifts[i], r = f.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) continue;
+      var p = clamp((window.innerHeight - r.top) / (window.innerHeight + r.height), 0, 1);
+      f.style.setProperty('--drift', (1.015 + p * 0.055).toFixed(4));
+    }
+  }
+
+  var envLive = null;                    // { el, mount } — at most one, ever
+  function wireEnv() {
+    var plates = $$('.env');
+    if (!plates.length) return;
+    var stars = plates.filter(function (e) { return e.dataset.env === 'stars'; });
+    stars.forEach(function (cv) {
+      paintStars(cv);
+      var ro = window.ResizeObserver && new ResizeObserver(function () { paintStars(cv); });
+      if (ro) ro.observe(cv);
+    });
+    var shaded = plates.filter(function (e) { return e.dataset.env !== 'stars'; });
+    if (!shaded.length || !window.IntersectionObserver) return;
+
+    function unmount() {
+      if (!envLive) return;
+      try { envLive.mount && envLive.mount.dispose(); } catch (e) { }
+      envLive.el.classList.remove('env-on');
+      envLive = null;
+    }
+    function mount(el) {
+      if (envLive && envLive.el === el) return;
+      unmount();
+      envLive = { el: el, mount: null };
+      needVendor(function (ok) {
+        if (!ok || !envLive || envLive.el !== el) return;
+        var fn = el.dataset.env === 'grain' ? mountGrain : mountDawn;
+        try {
+          fn(el, function (m) {
+            if (!envLive || envLive.el !== el) { try { m && m.dispose(); } catch (e) { } return; }
+            envLive.mount = m;
+            if (m) el.classList.add('env-on');
+          });
+        } catch (e) { /* no WebGL: the still frame is already painted in CSS */ }
+      });
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) mount(en.target);
+        else if (envLive && envLive.el === en.target) unmount();
+      });
+    }, { rootMargin: '120px 0px' });
+    shaded.forEach(function (el) { io.observe(el); });
+  }
+
   /* ============================================================
      LAYOUT — desktop
      ============================================================ */
@@ -145,6 +367,7 @@
     if (window.innerWidth <= MOBILE) return layoutMobile();
     document.body.classList.remove('is-mobile');
 
+    losTaught = false;
     staves.forEach(function (st) {
       // restore lanes if returning from mobile
       var mcol = $('.mcol', st.el);
@@ -307,7 +530,8 @@
         var f = (t - st.t0) / (st.t1 - st.t0);
         var d = new Date(t);
         var isDay = d.getUTCHours() === 0 && d.getUTCMinutes() === 0;
-        var label = isDay ? fmtDay(t) : (big ? fmtDay(t) + ' ' + fmtHM(t) : fmtHM(t));
+        // the date is carried by the day tick above; the hour does not repeat it
+        var label = isDay ? fmtDay(t) : fmtHM(t);
         tick(PAD_TOP + f * range, label, isDay ? 'day' : '');
       }
     } else if (st.mode === 'alt') {
@@ -323,6 +547,7 @@
   }
 
   /* ---------- loss of signal ---------- */
+  var losTaught = false;
   function drawLOS(st) {
     st.lanes.forEach(function (lane) {
       $$('.seg,.losbg,.loslab,.terminus', lane).forEach(function (e) { e.remove(); });
@@ -399,7 +624,10 @@
         if (clear(r[0] + 6, r[0] + 30)) y = r[0] + 6;              // top of the dark run
         else if (clear(r[1] - 30, r[1] - 6)) y = r[1] - 28;        // or its foot
         if (y === null) return;
-        put(y, '≈ NO CONTACT · FAR SIDE · 48 MIN');
+        /* Say it once, where the reader first meets it. After that the
+           cross-hatch IS the word, and repeating it is decoration. */
+        put(y, losTaught ? '≈ 48 MIN' : '≈ NO CONTACT · FAR SIDE · 48 MIN');
+        losTaught = true;
         labelled++;
       });
       // every run too short or too crowded: state the rhythm once, in the clear
@@ -751,7 +979,7 @@
   /* ============================================================
      SCROLL — the clock
      ============================================================ */
-  var roUTC = $('#ro-utc'), roMET = $('#ro-met'), roAlt = $('#ro-alt'), roAltV = $('#ro-altv'), roOff = $('#ro-off');
+  var roUTC = $('#ro-utc'), roAlt = $('#ro-alt'), roAltV = $('#ro-altv'), roOff = $('#ro-off');
   var roMV = $('#ro-mv'), progEl = $('#prog'), progMV = $('#prog .pmv');
   var movements = [];
   function collectMovements() { movements = $$('.movement'); }
@@ -768,17 +996,18 @@
     if (progMV) progMV.innerHTML = html;
   }
 
+  /* An instrument with nothing to measure is suppressed, not blanked:
+     off the clock, the readout is simply not there. */
   function setOff() {
-    roUTC.textContent = '—— —— ——   ——:——:——';
-    roMET.textContent = '———:——:——:——';
-    roUTC.classList.add('off'); roMET.classList.add('off');
+    document.body.dataset.clock = 'off';
+    roUTC.textContent = '';
     roAlt.hidden = true;
-    roOff.textContent = 'off the clock';
+    roOff.textContent = '';
   }
   function setTime(t, held) {
+    document.body.dataset.clock = 'on';
     roUTC.textContent = fmtUTC(t);
-    roMET.textContent = fmtMET(t);
-    roUTC.classList.toggle('off', !!held); roMET.classList.toggle('off', !!held);
+    roUTC.classList.toggle('off', !!held);
     roAlt.hidden = true;
     roOff.textContent = held ? 'clock held' : '';
   }
@@ -817,9 +1046,9 @@
       else if (st.mode === 'alt') {
         if (inside) {
           var fa = clamp((play - st.top - PAD_TOP) / st.range, 0, 1);
+          document.body.dataset.clock = 'on';
           roUTC.textContent = 'measured in feet';
-          roMET.textContent = fmtMET(Date.UTC(1969, 6, 20, 20, 17, 40));
-          roUTC.classList.add('off'); roMET.classList.add('off');
+          roUTC.classList.add('off');
           roAlt.hidden = false;
           roAltV.textContent = commas(Math.round(fracAlt(fa))) + ' ft';
           roOff.textContent = '';
@@ -837,6 +1066,8 @@
       if (fr > gaugeMax) gaugeMax = fr;
       s._gauge.el.style.height = (gaugeMax * s._gauge.h) + 'px';
     });
+
+    paintDrift();
 
     // minimap viewport
     if (mapState) {
@@ -941,6 +1172,22 @@
      BOOT
      ============================================================ */
   var rafId = null;
+  /* A lane header that repeats what the previous stave already said is
+     decoration: keep the name (it is the column's only handle) and drop the
+     subtitle wherever it has not changed. */
+  function thinLaneHeads() {
+    var seen = {};
+    $$('.stave').forEach(function (st) {
+      $$('.lanehead', st).forEach(function (h) {
+        var lane = h.parentNode, id = lane.dataset.lane || '';
+        var sub = $('.sub', h); if (!sub) return;
+        var txt = sub.textContent.trim();
+        if (seen[id] === txt) sub.hidden = true;
+        else { sub.hidden = false; seen[id] = txt; }
+      });
+    });
+  }
+
   function relayout() {
     if (rafId) cancelAnimationFrame(rafId);
     rafId = requestAnimationFrame(function () { rafId = null; layout(); });
@@ -949,7 +1196,11 @@
   function init() {
     collect();
     collectMovements();
+    thinLaneHeads();
+    wireDrift();
     wireToggles();
+    wireFolds();
+    wireEnv();
     wireSolo();
     wireIndex();
     drawThesis();
