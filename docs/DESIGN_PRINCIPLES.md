@@ -163,6 +163,8 @@ The `≤11px uppercase +.06–.12em` row describes the eyebrow-label tell and mu
 
 **4.12 MUST — one idea per screen.** A screen carries one claim and one piece of evidence. A screen carrying two ideas carries neither. [EDITORIAL E7]
 
+**4.13 MUST — emptiness declares amplitude, and it is earned, not added.** A figure reads as a figure because of the void around it; when every region of a screen is furnished, hierarchy collapses regardless of how well each element is set. Cramped screens are a symptom with three causes, fixed in this order: (1) surface over-budget — cut content (§4.11), never compress it into place; (2) apparatus that never yields — persistent chrome (headers, minimaps, navs, toggles, anchors) must retreat or drop amplitude on screens where it is not the point, and ceremonial screens (a split, a verdict, an empty tail) must be TRULY empty of apparatus, not merely sparse of content; (3) equal-amplitude presentation — provenance and instrumentation sit at least one clear amplitude level below what they annotate. Adding uniform padding while keeping every element is the counterfeit of this rule and produces the metronome page (§4.1); if the fix was `padding: more`, the diagnosis was skipped. Test: at every scroll position, can you name the ONE thing this screen wants read? Is there at least one screen per movement where the answer is "almost nothing"? [D010]
+
 ---
 
 ## 5. Motion grammar
