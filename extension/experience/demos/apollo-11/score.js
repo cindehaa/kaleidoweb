@@ -101,7 +101,10 @@
     return 0;
   }
 
-  /* ---------- toggles ---------- */
+  /* ---------- toggles ----------
+     Collapsed prose is hidden with `hidden="until-found"`, never display:none,
+     so browser find-in-page still reaches it and reveals it (beforematch).
+     A quarter of the article used to be invisible to Ctrl+F. */
   function wireToggles() {
     $$('.blk').forEach(function (b) {
       var more = $('.blk-more', b);
@@ -109,23 +112,31 @@
       if (!tg) return;
       if (!more) { b.dataset.open = '0'; return; }
       b.dataset.open = '0';
+      more.setAttribute('hidden', 'until-found');
+      if (!more.id) more.id = 'more-' + (++moreSeq);
       tg.setAttribute('role', 'button');
       tg.setAttribute('tabindex', '0');
       tg.setAttribute('aria-expanded', 'false');
+      tg.setAttribute('aria-controls', more.id);
       var ex = $('.ex', tg);
-      var open = function () {
-        var o = b.dataset.open === '1';
-        b.dataset.open = o ? '0' : '1';
-        tg.setAttribute('aria-expanded', o ? 'false' : 'true');
-        if (ex) ex.textContent = (o ? '+' : '−') + ex.textContent.slice(1);
-        relayout();
-      };
-      tg.addEventListener('click', open);
+      function paint(openNow) {
+        b.dataset.open = openNow ? '1' : '0';
+        tg.setAttribute('aria-expanded', openNow ? 'true' : 'false');
+        if (openNow) more.removeAttribute('hidden');
+        else more.setAttribute('hidden', 'until-found');
+        if (ex) ex.textContent = (openNow ? '−' : '+') + ex.textContent.slice(1);
+      }
+      b._setOpen = paint;
+      var toggle = function () { paint(b.dataset.open !== '1'); relayout(); };
+      tg.addEventListener('click', toggle);
       tg.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
       });
+      // find-in-page landed inside the collapsed prose: adopt the open state
+      more.addEventListener('beforematch', function () { paint(true); relayout(); });
     });
   }
+  var moreSeq = 0;
 
   /* ============================================================
      LAYOUT — desktop
@@ -188,6 +199,7 @@
 
       // commit positions + ties
       st.blocks.forEach(function (b) {
+        b._h = b.offsetHeight;
         b.style.top = b._y + 'px';
         if (b._y - b._trueY > 4) {
           b.classList.add('tied');
@@ -241,6 +253,8 @@
     var MINGAP = 300;
     byLane.forEach(function (g) {
       if (!g.blocks.length) return;
+      // never print a fall in feet for a lane the source gives no altitude for
+      if (st.mode === 'alt' && !g.blocks.some(function (b) { return b.dataset.a !== undefined; })) return;
       var endCap = Infinity;
       if (g.lane.dataset.ruleEnd && st.mode === 'time') {
         endCap = PAD_TOP + clamp((T(g.lane.dataset.ruleEnd) - st.t0) / (st.t1 - st.t0), 0, 1) * st.range;
@@ -328,7 +342,7 @@
       var from = T(lane.dataset.losFrom);
       var range = st.range;
       var k = Math.max(0, Math.floor((st.t0 - from) / ORBIT));
-      var cursorY = PAD_TOP, count = 0, firstLab = null, lastY = null;
+      var cursorY = PAD_TOP, count = 0, runs = [];
       var frag = document.createDocumentFragment();
 
       function seg(y0, y1, dark) {
@@ -355,17 +369,45 @@
         seg(cursorY, y0, false);
         seg(y0, y1, true);
         cursorY = y1; count++;
-        if (firstLab === null && y1 - y0 > 12) { firstLab = y0; }
-        lastY = y1;
+        runs.push([y0, y1]);
       }
       seg(cursorY, PAD_TOP + range, false);
       lane.appendChild(frag);
 
-      if (count && firstLab !== null) {
+      /* Label the silence where it can actually be read: inside a dark run
+         that no block occupies. Text and label never share pixels. */
+      if (!count) return;
+      var occupied = st.blocks.filter(function (b) { return b.parentNode === lane; })
+        .map(function (b) { return [b._y - 6, b._y + b.offsetHeight + 6]; });
+      function clear(y0, y1) {
+        for (var i = 0; i < occupied.length; i++) {
+          if (y1 > occupied[i][0] && y0 < occupied[i][1]) return false;
+        }
+        return true;
+      }
+      function put(y, text) {
         var l = document.createElement('div');
-        l.className = 'loslab'; l.style.top = (firstLab + 3) + 'px';
-        l.textContent = 'LOS · 48:00' + (count > 1 ? ' · ' + count + '× dark here' : '');
+        l.className = 'loslab';
+        l.style.top = y + 'px';
+        l.textContent = text;
         lane.appendChild(l);
+      }
+      var labelled = 0;
+      runs.forEach(function (r) {
+        if (r[1] - r[0] < 40) return;
+        var y = null;
+        if (clear(r[0] + 6, r[0] + 30)) y = r[0] + 6;              // top of the dark run
+        else if (clear(r[1] - 30, r[1] - 6)) y = r[1] - 28;        // or its foot
+        if (y === null) return;
+        put(y, '≈ NO CONTACT · FAR SIDE · 48 MIN');
+        labelled++;
+      });
+      // every run too short or too crowded: state the rhythm once, in the clear
+      if (!labelled && runs.length) {
+        var last = runs[runs.length - 1];
+        if (clear(last[1] + 2, last[1] + 26)) {
+          put(last[1] + 4, '≈ ' + count + '× NO CONTACT · 48 MIN EACH');
+        }
       }
     });
   }
@@ -430,43 +472,81 @@
     b.setAttribute('d', 'M' + xm + ',' + yf + ' C' + xm + ',' + (yf + 34) + ' ' + xc + ',' + (H - 38) + ' ' + xc + ',' + H);
   }
 
-  /* ---------- the dispersal ---------- */
+  /* ---------- the dispersal ----------
+     Every line here is a custody claim, so every line has to be one the rows
+     below actually make. The sources are the four things the article says
+     carried the objects — not the three staves, which would put the descent
+     stage in Houston's hands. Order left→right so nothing crosses. */
+  var DISPERSE = [
+    ['SATURN V', 'the launch vehicle', ['IN SOLAR\nORBIT', 'ON THE ATLANTIC\nSEABED']],
+    ['EAGLE', 'the lunar module', ['STILL ON\nTHE MOON', 'IN AN ORBIT\nNOBODY CAN FIND', 'LOST']],
+    ['COLUMBIA', 'the command module', ['AT THE\nSMITHSONIAN', 'DISTRIBUTED']],
+    ['HOUSTON', 'the ground', ['TAPED OVER']]
+  ];
+
   function drawDisperse() {
     var svg = $('#disperse'); if (!svg) return;
     var w = svg.clientWidth || svg.getBoundingClientRect().width;
-    var h = 210;
+    var mob = w < MOBILE;
+    var h = mob ? 176 : 224;
     if (!w) return;
     svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
     svg.style.height = h + 'px';
     while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var NS = 'http://www.w3.org/2000/svg';
 
-    var srcs = [w * 0.20, w * 0.46, w * 0.72];
-    var dests = [
-      [0.045, 'STILL ON THE MOON'], [0.185, 'IN AN ORBIT'], [0.315, 'SOLAR ORBIT'],
-      [0.445, 'ATLANTIC SEABED'], [0.585, 'SMITHSONIAN'], [0.745, 'DISTRIBUTED'], [0.915, 'LOST']
-    ];
-    var map = [0, 0, 1, 1, 2, 2, 2];
-    dests.forEach(function (d, i) {
-      var x1 = w * d[0], x0 = srcs[map[i]];
-      var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      p.setAttribute('d', 'M' + x0 + ',0 L' + x0 + ',52 C' + x0 + ',110 ' + x1 + ',110 ' + x1 + ',' + (h - 34));
+    var flat = [];
+    DISPERSE.forEach(function (s, si) { s[2].forEach(function (d) { flat.push([d, si]); }); });
+    var n = flat.length;
+    var padX = 10, span = w - padX * 2;
+    var yTop = 52, yBot = h - (mob ? 40 : 46);
+
+    // one source rail per carrier, centred over the destinations it owns
+    var srcX = DISPERSE.map(function (s, si) {
+      var own = flat.map(function (f, i) { return f[1] === si ? i : -1; }).filter(function (i) { return i >= 0; });
+      var sum = own.reduce(function (a, i) { return a + (padX + span * ((i + 0.5) / n)); }, 0);
+      return sum / own.length;
+    });
+
+    flat.forEach(function (f, i) {
+      var x1 = padX + span * ((i + 0.5) / n), x0 = srcX[f[1]];
+      var p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', 'M' + x0 + ',' + yTop + ' C' + x0 + ',' + (yTop + 46) + ' ' + x1 + ',' + (yBot - 46) + ' ' + x1 + ',' + yBot);
       p.setAttribute('vector-effect', 'non-scaling-stroke');
       svg.appendChild(p);
-      var t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      t.setAttribute('x', x1); t.setAttribute('y', h - 20);
-      t.textContent = d[1];
+      var t = document.createElementNS(NS, 'text');
+      t.setAttribute('x', x1); t.setAttribute('y', yBot + 15);
+      t.setAttribute('text-anchor', 'middle');
+      t.setAttribute('class', 'dest');
+      f[0].split('\n').forEach(function (line, li) {
+        var ts = document.createElementNS(NS, 'tspan');
+        ts.setAttribute('x', x1);
+        if (li) ts.setAttribute('dy', '12');
+        ts.textContent = line;
+        t.appendChild(ts);
+      });
       svg.appendChild(t);
     });
-    ['HOUSTON', 'EAGLE', 'COLUMBIA'].forEach(function (n, i) {
-      var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+
+    DISPERSE.forEach(function (s, si) {
+      var p = document.createElementNS(NS, 'path');
       p.setAttribute('class', 'main');
-      p.setAttribute('d', 'M' + srcs[i] + ',0 L' + srcs[i] + ',52');
+      p.setAttribute('d', 'M' + srcX[si] + ',' + (mob ? 22 : 36) + ' L' + srcX[si] + ',' + yTop);
       p.setAttribute('vector-effect', 'non-scaling-stroke');
       svg.appendChild(p);
-      var t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      t.setAttribute('x', srcs[i] + 7); t.setAttribute('y', 14);
-      t.textContent = n;
+      var t = document.createElementNS(NS, 'text');
+      t.setAttribute('x', srcX[si]); t.setAttribute('y', 15);
+      t.setAttribute('text-anchor', 'middle');
+      t.setAttribute('class', 'srclab');
+      t.textContent = s[0];
       svg.appendChild(t);
+      if (!mob) {
+        var t2 = document.createElementNS(NS, 'text');
+        t2.setAttribute('x', srcX[si]); t2.setAttribute('y', 29);
+        t2.setAttribute('text-anchor', 'middle');
+        t2.textContent = s[1];
+        svg.appendChild(t2);
+      }
     });
   }
 
@@ -659,23 +739,40 @@
     el('text', { x: w - 24, y: 12 }, 'mm-key').textContent = 'PAGE';
     el('text', { x: 2, y: 22 }, 'mm-lab').textContent = 'JUL';
 
-    var view = el('rect', { x: xP - 5, y: top, width: 10, height: 10 }, 'mm-view');
-    mapState = { view: view, yP: yP, docH: docH, top: top, bot: bot };
+    // viewport: a translucent band across the whole rail with two edge ticks —
+    // not a hollow stroked box, which reads as a missing glyph
+    var view = el('rect', { x: 0, y: top, width: w, height: 10 }, 'mm-view');
+    var e1 = el('line', { x1: 0, y1: top, x2: w, y2: top }, 'mm-edge');
+    var e2 = el('line', { x1: 0, y1: top + 10, x2: w, y2: top + 10 }, 'mm-edge');
+    mapState = { view: view, e1: e1, e2: e2, yP: yP, docH: docH, top: top, bot: bot };
   }
 
   /* ============================================================
      SCROLL — the clock
      ============================================================ */
   var roUTC = $('#ro-utc'), roMET = $('#ro-met'), roAlt = $('#ro-alt'), roAltV = $('#ro-altv'), roOff = $('#ro-off');
+  var roMV = $('#ro-mv'), progEl = $('#prog'), progMV = $('#prog .pmv');
   var movements = [];
   function collectMovements() { movements = $$('.movement'); }
 
-  function setOff(name) {
+  /* The reader must always know WHERE, not only WHEN. */
+  var lastMV = null;
+  function setWhere(mv) {
+    if (!mv || mv === lastMV) return;   // between movements: hold the last name
+    lastMV = mv;
+    var no = mv ? (mv.dataset.no || '') : '';
+    var nm = mv ? (mv.dataset.name || '') : '';
+    var html = no ? '<b>' + no + '</b>' + nm : nm;
+    if (roMV) roMV.innerHTML = html;
+    if (progMV) progMV.innerHTML = html;
+  }
+
+  function setOff() {
     roUTC.textContent = '—— —— ——   ——:——:——';
     roMET.textContent = '———:——:——:——';
     roUTC.classList.add('off'); roMET.classList.add('off');
     roAlt.hidden = true;
-    roOff.textContent = name ? 'off the clock · ' + name : '';
+    roOff.textContent = 'off the clock';
   }
   function setTime(t, held) {
     roUTC.textContent = fmtUTC(t);
@@ -695,10 +792,17 @@
       var mr = movements[j].getBoundingClientRect();
       if (mr.top + y <= play && mr.bottom + y >= play) mv = movements[j];
     }
+    setWhere(mv);
+    if (progEl) {
+      var dh = document.documentElement.scrollHeight - window.innerHeight;
+      progEl.style.setProperty('--pct', (dh > 0 ? clamp(y / dh, 0, 1) * 100 : 0).toFixed(2) + '%');
+    }
 
-    if (!mv || mv.dataset.clock === 'off') {
-      setOff(mv ? mv.dataset.name : '');
-    } else {
+    // between two movements (a silence band, an ink plate): hold the last
+    // reading rather than blanking — the reader has not left the score.
+    if (mv && mv.dataset.clock === 'off') {
+      setOff();
+    } else if (mv) {
       // staves belonging to this movement
       var mine = staves.filter(function (s) { return s.mv === mv; });
       var inside = null, before = null, after = null;
@@ -708,7 +812,7 @@
         else if (!after) after = s;
       });
       var st = inside || before || after || mine[0];
-      if (!st) setOff(mv.dataset.name);
+      if (!st) setOff();
       else if (st.mode === 'alt') {
         if (inside) {
           var fa = clamp((play - st.top - PAD_TOP) / st.range, 0, 1);
@@ -736,9 +840,81 @@
     // minimap viewport
     if (mapState) {
       var a = mapState.yP(y), b = mapState.yP(y + window.innerHeight);
+      var hh = Math.max(3, b - a);
       mapState.view.setAttribute('y', a);
-      mapState.view.setAttribute('height', Math.max(3, b - a));
+      mapState.view.setAttribute('height', hh);
+      mapState.e1.setAttribute('y1', a); mapState.e1.setAttribute('y2', a);
+      mapState.e2.setAttribute('y1', a + hh); mapState.e2.setAttribute('y2', a + hh);
     }
+  }
+
+  /* ============================================================
+     MOVEMENT INDEX
+     A page 50 viewports tall has to be consultable, not only readable.
+     Built from the movement heads themselves, so it cannot drift.
+     ============================================================ */
+  var idxEl = null, idxRows = [];
+  function buildIndex() {
+    idxEl = $('#idx'); if (!idxEl) return;
+    var body = $('#idx .idxbody'); if (!body) return;
+    body.innerHTML = '';
+    idxRows = [];
+
+    var heads = [];
+    var pre = $('#m0 .mv-rule');
+    if (pre) heads.push({ target: $('#m0'), n: '00', t: 'Before the clock', r: 'no time base', d: '—' });
+    $$('.mvhead').forEach(function (mh) {
+      var rng = $('.rng', mh);
+      var lines = rng ? rng.innerHTML.split(/<br\s*\/?>/i).map(function (x) {
+        var tmp = document.createElement('div'); tmp.innerHTML = x; return tmp.textContent.trim();
+      }) : [];
+      heads.push({
+        target: mh.closest('.movement'),
+        n: ($('.num', mh) || {}).textContent || '',
+        t: ($('.ttl', mh) || {}).textContent || '',
+        r: lines.slice(0, 2).join(' · '),
+        d: lines[2] || ''
+      });
+    });
+
+    heads.forEach(function (hd) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'idxrow';
+      b.innerHTML = '<span class="n"></span><span class="t"></span><span class="r"></span><span class="d"></span>';
+      $('.n', b).textContent = hd.n;
+      $('.t', b).textContent = hd.t;
+      $('.r', b).textContent = hd.r;
+      $('.d', b).textContent = hd.d;
+      b.addEventListener('click', function () {
+        closeIndex();
+        if (hd.target) window.scrollTo({ top: hd.target.getBoundingClientRect().top + window.scrollY - 70, behavior: 'auto' });
+      });
+      body.appendChild(b);
+      idxRows.push({ el: b, target: hd.target });
+    });
+  }
+
+  function openIndex() {
+    if (!idxEl) return;
+    idxRows.forEach(function (r) { r.el.classList.toggle('here', r.target === lastMV); });
+    idxEl.hidden = false;
+    var btn = $('#idxbtn'); if (btn) btn.setAttribute('aria-expanded', 'true');
+    var close = $('#idx .idxclose'); if (close) close.focus();
+  }
+  function closeIndex() {
+    if (!idxEl) return;
+    idxEl.hidden = true;
+    var btn = $('#idxbtn'); if (btn) btn.setAttribute('aria-expanded', 'false');
+  }
+  function wireIndex() {
+    buildIndex();
+    ['#idxbtn', '#prog .pix'].forEach(function (sel) {
+      var b = $(sel); if (b) b.addEventListener('click', openIndex);
+    });
+    var c = $('#idx .idxclose'); if (c) c.addEventListener('click', closeIndex);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && idxEl && !idxEl.hidden) closeIndex();
+    });
   }
 
   /* ============================================================
@@ -774,6 +950,7 @@
     collectMovements();
     wireToggles();
     wireSolo();
+    wireIndex();
     drawThesis();
     layout();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -783,6 +960,26 @@
       lastW = window.innerWidth;
       relayout();
     });
+    /* The browser can reveal `hidden="until-found"` content on its own — the
+       find bar fires beforematch, but window.find() and printing do not.
+       Blocks are absolutely positioned at their instant, so any growth we did
+       not initiate has to be re-laid-out or the score overlaps itself. */
+    if (window.ResizeObserver) {
+      var ro = new ResizeObserver(function (entries) {
+        var dirty = false;
+        entries.forEach(function (e) {
+          var b = e.target;
+          if (b._h === undefined) return;
+          if (Math.abs(b.offsetHeight - b._h) > 1) dirty = true;
+          var more = $('.blk-more', b);
+          if (more && b.dataset.open !== '1' && more.offsetHeight > 2 && b._setOpen) {
+            b._setOpen(true); dirty = true;
+          }
+        });
+        if (dirty) relayout();
+      });
+      $$('.blk').forEach(function (b) { ro.observe(b); });
+    }
     $$('img').forEach(function (im) {
       if (!im.complete) im.addEventListener('load', relayout, { once: true });
     });

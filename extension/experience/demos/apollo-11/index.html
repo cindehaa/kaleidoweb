@@ -16,7 +16,9 @@
     <div class="metfield"><span class="k">MET</span><span class="v" id="ro-met">000:00:00:00</span></div>
     <div class="alt" id="ro-alt" hidden><span class="k">Alt</span><span class="v" id="ro-altv">6,000 ft</span></div>
     <div id="ro-off" class="off"></div>
+    <div id="ro-mv"><b>00</b>Before the clock</div>
   </div>
+  <button id="idxbtn" type="button" aria-controls="idx" aria-expanded="false">Movements</button>
   <nav id="solo" aria-label="Solo a single body">
     <span class="sl">Solo</span>
     <button type="button" data-solo="" aria-pressed="true"><span class="lg">All</span><span class="sm">All</span></button>
@@ -26,14 +28,32 @@
   </nav>
 </header>
 
+<!-- mobile only: how far in, which movement, and one tap to the index -->
+<div id="prog">
+  <div class="pmv"><b>00</b>Before the clock</div>
+  <button type="button" class="pix" aria-controls="idx">Movements</button>
+</div>
+
 <aside id="map" aria-label="Minimap: true time against page space"></aside>
+
+<div id="idx" hidden role="dialog" aria-modal="true" aria-label="Movement index">
+  <div class="idxtop">
+    <span class="t">The score</span>
+    <span class="s">twelve movements · 16–24 July 1969 · vertical position is UTC</span>
+    <button type="button" class="idxclose">Close</button>
+  </div>
+  <div class="idxbody"></div>
+  <p class="idxfoot">The clock runs from 01 to 10. Movements 00 and 11 are off it — nothing in
+    them is timestamped in the source, so nothing in them is placed. Surface stay, landing to
+    lift-off: 21 h 36 m 20 s; the article calls it “21½ hours”.</p>
+</div>
 
 <main>
 
 <!-- ══════════════════════════════════════════════════════════
      MOVEMENT 0 — BEFORE THE CLOCK
      ══════════════════════════════════════════════════════════ -->
-<section id="m0" class="wrap movement" data-mv="0" data-clock="off" data-name="Before the clock">
+<section id="m0" class="wrap movement" data-mv="0" data-no="00" data-clock="off" data-name="Before the clock">
 
   <div id="plate">
     <div class="eyebrow">Three bodies · one clock</div>
@@ -111,7 +131,7 @@
 </section>
 
 <figure class="bleed-fig">
-  <img src="assets/03-John_F._Kennedy_speaks_at_Rice_University.jpg" alt="President John F. Kennedy speaking at Rice University, 1962" loading="lazy">
+  <img src="assets/03-John_F._Kennedy_speaks_at_Rice_University.jpg" alt="President John F. Kennedy speaking at Rice University, 1962" loading="lazy" style="object-position:center 14%">
   <figcaption><b>President John F. Kennedy speaking at Rice University on September 12, 1962</b><span>before a crowd of about 40,000 in the football stadium</span></figcaption>
 </figure>
 
@@ -121,7 +141,7 @@
   <p class="att">John F. Kennedy · Rice University, Houston · 12 September 1962</p>
 </section>
 
-<section class="wrap movement" data-mv="0b" data-clock="off" data-name="Before the clock">
+<section class="wrap movement" data-mv="0b" data-no="00" data-clock="off" data-name="Before the clock">
   <div class="sec" style="padding-top:56px">
     <div class="hang">
       <div class="h">Opposition, and the architecture<span>§ Background</span></div>
@@ -185,7 +205,7 @@
       <div class="row"><span class="sw" style="background:var(--team-black)"></span><span class="nm">Glynn Lunney</span><span class="mn">3</span><span class="mn">Black</span><span class="ac">Lunar ascent</span></div>
       <div class="row"><span class="sw" style="background:var(--team-maroon)"></span><span class="nm">Milton Windler</span><span class="mn">4</span><span class="mn">Maroon</span><span class="ac">Planning</span></div>
     </div>
-    <p class="micro" style="margin-top:14px;max-width:56em;line-height:1.7">These are the only five colours on the following pages, and they are not decoration: from here on, a coloured band beside the Houston lane says which team held the console. A sixth ink — <span style="color:var(--alert)">red</span> — appears three times only: the 1201/1202 program alarms, the propellant calls during the final descent, and Luna 15.</p>
+    <p class="micro" style="margin-top:14px;max-width:var(--w-ev);line-height:1.7">These are the only five colours on the following pages, and they are not decoration: from here on, a coloured band beside the Houston lane says which team held the console. A sixth ink — <span style="color:var(--alert)">red</span> — appears three times only: the 1201/1202 program alarms, the propellant calls during the final descent, and Luna 15.</p>
 
     <details class="sec" style="padding-top:26px">
       <summary class="lab" style="cursor:pointer;color:var(--ink-45)">Other key personnel — twelve names, from the article's table</summary>
@@ -214,7 +234,7 @@
 </section>
 
 <!-- PREPARATIONS -->
-<section class="wrap movement" data-mv="0c" data-clock="off" data-name="Before the clock">
+<section class="wrap movement" data-mv="0c" data-no="00" data-clock="off" data-name="Before the clock">
   <div class="sec">
     <h2>Preparations</h2>
     <div class="hang">
@@ -253,8 +273,8 @@
     <div class="hang">
       <div class="h">Site selection<span>§ Site selection</span></div>
       <div class="prose">
-        <p style="max-width:46em">NASA's Apollo Site Selection Board announced five potential landing sites on February 8, 1968. These were the result of two years' worth of studies based on high-resolution photography of the lunar surface by the five uncrewed probes of the Lunar Orbiter program and information about surface conditions provided by the Surveyor program. The best Earth-bound telescopes could not resolve features with the resolution Project Apollo required. The landing site had to be close to the lunar equator to minimize the amount of propellant required, clear of obstacles to minimize maneuvering, and flat to simplify the task of the landing radar. <b>Scientific value was not a consideration.</b></p>
-        <p style="max-width:46em">Areas that appeared promising on photographs taken on Earth were often found to be totally unacceptable. The original requirement that the site be free of craters had to be relaxed, as no such site was found. Five sites were considered: Sites 1 and 2 were in the Sea of Tranquility (Mare Tranquillitatis); Site 3 was in the Central Bay (Sinus Medii); and Sites 4 and 5 were in the Ocean of Storms (Oceanus Procellarum). The final site selection was based on seven criteria:</p>
+        <p style="max-width:var(--w-arg)">NASA's Apollo Site Selection Board announced five potential landing sites on February 8, 1968. These were the result of two years' worth of studies based on high-resolution photography of the lunar surface by the five uncrewed probes of the Lunar Orbiter program and information about surface conditions provided by the Surveyor program. The best Earth-bound telescopes could not resolve features with the resolution Project Apollo required. The landing site had to be close to the lunar equator to minimize the amount of propellant required, clear of obstacles to minimize maneuvering, and flat to simplify the task of the landing radar. <b>Scientific value was not a consideration.</b></p>
+        <p style="max-width:var(--w-arg)">Areas that appeared promising on photographs taken on Earth were often found to be totally unacceptable. The original requirement that the site be free of craters had to be relaxed, as no such site was found. Five sites were considered: Sites 1 and 2 were in the Sea of Tranquility (Mare Tranquillitatis); Site 3 was in the Central Bay (Sinus Medii); and Sites 4 and 5 were in the Ocean of Storms (Oceanus Procellarum). The final site selection was based on seven criteria:</p>
         <ol class="crit" style="margin-top:22px">
           <li>The site needed to be smooth, with relatively few craters;</li>
           <li>with approach paths free of large hills, tall cliffs or deep craters that might confuse the landing radar and cause it to issue incorrect readings;</li>
@@ -264,7 +284,7 @@
           <li>with good visibility during the landing approach, meaning the Sun would be between 7 and 20 degrees behind the LM; and</li>
           <li>a general slope of less than two degrees in the landing area.</li>
         </ol>
-        <p style="max-width:46em;margin-top:22px">The requirement for the Sun angle was particularly restrictive, <b>limiting the launch date to one day per month.</b> A landing just after dawn was chosen to limit the temperature extremes the astronauts would experience. The Apollo Site Selection Board selected Site 2, with Sites 3 and 5 as backups in the event of the launch being delayed. In May 1969, Apollo 10's lunar module flew to within 15 kilometers (9.3 mi) of Site 2, and reported it was acceptable.</p>
+        <p style="max-width:var(--w-arg);margin-top:22px">The requirement for the Sun angle was particularly restrictive, <b>limiting the launch date to one day per month.</b> A landing just after dawn was chosen to limit the temperature extremes the astronauts would experience. The Apollo Site Selection Board selected Site 2, with Sites 3 and 5 as backups in the event of the launch being delayed. In May 1969, Apollo 10's lunar module flew to within 15 kilometers (9.3 mi) of Site 2, and reported it was acceptable.</p>
       </div>
     </div>
   </div>
@@ -273,7 +293,7 @@
     <div class="hang">
       <div class="h">Who steps out first<span>§ First-step decision</span></div>
       <div class="prose">
-        <p style="max-width:46em">During the first press conference after the Apollo 11 crew was announced, the first question was, "Which one of you gentlemen will be the first man to step onto the lunar surface?" Slayton told the reporter it had not been decided, and Armstrong added that it was "not based on individual desire". The decision was announced in a press conference on April 14, 1969. The article gives four accounts of why, and does not choose between them.</p>
+        <p style="max-width:var(--w-arg)">During the first press conference after the Apollo 11 crew was announced, the first question was, "Which one of you gentlemen will be the first man to step onto the lunar surface?" Slayton told the reporter it had not been decided, and Armstrong added that it was "not based on individual desire". The decision was announced in a press conference on April 14, 1969. The article gives four accounts of why, and does not choose between them.</p>
       </div>
     </div>
     <div class="rivals" style="margin-top:26px">
@@ -303,13 +323,13 @@
 </section>
 
 <!-- PRE-LAUNCH: the vehicle, assembled. Off the clock. -->
-<section class="wrap movement" data-mv="0d" data-clock="off" data-name="Before the clock">
+<section class="wrap movement" data-mv="0d" data-no="00" data-clock="off" data-name="Before the clock">
   <div class="sec">
     <div class="hang">
       <div class="h">The vehicle<span>§ Pre-launch</span></div>
       <div class="prose">
-        <p style="max-width:46em">The ascent stage of LM-5 <i>Eagle</i> arrived at the Kennedy Space Center on January 8, 1969, followed by the descent stage four days later, and CSM-107 <i>Columbia</i> on January 23. There were several differences between <i>Eagle</i> and Apollo 10's LM-4 <i>Snoopy</i>: <i>Eagle</i> had a VHF radio antenna to facilitate communication with the astronauts during their EVA on the lunar surface; a lighter ascent engine; more thermal protection on the landing gear; and a package of scientific experiments known as the Early Apollo Scientific Experiments Package (EASEP). The only change in the configuration of the command module was the removal of some insulation from the forward hatch.</p>
-        <p style="max-width:46em">The S-IVB third stage of Saturn V AS-506 had arrived on January 18, followed by the S-II second stage on February 6, S-IC first stage on February 20, and the Saturn V Instrument Unit on February 27. At 12:30 on May 20, the 5,443-tonne assembly departed the Vehicle Assembly Building atop the crawler-transporter, bound for Launch Pad 39A, part of Launch Complex 39, while Apollo 10 was still on its way to the Moon. A countdown test commenced on June 26, and concluded on July 2. The launch complex was floodlit on the night of July 15, when the crawler-transporter carried the mobile service structure back to its parking area. In the early hours of the morning, the fuel tanks of the S-II and S-IVB stages were filled with liquid hydrogen. Fueling was completed by three hours before launch. Launch operations were partly automated, with 43 programs written in the ATOLL programming language.</p>
+        <p style="max-width:var(--w-arg)">The ascent stage of LM-5 <i>Eagle</i> arrived at the Kennedy Space Center on January 8, 1969, followed by the descent stage four days later, and CSM-107 <i>Columbia</i> on January 23. There were several differences between <i>Eagle</i> and Apollo 10's LM-4 <i>Snoopy</i>: <i>Eagle</i> had a VHF radio antenna to facilitate communication with the astronauts during their EVA on the lunar surface; a lighter ascent engine; more thermal protection on the landing gear; and a package of scientific experiments known as the Early Apollo Scientific Experiments Package (EASEP). The only change in the configuration of the command module was the removal of some insulation from the forward hatch.</p>
+        <p style="max-width:var(--w-arg)">The S-IVB third stage of Saturn V AS-506 had arrived on January 18, followed by the S-II second stage on February 6, S-IC first stage on February 20, and the Saturn V Instrument Unit on February 27. At 12:30 on May 20, the 5,443-tonne assembly departed the Vehicle Assembly Building atop the crawler-transporter, bound for Launch Pad 39A, part of Launch Complex 39, while Apollo 10 was still on its way to the Moon. A countdown test commenced on June 26, and concluded on July 2. The launch complex was floodlit on the night of July 15, when the crawler-transporter carried the mobile service structure back to its parking area. In the early hours of the morning, the fuel tanks of the S-II and S-IVB stages were filled with liquid hydrogen. Fueling was completed by three hours before launch. Launch operations were partly automated, with 43 programs written in the ATOLL programming language.</p>
       </div>
     </div>
     <div class="vehiclerow">
@@ -366,14 +386,14 @@
         <div class="micro" style="line-height:1.6;margin-top:5px">Three things only: the 1201/1202 program alarms, the propellant calls, and Luna 15.</div>
       </div>
     </div>
-    <p class="micro" style="margin-top:22px;max-width:70em;line-height:1.75">And at the right edge of the window, permanently: the whole eight days drawn twice. The left rail is <b style="font-weight:400;color:var(--ink-62)">true time</b>, linear from the launch morning to the deck of the <i>Hornet</i>. The right rail is <b style="font-weight:400;color:var(--ink-62)">this page</b>. The hairlines between them tie each passage to its real duration — where they fan out, the page is stretching time; where they converge, it is compressing it. The scale of this page is dishonest by design and the minimap is where it admits it.</p>
+    <p class="micro" style="margin-top:22px;max-width:var(--w-ev);line-height:1.75">And at the right edge of the window, permanently: the whole eight days drawn twice. The left rail is <b style="font-weight:400;color:var(--ink-62)">true time</b>, linear from the launch morning to the deck of the <i>Hornet</i>. The right rail is <b style="font-weight:400;color:var(--ink-62)">this page</b>. The hairlines between them tie each passage to its real duration — where they fan out, the page is stretching time; where they converge, it is compressing it. The scale of this page is dishonest by design and the minimap is where it admits it.</p>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
      MOVEMENT 1 — T-MINUS
      ══════════════════════════════════════════════════════════ -->
-<section class="movement" data-mv="1" data-clock="on" data-name="T-minus">
+<section class="movement" data-mv="1" data-no="01" data-clock="on" data-name="T-minus">
   <div class="wrap mvhead">
     <div class="row">
       <div class="num">01</div>
@@ -446,7 +466,7 @@
 <!-- ══════════════════════════════════════════════════════════
      MOVEMENT 2 — ASCENT
      ══════════════════════════════════════════════════════════ -->
-<section class="movement" data-mv="2" data-clock="on" data-name="Ascent">
+<section class="movement" data-mv="2" data-no="02" data-clock="on" data-name="Ascent">
   <div class="wrap mvhead">
     <div class="row">
       <div class="num">02</div>
@@ -556,7 +576,7 @@
 <!-- ══════════════════════════════════════════════════════════
      MOVEMENT 2b — TRANSIT + LUNAR ORBIT
      ══════════════════════════════════════════════════════════ -->
-<section class="movement" data-mv="2b" data-clock="on" data-name="Transit">
+<section class="movement" data-mv="2b" data-no="03" data-clock="on" data-name="Transit and thirty orbits">
   <div class="wrap mvhead">
     <div class="row">
       <div class="num">03</div>
@@ -614,7 +634,7 @@
 <!-- ══════════════════════════════════════════════════════════
      MOVEMENT 3 — THE SPLIT
      ══════════════════════════════════════════════════════════ -->
-<section class="movement" data-mv="3" data-clock="on" data-name="The split">
+<section class="movement" data-mv="3" data-no="04" data-clock="on" data-name="The split">
   <div class="wrap mvhead">
     <div class="row">
       <div class="num">04</div>
@@ -705,7 +725,7 @@
 <!-- ══════════════════════════════════════════════════════════
      MOVEMENT 4 — POWERED DESCENT (axis becomes altitude)
      ══════════════════════════════════════════════════════════ -->
-<section class="movement" data-mv="4" data-clock="on" data-name="Powered descent">
+<section class="movement" data-mv="4" data-no="05" data-clock="on" data-name="Powered descent">
   <div class="wrap mvhead">
     <div class="row">
       <div class="num">05</div>
@@ -858,12 +878,19 @@
 <!-- ══════════════════════════════════════════════════════════
      MOVEMENT 5a — SURFACE, BEFORE THE HATCH
      ══════════════════════════════════════════════════════════ -->
-<section class="movement" data-mv="5" data-clock="on" data-name="Surface">
+<section class="movement" data-mv="5" data-no="06" data-clock="on" data-name="Surface">
   <div class="wrap mvhead">
     <div class="row">
       <div class="num">06</div>
       <div class="ttl">Surface</div>
       <div class="rng"><b>20 → 21 Jul 1969</b><br>20:17:40 → 02:39:33 UTC<br><b>06 h 21 m 53 s</b></div>
+    </div>
+    <div class="mvstat">
+      <span class="k">Total time on the surface</span>
+      <span class="v">21 h 36 m 20 s</span>
+      <span class="w">Touchdown 20:17:40 on 20 July to lift-off 17:54:00 on 21 July — the article's
+        “21½ hours”. Movements 06 and 07 are the first nine hours of it; the rest is the sleep
+        period drawn as silence between 07 and 08.</span>
     </div>
     <p class="note">Three lanes now, and this is the passage the article gets structurally wrong: “Columbia in lunar orbit” is printed <i>after</i> “Lunar ascent”, three sections later, although every sentence in it happens here, alongside the surface. It has been moved back to where it belongs. Collins' lane goes dark on schedule.</p>
   </div>
@@ -971,7 +998,7 @@
 <!-- ══════════════════════════════════════════════════════════
      MOVEMENT 5b — THE EVA
      ══════════════════════════════════════════════════════════ -->
-<section class="movement" data-mv="5b" data-clock="on" data-name="EVA">
+<section class="movement" data-mv="5b" data-no="07" data-clock="on" data-name="Extravehicular activity">
   <div class="wrap mvhead">
     <div class="row">
       <div class="num">07</div>
@@ -1243,7 +1270,7 @@
 <!-- ══════════════════════════════════════════════════════════
      MOVEMENT 6 — ASCENT AND REJOIN
      ══════════════════════════════════════════════════════════ -->
-<section class="movement" data-mv="6" data-clock="on" data-name="Ascent and rejoin">
+<section class="movement" data-mv="6" data-no="08" data-clock="on" data-name="Ascent and rejoin">
   <div class="wrap mvhead">
     <div class="row">
       <div class="num">08</div>
@@ -1383,7 +1410,7 @@
 <!-- ══════════════════════════════════════════════════════════
      MOVEMENT 7 — HOME
      ══════════════════════════════════════════════════════════ -->
-<section class="movement" data-mv="7" data-clock="on" data-name="Coast home">
+<section class="movement" data-mv="7" data-no="09" data-clock="on" data-name="Coast home">
   <div class="wrap mvhead">
     <div class="row">
       <div class="num">09</div>
@@ -1464,7 +1491,7 @@
 <!-- ══════════════════════════════════════════════════════════
      MOVEMENT 7b — SEVEN MINUTES
      ══════════════════════════════════════════════════════════ -->
-<section class="movement" data-mv="7b" data-clock="on" data-name="Splashdown">
+<section class="movement" data-mv="7b" data-no="10" data-clock="on" data-name="Sixty-nine minutes">
   <div class="wrap mvhead">
     <div class="row">
       <div class="num">10</div>
@@ -1560,7 +1587,7 @@
 <!-- ══════════════════════════════════════════════════════════
      MOVEMENT 8 — AFTER THE CLOCK
      ══════════════════════════════════════════════════════════ -->
-<section class="movement" id="m8" data-mv="8" data-clock="off" data-name="After the clock">
+<section class="movement" id="m8" data-mv="8" data-no="11" data-clock="off" data-name="After the clock">
   <div class="wrap mvhead">
     <div class="row">
       <div class="num">11</div>
@@ -1570,10 +1597,21 @@
     <p class="note">The staves do not simply stop. Position still means something here — but it is place, not time. Everything the mission carried went somewhere, and most of it is still there.</p>
   </div>
   <div class="wrap">
-    <svg id="disperse" aria-label="The three lanes dissolving into seven present locations"></svg>
+    <svg id="disperse" aria-label="Four carriers dissolving into eight present locations"></svg>
+    <p class="dispcap">Each line is a custody claim, and each one is made by the row beneath it: the objects follow the vehicle the article says carried them, not the lane they were narrated in. <i>Eagle</i>’s descent stage was never Houston’s.</p>
     <div class="where">
+      <div class="row gone">
+        <div class="loc">In solar orbit<span>near to that of Earth</span><span class="car">Saturn V · the launch vehicle</span></div>
+        <div><div class="obj">The S-IVB third stage which performed Apollo 11's trans-lunar injection remains in a solar orbit near to that of Earth. It was deliberately sent past the Moon so that it could not collide with the spacecraft, the Earth, or the Moon; the slingshot threw it around the Sun instead.</div></div>
+        <div class="cnt">§ Spacecraft · p113<br>§ Launch and flight · p43</div>
+      </div>
       <div class="row">
-        <div class="loc">Still on the Moon<span>Mare Tranquillitatis · 0°40′27″N 23°28′23″E</span></div>
+        <div class="loc">On the Atlantic seabed<span>and two of them, raised</span><span class="car">Saturn V · the launch vehicle</span></div>
+        <div><div class="obj">In March 2012 a team of specialists financed by Amazon founder Jeff Bezos located the F-1 engines from the S-IC stage that launched Apollo 11 into space. They were found on the Atlantic seabed using advanced sonar scanning. His team brought parts of two of the five engines to the surface. In July 2013, a conservator discovered a serial number under the rust on one of the engines raised from the Atlantic, which NASA confirmed was from Apollo 11.</div></div>
+        <div class="cnt">§ Spacecraft · p113</div>
+      </div>
+      <div class="row">
+        <div class="loc">Still on the Moon<span>Mare Tranquillitatis · 0°40′27″N 23°28′23″E</span><span class="car">Eagle · the lunar module</span></div>
         <div>
           <div class="obj">The descent stage of the LM <em>Eagle</em> remains on the Moon. In 2009, the Lunar Reconnaissance Orbiter imaged the various Apollo landing sites, for the first time with sufficient resolution to see the descent stages of the lunar modules, scientific instruments, and foot trails made by the astronauts.</div>
           <div class="obj">The plaque on the ladder. An Apollo 1 mission patch for Chaffee, Grissom and White. Two memorial medals of the Soviet cosmonauts Vladimir Komarov and Yuri Gagarin. A memorial bag containing a gold replica of an olive branch. A silicon message disk carrying goodwill statements from the leaders of 73 countries.</div>
@@ -1583,24 +1621,21 @@
         <div class="cnt">§ Spacecraft · p111<br>§ Lunar ascent · p71, p74, p76<br>§ Experiment results · p116</div>
       </div>
       <div class="row gone">
-        <div class="loc">In an orbit nobody can find<span>uncertain · possibly still there</span></div>
+        <div class="loc">In an orbit nobody can find<span>uncertain · possibly still there</span><span class="car">Eagle · the lunar module</span></div>
         <div>
           <div class="obj">The remains of the ascent stage are assumed to lie at an unknown location on the lunar surface. The ascent stage, <em>Eagle</em>, was not tracked after it was jettisoned. The lunar gravity field is sufficiently non-uniform to make low Moon orbits unstable after a short time. However, using a program developed by NASA and high-resolution lunar gravity data, a paper published in 2021 indicated that <em>Eagle</em> might still be in orbit as late as 2020. A Monte Carlo method was used to generate parameter sets bracketing the uncertainties in the published orbital elements. <em>All simulations of the orbit predicted that Eagle would never impact the lunar surface.</em></div>
         </div>
         <div class="cnt">§ Spacecraft · p112</div>
       </div>
       <div class="row gone">
-        <div class="loc">In solar orbit<span>near to that of Earth</span></div>
-        <div><div class="obj">The S-IVB third stage which performed Apollo 11's trans-lunar injection remains in a solar orbit near to that of Earth. It was deliberately sent past the Moon so that it could not collide with the spacecraft, the Earth, or the Moon; the slingshot threw it around the Sun instead.</div></div>
-        <div class="cnt">§ Spacecraft · p113<br>§ Launch and flight · p43</div>
+        <div class="loc">Lost<span>thrown out to lighten the ascent stage</span><span class="car">Eagle · the lunar module</span></div>
+        <div>
+          <div class="obj">The Hasselblad camera used during the moonwalk was thought to be lost or left on the Moon's surface.</div>
+        </div>
+        <div class="cnt">§ Moonwalk camera · p117</div>
       </div>
       <div class="row">
-        <div class="loc">On the Atlantic seabed<span>and two of them, raised</span></div>
-        <div><div class="obj">In March 2012 a team of specialists financed by Amazon founder Jeff Bezos located the F-1 engines from the S-IC stage that launched Apollo 11 into space. They were found on the Atlantic seabed using advanced sonar scanning. His team brought parts of two of the five engines to the surface. In July 2013, a conservator discovered a serial number under the rust on one of the engines raised from the Atlantic, which NASA confirmed was from Apollo 11.</div></div>
-        <div class="cnt">§ Spacecraft · p113</div>
-      </div>
-      <div class="row">
-        <div class="loc">At the Smithsonian<span>Washington DC · Chantilly, Virginia</span></div>
+        <div class="loc">At the Smithsonian<span>Washington DC · Chantilly, Virginia</span><span class="car">Columbia · the command module</span></div>
         <div>
           <div class="obj">The command module <em>Columbia</em> went on a tour of the United States, visiting 49 state capitals, the District of Columbia, and Anchorage, Alaska. In 1971 it was transferred to the Smithsonian Institution and displayed at the National Air and Space Museum, in the central Milestones of Flight hall, sharing the main hall with the Wright Flyer, <em>Spirit of St. Louis</em>, Bell X-1, North American X-15 and <em>Friendship 7</em>.</div>
           <div class="obj">It moved again in 2017, to the Mary Baker Engen Restoration Hangar at the Steven F. Udvar-Hazy Center, to be readied for a four-city tour: Space Center Houston, the Saint Louis Science Center, the Senator John Heinz History Center in Pittsburgh, and the Museum of Flight in Seattle. Continued renovations allowed an additional stop at the Cincinnati Museum Center; the ribbon cutting was on September 29, 2019.</div>
@@ -1610,7 +1645,7 @@
         <div class="cnt">§ Spacecraft · p108–110<br>§ LM Eagle memorabilia · p118</div>
       </div>
       <div class="row">
-        <div class="loc">Distributed<span>135 nations · 50 states · the United Nations</span></div>
+        <div class="loc">Distributed<span>135 nations · 50 states · the United Nations</span><span class="car">Columbia · the command module</span></div>
         <div>
           <div class="obj">In November 1969, Nixon asked NASA to make up about 250 presentation Apollo 11 lunar sample displays for 135 nations, the fifty states and its possessions, and the United Nations. Each display included Moon dust from Apollo 11 and flags, including one of the Soviet Union, taken along by Apollo 11. The rice-sized particles were four small pieces of Moon soil weighing about 50 mg, enveloped in a clear acrylic button about as big as a half-dollar coin, which magnified them. Nixon gave them as goodwill gifts in 1970.</div>
           <div class="obj">The main repository for the Apollo Moon rocks is the Lunar Sample Laboratory Facility at the Johnson Space Center in Houston; a smaller collection is stored at the White Sands Test Facility near Las Cruces, New Mexico. Most of the rocks are stored in nitrogen to keep them free of moisture and are handled only indirectly, using special tools. Over 100 research laboratories worldwide conduct studies of the samples; approximately 500 samples are prepared and sent to investigators every year.</div>
@@ -1619,12 +1654,11 @@
         <div class="cnt">§ Moon rocks · p114, p115<br>§ Celebrations · p96, p97</div>
       </div>
       <div class="row gone">
-        <div class="loc">Lost<span>or taped over</span></div>
+        <div class="loc">Taped over<span>NASA · tape re-use</span><span class="car">Houston · the ground</span></div>
         <div>
-          <div class="obj">The Hasselblad camera used during the moonwalk was thought to be lost or left on the Moon's surface.</div>
           <div class="obj">Copies of the moonwalk video in broadcast format were saved and are widely available, but <em>recordings of the original slow scan source transmission from the lunar surface were likely destroyed during routine magnetic tape re-use at NASA.</em> The picture lost most of its quality being re-filmed off a monitor to get it on air, and then the original was recorded over.</div>
         </div>
-        <div class="cnt">§ Moonwalk camera · p117<br>§ Lunar surface operations · p59</div>
+        <div class="cnt">§ Lunar surface operations · p59</div>
       </div>
     </div>
   </div>
@@ -1635,7 +1669,7 @@
   <figcaption><b>The original cockpit of the command module, photographed from above, at the National Air and Space Museum.</b><span>Very high resolution image produced in 2007 by the Smithsonian Institution.</span></figcaption>
 </figure>
 
-<section class="wrap movement" data-mv="8b" data-clock="off" data-name="After the clock">
+<section class="wrap movement" data-mv="8b" data-no="11" data-clock="off" data-name="After the clock">
   <div class="sec">
     <div class="hang">
       <div class="h">Celebrations<span>§ Celebrations · § World tour</span></div>
@@ -1657,9 +1691,9 @@
 </figure>
 
 <!-- DISSENT: no decoration, no motion, no rules -->
-<section class="wrap movement" data-mv="8c" data-clock="off" data-name="Not everyone">
+<section class="wrap movement" data-mv="8c" data-no="11" data-clock="off" data-name="Not everyone">
   <div class="sec" style="padding-top:96px">
-    <div style="max-width:34em;margin-left:0">
+    <div style="max-width:var(--w-arg);margin-left:0">
       <h2 style="border-top:0;padding-top:0;margin-bottom:26px">Not everyone</h2>
       <div class="prose">
         <p>While most people celebrated the accomplishment, disenfranchised Americans saw it as a symbol of the divide in America, evidenced by protesters led by Ralph Abernathy outside of Kennedy Space Center the day before Apollo 11 launched. NASA Administrator Thomas Paine met with Abernathy at the occasion, both hoping that the space program can spur progress also in other regards, such as poverty in the US. Paine was then asked, and agreed, to host protesters as spectators at the launch, and Abernathy, awestruck by the spectacle, prayed for the astronauts.</p>
@@ -1681,7 +1715,7 @@
   <figcaption><b>A girl holding <i>The Washington Post</i>: "'The Eagle Has Landed' – Two Men Walk on the Moon"</b><span>§ Cultural significance · article caption</span></figcaption>
 </figure>
 
-<section class="wrap movement" data-mv="8d" data-clock="off" data-name="Anniversaries">
+<section class="wrap movement" data-mv="8d" data-no="11" data-clock="off" data-name="Anniversaries">
   <div class="sec">
     <div class="hang">
       <div class="h">Forty years<span>§ 40th anniversary</span></div>
