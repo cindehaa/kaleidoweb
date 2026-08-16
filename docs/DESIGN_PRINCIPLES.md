@@ -56,7 +56,9 @@ The measured Shopify Editions system [A1] is the calibration target; Ciechanowsk
 **2.1 MUST — two families, maximum.** Editions ships exactly two (National 2 + Shopify Inter). Ciechanowski ships exactly two (Inter + IBM Plex Sans). A third family is a failure, not an option. The two families should be assigned by *job*, and the assignment is a design decision worth making per subject:
 - **Split A (narration/instrumentation):** serif for everything narrated, sans for all data furniture — axis labels, legends, units, counts. Voice is encoded in the typeface: humans speak serif, instruments speak sans [C1].
 - **Split B (display/reading):** one face for display *and* micro-labels, another for the mid-band of reading sizes [A1].
-- **Split C (author/system):** serif or humanist for authored prose, monospace for machine voice — instructions, controls, source attributions, "generated" markers [D1].
+- **Split C (author/system):** serif or humanist for authored prose, monospace for machine voice — instructions, controls, source attributions, "generated" markers [D1]. **Split C is retired as a default option** — it is available only under the condition in §2.6.
+
+**At least one of the two families MUST be traceable to the subject's material record** — the face actually used, its documented revival, or the face of the subject's period and discipline. A family chosen because it is a good typeface is a failure. Faces named on published "distinctive font" lists (Inter, Roboto, Space Grotesk, Fraunces, Playfair, Newsreader, Crimson Pro, Satoshi, Cabinet Grotesk, Bricolage Grotesque, IBM Plex, JetBrains Mono, Space Mono) are **presumed default** and require an explicit material citation to use.
 
 **2.2 MUST — display-to-body ratio ≥ 6×.** Editions is 8.6× (120px vs 14px). A page whose largest type is 2–3× its body type reads as a document, not an experience.
 
@@ -81,9 +83,13 @@ Display type at line-height 1.4 is the most reliable tell of an untuned page.
 | ≤ 16px body | 0 (normal) | Editions, Ciechanowski |
 | ≤ 11px uppercase micro-labels | **+0.06 to +0.12em** | By-Kin monospace labels, Pudding axis labels |
 
+The `≤11px uppercase +.06–.12em` row describes the eyebrow-label tell and must not be read as licence to apply it everywhere (see §2.6). Display tracking must be measured against the chosen face at the chosen size, not taken from the table.
+
 **2.5 SHOULD — uneven scale steps.** Small ratios at the bottom (1.1–1.2×), large leaps at the top (1.6–1.9×). Editions: 14 → 16 → 24 → 40 → 64 → 120. A uniform modular scale (every step 1.25×) produces the metronome pacing the rubric penalises.
 
-**2.6 SHOULD — a monospace micro-label register at ~10px, uppercase, letterspaced**, carrying *all* metadata: dates, counts, section numbers, units, source attributions, "generated explanation" markers. It does a section header's job at a third of the size and reads as apparatus rather than content [H1]. This is also the cheapest mechanism for the truth-preservation requirement — provenance lives in a visually distinct register.
+**2.6 CONDITIONAL — a monospace micro-label register is permitted only when the subject's material record contains monospaced or machine-set text** (teleprinter, line printer, punched card, telex, ledger, subtitle, terminal). Otherwise the apparatus register MUST be derived from how the subject's own world marked apparatus: a stamped seal, a rubric, an accession number, a marginal annotation, a stencil, a caption in the catalogue's own face. Monospace without a character grid is costume. Whatever its derived form, the apparatus register still does the work it always did — a distinct register carrying metadata (dates, counts, section numbers, units, source attributions, "generated explanation" markers) and serving the truth-preservation requirement (§7.1): provenance lives in a visually distinct register [H1].
+
+**No more than one apparatus marker per block.** A section may not be introduced by an eyebrow label *and* a numeral *and* a rule. Delete every eyebrow label; reinstate only those whose deletion lost information.
 
 **2.7 SHOULD — the heading may be lower-contrast than the body.** Ciechanowski's H1 is `#535353` against `#444` body text: the title is *quieter* than the prose [B1]. Where the reader will spend real time reading, give the running text the strongest contrast and let size alone carry hierarchy.
 
@@ -97,9 +103,9 @@ Display type at line-height 1.4 is the most reliable tell of an untuned page.
 
 ## 3. Composition
 
-**3.1 MUST — no border-radius on content regions.** Editions [measured] applies radius only to controls (pill buttons, 4px/8px chips); every content region is radius 0, borderless, shadowless, on one of three background colours. This single rule eliminates the "shadcn card collection" failure mode more effectively than any other.
+**3.1 MUST — border-radius follows the subject's world.** Zero radius on content regions is required only where the subject's world has square corners (metal panels, letterpress furniture, punch cards) — Editions [measured] applies radius only to controls (pill buttons, 4px/8px chips) and keeps every content region radius 0, borderless, shadowless. Where the subject's objects are round (a bezel, a dial, a seal, a lens, a manga panel), reproduce the radius the object has, at the object's proportion — not 4px/8px. Either way, this rule eliminates the "shadcn card collection" failure mode: no decorative radius uncorrelated with the subject.
 
-**3.2 MUST — separate with hairlines and space, not containers.** 150 discrete items on Editions are separated by 1px rules and whitespace alone [A1]. Reach for a container only when the content genuinely nests.
+**3.2 MUST — separate the way the subject's own documents separate.** If the material record is boxed, ruled or gridded — tables, forms, ledgers, timetables, catalogues, print sheets with a key-block outline — reproduce that boundary language at its real weight, including filled header cells and 1.5–3px rules. Hairlines-and-whitespace (150 discrete items on Editions are separated by 1px rules and whitespace alone [A1]) is the *fallback* for subjects with no documented boundary language, not the house style. Reach for a container only when the content genuinely nests or the material record is itself containerised.
 
 **3.3 SHOULD — anchor to corners; leave the optical centre empty.** By-Kin loads all four corners and voids the middle [H1]. This is the fastest structural escape from the centred-hero layout. Centring is permitted for exactly one persistent element (a position indicator) and for a deliberate ceremonial moment, not as a default.
 
