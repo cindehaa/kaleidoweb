@@ -228,7 +228,7 @@ function layout() {
   const A2X = a => pL + (a / maxAge()) * plotW;
   const labelBand = narrow() ? 16 : 19;
   const pad = 4, gap = 4;
-  const single = (state === 1 || state >= 4);
+  const single = (state === 1 || state === 2 || state >= 4);
 
   const rows = REGS.map(() => []);
   let placed = [];
@@ -267,7 +267,9 @@ function layout() {
   }
   const pitch = sheetH + 6;
 
-  const hs = REGS.map((r, i) => labelBand + (single ? 1 : Math.max(1, rows[i].length)) * pitch + pad);
+  const hs = REGS.map((r, i) => single
+    ? labelBand + pitch + pad
+    : labelBand + pad + rows[i].length * pitch + (rows[i].length ? 0 : 3));
   let sum = hs.reduce((a, b) => a + b, 0) + (REGS.length - 1) * gap;
   const slack = ch - sum;
   if (slack > 0) { const each = slack / REGS.length; for (let i = 0; i < hs.length; i++) hs[i] += each; }
@@ -300,7 +302,7 @@ function layout() {
       const rlo = regOf(w.ages[0]), rhi = ri;
       const bx0 = A2X(w.ages[0]), bx1 = A2X(w.ages[1]);
       const yHi = top + sheetH + 3;
-      const yLo = rlo === rhi ? yHi : tops[rlo] + hs[rlo] - 6;
+      const yLo = rlo === rhi ? yHi : tops[rlo] + hs[rlo] * 0.66;
       const cross = rlo === rhi ? bx1 : A2X(REGS[rhi].age);
       const top0 = Math.min(yLo, yHi);
       bar.style.left = bx0 + 'px';
@@ -322,6 +324,41 @@ function layout() {
       bar.dataset.on = '1';
     } else bar.dataset.on = '0';
   });
+
+  if (state === 2) {
+    const w = WORKS.find(x => x.id === 'w-great-wave');
+    const ri = regOf(showRanges ? w.ages[1] : mid(w));
+    const n = SH[w.id], bar = BAR[w.id];
+    const h2 = Math.max(26, Math.min(132, hs[ri] - labelBand - 12));
+    const w2 = h2 * w.iw / w.ih;
+    const cx = A2X(mid(w));
+    const top = tops[ri] + labelBand + 6;
+    n.style.left = (cx - w2 / 2) + 'px';
+    n.style.top = top + 'px';
+    n.style.width = w2 + 'px';
+    n.style.height = h2 + 'px';
+    if (showRanges) {
+      const rlo = regOf(w.ages[0]);
+      const bx0 = A2X(w.ages[0]), bx1 = A2X(w.ages[1]);
+      const yHi = top + h2 + 5;
+      const yLo = tops[rlo] + hs[rlo] * 0.66;
+      const cross = A2X(REGS[ri].age);
+      const t0 = Math.min(yLo, yHi);
+      bar.style.left = bx0 + 'px'; bar.style.top = t0 + 'px';
+      bar.style.width = Math.max(2, bx1 - bx0) + 'px';
+      bar.style.height = Math.max(2, Math.abs(yLo - yHi) + 2) + 'px';
+      bar.innerHTML = '';
+      const seg = (x, wd, yy) => { const d = el('div', 'seg'); d.style.cssText = `left:${x}px;top:${yy - t0}px;width:${Math.max(1, wd)}px`; return d; };
+      const cap = (x, yy) => { const d = el('div', 'cap'); d.style.cssText = `left:${x}px;top:${yy - t0 - 4}px`; return d; };
+      const wLo = Math.max(1, cross - bx0);
+      bar.append(seg(0, wLo, yLo), cap(0, yLo));
+      const st = el('div', 'step');
+      st.style.cssText = `left:${wLo}px;top:${Math.min(yLo, yHi) - t0}px;height:${Math.abs(yLo - yHi)}px`;
+      bar.append(st, seg(wLo, bx1 - bx0 - wLo, yHi), cap(bx1 - bx0 - 1.5, yHi));
+      bar.dataset.on = '1';
+      bar.style.opacity = '1';
+    }
+  }
 
   // the verdict region: left of seventy, across the three registers that can hold it
   const x70 = A2X(70);
@@ -361,15 +398,18 @@ function buildAxis(A2X) {
 
 function buildNames(A2X) {
   namesEl.innerHTML = '';
-  let lastX = -999, alt = 0;
+  const ends = [-999, -999];
   NAMES.forEach(n => {
     const x = A2X(n.a);
-    if (x - lastX < 120) alt = 1 - alt; else alt = 0;
-    lastX = x;
+    const w = n.n.length * 6.3 + 16;
+    let row = 0;
+    if (x < ends[0]) row = 1;
+    if (row === 1 && x < ends[1]) row = 0;
+    ends[row] = x + w;
     const d = el('div', 'ntick');
     d.style.left = x + 'px';
-    d.style.top = (alt ? 0 : 12) + 'px';
-    d.append(el('i'), el('span', null, n.n));
+    d.style.top = (row ? 15 : 0) + 'px';
+    d.append(el('span', null, n.n));
     namesEl.appendChild(d);
   });
 }
@@ -378,39 +418,39 @@ function buildNames(A2X) {
 function layoutTail(A2X, tops, hs, ch) {
   const x88 = A2X(88);
   const yForecast = tops[4] + hs[4] * 0.55;
-  const yDeath = tops[0] + hs[0] * 0.5;
+  const yDeath = tops[0] + hs[0] * 0.44;
   deathEl.innerHTML = '';
   const line = el('div', 'dline');
   line.style.cssText = `left:${x88}px;top:${yForecast}px;height:${yDeath - yForecast}px`;
   const fdot = el('div', 'fdot');
-  fdot.style.cssText = `left:${x88 - 4.5}px;top:${yForecast - 4.5}px`;
+  fdot.style.cssText = `left:${x88 - 5}px;top:${yForecast - 5}px`;
   const flab = el('div', 'flab mono');
-  flab.style.cssText = `left:${x88 + 12}px;top:${yForecast - 7}px`;
-  flab.textContent = 'his forecast for eighty-six';
+  flab.style.cssText = `left:${x88 - 12}px;top:${yForecast - 7}px;transform:translateX(-100%)`;
+  flab.textContent = 'what he forecast for eighty-six';
   const dot = el('div', 'dot');
   dot.style.cssText = `left:${x88 - 5}px;top:${yDeath - 5}px`;
   const q = el('div', 'dq');
   q.innerHTML = '“If only Heaven will give me just another ten years&nbsp;… Just another five more years, ' +
     'then I could become a real painter”' +
     '<span class="dsrc mono lc">On his deathbed, 1849 · p22. At eighty-eight he is asking for what the ' +
-    'colophon told him he would already have at eighty-six. Placing him below his own forecast is this ' +
-    'page’s reading; he did not draw it.</span>';
-  const qw = narrow() ? 230 : 380;
+    'colophon promised him at eighty-six. Placing him below his own forecast is this page’s reading of ' +
+    'the two quotations, not something he drew.</span>';
+  const qw = narrow() ? 210 : 330;
   q.style.width = qw + 'px';
-  q.style.left = Math.max(padL(), x88 - qw - 26) + 'px';
-  q.style.top = (yDeath - 26) + 'px';
+  q.style.left = Math.max(padL(), x88 - qw - 22) + 'px';
+  q.style.bottom = (ch - yDeath + 12) + 'px';
   deathEl.append(line, fdot, flab, dot, q);
 
   // the portrait stands in the years he did not get
   const right = A2X(116);
-  const availW = Math.max(60, right - x88 - 16);
-  let pw = Math.min(availW, ch * 0.9 * 1280 / 2657);
-  let ph = pw * 2657 / 1280;
-  if (ph > ch * 0.86) { ph = ch * 0.86; pw = ph * 1280 / 2657; }
-  portraitEl.style.left = (x88 + 14) + 'px';
-  portraitEl.style.top = (ch - ph - 2) + 'px';
+  const availW = Math.max(60, right - x88 - 30);
+  let ph = Math.min(ch * 0.54, availW * 2657 / 1280);
+  let pw = ph * 1280 / 2657;
+  portraitEl.style.left = (right - pw - 2) + 'px';
+  portraitEl.style.top = (ch - ph - 54) + 'px';
   portraitEl.style.width = pw + 'px';
   portraitEl.style.height = ph + 'px';
+  portraitEl.style.setProperty('--capw', Math.max(150, availW) + 'px');
 }
 
 /* ══════════════════════ movement states ══════════════════════ */
@@ -428,9 +468,9 @@ const NARR = {
   2: ['One print, no label. Drag it along the age axis to the year of his life you think he made it, then let go — arrow keys and Enter work too. <button type="button" class="skip" id="skip-guess">Skip the guess, show me</button>',
       'Derived, not stated: every age here is a year in this article minus a birth of c.&nbsp;1760.'],
   3: ['This article dates ' + WORKS.length + ' works. He is said to have made about thirty thousand (p2), so this plot is less than a tenth of one per cent of him — and every gap in it is the encyclopaedia’s, not his. Click one of his eight registers to keep only the works that fall in it.',
-      'Derived, not stated: a year <i>y</i> gives ages <i>y</i>−1761 to <i>y</i>−1760. ⊘ marks a print the article dates only through its series.'],
+      'Derived, not stated: a year <i>y</i> gives ages <i>y</i>−1761 to <i>y</i>−1760. ⊘ marks a print the article dates only through its series. Anchors: <i>p14</i> a paragraph · <i>cap</i> an image caption · <i>gal</i> the Selected works gallery.'],
   4: ['Nothing on this screen can be clicked, because there is nothing on it. He forecast three more attainments — at ninety, at a hundred, at a hundred and ten — and the article records no work in any of them.',
-      'Derived, not stated: 1849 − 1760 = 88. The last three registers are empty because the evidence is, not because it was left out.']
+      'Derived, not stated: 1849 − 1760 = 88. The last three registers are empty because the evidence is.']
 };
 
 function setState(s, force) {
@@ -451,9 +491,9 @@ function setState(s, force) {
   namesEl.style.opacity = s >= 3 ? '1' : '0';
   marginEl.classList.toggle('on', s === 3);
   guessEl.classList.toggle('on', s === 2 && !revealed);
-  $('#guess-mark').style.opacity = (s >= 2 && guessAge != null && s < 4) ? '1' : '0';
+  $('#guess-mark').style.opacity = (guessAge == null || s < 2 || s >= 4) ? '0' : (s === 2 ? '1' : '.45');
   washEl.style.opacity = (s >= 2 && s < 4) ? '1' : '0';
-  sevEl.style.opacity = s >= 2 ? '1' : '0';
+  sevEl.style.opacity = s < 2 ? '0' : (s === 4 ? '.45' : '1');
   sevLab.style.opacity = s >= 2 ? '1' : '0';
   deathEl.style.opacity = s === 4 ? '1' : '0';
   portraitEl.style.opacity = s === 4 ? '1' : '0';
@@ -471,6 +511,10 @@ function setState(s, force) {
   } else if (s === 3) {
     revealed = true;
     WORKS.forEach(w => SH[w.id].classList.remove('gone'));
+    if (prev !== 3) {
+      layer.classList.add('noslide');
+      setTimeout(() => layer.classList.remove('noslide'), 60);
+    }
     land(prev !== 3);
   } else if (s === 4) {
     setFilter(null, true);
@@ -504,7 +548,7 @@ function applyFilter() {
   WORKS.forEach(w => {
     const on = filterReg == null || regOf(showRanges ? w.ages[1] : mid(w)) === filterReg;
     SH[w.id].classList.toggle('dim', !on);
-    BAR[w.id].style.opacity = (BAR[w.id].dataset.on === '1' && on && state === 3) ? '1' : '0';
+    BAR[w.id].style.opacity = (BAR[w.id].dataset.on === '1' && on && (state === 3 || (state === 2 && w.id === 'w-great-wave'))) ? '1' : '0';
   });
 }
 function setFilter(i, silent) {
@@ -512,11 +556,15 @@ function setFilter(i, silent) {
   regNodes.forEach((d, k) => d.classList.toggle('filt-off', i != null && k !== i));
   applyFilter();
   const f = $('#filt');
-  if (i == null) { f.hidden = true; }
-  else {
+  if (i == null) {
+    f.hidden = true;
+    if (state === 3) $('#mv-head').textContent = MV[3].h;
+  } else {
     const n = WORKS.filter(w => regOf(showRanges ? w.ages[1] : mid(w)) === i).length;
-    f.textContent = n + ' of ' + WORKS.length + ' — clear';
+    f.textContent = 'clear the filter';
     f.hidden = state !== 3;
+    if (state === 3) $('#mv-head').textContent =
+      n + ' of the ' + WORKS.length + ' fall in “' + REGS[i].text + '”';
   }
 }
 $('#filt').addEventListener('click', () => setFilter(null));
@@ -731,46 +779,60 @@ function buildPost() {
   const W0 = host.clientWidth, H0 = host.clientHeight;
   if (!W0 || !H0) return;
   const nar = narrow();
-  const pL = nar ? 28 : 44;
+  const pL = nar ? 26 : 44;
   host.style.setProperty('--padL5', pL + 'px');
-  const rowsTop = nar ? 168 : 178;
-  const ladderTop = rowsTop + (nar ? 26 : 44);
-  const ladderH = Math.max(80, H0 - ladderTop);
-  const rh = ladderH / REGS.length;
+
+  /* his ladder, above and finished */
+  const rh = nar ? 15 : 18;
+  const ladderH = rh * REGS.length;
   for (let i = REGS.length - 1; i >= 0; i--) {
     const d = el('div', 'ghostreg');
-    d.style.top = (ladderTop + (REGS.length - 1 - i) * rh) + 'px';
+    d.style.top = ((REGS.length - 1 - i) * rh) + 'px';
     d.style.height = rh + 'px';
     d.append(el('em', null, String(REGS[i].age)), el('span', null, REGS[i].text));
     host.appendChild(d);
   }
-  const pW = W0 - pL - (nar ? 10 : 30);
+  const dead = el('div', 'deadrule'); dead.style.top = ladderH + 'px';
+  const deadLab = el('div', 'deadlab', 'His scale ends here — 10 May 1849');
+  deadLab.style.top = (ladderH + 6) + 'px';
+  host.append(dead, deadLab);
+
+  /* posterity, below, on a relabelled axis */
+  const ruleTop = ladderH + (nar ? 42 : 48);
+  const pW = W0 - pL - (nar ? 8 : 24);
   const X = d => pL + (d / 178) * pW;
-  const rule = el('div', 'prule'); rule.style.top = rowsTop + 'px';
-  host.appendChild(rule);
+  const rule = el('div', 'prule'); rule.style.top = ruleTop + 'px';
   const lab = el('div', 'plabel', 'Years after his death');
-  lab.style.top = (rowsTop - 22) + 'px'; lab.style.left = pL + 'px';
-  host.appendChild(lab);
-  const w = nar ? 116 : 180;
+  lab.style.top = (ruleTop - 16) + 'px'; lab.style.left = pL + 'px';
+  host.append(rule, lab);
+
+  const w = nar ? 150 : 218;
+  const rowH = nar ? 104 : 126;
+  const ends = [];
   POST.forEach(p => {
-    const d = el('div', 'pev');
     let x = X(p.d);
     if (x + w > W0) x = W0 - w;
-    d.style.left = x + 'px'; d.style.top = rowsTop + 'px'; d.style.width = w + 'px';
+    let row = 0;
+    while (ends[row] != null && x < ends[row]) row++;
+    ends[row] = x + w + 14;
+    const d = el('div', 'pev');
+    d.style.left = x + 'px';
+    d.style.top = (ruleTop + 1 + row * rowH) + 'px';
+    d.style.width = w + 'px';
     d.appendChild(el('i'));
     d.appendChild(el('span', 'py', p.y + ' · +' + p.d));
     d.appendChild(el('span', 'pt', p.t));
     d.appendChild(el('span', 'ps mono', p.src));
+    if (p.img) {
+      const im = new Image(); im.src = 'assets/' + p.img;
+      im.alt = 'Cover of Debussy\u2019s La Mer, 1905'; im.loading = 'lazy';
+      d.appendChild(im);
+    }
     host.appendChild(d);
-    if (p.img && !nar) {
-      const f = el('div', 'pimg');
-      const iw = 100;
-      f.style.left = x + 'px';
-      f.style.top = (rowsTop - 16 - iw * p.ih / p.iw) + 'px';
-      f.style.width = iw + 'px';
-      const im = new Image(); im.src = 'assets/' + p.img; im.alt = 'Cover of Debussy’s La Mer, 1905'; im.loading = 'lazy';
-      f.appendChild(im);
-      host.appendChild(f);
+    if (row > 0) {
+      const drop = el('div', 'pdrop');
+      drop.style.cssText = `left:${x}px;top:${ruleTop}px;height:${row * rowH}px`;
+      host.appendChild(drop);
     }
   });
 }

@@ -91,7 +91,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   position:sticky; top:0; height:100svh; overflow:hidden;
   background:var(--bone);
   display:flex; flex-direction:column;
-  padding:14px 40px 50px;
+  padding:14px 40px 44px;
   transition:background 900ms cubic-bezier(.4,0,.2,1), color 900ms cubic-bezier(.4,0,.2,1);
 }
 #plate[data-ground="ink"]{background:var(--ink-plate);color:#E6DFCF}
@@ -198,6 +198,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .sheet.enter{opacity:0;transform:translateY(7px)}
 .sheet.dim{opacity:.12}
 .sheet.gone{opacity:0;pointer-events:none}
+#layer.noslide .sheet,#layer.noslide .bar{transition:opacity 300ms linear,transform 300ms cubic-bezier(.2,.7,.3,1)}
 .sheet:hover{outline:1px solid var(--ink);outline-offset:2px}
 .sheet:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 .sheet.derived .anch::after{content:" ⊘"}
@@ -217,7 +218,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 #death .dline{position:absolute;width:0;border-left:1px dashed var(--blue-lit);opacity:.55}
 #death .flab{position:absolute;color:var(--mute-ink);white-space:nowrap}
 #death .dq{
-  position:absolute; font-family:var(--ser); font-style:italic;
+  position:absolute; font-family:var(--ser); font-style:italic; max-width:46%;
   font-size:18px; line-height:1.34; color:var(--blue-lit); text-align:right;
 }
 #death .dsrc{display:block;margin-top:10px;font-style:normal;color:var(--mute-ink);text-align:right}
@@ -225,7 +226,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 /* the portrait, standing in the years he did not get */
 #portrait{position:absolute;opacity:0;transition:opacity 900ms;pointer-events:none;margin:0}
 #portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center}
-#portrait .pl{position:absolute;left:0;top:calc(100% + 8px);width:100%;color:var(--mute-ink)}
+#portrait .pl{position:absolute;right:0;top:calc(100% + 9px);width:var(--capw,180px);text-align:right;color:var(--mute-ink)}
 
 /* age axis */
 #axis{position:relative;flex-shrink:0;height:62px;margin-top:4px}
@@ -319,7 +320,8 @@ body.ink-chrome #idx button[aria-current="true"]{background:#E6DFCF;color:var(--
 #post .pev .py{display:block;font-family:var(--mono);font-size:var(--t1);font-weight:700;letter-spacing:.05em;color:var(--verm);padding-top:12px}
 #post .pev .pt{display:block;font-size:14px;line-height:1.34;padding-top:3px}
 #post .pev .ps{display:block;padding-top:4px}
-#post .pev img{display:block;width:78px;height:auto;margin-top:7px}
+#post .pev img{display:block;width:78px;height:auto;margin-top:8px}
+#post .pdrop{position:absolute;width:0;border-left:1px solid rgba(178,58,34,.35)}
 #post .plabel{position:absolute;left:0;font-family:var(--mono);font-size:var(--t105);
   letter-spacing:.11em;text-transform:uppercase;color:var(--verm);font-weight:700}
 .m5-close{display:flex;gap:40px;align-items:flex-end;margin-top:22px;border-top:1px solid var(--hair);padding-top:16px;flex-wrap:wrap}
