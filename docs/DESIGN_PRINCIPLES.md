@@ -133,13 +133,13 @@ The `≤11px uppercase +.06–.12em` row describes the eyebrow-label tell and mu
 - **Column** — argument width, high density, hairline separation, no full-bleed. Where information actually transfers.
 - **Plate** — full-bleed, near-empty, one word or one artifact, a distinct chromatic world. Where the reader breathes and the section changes.
 
-**4.4 SHOULD — allow exactly one total environmental inversion.** Stripe Press flips from a near-black object space to a white reading room [D2]. One such inversion is a structural beat; three is chaos.
+**4.4 SHOULD — allow at most one total environmental inversion, and it MUST correspond to an event in the subject.** Stripe Press flips from a near-black object space to a white reading room [D2]. One such inversion is a structural beat; three is chaos. "Exactly one inversion" is a ceiling, not a quota; an experience with no such event has no inversion.
 
 **4.5 SHOULD — repeat a diagram with accumulation.** Show a mechanism isolated, then re-show the *same* diagram embedded in the larger assembly [B1]. Recurrence with added context beats a new visualisation each time.
 
 **4.6 SHOULD — end with a change of scale, not a summary.** Mechanical Watch's final section ("The Size of It All") rescales the whole subject to human size [B1]. A zoom-out coda outperforms a conclusion paragraph.
 
-**4.7 SHOULD — state the time cost up front** in the micro-label register ("~6 min", or Nicky Case's "playing time: 30 min" [G1]). A duration contract measurably changes whether the reader commits.
+**4.7 SHOULD — state the time cost up front** in the apparatus register (§2.6) ("~6 min", or Nicky Case's "playing time: 30 min" [G1]). A duration contract measurably changes whether the reader commits.
 
 **4.8 SHOULD — choose the entry verb deliberately.** "Play" produces a different reader than "Read" or "Explore" or "Begin" [G1]. It costs one word and sets posture before any content loads.
 
@@ -162,6 +162,9 @@ Motion means something or it is deleted. The clearest external statement of this
 | 600–1200ms | "absorb this" | establishing a space, a scale change, an environmental inversion |
 | scroll-bound | "you set the pace" | anything the reader must be able to re-read: routes, sequences, processes |
 | continuous | "this is alive / this is where you are" | a running model, a position indicator — and *nothing else* |
+| easing | a physical claim about the subject | a curve derived from the subject's physics — see below |
+
+**The easing curve is a physical claim and must be derived.** `cubic-bezier(.4,0,.2,1)` (Material Design's standard curve) is banned as a default; state what the chosen curve models — an escapement's hard stop, a brush's deceleration, a burn's linear ramp, a press's instant.
 
 **5.2 MUST — every animated element has a pause affordance in a consistent position.** Ciechanowski gives every diagram an identical pause button at the bottom-left of its canvas, plus a global pause [B1]. Motion must never be something that happens *to* the reader.
 
@@ -183,7 +186,7 @@ Motion means something or it is deleted. The clearest external statement of this
 
 **6.2 MUST — teach the legend inside the headline, not in a legend box.** Pudding's title *is* the schema, with the two variable slots colour-coded and underlined [C1]. By the first chart the reader already knows the encoding and was never shown a key.
 
-**6.3 MUST — no more than three large-area background colours** across the whole experience. Editions [measured]: `#090909`, white, and a 4% white overlay. Everything else is imagery.
+**6.3 MUST — no more than three large-area background colours** across the whole experience. Editions [measured]: `#090909`, white, and a 4% white overlay. Everything else is imagery. **At least one large-area colour MUST be at ≥50% saturation, or every ground MUST be sampled from a named artifact with a recorded provenance** (§6.10). A page whose every colour sits below 40% saturation fails Genericness regardless of how well the greys are tuned. Muted-throughout is not restraint; it is the absence of a decision.
 
 **6.4 SHOULD — one generative motif, reparameterised per section.** Editions reuses a single particle-dissolved photograph, recoloured into a different chromatic world per section [A1]. This is how coherence and variety coexist. Generating a *different* treatment per section produces incoherence; generating the *same* treatment per section produces monotony. Parameterise.
 
@@ -195,13 +198,17 @@ Motion means something or it is deleted. The clearest external statement of this
 
 **6.8 SHOULD — semantic link colours.** Different colour for "this link changes the state of this page" vs "this link takes you away". Ciechanowski uses amber for the former, blue for the latter [B1]. For Kaleidoweb this extends naturally: a third treatment for "this returns you to the source Wikipedia text", satisfying the traceability requirement.
 
+**6.9 MUST — the default palette bands are prohibited without provenance.** Grounds in `#E8E2D6`–`#F6F2EA` (warm bone/cream) and accents in `#C2603C`–`#D9805C` (terracotta/clay) are the documented model-default cluster and may be used only when sampled from a named artifact file with a recorded coordinate. Likewise `#0A0A0A` + a single acid accent, and any violet/indigo gradient.
+
+**6.10 MUST — the ground is sampled, not chosen.** Record `ground_provenance: {file, coordinate | citation}` in the experience metadata. If the subject has no material ground, use white and say so.
+
 ---
 
 ## 7. Truth and provenance in visual form
 
 Derived from the mission's non-negotiables, given form by observed patterns.
 
-**7.1 MUST — generated explanation is typographically distinguishable from source fact.** Use the monospace micro-label register (§2.6) or a distinct type register for anything the pipeline wrote rather than read.
+**7.1 MUST — generated explanation is typographically distinguishable from source fact.** Use the derived apparatus register (§2.6) or a distinct type register for anything the pipeline wrote rather than read.
 
 **7.2 MUST — every non-trivial claim is traceable to source text**, and the affordance for that is visible without hover (hover-only provenance fails on touch).
 
@@ -218,14 +225,14 @@ Each entry: the cliché, why it fails, and what to do instead.
 | Banned | Why | Instead |
 |---|---|---|
 | hero → cards → big number → timeline → quote → cards → conclusion | The template is visible through any content; fails Genericness by construction | Derive section order from the subject's structure (§1) |
-| Uniform-radius cards for every section | Editions carries 150 items with zero cards [A1] | Hairline rules + whitespace (§3.2) |
+| Uniform-radius cards for every section | Editions carries 150 items with zero cards [A1] | Separation derived from the material record (§3.2) |
 | Vertical alternating-side timeline | Applied to subjects that are causal or spatial, not temporal | Causal chain (§1) or spatial spine; if genuinely chronological, compress hard (§1.2, [E2]) |
 | Purple/indigo gradient headers, glassmorphism, floating blobs | Decoration uncorrelated with content; the ultimate "swap the text" layout | Three flat grounds max (§6.3) + one derived motif (§6.4) |
 | Everything centred | Produces the slide-deck read | Corner anchoring with an empty centre (§3.3); left-aligned display (§3.4) |
 | Identical section padding throughout | Metronome pacing; no rhythm | Extreme density alternation (§4.1) |
 | Scroll-triggered fade-up on every element | Motion carrying no meaning; also delays reading | Motion only for causality/sequence/scale/focus/transformation (§5.3) |
 | Big-number stat tiles | Strips the distribution the number came from | Prediction-then-reveal against the full distribution (§1, [C1]) |
-| Emoji as icons | Register collision; renders inconsistently | Monospace micro-labels (§2.6) or nothing |
+| Emoji as icons | Register collision; renders inconsistently | The derived apparatus register (§2.6) or nothing |
 | Gratuitous dark mode with neon accents | Contrast without hierarchy | Dark is allowed as a *plate* environment (§4.3); accents must be semantic (§6.1) |
 | Scroll-driven camera along a 3D spline | 82% of 2026 award winners [H2] — now maximally generic | Scroll-bound motion tied to an actual route or process (§5.1) |
 | Full-page hero image with overlay text | Already collapsed to <12% of award winners [H2] | Type that performs the subject (§2.10) |
@@ -233,6 +240,13 @@ Each entry: the cliché, why it fails, and what to do instead.
 | A legend box | The reader must hold a mapping in memory | Teach the encoding in the headline (§6.2) |
 | Full-bleed explanatory diagram | Becomes a spectacle, stops being an argument | Diagram at prose width, inline (§3.6) |
 | Three or more typefaces | No page in this library uses more than two | Two families by job (§2.1) |
+| Warm bone ground + serif narration + monospace micro-labels | The documented second-generation AI signature; both shipped experiences converged on it independently | Derive ground (§6.10) and apparatus register (§2.6) from the material record |
+| Uppercase letterspaced eyebrow above every heading | Nothing is allowed to simply exist; the most-cited 2026 tell | One apparatus marker per block, carrying information the heading lacks (§2.6) |
+| Giant ghosted section numerals (`01`, `04`) | Sequence asserted where sequence isn't read | Number the way the subject's documents number (§2.6) |
+| Every colour below 40% saturation | Averaging presented as taste | ≥50% somewhere, or full provenance (§6.3) |
+| A single terracotta/clay accent | Anthropic's own brand accent; the most recognisable single value in AI output | A pigment the subject's world actually contains, at its real saturation (§6.9) |
+| `cubic-bezier(.4,0,.2,1)` | Material Design's default curve, shipped in both experiences | A curve that models the subject's physics (§5.1) |
+| Latin-horizontal reading axis for a non-Latin subject, unremarked | The invisible default | Adopt the subject's axis at least once, or state the refusal (ANTI_SIGNATURE.md §(a) C7) |
 
 ---
 
@@ -240,13 +254,16 @@ Each entry: the cliché, why it fails, and what to do instead.
 
 Run before any experience is considered done. Any `MUST` failure blocks.
 
-1. **Swap test.** Replace the subject with an unrelated one and re-render with the same layout. If it still works, the design is generic — score 1 on Genericness and start over. (§0)
+1. **Swap test.** Replace the subject with an unrelated one and re-render with the same layout. If it still works, the design is generic — score 1 on Genericness and start over. (§0.1)
 2. **Structure declaration.** Is the informational structure classified and recorded, and does the section order follow from it? (§1.1)
 3. **Density curve.** Zoom the full page to fit. Is there a visible, named shape? At least two ≥20:1 density inversions? (§4.1, §4.2)
-4. **Container audit.** Count content regions with a border-radius, border, or shadow. Target zero. (§3.1)
+4. **Container audit.** Count content regions with a border-radius, border, or shadow. Target zero unless the material record earns them. (§3.1, §3.2)
 5. **Type audit.** ≤2 families? Display:body ≥6×? Line-height and tracking match the size tables? Exactly two content widths? (§2)
 6. **Motion audit.** For each motion, name which of {causality, sequence, scale, focus, transformation} it carries. Unnameable → delete. Every animation pausable? (§5.2, §5.3)
 7. **Removal test.** Delete the three most impressive motions. Did comprehension drop? Reinstate only those that did. (§5.6)
 8. **Colour audit.** ≤3 large-area grounds? Every colour-coded entity assigned once and never reassigned? Legend taught in the headline? (§6.1–6.3)
 9. **Escape hatch.** Can the reader skip the guided path and roam? Can they get back to the source text without hovering? (§4.9, §7.2)
 10. **Legibility regression.** Side by side with the original Wikipedia page: is any fact now *harder* to find? If yes, that is a blocking failure regardless of beauty. (Rubric #10)
+11. **Sibling diff (machine check).** Diff this experience's CSS custom properties against every previously shipped experience. If ground, ink, hairline, body size, body leading, apparatus-label construction and both measures all fall within 5% of a prior experience, **that is a blocking failure** regardless of how well each value is individually justified. This is the only check that catches convergence across experiences; no other check in this document does.
+12. **Derivation citation audit.** Ground, display face, body face, accent, rule weight, grid, reading axis — seven provenance lines, each naming an artifact. Any missing line is a default. (§0.2, §1.4)
+13. **Anti-signature score.** Run `ANTI_SIGNATURE.md` §(a). ≥6 "default" tells across ≥3 groups blocks.
