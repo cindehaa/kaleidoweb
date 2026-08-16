@@ -14,7 +14,12 @@ const m = src.match(/\/wiki\/([^?#]+)/);
 const article = m ? decodeURIComponent(m[1]) : null;
 
 if (article && DEMOS[article]) {
-  location.replace(DEMOS[article]);
+  fetch(DEMOS[article], { method: 'HEAD' })
+    .then((r) => {
+      if (r.ok) location.replace(DEMOS[article]);
+      else status.textContent = `experience for “${article.replace(/_/g, ' ')}” is not bundled in this build`;
+    })
+    .catch(() => (status.textContent = 'failed to load experience'));
 } else {
   status.textContent = article
     ? `no bundled experience for “${article.replace(/_/g, ' ')}” yet — live pipeline coming`
