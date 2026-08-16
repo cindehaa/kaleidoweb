@@ -1,62 +1,174 @@
 /* ============================================================
-   APOLLO 11 — THREE BODIES
-   A three-stave score on one shared clock.
-   Motion grammar: the only thing that moves is time.
+   APOLLO 11 — THREE BODIES  ·  v3, material re-derivation
+   ------------------------------------------------------------
+   Structure is unchanged: three staves on one shared clock,
+   vertical position is UTC, silence is drawn.
+
+   What changed is the material. Every value below is taken from
+   one named artifact class:
+
+     THE APOLLO 11 FLIGHT PLAN, Final, 1 July 1969,
+     Flight Planning Branch, Manned Spacecraft Center, Houston
+     — with the Mission Rules, the air-to-ground transcript, and
+     the cabin/plaque lettering of the flight hardware.
+
+   Nine-slot inventory, and the one web decision each produced:
+
+   substrate   US-Letter offset/mimeo bond, near-white, faintly warm
+               → --bond #F7F6F3. NOT cream. v1/v2's #EDE8DE claimed a
+                 flight-plan provenance the artifact contradicts.
+   marking     black typewriter ribbon on bond; mimeo reproduction.
+               Toner is binary — it is there or it is not.
+               → a palette of FLAT greys (--ribbon..--rule-2). No
+                 rgba() opacity ramp anywhere: a photocopy has no alpha.
+   letterforms all-caps monospaced typewriter for the record;
+               Futura/Spartan geometric caps on the plaque, the cabin
+               placards, the food labels, the switch panels
+               → --typewriter (Courier Prime) for the 1969 register,
+                 --placard (Jost) for display and header cells.
+   boundary    ruled table cells with filled header rows, 1.5–2 pt
+               → --rw 1.75px major / 1px minor, and every head in the
+                 score is a FILLED cell, reversed out. This replaces
+                 hairlines-and-whitespace as the page's whole boundary
+                 language.
+   axis        left-to-right, top-to-bottom; time runs down the page
+               → unchanged from v2 (the stave geometry is correct).
+   numerals    typewriter figures, fixed advance, stating not comparing
+               → tabular lining throughout; in-cell times in the
+                 typewriter, placard-scale times in Jost.
+   one colour  the flight plan is monochrome. Colour enters from
+               Mission Control: the five flight-director team names,
+               and the caution-and-warning red of an alarm
+               → five team colours (from the article's own table) +
+                 one saturated --alert. Nothing else. No terracotta.
+   format      US Letter 8.5×11 in, 1 in margins → 6.5 in text block
+               → --w-arg 624px (6.5in @96dpi). Time-line pages are
+                 landscape Letter, 11 in → --w-ev 1056px.
+   mistakes    pencilled corrections and hand annotation in the margins
+               → the narration register. See below.
+
+   THE TWO DOCUMENT WORLDS. The source documents have no narrative
+   voice; ours does. So the page is deliberately two documents:
+
+     1969 record  — typewriter, flush to the ruled grid, inside cells,
+                    all-caps where the source is all-caps.
+     written after — Plex Serif, indented one typewriter tab stop
+                    (48px = 5 characters at 10 cpi) OFF the document
+                    grid, never boxed, in a weaker ink. This is the
+                    modern encyclopedia's prose and our connective
+                    notes: the marginal annotation, not the typescript.
+
+   Plex Serif is on the published "distinctive fonts" shortlist and
+   has no 1969 provenance. It is kept precisely because it has none —
+   it is the imported voice, and it is marked as imported rather than
+   blended into one tasteful whole (§7.1 made visible).
    ============================================================ */
 
-@font-face{font-family:"PlexMono";src:url("assets/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"PlexMono";src:url("assets/fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:"PlexCond";src:url("assets/fonts/ibm-plex-sans-condensed-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"PlexCond";src:url("assets/fonts/ibm-plex-sans-condensed-latin-600-normal.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+/* --- the 1969 register: a real typewriter face ------------------
+   Courier Prime. The source documents are literally typewritten;
+   this is the case where monospace is earned rather than costume. */
+@font-face{font-family:"CourierPrime";src:url("assets/fonts2/courier-prime-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"CourierPrime";src:url("assets/fonts2/courier-prime-latin-400-italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"CourierPrime";src:url("assets/fonts2/courier-prime-latin-700-normal.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+
+/* --- the placard register: the Futura/Spartan lineage -----------
+   Jost. Futura caps are on the lunar plaque, the cabin placards and
+   the switch panels. Display, movement titles, header cells. */
+@font-face{font-family:"Jost";src:url("assets/fonts2/jost-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Jost";src:url("assets/fonts2/jost-latin-500-normal.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Jost";src:url("assets/fonts2/jost-latin-700-normal.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+
+/* --- the imported register -------------------------------------- */
 @font-face{font-family:"PlexSerif";src:url("assets/fonts/ibm-plex-serif-latin-400-normal.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"PlexSerif";src:url("assets/fonts/ibm-plex-serif-latin-400-italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
 @font-face{font-family:"PlexSerif";src:url("assets/fonts/ibm-plex-serif-latin-600-normal.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
 
 :root{
-  /* 1969 flight-plan paper */
-  --paper:#EDE8DE;
-  --paper-dim:#E4DED0;   /* loss-of-signal band */
-  --paper-tint:#E9E3D6;
-  --ink:#1A1712;
-  --ink-80:rgba(26,23,18,.80);
-  --ink-62:rgba(26,23,18,.62);
-  --ink-55:rgba(26,23,18,.55);   /* apparatus floor — 3.8:1 on paper */
-  --ink-45:rgba(26,23,18,.45);
-  --ink-30:rgba(26,23,18,.30);
-  --ink-18:rgba(26,23,18,.18);
-  --ink-10:rgba(26,23,18,.10);
-  --ink-06:rgba(26,23,18,.06);
+  /* --- substrate. Near-white offset/mimeo bond. --- */
+  --bond:#F7F6F3;
+  --bond-2:#EFEEE9;        /* the second sheet: figure mats, dimmed cells */
 
-  /* the five flight-director team colours, from the article's own table */
+  /* --- marking. Flat, not alpha: mimeo toner has no opacity. --- */
+  --ribbon:#121417;        /* full ribbon strike        16.5:1 on bond */
+  --ribbon-2:#3E4347;      /* weak strike / narration    9.3:1        */
+  --ribbon-3:#6C7175;      /* apparatus floor            4.5:1        */
+  --ribbon-4:#9AA0A3;      /* 2.5:1 — RULES AND FILLS ONLY, never text */
+  --rule-2:#B6BBBE;        /* light printed rule                      */
+  --band:#E4E4DF;          /* filled header cell, light               */
+  --band-2:#D6D7D1;        /* filled header cell, heavy               */
+
+  /* aliases kept for the handful of inline styles in index.html */
+  --ink:var(--ribbon);
+  --ink-2:var(--ribbon-2);
+  --ink-3:var(--ribbon-3);
+
+  /* --- rule weights. The flight plan boxes time; it does not
+         hairline it. 1.75px major, 1px minor. --- */
+  --rw:1.75px;
+  --rw-min:1px;
+
+  /* --- the five flight-director team colours, from the article's
+         own table. The only hues on the page besides --alert. --- */
   --team-green:#2F5B3C;
   --team-gold:#94741C;
-  --team-white:#FBF8F1;
-  --team-black:#1A1712;
+  --team-white:#FFFFFF;
+  --team-black:#121417;
   --team-maroon:#6B2733;
 
-  /* reserved: 1202/1201 alarms, the propellant calls, Luna 15. Nothing else. */
-  --alert:#BE2A17;
+  /* --- caution and warning. Reserved: the 1201/1202 program alarms,
+         the propellant calls during the final descent, Luna 15.
+         Nothing else on the page is red. --- */
+  --alert:#CC1F14;
 
-  --mono:"PlexMono",ui-monospace,Menlo,monospace;
-  --cond:"PlexCond","Helvetica Neue",Arial,sans-serif;
-  --serif:"PlexSerif",Georgia,serif;
+  --typewriter:"CourierPrime",ui-monospace,Courier,monospace;
+  --placard:"Jost","Futura","Century Gothic",sans-serif;
+  --narration:"PlexSerif",Georgia,serif;
+  /* aliases for inline styles */
+  --serif:var(--narration);
+  --cond:var(--placard);
+  --mono:var(--typewriter);
 
   --pad-l:64px;
   --pad-r:84px;
   --map-w:64px;
   --head-h:46px;
+  --tab:48px;              /* one typewriter tab stop: 5 char at 10 cpi */
 
-  /* §2.9 — two measures. Argument width for anything read continuously;
-     evidence width for anything inspected. Nothing else. */
-  --w-arg:640px;
-  --w-ev:1100px;
+  /* two measures, both read off the source format.
+     argument = US Letter minus 1in margins  = 6.5in = 624px @96dpi
+     evidence = the landscape time-line page = 11in  = 1056px @96dpi */
+  --w-arg:624px;
+  --w-ev:1056px;
 }
 
+/* ============================================================
+   MOTION GRAMMAR — nothing on this page has a `transition`.
+
+   cubic-bezier(.4,0,.2,1) is Material Design's standard curve; it
+   claims "a well-damped UI panel" and it is banned here. What is
+   left, and the physics each models:
+
+   · the clock readout is stepped by script, one value per frame,
+     LINEAR. A mission clock does not ease. There is no interpolation
+     between 20:17:39 and 20:17:40.
+   · loss of signal is applied in a single frame with no duration.
+     A radio horizon is a geometric edge: the Moon is between you or
+     it is not. A fade would be a lie about the physics.
+   · solo dimming is a state change, not a movement — the lanes you
+     did not ask for are attenuated instantly, like pulling down a
+     console's audio loop.
+   · hover on the four controls changes colour with no duration. A
+     toggle switch has two positions and no travel between them.
+   ============================================================ */
+
 *{box-sizing:border-box}
-html{background:var(--paper);-webkit-font-smoothing:antialiased;scroll-behavior:auto}
+html{background:var(--bond);-webkit-font-smoothing:antialiased;scroll-behavior:auto}
 body{
-  margin:0;background:var(--paper);color:var(--ink);
-  font-family:var(--serif);font-size:17px;line-height:1.62;
+  margin:0;background:var(--bond);color:var(--ribbon);
+  /* The document voice is the DEFAULT voice. The serif must be
+     opted into — it is the visitor here, not the typescript. */
+  font-family:var(--typewriter);font-size:17.5px;line-height:1.5;
+  font-variant-numeric:tabular-nums lining-nums;
   overflow-x:hidden;
 }
 img{display:block;max-width:100%}
@@ -64,90 +176,112 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 h1,h2,h3,h4,p,ul,ol,figure{margin:0}
 sup{font-size:.62em;line-height:0}
 
-/* ---------- shared type roles ---------- */
-.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
-.lab{font-family:var(--cond);font-weight:600;font-size:11px;letter-spacing:.15em;text-transform:uppercase}
-.micro{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-55);font-variant-numeric:tabular-nums;max-width:var(--w-arg)}
-.src{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-55);white-space:nowrap}
+/* ---------- the three registers, as roles ---------- */
+
+/* 1969 record. A typewriter cannot letterspace — the advance is
+   fixed — so the typewriter register carries NO tracking. Only the
+   placard register is letterspaced, because Futura caps on a placard
+   were. This single rule kills the +.06em micro-label signature. */
+.mono,.tw{font-family:var(--typewriter);letter-spacing:0;font-variant-numeric:tabular-nums lining-nums}
+
+/* placard: geometric caps, letterspaced, as on the plaque */
+.lab{font-family:var(--placard);font-weight:500;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase}
+
+/* apparatus. 12px typewriter caps; provenance floor is --ribbon-3
+   at 4.5:1, comfortably past the 3:1 requirement. */
+.micro{font-family:var(--typewriter);font-size:12.5px;line-height:1.55;letter-spacing:0;color:var(--ribbon-3);max-width:var(--w-arg)}
+.src{font-family:var(--typewriter);font-size:11.5px;letter-spacing:0;color:var(--ribbon-3);white-space:nowrap}
+
+/* a filled header cell — the page's single most-repeated object.
+   Every head in the score is one of these. */
+.cellhead{background:var(--ribbon);color:var(--bond);padding:4px 11px 5px}
 
 /* ============================================================
-   PINNED HEADER
+   PINNED HEADER — bond, a 1.75px rule, and one filled tab
    ============================================================ */
 #head{
   position:fixed;top:0;left:0;right:0;height:var(--head-h);z-index:60;
-  background:var(--paper);border-bottom:1px solid var(--ink-18);
+  background:var(--bond);border-bottom:var(--rw) solid var(--ribbon);
   display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;
   padding:0 16px 0 var(--pad-l);gap:20px;
 }
-#head .brand{font-family:var(--cond);font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
-#head .brand em{font-style:normal;color:var(--ink-45)}
-#readout{display:flex;align-items:baseline;gap:20px;font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
-#readout .k{font-family:var(--cond);font-weight:600;font-size:9.5px;letter-spacing:.16em;color:var(--ink-45);text-transform:uppercase;margin-right:6px}
-#readout .v{font-weight:500;letter-spacing:.01em}
-#readout .off{color:var(--ink-55);letter-spacing:.08em}
-#readout .alt .v{color:var(--alert)}
-/* where you are, not only when — visible on every scroll position */
-#ro-mv{
-  font-family:var(--cond);font-weight:600;font-size:10.5px;letter-spacing:.17em;
-  text-transform:uppercase;color:var(--ink-62);white-space:nowrap;
+#head .brand{
+  font-family:var(--placard);font-weight:700;font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;white-space:nowrap;
+  background:var(--ribbon);color:var(--bond);padding:5px 10px 6px;
 }
-#ro-mv b{font-weight:600;font-family:var(--mono);letter-spacing:.06em;color:var(--ink-45);margin-right:7px}
+#head .brand em{font-style:normal;font-weight:400;color:var(--band-2)}
+#readout{display:flex;align-items:baseline;gap:20px;font-family:var(--typewriter);font-size:13px;letter-spacing:0;white-space:nowrap}
+#readout .k{font-family:var(--placard);font-weight:500;font-size:10px;letter-spacing:.14em;color:var(--ribbon-3);text-transform:uppercase;margin-right:7px}
+#readout .v{font-weight:700}
+#readout .off{color:var(--ribbon-3)}
+#readout .alt .v{color:var(--alert)}
+/* where you are, not only when */
+#ro-mv{
+  font-family:var(--placard);font-weight:500;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ribbon-2);white-space:nowrap;
+}
+#ro-mv b{font-family:var(--typewriter);font-weight:700;letter-spacing:0;color:var(--ribbon-3);margin-right:8px}
 
 #idxbtn{
-  font-family:var(--cond);font-weight:600;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ink-62);border-bottom:1px solid var(--ink-30);padding-bottom:2px;white-space:nowrap;
+  font-family:var(--placard);font-weight:500;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ribbon-2);border-bottom:2px solid var(--ribbon);padding-bottom:2px;white-space:nowrap;
 }
-#idxbtn:hover{color:var(--ink);border-color:var(--ink)}
-#solo{display:flex;align-items:center;gap:0;margin-right:calc(var(--map-w) + 12px)}
-#solo .sl{font-family:var(--cond);font-weight:600;font-size:9.5px;letter-spacing:.16em;color:var(--ink-45);text-transform:uppercase;margin-right:10px}
+#idxbtn:hover{color:var(--alert);border-color:var(--alert)}
+#solo{display:flex;align-items:stretch;gap:0;margin-right:calc(var(--map-w) + 12px);border:1px solid var(--ribbon)}
+#solo .sl{
+  font-family:var(--placard);font-weight:500;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--ribbon);color:var(--bond);padding:5px 8px 4px;display:flex;align-items:center;
+}
 #solo button{
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
-  padding:4px 9px;color:var(--ink-45);border-left:1px solid var(--ink-18);
+  font-family:var(--typewriter);font-size:11px;letter-spacing:0;text-transform:uppercase;
+  padding:4px 9px;color:var(--ribbon-3);border-left:1px solid var(--rule-2);
 }
-#solo button:first-of-type{border-left:0}
+#solo .sl+button{border-left:0}
 #solo .sm{display:none}
-#solo button[aria-pressed="true"]{color:var(--ink);background:var(--ink-06)}
+#solo button[aria-pressed="true"]{color:var(--bond);background:var(--ribbon-2)}
 
-/* solo dimming — instantaneous, no transition (state change, not motion).
-   Dimmed lanes keep their prose in the find-in-page tree; nothing is display:none. */
+/* instantaneous — see MOTION GRAMMAR. */
 body[data-solo] .lane:not(.solo-on){opacity:.13}
 
 /* ============================================================
-   MOVEMENT INDEX — one overlay, no new visual language:
-   hairline rows, condensed titles, mono spans. Same as the score.
+   MOVEMENT INDEX — the flight plan's own table of contents:
+   a filled header row over ruled rows.
    ============================================================ */
 #idx[hidden]{display:none}
 #idx{
-  position:fixed;inset:0;z-index:90;background:var(--paper);
-  overflow-y:auto;padding:0 var(--pad-r) 80px var(--pad-l);
+  position:fixed;inset:0;z-index:90;background:var(--bond);
+  overflow-y:auto;padding:18px calc(var(--pad-r) - 10px) 80px calc(var(--pad-l) - 10px);
 }
 #idx .idxtop{
-  display:flex;align-items:baseline;gap:22px;padding:22px 0 11px;
-  border-bottom:1px solid var(--ink);position:sticky;top:0;background:var(--paper);
+  display:flex;align-items:center;gap:22px;padding:9px 22px;
+  background:var(--ribbon);color:var(--bond);
+  position:sticky;top:0;
 }
-#idx .idxtop .t{font-family:var(--cond);font-weight:600;font-size:15px;letter-spacing:.2em;text-transform:uppercase}
-#idx .idxtop .s{font-family:var(--mono);font-size:11px;color:var(--ink-55);letter-spacing:.05em}
+#idx .idxtop .t{font-family:var(--placard);font-weight:700;font-size:15px;letter-spacing:.18em;text-transform:uppercase}
+#idx .idxtop .s{font-family:var(--typewriter);font-size:11.5px;color:var(--band-2);letter-spacing:0}
 #idx .idxtop button{
-  margin-left:auto;font-family:var(--cond);font-weight:600;font-size:10.5px;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-62);
-  border-bottom:1px solid var(--ink-30);padding-bottom:2px;
+  margin-left:auto;font-family:var(--placard);font-weight:500;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--bond);
+  border:1px solid var(--band-2);padding:3px 9px;
 }
+#idx .idxtop button:hover{background:var(--bond);color:var(--ribbon)}
 #idx .idxrow{
   display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,320px) 165px;
   gap:0 26px;align-items:baseline;width:100%;
-  padding:14px 0;border-bottom:1px solid var(--ink-10);
+  padding:12px 10px;border-bottom:var(--rw-min) solid var(--rule-2);
 }
-#idx .idxrow:hover{background:var(--ink-06)}
-#idx .idxrow .n{font-family:var(--mono);font-size:16px;color:var(--ink-30);font-variant-numeric:tabular-nums}
-#idx .idxrow .t{font-family:var(--cond);font-weight:600;font-size:20px;letter-spacing:-.01em;text-transform:uppercase;line-height:1.1}
-#idx .idxrow .r{font-family:var(--mono);font-size:11px;line-height:1.6;color:var(--ink-55);font-variant-numeric:tabular-nums}
-#idx .idxrow .d{font-family:var(--mono);font-size:11px;color:var(--ink-62);text-align:right;font-variant-numeric:tabular-nums}
-#idx .idxrow.here .n,#idx .idxrow.here .t{color:var(--ink)}
-#idx .idxrow.here{background:var(--ink-06)}
-#idx .idxfoot{font-family:var(--mono);font-size:11px;color:var(--ink-55);letter-spacing:.04em;line-height:1.75;margin-top:20px;max-width:var(--w-arg)}
+#idx .idxrow:hover{background:var(--band)}
+#idx .idxrow .n{font-family:var(--typewriter);font-weight:700;font-size:16px;color:var(--ribbon-3)}
+#idx .idxrow .t{font-family:var(--placard);font-weight:500;font-size:21px;letter-spacing:.01em;text-transform:uppercase;line-height:1.1}
+#idx .idxrow .r{font-family:var(--typewriter);font-size:11.5px;line-height:1.6;color:var(--ribbon-3)}
+#idx .idxrow .d{font-family:var(--typewriter);font-size:11.5px;color:var(--ribbon-2);text-align:right}
+#idx .idxrow.here{background:var(--band-2)}
+#idx .idxrow.here .n,#idx .idxrow.here .t{color:var(--ribbon)}
+#idx .idxfoot{font-family:var(--typewriter);font-size:12px;color:var(--ribbon-3);letter-spacing:0;line-height:1.65;margin-top:20px;max-width:var(--w-arg)}
 
 /* ------------------------------------------------------------
-   MOBILE PROGRESS STRIP — position + chapter + a way out (§4.9)
+   MOBILE PROGRESS STRIP (§4.9) — declared in the mobile block
    ------------------------------------------------------------ */
 #prog{display:none}
 
@@ -156,20 +290,20 @@ body[data-solo] .lane:not(.solo-on){opacity:.13}
    ============================================================ */
 #map{
   position:fixed;top:var(--head-h);right:0;bottom:0;width:var(--map-w);z-index:55;
-  background:var(--paper);border-left:1px solid var(--ink-10);
+  background:var(--bond);border-left:var(--rw-min) solid var(--ribbon);
 }
 #map svg{width:100%;height:100%;display:block}
 #map svg text{dominant-baseline:auto}
-#map .mm-tie{stroke:rgba(26,23,18,.16);stroke-width:.5;fill:none}
-#map .mm-rail{stroke:var(--ink-10);stroke-width:1}
-#map .mm-seg{stroke:var(--ink-62);stroke-width:2.5}
-#map .mm-offclock{stroke:var(--ink-18);stroke-width:2.5}
-#map .mm-day{stroke:var(--ink-18);stroke-width:1}
-#map .mm-view{fill:rgba(26,23,18,.11);stroke:none}
-#map .mm-edge{stroke:var(--ink-45);stroke-width:1}
-#map .mm-lab{font-family:var(--mono);font-size:6.5px;fill:var(--ink-30)}
+#map .mm-tie{stroke:var(--ribbon-4);stroke-width:.5;fill:none}
+#map .mm-rail{stroke:var(--rule-2);stroke-width:1}
+#map .mm-seg{stroke:var(--ribbon);stroke-width:2.5}
+#map .mm-offclock{stroke:var(--ribbon-4);stroke-width:2.5}
+#map .mm-day{stroke:var(--rule-2);stroke-width:1}
+#map .mm-view{fill:var(--band-2);stroke:none}
+#map .mm-edge{stroke:var(--ribbon);stroke-width:1}
+#map .mm-lab{font-family:var(--typewriter);font-size:6.5px;fill:var(--ribbon-3)}
 #map .mm-hit{fill:transparent;cursor:pointer}
-#map .mm-key{font-family:var(--cond);font-weight:600;font-size:6px;letter-spacing:.09em;fill:var(--ink-30)}
+#map .mm-key{font-family:var(--placard);font-weight:500;font-size:6px;letter-spacing:.09em;fill:var(--ribbon-3)}
 #map .mm-alert{stroke:var(--alert);stroke-width:1.5}
 
 /* ============================================================
@@ -180,141 +314,181 @@ body[data-solo] .lane:not(.solo-on){opacity:.13}
 main{padding-top:var(--head-h)}
 
 /* ============================================================
-   MOVEMENT 0 / 8 — off the clock
+   MOVEMENT 0 / 11 — off the clock
    ============================================================ */
-.mv-rule{display:flex;align-items:baseline;gap:18px;border-top:1px solid var(--ink);padding-top:9px;margin-bottom:0}
-.mv-rule .n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink-55)}
-.mv-rule .t{font-family:var(--cond);font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase}
-.mv-rule .c{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--ink-55);letter-spacing:.05em}
+/* a ruled header row: three cells across a filled band */
+.mv-rule{
+  display:flex;align-items:center;gap:0;background:var(--ribbon);color:var(--bond);
+  padding:0;margin-bottom:0;
+}
+.mv-rule .n{font-family:var(--typewriter);font-weight:700;font-size:12px;letter-spacing:0;padding:6px 12px;border-right:1px solid var(--ribbon-3);text-transform:uppercase}
+.mv-rule .t{font-family:var(--placard);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:6px 14px}
+.mv-rule .c{margin-left:auto;font-family:var(--typewriter);font-size:11.5px;color:var(--band-2);padding:6px 12px}
 
 /* --- title plate --- */
-#plate{padding-top:56px;padding-bottom:0}
-#plate .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-45)}
+#plate{padding-top:52px;padding-bottom:0}
 #plate h1{
-  font-family:var(--cond);font-weight:600;font-size:clamp(72px,15.5vw,222px);line-height:.84;
-  letter-spacing:-.035em;margin:14px 0 0;text-transform:uppercase;
+  font-family:var(--placard);font-weight:700;font-size:clamp(72px,15.2vw,216px);line-height:.86;
+  /* measured against Jost caps at display size, not taken from a table:
+     geometric caps at 200px need almost nothing. */
+  letter-spacing:.004em;margin:0;text-transform:uppercase;
 }
-#plate .subs{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:56px;margin-top:26px;align-items:end}
-#plate .thesis{font-family:var(--serif);font-size:21px;line-height:1.44;max-width:var(--w-arg);color:var(--ink-80)}
-#plate .thesis b{font-weight:600}
-#plate .meta{font-family:var(--mono);font-size:11.5px;line-height:1.85;color:var(--ink-62);border-top:1px solid var(--ink-18);padding-top:12px}
-#plate .meta i{font-style:normal;color:var(--ink-55);display:inline-block;width:11.5em}
+#plate .subs{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:52px;margin-top:24px;align-items:start}
+/* the imported voice: off the grid by one tab stop, unboxed, weaker ink */
+#plate .thesis{
+  font-family:var(--narration);font-size:21px;line-height:1.5;max-width:var(--w-arg);
+  color:var(--ribbon-2);margin-left:var(--tab);
+}
+#plate .thesis b{font-weight:600;color:var(--ribbon)}
+/* the flight plan's own front-matter block: a ruled two-column table */
+#plate .meta{
+  font-family:var(--typewriter);font-size:12.5px;line-height:1;color:var(--ribbon-2);
+  border-top:var(--rw) solid var(--ribbon);border-bottom:var(--rw) solid var(--ribbon);
+}
+#plate .meta>div{display:flex;gap:0;padding:6px 0;border-bottom:1px solid var(--rule-2)}
+#plate .meta>div:last-child{border-bottom:0}
+#plate .meta i{font-style:normal;color:var(--ribbon-3);display:inline-block;width:13em;text-transform:uppercase;flex:0 0 auto}
 
-#thesis-svg{width:100%;height:auto;display:block;margin-top:44px}
-#thesis-svg text{font-family:var(--mono);fill:var(--ink-45)}
+#thesis-svg{width:100%;height:auto;display:block;margin-top:40px;border-top:var(--rw) solid var(--ribbon);padding-top:14px}
+#thesis-svg text{font-family:var(--typewriter);fill:var(--ribbon-3)}
 
-.bodies{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--ink);margin-top:10px}
-.bodies>div{padding:14px 26px 20px 0;border-right:1px solid var(--ink-10)}
+.bodies{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:var(--rw) solid var(--ribbon);border-bottom:var(--rw) solid var(--ribbon);margin-top:10px}
+.bodies>div{padding:12px 26px 18px 0;border-right:1px solid var(--rule-2)}
 .bodies>div:last-child{border-right:0}
-.bodies .who{font-family:var(--cond);font-weight:600;font-size:26px;letter-spacing:-.01em;line-height:1.1}
-.bodies .role{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-55);margin-top:5px}
-.bodies .where{font-family:var(--serif);font-style:italic;font-size:16.5px;line-height:1.5;color:var(--ink-62);margin-top:9px}
+.bodies .who{font-family:var(--placard);font-weight:500;font-size:27px;letter-spacing:.005em;line-height:1.08;text-transform:uppercase}
+.bodies .role{font-family:var(--typewriter);font-size:11.5px;letter-spacing:0;text-transform:uppercase;color:var(--ribbon-3);margin-top:6px}
+.bodies .where{font-family:var(--narration);font-size:16.5px;line-height:1.55;color:var(--ribbon-2);margin-top:10px;margin-left:var(--tab)}
 
-/* --- editorial prose --- */
-.lede{font-family:var(--serif);font-size:24px;line-height:1.45;letter-spacing:-.004em;max-width:var(--w-arg)}
-.cols2{column-count:2;column-gap:52px;column-rule:1px solid var(--ink-10)}
+/* --- the imported register, everywhere it appears --- */
+.lede{font-family:var(--narration);font-size:23px;line-height:1.48;max-width:var(--w-arg);color:var(--ribbon)}
+.cols2{column-count:2;column-gap:48px;column-rule:1px solid var(--rule-2)}
 .cols3{column-count:3;column-gap:40px}
-.prose p{margin:0 0 1.05em;max-width:var(--w-arg)}
+.prose{font-family:var(--narration);color:var(--ribbon-2)}
+.prose p{margin:0 0 1em;max-width:var(--w-arg);font-size:18px;line-height:1.66}
 .prose p:last-child{margin-bottom:0}
 .prose i,.prose em{font-style:italic}
-.sec{padding:64px 0 0}
-.sec h2{font-family:var(--cond);font-weight:600;font-size:15px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:22px;border-top:1px solid var(--ink);padding-top:9px}
-.sec h3{font-family:var(--cond);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-62);margin:0 0 10px}
-.vehiclerow{display:grid;grid-template-columns:236px minmax(0,1fr);gap:0 40px;margin-top:26px;align-items:start}
-.chron{line-height:2.05;column-count:2;column-gap:44px;border-top:1px solid var(--ink-18);padding-top:10px}
-.legendgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin-top:20px}
-.legendgrid .lgcell{padding:0 26px;border-right:1px solid var(--ink-10);min-width:0}
+.prose b{font-weight:600;color:var(--ribbon)}
+.sec{padding:60px 0 0}
+/* section head = a filled tab sitting on a 1.75px rule */
+.sec h2{
+  font-family:var(--placard);font-weight:700;font-size:14px;letter-spacing:.18em;text-transform:uppercase;
+  margin:0 0 22px;background:var(--ribbon);color:var(--bond);display:inline-block;padding:5px 13px 6px;
+}
+.sec h3{font-family:var(--placard);font-weight:500;font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--ribbon);margin:0 0 10px}
+.vehiclerow{display:grid;grid-template-columns:236px minmax(0,1fr);gap:0 40px;margin-top:24px;align-items:start}
+.chron{line-height:1.9;column-count:2;column-gap:44px;border-top:var(--rw) solid var(--ribbon);padding-top:10px}
+.legendgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin-top:0;border-bottom:var(--rw) solid var(--ribbon)}
+.legendgrid .lgcell{padding:14px 22px 18px;border-right:1px solid var(--rule-2);min-width:0}
 .legendgrid .lgcell:first-child{padding-left:0}
 .legendgrid .lgcell:last-child{border-right:0;padding-right:0}
 .legendgrid svg{max-width:100%}
 .twoup{display:grid;grid-template-columns:1fr 1fr;gap:0 56px}
-.twoup h3{margin-bottom:16px}
-.hang{display:grid;grid-template-columns:190px minmax(0,1fr);gap:0 40px;align-items:start}
-.hang .h{font-family:var(--cond);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding-top:3px}
-.hang .h span{display:block;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.05em;color:var(--ink-55);text-transform:none;margin-top:5px}
+.twoup h3{margin-bottom:14px}
+/* a hanging entry: the document's stub column, then the imported prose */
+.hang{display:grid;grid-template-columns:200px minmax(0,1fr);gap:0 32px;align-items:start;border-top:var(--rw) solid var(--ribbon)}
+.hang .h{
+  font-family:var(--placard);font-weight:500;font-size:13px;letter-spacing:.13em;text-transform:uppercase;
+  padding:7px 10px 8px 0;color:var(--ribbon);
+}
+.hang .h span{display:block;font-family:var(--typewriter);font-weight:400;font-size:11.5px;letter-spacing:0;color:var(--ribbon-3);text-transform:none;margin-top:6px}
+/* the annotation offset: prose sits one tab stop off the document grid */
+.hang>.prose,.hang>div:not(.h){padding-left:var(--tab);padding-top:7px}
 
-/* --- full-bleed quote plate (density flip) --- */
-.plate-ink{background:var(--ink);color:var(--paper);padding:104px var(--pad-r) 104px var(--pad-l);margin-top:76px;margin-right:var(--map-w)}
-.plate-ink .q{font-family:var(--serif);font-size:clamp(22px,2.5vw,34px);line-height:1.34;max-width:var(--w-ev);letter-spacing:-.012em}
-.plate-ink .q.small{font-size:clamp(17px,1.55vw,21px);line-height:1.5;max-width:var(--w-arg);color:rgba(237,232,222,.72);margin-top:34px}
-.plate-ink .att{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:rgba(237,232,222,.45);margin-top:30px}
-.plate-ink strong{font-weight:400;color:#fff}
+/* --- reversed placard (density flip) ---
+   A printed placard, reversed out — the form the plaque and the
+   Standards Manual's display pages take, not a "cinematic dark plate". */
+.plate-ink{background:var(--ribbon);color:var(--bond);padding:88px var(--pad-r) 88px calc(var(--pad-l) + var(--tab));margin-top:70px;margin-right:var(--map-w)}
+.plate-ink .q{font-family:var(--narration);font-size:clamp(22px,2.4vw,32px);line-height:1.38;max-width:var(--w-ev)}
+.plate-ink .q.small{font-size:clamp(17px,1.5vw,20px);line-height:1.55;max-width:var(--w-arg);color:var(--band-2);margin-top:32px}
+.plate-ink .att{font-family:var(--typewriter);font-size:12px;letter-spacing:0;text-transform:uppercase;color:var(--ribbon-4);margin-top:28px;border-top:1px solid var(--ribbon-3);padding-top:9px;display:inline-block}
+.plate-ink strong{font-weight:600;color:#fff}
 
 .bleed-fig{margin:0;margin-right:var(--map-w)}
-.bleed-fig img{width:100%;height:clamp(340px,52vh,560px);object-fit:cover;object-position:center 28%;filter:grayscale(.18) contrast(1.03)}
+.bleed-fig img{width:100%;height:clamp(340px,52vh,560px);object-fit:cover;object-position:center 28%;filter:grayscale(.2) contrast(1.04)}
 .bleed-fig figcaption{
-  font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--ink-55);
-  padding:9px var(--pad-r) 0 var(--pad-l);display:flex;gap:18px;
+  font-family:var(--typewriter);font-size:12px;letter-spacing:0;color:var(--ribbon-3);
+  padding:8px var(--pad-r) 0 var(--pad-l);display:flex;gap:18px;line-height:1.5;
 }
-.bleed-fig figcaption b{font-weight:400;color:var(--ink-62)}
+.bleed-fig figcaption b{font-weight:700;color:var(--ribbon-2)}
 
-/* --- flight director palette table --- */
-.fd{border-top:1px solid var(--ink);margin-top:6px}
-.fd .row{display:grid;grid-template-columns:26px 1.15fr .34fr .5fr 1.5fr;align-items:center;gap:18px;border-bottom:1px solid var(--ink-10);padding:11px 0}
-.fd .sw{width:22px;height:22px;border-radius:0}
-.fd .sw.wh{box-shadow:inset 0 0 0 1px var(--ink-30)}
-.fd .nm{font-family:var(--cond);font-weight:600;font-size:17px}
-.fd .mn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink-62)}
-.fd .ac{font-family:var(--serif);font-size:16px;color:var(--ink-62)}
-.fd .head{color:var(--ink-55)}
-.fd .head .mn,.fd .head .ac{font-family:var(--cond);font-weight:600;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-55)}
+/* --- flight-director table: a real ruled table with a filled head --- */
+.fd{border:var(--rw) solid var(--ribbon);margin-top:0}
+.fd .row{display:grid;grid-template-columns:34px 1.15fr .34fr .5fr 1.5fr;align-items:center;gap:16px;border-bottom:1px solid var(--rule-2);padding:9px 12px}
+.fd .row:last-child{border-bottom:0}
+.fd .sw{width:22px;height:22px;border-radius:0;box-shadow:inset 0 0 0 1px var(--ribbon)}
+.fd .nm{font-family:var(--placard);font-weight:500;font-size:17px;text-transform:uppercase;letter-spacing:.02em}
+.fd .mn{font-family:var(--typewriter);font-size:12.5px;letter-spacing:0;color:var(--ribbon-2)}
+.fd .ac{font-family:var(--typewriter);font-size:12.5px;color:var(--ribbon-2);line-height:1.45}
+.fd .head{background:var(--ribbon);color:var(--bond);border-bottom:0;padding:6px 12px 7px}
+.fd .head .nm,.fd .head .mn,.fd .head .ac{
+  font-family:var(--placard);font-weight:500;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--bond);
+}
 
 /* --- roster / criteria / index lists --- */
-.roster{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;border-top:1px solid var(--ink-18);padding-top:14px}
-.roster dl{margin:0}
-.roster dt{font-family:var(--cond);font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-62);margin-bottom:6px}
-.roster dd{margin:0 0 3px;font-family:var(--serif);font-size:16.5px;line-height:1.45}
-.roster dd span{font-family:var(--mono);font-size:10.5px;color:var(--ink-55);letter-spacing:.04em}
+.roster{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:var(--rw) solid var(--ribbon);border-bottom:var(--rw) solid var(--ribbon)}
+.roster dl{margin:0;padding:12px 24px 16px 0;border-right:1px solid var(--rule-2)}
+.roster dl:last-child{border-right:0}
+.roster dt{font-family:var(--placard);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ribbon);margin-bottom:8px}
+.roster dd{margin:0 0 5px;font-family:var(--typewriter);font-size:13.5px;line-height:1.4;color:var(--ribbon)}
+.roster dd span{display:block;font-family:var(--typewriter);font-size:11.5px;color:var(--ribbon-3);letter-spacing:0;line-height:1.45}
 
 ol.crit{list-style:none;counter-reset:c;padding:0;margin:0;column-count:2;column-gap:48px}
-ol.crit li{counter-increment:c;position:relative;padding-left:34px;margin-bottom:13px;font-size:17px;line-height:1.5;break-inside:avoid}
+ol.crit li{counter-increment:c;position:relative;padding-left:38px;margin-bottom:12px;font-family:var(--narration);font-size:17px;line-height:1.55;break-inside:avoid;color:var(--ribbon-2)}
 ol.crit li::before{
-  content:counter(c,decimal-leading-zero);position:absolute;left:0;top:.28em;
-  font-family:var(--mono);font-size:10.5px;color:var(--ink-55);letter-spacing:.05em;
+  content:counter(c);position:absolute;left:0;top:.1em;
+  font-family:var(--typewriter);font-weight:700;font-size:12px;color:var(--bond);
+  background:var(--ribbon);padding:1px 6px;letter-spacing:0;
 }
 
 /* --- four rival explanations, unresolved --- */
-.rivals{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink)}
-.rivals>div{padding:14px 26px 0 0;border-right:1px solid var(--ink-10)}
+.rivals{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:var(--rw) solid var(--ribbon);border-bottom:var(--rw) solid var(--ribbon)}
+.rivals>div{padding:0 22px 16px 0;border-right:1px solid var(--rule-2)}
 .rivals>div:last-child{border-right:0;padding-right:0}
-.rivals .n{font-family:var(--mono);font-size:10.5px;color:var(--ink-55);letter-spacing:.08em}
-.rivals .cl{font-family:var(--cond);font-weight:600;font-size:16px;line-height:1.22;margin:8px 0 8px}
-.rivals p{font-size:16px;line-height:1.5;color:var(--ink-62)}
-.rivals-note{font-family:var(--mono);font-size:10.5px;color:var(--ink-55);letter-spacing:.05em;margin-top:16px;border-top:1px solid var(--ink-10);padding-top:9px}
+.rivals .n{font-family:var(--typewriter);font-weight:700;font-size:11.5px;color:var(--bond);background:var(--ribbon);padding:3px 8px;display:inline-block;margin-top:0}
+.rivals .cl{font-family:var(--placard);font-weight:500;font-size:16px;line-height:1.2;margin:10px 0 8px;text-transform:uppercase;letter-spacing:.02em}
+.rivals p{font-family:var(--narration);font-size:16px;line-height:1.55;color:var(--ribbon-2)}
+.rivals-note{font-family:var(--typewriter);font-size:12px;color:var(--ribbon-3);margin-top:14px}
 
 /* ============================================================
    STAVES — the on-clock middle
    ============================================================ */
-.mvhead{padding-top:78px;padding-bottom:20px}
-.mvhead .row{display:flex;align-items:flex-end;gap:26px;border-bottom:1px solid var(--ink);padding-bottom:11px}
-.mvhead .num{font-family:var(--cond);font-weight:600;font-size:74px;line-height:.78;letter-spacing:-.04em;color:var(--ink-18)}
-.mvhead .ttl{font-family:var(--cond);font-weight:600;font-size:31px;line-height:1;letter-spacing:-.012em;text-transform:uppercase}
-.mvhead .rng{margin-left:auto;text-align:right;font-family:var(--mono);font-size:11.5px;line-height:1.75;color:var(--ink-62);font-variant-numeric:tabular-nums}
-.mvhead .rng b{font-weight:400;color:var(--ink-55)}
-/* one figure the reader will otherwise never be able to sum from the heads */
+/* movement head = the flight plan's page header: a filled bar
+   carrying the number and the title, over a ruled data row. */
+.mvhead{padding-top:70px;padding-bottom:18px}
+.mvhead .row{display:flex;align-items:stretch;gap:0;background:var(--ribbon);color:var(--bond)}
+.mvhead .num{
+  font-family:var(--typewriter);font-weight:700;font-size:26px;line-height:1;letter-spacing:0;
+  color:var(--bond);padding:12px 16px 11px;border-right:1px solid var(--ribbon-3);display:flex;align-items:center;
+}
+.mvhead .ttl{font-family:var(--placard);font-weight:700;font-size:29px;line-height:1;letter-spacing:.03em;text-transform:uppercase;padding:13px 18px 12px;display:flex;align-items:center}
+.mvhead .rng{margin-left:auto;text-align:right;font-family:var(--typewriter);font-size:12px;line-height:1.5;color:var(--band-2);padding:9px 14px}
+.mvhead .rng b{font-weight:700;color:var(--bond)}
+/* one figure the reader will otherwise never be able to sum */
 .mvstat{
-  display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
-  margin-top:13px;border-bottom:1px solid var(--ink-18);padding-bottom:11px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  border-bottom:var(--rw) solid var(--ribbon);padding:9px 0 10px;
 }
-.mvstat .k{font-family:var(--cond);font-weight:600;font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-62)}
-.mvstat .v{font-family:var(--mono);font-weight:500;font-size:25px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.mvstat .w{font-family:var(--serif);font-size:15.5px;line-height:1.5;color:var(--ink-62);max-width:var(--w-arg);margin-left:auto}
-.mvhead .note{font-family:var(--serif);font-size:16.5px;line-height:1.55;color:var(--ink-62);max-width:var(--w-ev);margin-top:15px;font-style:italic}
+.mvstat .k{font-family:var(--placard);font-weight:500;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ribbon)}
+.mvstat .v{font-family:var(--placard);font-weight:700;font-size:26px;letter-spacing:.01em}
+.mvstat .w{font-family:var(--narration);font-size:16px;line-height:1.55;color:var(--ribbon-2);max-width:var(--w-arg);margin-left:auto}
+/* the imported voice, off the grid */
+.mvhead .note{font-family:var(--narration);font-size:17px;line-height:1.62;color:var(--ribbon-2);max-width:var(--w-ev);margin:14px 0 0 var(--tab)}
 
-/* silence between staves — the un-drawn duration, stated */
+/* silence between staves — the un-drawn duration, stated.
+   Boxed at full rule weight, hatched inside. */
 .silence{
-  display:flex;align-items:center;gap:20px;margin:0;padding:20px 0;
-  border-top:1px solid var(--ink-18);border-bottom:1px solid var(--ink-18);
-  background:repeating-linear-gradient(180deg,transparent 0 5px,var(--ink-06) 5px 6px);
+  display:flex;align-items:center;gap:20px;margin:0;padding:18px 0;
+  border-top:var(--rw) solid var(--ribbon);border-bottom:var(--rw) solid var(--ribbon);
+  background:repeating-linear-gradient(180deg,transparent 0 5px,var(--band) 5px 6px);
 }
-/* the staff rules of the un-drawn duration stop at its own words */
-.silence>*{background:var(--paper);padding:3px 12px}
+.silence>*{background:var(--bond);padding:3px 12px}
 .silence>*:first-child{padding-left:0}
-.silence .d{font-family:var(--mono);font-size:26px;font-weight:500;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
-.silence .l{font-family:var(--cond);font-weight:600;font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-62)}
-.silence .w{font-family:var(--serif);font-size:16.5px;line-height:1.5;color:var(--ink-62);margin-left:auto;text-align:right;max-width:var(--w-arg)}
+.silence .d{font-family:var(--placard);font-weight:700;font-size:27px;letter-spacing:.02em}
+.silence .l{font-family:var(--typewriter);font-size:11.5px;letter-spacing:0;text-transform:uppercase;color:var(--ribbon-3)}
+.silence .w{font-family:var(--narration);font-size:16.5px;line-height:1.5;color:var(--ribbon-2);margin-left:auto;text-align:right;max-width:var(--w-arg)}
 
-/* --- the stave grid --- */
+/* --- the stave grid (geometry unchanged from v2) --- */
 .stave{position:relative;display:grid;column-gap:38px;margin:0}
 .stave.n1{grid-template-columns:74px minmax(0,1fr) 0}
 .stave.n2{grid-template-columns:74px minmax(0,.82fr) minmax(0,1fr);column-gap:34px}
@@ -322,135 +496,156 @@ ol.crit li::before{
 .stave.n4{grid-template-columns:74px minmax(0,.80fr) minmax(0,1.06fr) minmax(0,.90fr) minmax(0,.68fr);column-gap:24px}
 
 .axis{position:relative;height:100%}
-.axis .gt{position:absolute;right:0;width:100%;text-align:right;font-family:var(--mono);font-size:10.5px;color:var(--ink-55);letter-spacing:.03em;font-variant-numeric:tabular-nums;transform:translateY(-.62em);padding-right:11px}
-.axis .gt::after{content:"";position:absolute;right:0;top:.62em;width:7px;height:1px;background:var(--ink-18)}
-.axis .gt.day{color:var(--ink-80)}
-/* Gridlines sit *under* the blocks (which carry an opaque paper ground),
+.axis .gt{position:absolute;right:0;width:100%;text-align:right;font-family:var(--typewriter);font-size:11.5px;color:var(--ribbon-3);letter-spacing:0;transform:translateY(-.62em);padding-right:11px}
+.axis .gt::after{content:"";position:absolute;right:0;top:.62em;width:7px;height:1px;background:var(--ribbon-4)}
+.axis .gt.day{color:var(--ribbon);font-weight:700}
+/* Gridlines sit *under* the blocks (which carry an opaque bond ground),
    so the grid is continuous in empty score space and never crosses a word. */
-.gridline{position:absolute;left:74px;right:0;height:1px;background:rgba(26,23,18,.05);pointer-events:none;z-index:0}
-.gridline.day{background:rgba(26,23,18,.14)}
+.gridline{position:absolute;left:74px;right:0;height:1px;background:#E9E9E4;pointer-events:none;z-index:0}
+.gridline.day{background:var(--rule-2)}
 
 .lane{position:relative;height:100%}
+/* the lane's own rule: a printed table rule, not a hairline */
 .lane::before{
-  content:"";position:absolute;left:0;top:var(--ruletop,0px);bottom:var(--rulebot,0px);width:1px;background:var(--ink-18);z-index:4;
+  content:"";position:absolute;left:0;top:var(--ruletop,0px);bottom:var(--rulebot,0px);width:1.5px;background:var(--ribbon);z-index:4;
 }
-.terminus{position:absolute;left:-4px;width:9px;height:1px;background:var(--alert);z-index:8}
-/* Structural caesurae are opaque bands, not overprints: a rule this heavy
-   occludes what it crosses rather than striking through it. */
+.terminus{position:absolute;left:-4px;width:11px;height:2px;background:var(--alert);z-index:8}
+/* Structural caesurae are opaque bands, not overprints. */
 .joinmark{position:absolute;left:74px;right:0;z-index:2;pointer-events:none}
-.joinmark .bar{height:1px;background:var(--ink)}
+.joinmark .bar{height:var(--rw);background:var(--ribbon)}
 .joinmark .row{display:flex;align-items:baseline;gap:18px;padding-top:7px}
-.joinmark .t{font-family:var(--mono);font-weight:500;font-size:30px;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
-.joinmark .w{font-family:var(--cond);font-weight:600;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
-.joinmark .r{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--ink-55);letter-spacing:.05em}
+/* a placard-scale moment: Jost, because at this size it is a placard,
+   not a table cell */
+.joinmark .t{font-family:var(--placard);font-weight:700;font-size:31px;letter-spacing:.01em}
+.joinmark .w{font-family:var(--placard);font-weight:500;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.joinmark .r{margin-left:auto;font-family:var(--typewriter);font-size:11.5px;color:var(--ribbon-3)}
 .lane.dead::before{background:none}
-/* Solid strip, not a fade: text disappears *under* the head cleanly
-   instead of shearing through a soft gradient. */
+
+/* LANE HEAD = a filled header cell. Solid ink: text passes cleanly
+   under it rather than shearing through a soft gradient. */
 .lane .lanehead{
   position:sticky;top:var(--head-h);z-index:20;
-  padding:9px 0 9px 11px;background:var(--paper);
-  box-shadow:-1px 0 0 0 var(--paper),0 9px 0 0 var(--paper),0 10px 0 0 rgba(26,23,18,.12);
+  padding:6px 10px 7px;background:var(--ribbon);color:var(--bond);
+  box-shadow:0 9px 0 0 var(--bond);
   pointer-events:none;
 }
-.lane .lanehead .nm{font-family:var(--cond);font-weight:600;font-size:11px;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap}
-.lane .lanehead .sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--ink-55);margin-top:3px}
-.lane.hou .lanehead .nm{color:var(--ink-62)}
-.lane.lun .lanehead .nm{color:var(--alert)}
-.lane.lun::before{background:rgba(190,42,23,.34)}
+.lane .lanehead .nm{font-family:var(--placard);font-weight:700;font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap}
+.lane .lanehead .sub{font-family:var(--typewriter);font-size:11px;letter-spacing:0;color:var(--band-2);margin-top:3px}
+.lane.lun .lanehead{background:var(--alert)}
+.lane.lun::before{background:var(--alert)}
 
 /* shift bands: which flight-director team is on console */
-.shift{position:absolute;left:-8px;width:2px;z-index:2}
+.shift{position:absolute;left:-9px;width:4px;z-index:2}
 .shift.green{background:var(--team-green)}
 .shift.gold{background:var(--team-gold)}
-.shift.white{background:var(--team-white);box-shadow:0 0 0 1px var(--ink-18) inset,0 0 0 .5px var(--ink-18)}
+.shift.white{background:var(--team-white);box-shadow:0 0 0 1px var(--ribbon)}
 .shift.black{background:var(--team-black)}
 .shift.maroon{background:var(--team-maroon)}
-.shiftlab{position:absolute;left:-9px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--ink-55);white-space:nowrap;transform:translateY(-1.35em)}
+.shiftlab{position:absolute;left:-10px;font-family:var(--typewriter);font-size:10.5px;letter-spacing:0;color:var(--ribbon-3);white-space:nowrap;transform:translateY(-1.35em)}
 
-/* loss of signal: the solid rule breaks to a dashed hairline, and the whole
-   lane column darkens for the duration. Instantaneous, no transition —
-   signal loss is not a fade. */
+/* loss of signal: the lane's printed rule breaks to a broken rule and
+   the column is cross-hatched for the duration. Instantaneous. */
 .lane.los-managed::before{display:none}
-.seg{position:absolute;left:0;width:1px;background:var(--ink-18);z-index:6}
-.seg.dark{background:repeating-linear-gradient(180deg,var(--ink-30) 0 2px,transparent 2px 6px)}
+.seg{position:absolute;left:0;width:1.5px;background:var(--ribbon);z-index:6}
+.seg.dark{background:repeating-linear-gradient(180deg,var(--ribbon-4) 0 2px,transparent 2px 6px)}
 .losbg{
-  position:absolute;left:1px;right:0;z-index:1;pointer-events:none;
+  position:absolute;left:1.5px;right:0;z-index:1;pointer-events:none;
   background:
-    repeating-linear-gradient(45deg,rgba(26,23,18,.10) 0 1.5px,transparent 1.5px 7px),
-    rgba(26,23,18,.055);
+    repeating-linear-gradient(45deg,var(--ribbon-4) 0 1.5px,transparent 1.5px 7px),
+    var(--bond-2);
 }
-.losbg::before,.losbg::after{content:"";position:absolute;left:-1px;right:0;height:1px;background:rgba(26,23,18,.24)}
+.losbg::before,.losbg::after{content:"";position:absolute;left:-1.5px;right:0;height:1px;background:var(--ribbon-3)}
 .losbg::before{top:0}
 .losbg::after{bottom:0}
 .loslab{
-  position:absolute;left:1px;z-index:22;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;color:var(--ink-62);
-  background:var(--paper);padding:2px 8px 2px 9px;white-space:nowrap;
-  box-shadow:0 0 0 1px rgba(26,23,18,.10);
+  position:absolute;left:1.5px;z-index:22;
+  font-family:var(--typewriter);font-size:11px;letter-spacing:0;text-transform:uppercase;
+  color:var(--bond);background:var(--ribbon-2);padding:2px 8px;white-space:nowrap;
 }
 .blk.tied::after{display:none}
 
-/* --- blocks ---
-   Every block carries an opaque paper ground: gridlines, LOS fields and
+/* --- blocks: each one a ruled cell with a filled header row ---
+   Every block carries an opaque bond ground: gridlines, LOS fields and
    tick rules pass *behind* the text, never through it. */
-.blk{position:absolute;left:0;right:0;padding-left:11px;background:var(--paper);z-index:3}
-.blk::before{content:"";position:absolute;left:0;top:0;right:0;height:1px;background:var(--ink-18)}
-.blk::after{content:"";position:absolute;left:-2.5px;top:-2.5px;width:6px;height:6px;background:var(--paper);border:1px solid var(--ink-45);border-radius:50%;z-index:5}
+.blk{position:absolute;left:0;right:0;padding-left:0;background:var(--bond);z-index:3}
+.blk::before{content:"";position:absolute;left:0;top:0;right:0;height:var(--rw);background:var(--ribbon)}
+/* the timestamp tick: a filled square on the rule. A table marks a
+   ruled instant with a tick, not with a dot. */
+.blk::after{content:"";position:absolute;left:-3.5px;top:-3.5px;width:8px;height:8px;background:var(--ribbon);z-index:5}
 .blk.minor::after{display:none}
-.blk.minor::before{background:var(--ink-10)}
-.tie{position:absolute;left:0;width:1px;background:repeating-linear-gradient(180deg,var(--ink-30) 0 2px,transparent 2px 5px);z-index:5}
-.tie::after{content:"";position:absolute;left:-2.5px;top:0;width:6px;height:6px;background:var(--paper);border:1px solid var(--ink-45);border-radius:50%}
+.blk.minor::before{height:1px;background:var(--rule-2)}
+.tie{position:absolute;left:0;width:1.5px;background:repeating-linear-gradient(180deg,var(--ribbon-4) 0 2px,transparent 2px 5px);z-index:5}
+.tie::after{content:"";position:absolute;left:-3px;top:0;width:7px;height:7px;background:var(--bond);box-shadow:inset 0 0 0 1.5px var(--ribbon)}
 
-.blk-toggle{display:block;width:100%;padding:8px 0 0}
-.blk-head{display:flex;align-items:baseline;gap:11px;margin-bottom:5px;flex-wrap:wrap}
-.blk-t{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
-.blk-lab{font-family:var(--cond);font-weight:600;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-62)}
-.blk-src{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--ink-55);letter-spacing:.03em;white-space:nowrap}
-.blk-lede{font-family:var(--serif);font-size:17.5px;line-height:1.56;max-width:var(--w-arg)}
-.blk.big .blk-lede{font-size:21px;line-height:1.44}
+.blk-toggle{display:block;width:100%;padding:0}
+/* THE FILLED HEADER ROW — the page's most repeated object, 84 times */
+.blk-head{
+  display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;
+  background:var(--band);border-bottom:1px solid var(--rule-2);
+  padding:3px 9px 4px 11px;margin:0 0 7px;
+}
+.blk-t{font-family:var(--typewriter);font-weight:700;font-size:12.5px;letter-spacing:0;white-space:nowrap}
+.blk-lab{font-family:var(--placard);font-weight:500;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ribbon-2)}
+.blk-src{margin-left:auto;font-family:var(--typewriter);font-size:11px;color:var(--ribbon-3);white-space:nowrap}
+.blk.minor .blk-head{background:none;border-bottom:1px solid var(--rule-2)}
+/* the 1969 record: typewriter, inside the cell, flush to the rule */
+/* 17px Courier Prime in a 624px cell is 61 characters per line, against
+   the 65 a 10-cpi typewriter sets in a 6.5in block. That two-character
+   shortfall is the one place the screen's minimum reading size (17px)
+   overrides the artifact's own metric, and it is stated rather than hidden. */
+.blk-lede{font-family:var(--typewriter);font-size:17px;line-height:1.55;max-width:var(--w-arg);padding-left:11px;color:var(--ribbon)}
+.blk.big .blk-lede{font-size:19px;line-height:1.48}
 .blk-more{padding:0 0 2px}
 /* the reader who commits does not get punished with smaller type */
-.blk-more p{font-family:var(--serif);font-size:17.5px;line-height:1.62;color:var(--ink-80);margin:.8em 0 0;max-width:var(--w-arg)}
-.blk-more .prov{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink-55);margin-top:11px;border-top:1px solid var(--ink-10);padding-top:6px}
+.blk-more p{font-family:var(--typewriter);font-size:17px;line-height:1.6;color:var(--ribbon-2);margin:.85em 0 0;max-width:var(--w-arg);padding-left:11px}
+.blk-more .prov{font-family:var(--typewriter);font-size:11px;letter-spacing:0;color:var(--ribbon-3);margin-top:11px;border-top:1px solid var(--rule-2);padding:6px 0 0 11px}
 /* collapsed content stays in the accessibility + find-in-page tree:
    `hidden="until-found"` is applied by script, not display:none. */
 .blk-more[hidden]{padding:0}
 .blk-toggle .ex{
-  font-family:var(--mono);font-size:11px;letter-spacing:.07em;color:var(--ink-55);
-  display:inline-block;margin-top:8px;border-bottom:1px solid var(--ink-18);
+  font-family:var(--typewriter);font-size:11.5px;letter-spacing:0;color:var(--ribbon-3);
+  display:inline-block;margin:8px 0 0 11px;border-bottom:1px solid var(--ribbon-4);
 }
-.blk[data-open="1"] .blk-toggle .ex{color:var(--ink-62)}
-.blk-toggle:hover .ex{color:var(--ink);border-color:var(--ink-45)}
+.blk[data-open="1"] .blk-toggle .ex{color:var(--ribbon-2)}
+.blk-toggle:hover .ex{color:var(--alert);border-color:var(--alert)}
 
-/* quotes inside the score */
-.blk .said{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.38;margin-top:4px;letter-spacing:-.006em;max-width:var(--w-arg)}
-.blk.big .said{font-size:27px;line-height:1.28}
-.blk .who{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-55);margin-top:9px}
+/* air-to-ground, as the transcript sets it: typewriter, all caps.
+   The NASA transcripts of these exchanges are literally uppercase
+   typescript; this is the register the words were recorded in. */
+.blk .said{
+  font-family:var(--typewriter);font-weight:700;font-size:17px;line-height:1.42;
+  text-transform:uppercase;letter-spacing:0;margin-top:4px;max-width:var(--w-arg);
+  padding-left:11px;color:var(--ribbon);
+}
+.blk.big .said{font-size:21px;line-height:1.32}
+.blk .who{font-family:var(--typewriter);font-size:11px;letter-spacing:0;text-transform:uppercase;color:var(--ribbon-3);margin-top:8px;padding-left:11px}
 
-/* alert: reserved for 1202/1201, propellant, Luna 15 */
-.blk.alert::after{border-color:var(--alert);background:var(--alert)}
+/* alert: reserved for 1202/1201, the propellant calls, Luna 15 */
+.blk.alert::after{background:var(--alert)}
 .blk.alert::before{background:var(--alert)}
-.blk.alert .blk-t,.blk.alert .blk-lab{color:var(--alert)}
+.blk.alert .blk-head{background:var(--alert);border-bottom-color:var(--alert)}
+.blk.alert .blk-t,.blk.alert .blk-lab,.blk.alert .blk-src{color:var(--bond)}
 .blk.alert .said{color:var(--alert)}
-.lane.lun .blk::before{background:rgba(190,42,23,.4)}
-.lane.lun .blk::after{border-color:var(--alert)}
-.lane.lun .blk-t,.lane.lun .blk-lab{color:var(--alert)}
+.lane.lun .blk::before{background:var(--alert)}
+.lane.lun .blk::after{background:var(--alert)}
+.lane.lun .blk-head{background:var(--alert);border-bottom-color:var(--alert)}
+.lane.lun .blk-t,.lane.lun .blk-lab,.lane.lun .blk-src{color:var(--bond)}
 
 /* inset figures — lane width, never full bleed, on the clock */
-.blk figure{margin:10px 0 0;max-width:min(100%,382px)}
-.blk figure img{width:100%;height:auto;filter:grayscale(.12) contrast(1.02)}
-.blk figure figcaption{font-family:var(--mono);font-size:10.5px;line-height:1.55;letter-spacing:.03em;color:var(--ink-55);margin-top:7px;max-width:var(--w-arg)}
-.blk figure figcaption b{font-weight:400;color:var(--ink-62);display:block;margin-bottom:3px}
+.blk figure{margin:10px 0 0 11px;max-width:min(100%,382px)}
+.blk figure img{width:100%;height:auto;filter:grayscale(.15) contrast(1.03)}
+.blk figure figcaption{font-family:var(--typewriter);font-size:11px;line-height:1.5;letter-spacing:0;color:var(--ribbon-3);margin-top:7px;max-width:var(--w-arg)}
+.blk figure figcaption b{font-weight:700;color:var(--ribbon-2);display:block;margin-bottom:3px}
 
-/* the derived-material marker.
-   Derivation notes always sit on their own line under the sentence they
-   qualify, hung off a hairline — never inline against a full stop. */
-.derived{border-left:2px solid var(--ink-18);padding-left:10px}
-.derived .blk-lab,.derived .dv{color:var(--ink-55)}
+/* the derived-material marker — apparatus, so: typewriter.
+   Derivation notes sit on their own line under the sentence they
+   qualify, hung off a rule, never inline against a full stop. */
+.derived{border-left:3px solid var(--ribbon-4)}
+.derived .blk-lab,.derived .dv{color:var(--ribbon-3)}
 .dv{
-  display:block;font-family:var(--mono);font-size:10.5px;line-height:1.6;letter-spacing:.05em;
-  color:var(--ink-55);font-style:normal;margin-top:9px;padding-left:11px;max-width:var(--w-arg);
-  border-left:1px solid var(--ink-18);
+  display:block;font-family:var(--typewriter);font-size:11.5px;line-height:1.55;letter-spacing:0;
+  color:var(--ribbon-3);font-style:normal;margin:9px 0 0 11px;padding-left:11px;max-width:var(--w-arg);
+  border-left:1px solid var(--ribbon-4);
 }
 
 /* ============================================================
@@ -458,101 +653,136 @@ ol.crit li::before{
    ============================================================ */
 #fork{position:absolute;left:0;right:0;pointer-events:none;z-index:4}
 #fork svg{width:100%;height:100%;display:block;overflow:visible}
-#fork path{fill:none;stroke:var(--ink);stroke-width:1.25}
+#fork path{fill:none;stroke:var(--ribbon);stroke-width:1.5}
 .splitmark{position:absolute;left:74px;right:0;z-index:2;pointer-events:none}
-.splitmark .bar{height:1px;background:var(--ink)}
+.splitmark .bar{height:var(--rw);background:var(--ribbon)}
 .splitmark .row{display:flex;align-items:flex-end;gap:20px;padding-top:8px}
-.splitmark .t{font-family:var(--mono);font-weight:500;font-size:56px;line-height:.9;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
-.splitmark .w{font-family:var(--cond);font-weight:600;font-size:15px;letter-spacing:.2em;text-transform:uppercase;padding-bottom:9px}
-.splitmark .r{margin-left:auto;text-align:right;font-family:var(--mono);font-size:11px;line-height:1.7;color:var(--ink-55);padding-bottom:6px}
+.splitmark .t{font-family:var(--placard);font-weight:700;font-size:52px;line-height:.92;letter-spacing:.005em}
+.splitmark .w{font-family:var(--placard);font-weight:500;font-size:15px;letter-spacing:.18em;text-transform:uppercase;padding-bottom:9px}
+.splitmark .r{margin-left:auto;text-align:right;font-family:var(--typewriter);font-size:11.5px;line-height:1.6;color:var(--ribbon-3);padding-bottom:6px}
 
 /* the split plate — the page's hinge */
 .splitwrap{padding-top:0}
 #forkbox{position:relative;height:158px}
 #forkbox svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-#forkbox path{fill:none;stroke:var(--ink);stroke-width:1.25}
+#forkbox path{fill:none;stroke:var(--ribbon);stroke-width:1.5}
 .splithead{position:relative}
-.splithead .bar{height:1px;background:var(--ink)}
+.splithead .bar{height:var(--rw);background:var(--ribbon)}
 .splithead .row{display:flex;align-items:flex-end;gap:22px;padding-top:10px}
-.splithead .t{font-family:var(--mono);font-weight:500;font-size:clamp(38px,5.4vw,74px);line-height:.86;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
-.splithead .w{font-family:var(--cond);font-weight:600;font-size:16px;letter-spacing:.22em;text-transform:uppercase;padding-bottom:8px}
-.splithead .r{margin-left:auto;text-align:right;font-family:var(--mono);font-size:11px;line-height:1.8;color:var(--ink-55);padding-bottom:4px}
-.splithead .say{font-family:var(--serif);font-size:17px;line-height:1.5;color:var(--ink-62);max-width:var(--w-ev);margin-top:14px}
+/* the biggest UTC moment on the page: the placard face */
+.splithead .t{font-family:var(--placard);font-weight:700;font-size:clamp(38px,5.2vw,70px);line-height:.9;letter-spacing:.004em}
+.splithead .w{font-family:var(--placard);font-weight:500;font-size:16px;letter-spacing:.2em;text-transform:uppercase;padding-bottom:8px}
+.splithead .r{margin-left:auto;text-align:right;font-family:var(--typewriter);font-size:11.5px;line-height:1.7;color:var(--ribbon-3);padding-bottom:4px}
+.splithead .say{font-family:var(--narration);font-size:17.5px;line-height:1.6;color:var(--ribbon-2);max-width:var(--w-ev);margin:14px 0 0 var(--tab)}
 
-.splitgrid{display:grid;grid-template-columns:74px minmax(0,.74fr) minmax(0,1fr) minmax(0,1fr);column-gap:30px;margin-top:30px;align-items:stretch}
-.splitgrid .col{position:relative;padding-left:12px}
-.splitgrid .col::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--ink-18)}
-.splitgrid .lb{font-family:var(--cond);font-weight:600;font-size:11px;letter-spacing:.17em;text-transform:uppercase;margin-bottom:2px}
-.splitgrid .sb{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--ink-55);margin-bottom:16px}
-.splitgrid figure{margin:0}
-.splitgrid figure img{width:100%;height:auto;filter:grayscale(.1) contrast(1.05)}
-.splitgrid figcaption{font-family:var(--mono);font-size:10.5px;line-height:1.65;letter-spacing:.03em;color:var(--ink-55);margin-top:9px}
-.splitgrid figcaption b{display:block;font-weight:400;color:var(--ink-80);margin-bottom:3px}
-.splitgrid .said{font-family:var(--serif);font-style:italic;font-size:23px;line-height:1.3;margin-top:18px;letter-spacing:-.008em}
-.splitgrid .note{font-family:var(--serif);font-size:17px;line-height:1.58;color:var(--ink-80);margin-top:18px;max-width:var(--w-arg)}
-.splitgrid .who{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-55);margin-top:9px}
-.splitgrid p{font-family:var(--serif);font-size:17px;line-height:1.58;color:var(--ink-80);margin-top:14px;max-width:var(--w-arg)}
-.splitgrid .hou-note{font-family:var(--serif);font-size:16.5px;line-height:1.55;color:var(--ink-62)}
-.splitgrid .shiftchip{display:flex;align-items:center;gap:9px;margin-bottom:12px}
-.splitgrid .shiftchip i{width:12px;height:12px;display:block}
-.splitgrid .shiftchip span{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--ink-62)}
+.splitgrid{display:grid;grid-template-columns:74px minmax(0,.74fr) minmax(0,1fr) minmax(0,1fr);column-gap:30px;margin-top:28px;align-items:stretch}
+.splitgrid .col{position:relative;padding-left:0}
+.splitgrid .col::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1.5px;background:var(--ribbon)}
+.splitgrid .lb{
+  font-family:var(--placard);font-weight:700;font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;
+  background:var(--ribbon);color:var(--bond);padding:6px 10px 7px;margin-bottom:0;
+}
+.splitgrid .sb{font-family:var(--typewriter);font-size:11.5px;letter-spacing:0;color:var(--ribbon-3);margin:0 0 16px;padding:4px 0 0 11px}
+.splitgrid figure{margin:0 0 0 11px}
+.splitgrid figure img{width:100%;height:auto;filter:grayscale(.12) contrast(1.05)}
+.splitgrid figcaption{font-family:var(--typewriter);font-size:11px;line-height:1.55;letter-spacing:0;color:var(--ribbon-3);margin-top:9px}
+.splitgrid figcaption b{display:block;font-weight:700;color:var(--ribbon-2);margin-bottom:3px}
+.splitgrid .said{font-family:var(--typewriter);font-weight:700;font-size:17px;line-height:1.4;text-transform:uppercase;margin:18px 0 0 11px;color:var(--ribbon)}
+.splitgrid .note{font-family:var(--narration);font-size:16.5px;line-height:1.6;color:var(--ribbon-2);margin:16px 0 0 calc(11px + var(--tab));max-width:var(--w-arg)}
+.splitgrid .who{font-family:var(--typewriter);font-size:11px;letter-spacing:0;text-transform:uppercase;color:var(--ribbon-3);margin:9px 0 0 11px}
+.splitgrid p{font-family:var(--narration);font-size:16.5px;line-height:1.6;color:var(--ribbon-2);margin:14px 0 0 calc(11px + var(--tab));max-width:var(--w-arg)}
+/* the imported voice again — off the grid, in the serif */
+.splitgrid .hou-note{font-family:var(--narration);font-size:16.5px;line-height:1.58;color:var(--ribbon-2);margin-left:calc(11px + var(--tab));padding-right:8px}
+.splitgrid .shiftchip{display:flex;align-items:center;gap:9px;margin:0 0 12px 11px}
+.splitgrid .shiftchip i{width:14px;height:14px;display:block;box-shadow:inset 0 0 0 1px var(--ribbon)}
+.splitgrid .shiftchip span{font-family:var(--typewriter);font-size:11px;letter-spacing:0;color:var(--ribbon-2)}
 .splitrec{
-  margin-top:26px;border-top:1px solid var(--ink-18);padding-top:10px;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-55);
+  margin-top:24px;border-top:var(--rw) solid var(--ribbon);padding-top:9px;
+  font-family:var(--typewriter);font-size:11.5px;letter-spacing:0;color:var(--ribbon-3);
   display:flex;justify-content:space-between;gap:30px;
 }
 
 /* ============================================================
    ALTITUDE STAVE (powered descent) — axis becomes an instrument
    ============================================================ */
-.stave.altmode .axis .gt{color:var(--ink-45)}
-.gauge{position:absolute;left:2px;width:3px;background:var(--ink-10);z-index:1}
-.gaugefill{position:absolute;left:2px;width:3px;background:var(--alert);z-index:2;top:0}
-.gaugelab{position:absolute;left:0;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--ink-55);white-space:nowrap}
-.gaugecap{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--ink-55);line-height:1.7;max-width:var(--w-ev)}
-.gapmark{position:absolute;left:11px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink-55);z-index:2;white-space:nowrap;background:var(--paper);padding-right:6px}
-.gapmark::before{content:"";position:absolute;left:-11px;top:.55em;width:7px;height:1px;background:var(--ink-18)}
+.stave.altmode .axis .gt{color:var(--ribbon-3)}
+.gauge{position:absolute;left:2px;width:5px;background:var(--band-2);z-index:1}
+.gaugefill{position:absolute;left:2px;width:5px;background:var(--alert);z-index:2;top:0}
+.gaugelab{position:absolute;left:0;font-family:var(--typewriter);font-size:10.5px;letter-spacing:0;color:var(--ribbon-3);white-space:nowrap}
+.gaugecap{font-family:var(--typewriter);font-size:11.5px;letter-spacing:0;color:var(--ribbon-3);line-height:1.6;max-width:var(--w-ev)}
+.gapmark{position:absolute;left:11px;font-family:var(--typewriter);font-size:11px;letter-spacing:0;text-transform:uppercase;color:var(--ribbon-3);z-index:2;white-space:nowrap;background:var(--bond);padding-right:6px}
+.gapmark::before{content:"";position:absolute;left:-11px;top:.55em;width:7px;height:1px;background:var(--ribbon-4)}
 .lane.lun .blk-lede{font-size:16px}
-.lane.lun .blk-lab{font-size:10.5px}
+.lane.lun .blk-lab{font-size:11px}
 
 /* ============================================================
-   MOVEMENT 8 — dispersal
+   MOVEMENT 11 — dispersal
    ============================================================ */
 #disperse{width:100%;height:224px;display:block;margin-top:0}
-#disperse path{fill:none;stroke:var(--ink-45);stroke-width:.75}
-#disperse path.main{stroke:var(--ink);stroke-width:1.1}
-#disperse text.srclab{font-family:var(--cond);font-weight:600;font-size:11px;fill:var(--ink);letter-spacing:.14em}
-#disperse text.dest{fill:var(--ink-80);letter-spacing:.08em}
+#disperse path{fill:none;stroke:var(--ribbon-3);stroke-width:1}
+#disperse path.main{stroke:var(--ribbon);stroke-width:1.5}
+#disperse text.srclab{font-family:var(--placard);font-weight:700;font-size:11px;fill:var(--ribbon);letter-spacing:.13em}
+#disperse text.dest{fill:var(--ribbon-2);letter-spacing:0}
 .dispcap{
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--ink-55);
-  line-height:1.7;max-width:var(--w-ev);margin:2px 0 26px;
+  font-family:var(--typewriter);font-size:11.5px;letter-spacing:0;color:var(--ribbon-3);
+  line-height:1.6;max-width:var(--w-ev);margin:2px 0 24px;
 }
-#disperse text{font-family:var(--mono);font-size:10px;fill:var(--ink-62);letter-spacing:.06em}
+#disperse text{font-family:var(--typewriter);font-size:10.5px;fill:var(--ribbon-2);letter-spacing:0}
 
-.where{border-top:1px solid var(--ink);margin-top:0}
-.where .row{display:grid;grid-template-columns:240px minmax(0,var(--w-arg)) minmax(140px,1fr);gap:0 44px;border-bottom:1px solid var(--ink-10);padding:20px 0;align-items:start}
-.where .loc{font-family:var(--cond);font-weight:600;font-size:19px;line-height:1.14;letter-spacing:-.008em}
-.where .loc span{display:block;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.09em;color:var(--ink-55);text-transform:uppercase;margin-top:6px}
-/* the carrier named in the diagram above, restated per row so the claim is checkable */
-.where .loc .car{color:var(--ink-80);margin-top:8px;border-top:1px solid var(--ink-18);padding-top:7px}
-.where .obj{font-family:var(--serif);font-size:17.5px;line-height:1.56;max-width:var(--w-arg)}
-.where .obj em{font-style:italic}
+.where{border-top:var(--rw) solid var(--ribbon);border-bottom:var(--rw) solid var(--ribbon);margin-top:0}
+.where .row{display:grid;grid-template-columns:240px minmax(0,var(--w-arg)) minmax(140px,1fr);gap:0 40px;border-bottom:1px solid var(--rule-2);padding:16px 0;align-items:start}
+.where .row:last-child{border-bottom:0}
+.where .loc{font-family:var(--placard);font-weight:500;font-size:18px;line-height:1.12;letter-spacing:.02em;text-transform:uppercase}
+.where .loc span{display:block;font-family:var(--typewriter);font-weight:400;font-size:11.5px;letter-spacing:0;color:var(--ribbon-3);text-transform:uppercase;margin-top:7px}
+/* the carrier named in the diagram above, restated per row */
+.where .loc .car{color:var(--bond);background:var(--ribbon-2);display:inline-block;padding:2px 7px;margin-top:8px}
+.where .obj{font-family:var(--narration);font-size:17px;line-height:1.62;max-width:var(--w-arg);color:var(--ribbon-2)}
+.where .obj em{font-style:italic;color:var(--ribbon)}
 .where .obj+.obj{margin-top:9px}
-.where .cnt{font-family:var(--mono);font-size:10.5px;line-height:1.7;color:var(--ink-55);text-align:right;letter-spacing:.04em}
-.where .row.gone .loc{color:var(--ink-55)}
+.where .cnt{font-family:var(--typewriter);font-size:11px;line-height:1.6;color:var(--ribbon-3);text-align:right;letter-spacing:0}
+.where .row.gone .loc{color:var(--ribbon-3)}
 
 /* end matter index */
-.index{border-top:1px solid var(--ink);padding-top:14px}
+.index{border-top:var(--rw) solid var(--ribbon);padding-top:12px}
 .index ul{list-style:none;padding:0;margin:0;column-count:2;column-gap:48px}
-.index li{break-inside:avoid;margin-bottom:9px;font-family:var(--serif);font-size:15.5px;line-height:1.5;color:var(--ink-80);padding-left:20px;position:relative}
-.index li::before{content:"—";position:absolute;left:0;color:var(--ink-18);font-family:var(--mono);font-size:11px}
+.index li{break-inside:avoid;margin-bottom:9px;font-family:var(--typewriter);font-size:13.5px;line-height:1.5;color:var(--ribbon-2);padding-left:22px;position:relative}
+.index li::before{content:"—";position:absolute;left:0;color:var(--ribbon-4)}
 
-footer{margin-top:96px;border-top:1px solid var(--ink);padding:20px 0 90px}
+/* ============================================================
+   DESIGN RATIONALE — end matter, quiet, before the footer.
+   Nine slots, each with the artifact it was measured against.
+   ============================================================ */
+#rationale{margin-top:74px}
+#rationale .rt{
+  background:var(--ribbon);color:var(--bond);display:inline-block;padding:5px 13px 6px;
+  font-family:var(--placard);font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+}
+#rationale .rlede{
+  font-family:var(--typewriter);font-size:12px;line-height:1.6;color:var(--ribbon-3);
+  max-width:var(--w-ev);margin:12px 0 14px;
+}
+#rationale .rtable{border-top:var(--rw) solid var(--ribbon);border-bottom:var(--rw) solid var(--ribbon)}
+#rationale .rrow{
+  display:grid;grid-template-columns:118px minmax(0,1.05fr) minmax(0,1.25fr);
+  gap:0 26px;padding:8px 0;border-bottom:1px solid var(--rule-2);align-items:start;
+}
+#rationale .rrow:last-child{border-bottom:0}
+#rationale .rrow.rhead{background:var(--ribbon);color:var(--bond);border-bottom:0;padding:5px 0}
+#rationale .rrow.rhead>*{
+  font-family:var(--placard);font-weight:500;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--bond);padding-left:11px;
+}
+#rationale .rrow>*{font-family:var(--typewriter);font-size:11.5px;line-height:1.55}
+#rationale .rk{color:var(--ribbon);font-weight:700;text-transform:uppercase;padding-left:11px}
+#rationale .rd{color:var(--ribbon-2)}
+#rationale .rc{color:var(--ribbon-3)}
+
+footer{margin-top:64px;border-top:var(--rw) solid var(--ribbon);padding:18px 0 90px}
 footer .r{display:flex;gap:40px;align-items:baseline;flex-wrap:wrap}
-footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink-30);font-family:var(--mono);font-size:11.5px}
-footer a:hover{border-color:var(--ink)}
-footer .n{font-family:var(--mono);font-size:11.5px;line-height:1.8;color:var(--ink-55);max-width:var(--w-ev);letter-spacing:.02em}
-footer .n b{font-weight:400;color:var(--ink-62)}
+footer a{color:var(--ribbon);text-decoration:none;border-bottom:2px solid var(--ribbon);font-family:var(--typewriter);font-size:12.5px}
+footer a:hover{color:var(--alert);border-color:var(--alert)}
+footer .n{font-family:var(--typewriter);font-size:12px;line-height:1.65;color:var(--ribbon-3);max-width:var(--w-ev);letter-spacing:0}
+footer .n b{font-weight:700;color:var(--ribbon-2)}
 
 /* ============================================================
    MOBILE — single column, persistent gutter naming the body
@@ -560,91 +790,97 @@ footer .n b{font-weight:400;color:var(--ink-62)}
 .gutter{display:none}
 
 @media (max-width:900px){
-  :root{--pad-l:18px;--pad-r:18px;--map-w:0px;--head-h:42px;--w-arg:100%;--w-ev:100%}
+  :root{--pad-l:14px;--pad-r:14px;--map-w:0px;--head-h:42px;--w-arg:100%;--w-ev:100%;--tab:16px}
   #map{display:none}
   #solo{margin-right:0}
   #solo .sl{display:none}
-  #head{padding:0 10px 0 18px;gap:10px;grid-template-columns:minmax(0,1fr) auto;overflow:hidden}
+  #head{padding:0 8px 0 14px;gap:10px;grid-template-columns:minmax(0,1fr) auto;overflow:hidden}
   #head .brand{display:none}
   #idxbtn{display:none}
-  #readout{gap:11px;font-size:10.5px;min-width:0;overflow:hidden}
+  #readout{gap:11px;font-size:11px;min-width:0;overflow:hidden}
   #readout>div{flex:0 0 auto}
   #readout #ro-off{flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   #readout .k{display:none}
   #readout .metfield{display:none}
   #readout #ro-mv{display:none}
-  #readout #ro-off{font-size:9.5px;overflow:hidden;text-overflow:ellipsis}
-  #solo button{padding:4px 5px;font-size:9px;letter-spacing:.06em}
+  #readout #ro-off{font-size:10px;overflow:hidden;text-overflow:ellipsis}
+  #solo button{padding:4px 5px;font-size:9.5px;letter-spacing:0}
   #solo .lg{display:none}
   #solo .sm{display:inline}
 
-  /* ---- the mobile escape hatch (§4.9): where you are, how far in,
-          and one tap to the movement index. ---- */
+  /* ---- the mobile escape hatch (§4.9) ---- */
   main{padding-top:calc(var(--head-h) + 27px)}
   #prog{
     display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;
     position:fixed;top:var(--head-h);left:0;right:0;height:27px;z-index:58;
-    background:var(--paper);border-bottom:1px solid var(--ink-18);
-    padding:0 12px 0 18px;width:100%;
+    background:var(--bond);border-bottom:var(--rw) solid var(--ribbon);
+    padding:0 10px 0 14px;width:100%;
   }
   #prog::before{
-    content:"";position:absolute;left:0;top:0;height:2px;width:var(--pct,0%);
-    background:var(--ink);
+    content:"";position:absolute;left:0;top:0;height:3px;width:var(--pct,0%);
+    background:var(--alert);
   }
   #prog .pmv{
-    font-family:var(--cond);font-weight:600;font-size:10px;letter-spacing:.15em;text-transform:uppercase;
-    color:var(--ink-62);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;
+    font-family:var(--placard);font-weight:500;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--ribbon-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;
   }
-  #prog .pmv b{font-family:var(--mono);font-weight:400;color:var(--ink-45);margin-right:7px;letter-spacing:.05em}
+  #prog .pmv b{font-family:var(--typewriter);font-weight:700;color:var(--ribbon-3);margin-right:7px;letter-spacing:0}
   #prog .pix{
-    font-family:var(--cond);font-weight:600;font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;
-    color:var(--ink-62);border-bottom:1px solid var(--ink-30);padding-bottom:1px;white-space:nowrap;
+    font-family:var(--placard);font-weight:500;font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--bond);background:var(--ribbon);padding:3px 8px;white-space:nowrap;
   }
-  #idx{padding:0 18px 70px;z-index:95}
-  #idx .idxrow{grid-template-columns:44px minmax(0,1fr);gap:2px 14px;padding:13px 0}
+  #idx{padding:0 6px 70px;z-index:95}
+  #idx .idxtop{flex-wrap:wrap;gap:8px 14px;padding:8px 10px}
+  #idx .idxrow{grid-template-columns:44px minmax(0,1fr);gap:2px 14px;padding:12px 0}
   #idx .idxrow .n{grid-row:1/3}
-  #idx .idxrow .t{font-size:19px}
+  #idx .idxrow .t{font-size:18px}
   #idx .idxrow .r{grid-column:2}
-  #idx .idxrow .d{grid-column:2;text-align:left;color:var(--ink-55)}
-  .mcol .blk{grid-template-columns:52px minmax(0,1fr);gap:0 10px}
-  .mcol .blk>.gutter{font-size:8px;letter-spacing:.11em}
+  #idx .idxrow .d{grid-column:2;text-align:left;color:var(--ribbon-3)}
 
-  #plate h1{font-size:clamp(52px,17vw,96px)}
-  #plate .subs{grid-template-columns:1fr;gap:24px}
-  #plate .thesis{font-size:17px}
+  #plate{padding-top:34px}
+  #plate h1{font-size:clamp(50px,16vw,94px)}
+  #plate .subs{grid-template-columns:1fr;gap:22px}
+  #plate .thesis{font-size:17.5px;margin-left:var(--tab)}
+  #plate .meta>div{flex-wrap:wrap}
+  #plate .meta i{width:100%}
   .bodies{grid-template-columns:1fr}
-  .bodies>div{border-right:0;border-bottom:1px solid var(--ink-10);padding-right:0}
+  .bodies>div{border-right:0;border-bottom:1px solid var(--rule-2);padding-right:0}
+  .bodies>div:last-child{border-bottom:0}
   .cols2,.cols3,ol.crit,.index ul{column-count:1}
-  .hang{grid-template-columns:1fr;gap:8px}
+  .hang{grid-template-columns:1fr;gap:10px}
+  .hang>.prose,.hang>div:not(.h){padding-left:var(--tab);padding-top:7px}
   .twoup{grid-template-columns:1fr;gap:34px}
-  .legendgrid{grid-template-columns:1fr 1fr;gap:20px 18px}
+  .legendgrid{grid-template-columns:1fr 1fr;gap:0}
   .vehiclerow{grid-template-columns:1fr;gap:22px}
   .chron{column-count:1}
-  .legendgrid .lgcell{padding:0;border-right:0}
+  .legendgrid .lgcell{padding:12px 0;border-right:0;border-bottom:1px solid var(--rule-2)}
   .rivals{grid-template-columns:1fr}
-  .rivals>div{border-right:0;border-bottom:1px solid var(--ink-10);padding:12px 0}
-  .roster{grid-template-columns:1fr;gap:22px}
-  .fd .row{grid-template-columns:20px 1fr;gap:10px;row-gap:2px}
+  .rivals>div{border-right:0;border-bottom:1px solid var(--rule-2);padding:12px 0}
+  .roster{grid-template-columns:1fr}
+  .roster dl{border-right:0;border-bottom:1px solid var(--rule-2);padding-right:0}
+  .roster dl:last-child{border-bottom:0}
+  .fd .row{grid-template-columns:24px 1fr;gap:10px;row-gap:3px;padding:9px 10px}
   .fd .mn,.fd .ac{grid-column:2}
   .fd .head{display:none}
-  .plate-ink{padding:56px 18px}
+  .plate-ink{padding:52px 14px}
   .where .row{grid-template-columns:1fr;gap:8px}
   .where .cnt{text-align:left}
-  .mvhead .row{flex-wrap:wrap;gap:12px}
-  .mvhead .num{font-size:48px}
-  .mvhead .ttl{font-size:23px}
-  .mvhead .rng{margin-left:0;text-align:left;width:100%}
+  .mvhead .row{flex-wrap:wrap}
+  .mvhead .num{font-size:20px;padding:8px 12px}
+  .mvhead .ttl{font-size:21px;padding:9px 12px}
+  .mvhead .rng{margin-left:0;text-align:left;width:100%;border-top:1px solid var(--ribbon-3);padding:7px 12px}
+  .mvhead .note{margin-left:var(--tab)}
   .mvstat{gap:8px}
   .mvstat .w{margin-left:0;font-size:15px}
   .mvstat .v{font-size:22px}
-  .where .loc .car{margin-bottom:4px}
   .silence{flex-wrap:wrap;gap:10px}
   .silence .w{margin-left:0;text-align:left}
-  .splitmark .t{font-size:34px}
-  .facing .pair{grid-template-columns:1fr;row-gap:20px}
-  .facing .l figcaption{text-align:left}
-  .facing .l img{transform:none}
-  .facing .mid .q{font-size:20px}
+  .silence .d{font-size:23px}
+  .splitmark .t{font-size:32px}
+  #rationale .rrow{grid-template-columns:1fr;gap:3px}
+  #rationale .rrow.rhead{display:none}
+  #rationale .rrow>*{padding-left:0}
+  #rationale .rk{padding-left:0}
 
   /* stave collapses to one column; a gutter says which body you are with */
   .stave{display:block !important;height:auto !important;column-gap:0}
@@ -653,43 +889,47 @@ footer .n b{font-weight:400;color:var(--ink-62)}
   .mcol{display:block}
   .mcol .blk{
     position:static !important;left:auto;right:auto;
-    display:grid;grid-template-columns:64px minmax(0,1fr);gap:0 12px;
-    padding:14px 0 0;margin-bottom:20px;border-top:1px solid var(--ink-18);
+    display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 8px;
+    padding:0;margin-bottom:20px;border-top:var(--rw) solid var(--ribbon);
   }
+  .mcol .blk.minor{border-top:1px solid var(--rule-2)}
   .mcol .blk::before,.mcol .blk::after{display:none}
   .mcol .blk>.gutter{
     display:block;grid-row:1/3;
-    font-family:var(--cond);font-weight:600;font-size:9px;letter-spacing:.13em;text-transform:uppercase;
-    color:var(--ink-45);border-left:2px solid var(--ink-18);padding-left:7px;line-height:1.25;
+    font-family:var(--placard);font-weight:500;font-size:9px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--bond);background:var(--ribbon-2);padding:5px 4px;line-height:1.25;word-break:break-word;
   }
   /* §6.1: the five team colours are Charlesworth/Griffin/Kranz/Lunney/Windler
      and nothing else, on every viewport. Columbia has no colour on desktop and
-     is not given one here — the lanes separate by ink weight and by the rule
+     is not given one here — the lanes separate by fill weight and by the rule
      style that already means "out of contact". */
-  .mcol .blk[data-lane="eag"]>.gutter{border-left-color:var(--ink);color:var(--ink)}
-  .mcol .blk[data-lane="col"]>.gutter{
-    border-left-style:dashed;border-left-color:var(--ink);color:var(--ink);
-  }
-  .mcol .blk[data-lane="lun"]>.gutter{border-left-color:var(--alert);color:var(--alert)}
+  .mcol .blk[data-lane="eag"]>.gutter{background:var(--ribbon)}
+  .mcol .blk[data-lane="col"]>.gutter{background:var(--bond);color:var(--ribbon);box-shadow:inset 0 0 0 1.5px var(--ribbon)}
+  .mcol .blk[data-lane="lun"]>.gutter{background:var(--alert)}
+  .mcol .blk.alert>.gutter{background:var(--alert)}
   .mcol .blk>.blk-toggle,.mcol .blk>.blk-more{grid-column:2}
-  .mcol .blk.alert>.gutter{border-left-color:var(--alert)}
+  .mcol .blk .blk-head{margin-left:0;padding-left:8px}
+  .mcol .blk .blk-lede,.mcol .blk .said,.mcol .blk .who,.mcol .blk-more p,.mcol .blk-more .prov,.mcol .blk-toggle .ex,.mcol .blk figure{padding-left:0;margin-left:0}
   .splitmark,.facing,.joinmark{position:static !important;left:auto;right:auto;margin:24px 0}
   #forkbox{display:none}
-  .splitgrid{grid-template-columns:1fr;row-gap:30px}
+  .splitgrid{grid-template-columns:1fr;row-gap:28px}
   .splitgrid>div:first-child{display:none}
+  .splitgrid .hou-note{margin-left:calc(11px + var(--tab))}
   .splithead .row{flex-wrap:wrap;gap:10px}
   .splithead .r{margin-left:0;text-align:left;width:100%}
+  .splithead .say{margin-left:var(--tab)}
   .splitrec{flex-direction:column;gap:6px}
   #disperse{height:150px}
-  .index li{font-size:13.5px}
+  .index li{font-size:12.5px}
 }
 
 @media (prefers-reduced-motion:reduce){
   *{scroll-behavior:auto !important}
 }
 
-/* six hundred million — the one display number on the page */
+/* six hundred million — the one display number on the page.
+   Placard face: this is a figure being announced, not tabulated. */
 .bignum{
-  font-family:var(--mono);font-weight:500;font-size:clamp(22px,2.05vw,31px);
-  letter-spacing:-.045em;line-height:1;margin:4px 0 9px;font-variant-numeric:tabular-nums;
+  font-family:var(--placard);font-weight:700;font-size:clamp(24px,2.1vw,33px);
+  letter-spacing:.01em;line-height:1;margin:4px 0 9px;
 }

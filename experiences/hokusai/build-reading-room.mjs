@@ -78,6 +78,9 @@ function figure(i, extra) {
 
 const S = i => cm.sections[i];
 const paras = i => S(i).paragraphs.map(para).join('\n');
+// interleave figures so the evidence column stays populated down the page
+const parasWith = (i, figs) => S(i).paragraphs.map((p, k) =>
+  (figs[k] != null ? figure(figs[k]) + '\n' : '') + para(p)).join('\n');
 
 /* ── selected works gallery list, anchored back into the plot ── */
 const SEL_IDS = ['w-thunderstorm','u-kirifuri','w-kinoe','w-cuckoo','w-quick-lessons','u-carp','u-oiwa',
@@ -117,16 +120,10 @@ const html = `<section id="m6" aria-label="The reading room">
     ${paras(0)}
 
     <h3>Early life</h3>
-    ${paras(1)}
-    ${figure(1)}
-    ${figure(2)}
+    ${parasWith(1, {2: 1, 3: 2})}
 
     <h3>Middle period</h3>
-    ${paras(2)}
-    ${figure(3)}
-    ${figure(4)}
-    ${figure(5)}
-    ${figure(6)}
+    ${parasWith(2, {0: 3, 2: 4, 4: 5, 6: 6})}
 
     <h3>Later life</h3>
     ${S(3).paragraphs.slice(0, 2).map(para).join('\n')}
@@ -136,8 +133,8 @@ const html = `<section id="m6" aria-label="The reading room">
       This is the whole of the scale the plot above is drawn from — eight attainments, eight ages, three of them
       past the end of his life.</cite></blockquote>
 
-    ${S(3).paragraphs.slice(2).map(para).join('\n')}
     ${figure(7)}
+    ${S(3).paragraphs.slice(2).map(para).join('\n')}
 
     <h3>Selected works</h3>
     <p class="mono lc" style="max-width:660px">The article’s own gallery: seventeen works and not one word of prose
@@ -145,8 +142,7 @@ const html = `<section id="m6" aria-label="The reading room">
     <ol class="sel">${selList}</ol>
 
     <h3>Influence on art and culture</h3>
-    ${paras(5)}
-    ${figure(25)}
+    ${parasWith(5, {3: 25})}
 
     <h3>The eight names this article documents</h3>
     <p class="mono lc" style="max-width:660px">p4: “Hokusai was known by at least thirty names during his lifetime…

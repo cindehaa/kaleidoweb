@@ -215,18 +215,20 @@ marginEl.appendChild(el('h3', null, 'Undated in this article — 10'));
 const narrow = () => window.innerWidth < 820;
 const maxAge = () => state >= 4 ? 116 : 94;
 const padL = () => narrow() ? 28 : 44;
-const padR = () => state === 3 ? (narrow() ? 116 : 212) : (narrow() ? 14 : 30);
+const padR = () => (state === 3 && !narrow()) ? 212 : (narrow() ? 14 : 30);
 const mid = w => (w.ages[0] + w.ages[1]) / 2;
-const anchW = w => (w.src.length + (w.derived ? 2 : 0)) * 6.3 + 7;
+const anchW = w => narrow() ? 2 : ((w.src.length + (w.derived ? 2 : 0)) * 6.3 + 7);
 
 function layout() {
-  const cw = chart.clientWidth, ch = chart.clientHeight;
-  if (!cw || !ch) return;
+  const cw = chart.clientWidth;
+  const marginStrip = (narrow() && state === 3) ? 54 : 0;
+  const ch = chart.clientHeight - marginStrip;
+  if (!cw || ch <= 40) return;
   const pL = padL(), pR = padR();
   chart.style.setProperty('--padL', pL + 'px');
   const plotW = Math.max(120, cw - pL - pR);
   const A2X = a => pL + (a / maxAge()) * plotW;
-  const labelBand = narrow() ? 16 : 19;
+  const labelBand = narrow() ? 30 : 21;
   const pad = 4, gap = 4;
   const single = (state === 1 || state === 2 || state >= 4);
 
@@ -268,7 +270,7 @@ function layout() {
   const pitch = sheetH + 6;
 
   const hs = REGS.map((r, i) => single
-    ? labelBand + pitch + pad
+    ? labelBand + pad + (state === 2 && i === 2 ? 120 : pitch)
     : labelBand + pad + rows[i].length * pitch + (rows[i].length ? 0 : 3));
   let sum = hs.reduce((a, b) => a + b, 0) + (REGS.length - 1) * gap;
   const slack = ch - sum;
@@ -329,7 +331,7 @@ function layout() {
     const w = WORKS.find(x => x.id === 'w-great-wave');
     const ri = regOf(showRanges ? w.ages[1] : mid(w));
     const n = SH[w.id], bar = BAR[w.id];
-    const h2 = Math.max(26, Math.min(132, hs[ri] - labelBand - 12));
+    const h2 = Math.max(30, Math.min(150, hs[ri] - labelBand - 14));
     const w2 = h2 * w.iw / w.ih;
     const cx = A2X(mid(w));
     const top = tops[ri] + labelBand + 6;
@@ -380,7 +382,9 @@ function layout() {
 function buildAxis(A2X) {
   axisEl.innerHTML = '';
   axisEl.appendChild(el('div', 'arule'));
-  const ticks = state >= 4 ? [0,10,20,30,40,50,60,70,80,88,90,100,110] : [0,10,20,30,40,50,60,70,80,88];
+  const ticks = state >= 4
+    ? (narrow() ? [0,20,40,60,70,88,100,110] : [0,10,20,30,40,50,60,70,80,88,90,100,110])
+    : (narrow() ? [0,20,40,60,70,88] : [0,10,20,30,40,50,60,70,80,88]);
   ticks.forEach(t => {
     const d = el('div', 'atick' + (t === 70 || t === 88 ? ' big' : ''));
     d.style.left = A2X(t) + 'px';
@@ -426,20 +430,23 @@ function layoutTail(A2X, tops, hs, ch) {
   fdot.style.cssText = `left:${x88 - 5}px;top:${yForecast - 5}px`;
   const flab = el('div', 'flab mono');
   flab.style.cssText = `left:${x88 - 12}px;top:${yForecast - 7}px;transform:translateX(-100%)`;
-  flab.textContent = 'what he forecast for eighty-six';
+  flab.textContent = narrow() ? 'his forecast for 86' : 'what he forecast for eighty-six';
   const dot = el('div', 'dot');
   dot.style.cssText = `left:${x88 - 5}px;top:${yDeath - 5}px`;
-  const q = el('div', 'dq');
-  q.innerHTML = '“If only Heaven will give me just another ten years&nbsp;… Just another five more years, ' +
-    'then I could become a real painter”' +
-    '<span class="dsrc mono lc">On his deathbed, 1849 · p22. At eighty-eight he is asking for what the ' +
-    'colophon promised him at eighty-six. Placing him below his own forecast is this page’s reading of ' +
-    'the two quotations, not something he drew.</span>';
-  const qw = narrow() ? 210 : 330;
-  q.style.width = qw + 'px';
-  q.style.left = Math.max(padL(), x88 - qw - 22) + 'px';
-  q.style.bottom = (ch - yDeath + 12) + 'px';
-  deathEl.append(line, fdot, flab, dot, q);
+  deathEl.append(line, fdot, flab, dot);
+  if (!narrow()) {
+    const q = el('div', 'dq');
+    q.innerHTML = '“If only Heaven will give me just another ten years&nbsp;… Just another five more years, ' +
+      'then I could become a real painter”' +
+      '<span class="dsrc mono lc">On his deathbed, 1849 · p22. At eighty-eight he is asking for what the ' +
+      'colophon promised him at eighty-six. Placing him below his own forecast is this page’s reading of ' +
+      'the two quotations, not something he drew.</span>';
+    const qw = 330;
+    q.style.width = qw + 'px';
+    q.style.left = Math.max(padL(), x88 - qw - 22) + 'px';
+    q.style.bottom = (ch - yDeath + 12) + 'px';
+    deathEl.appendChild(q);
+  }
 
   // the portrait stands in the years he did not get
   const right = A2X(116);
@@ -450,7 +457,10 @@ function layoutTail(A2X, tops, hs, ch) {
   portraitEl.style.top = (ch - ph - 54) + 'px';
   portraitEl.style.width = pw + 'px';
   portraitEl.style.height = ph + 'px';
-  portraitEl.style.setProperty('--capw', Math.max(150, availW) + 'px');
+  portraitEl.style.setProperty('--capw', Math.max(narrow() ? 110 : 150, availW) + 'px');
+  portraitEl.querySelector('figcaption').textContent = narrow()
+    ? 'The article’s lead image. Uncaptioned.'
+    : 'Hokusai as an old man — the article’s lead image. It carries no caption at all.';
 }
 
 /* ══════════════════════ movement states ══════════════════════ */
@@ -465,9 +475,9 @@ const MV = [
 const NARR = {
   1: ['The graph is his sentence and nothing else — eight attainments, eight ages. Three of the eight fall after the end of his life.',
       'Derived, not stated: every age here is a year in this article minus a birth of c.&nbsp;1760.'],
-  2: ['One print, no label. Drag it along the age axis to the year of his life you think he made it, then let go — arrow keys and Enter work too. <button type="button" class="skip" id="skip-guess">Skip the guess, show me</button>',
-      'Derived, not stated: every age here is a year in this article minus a birth of c.&nbsp;1760.'],
-  3: ['This article dates ' + WORKS.length + ' works. He is said to have made about thirty thousand (p2), so this plot is less than a tenth of one per cent of him — and every gap in it is the encyclopaedia’s, not his. Click one of his eight registers to keep only the works that fall in it.',
+  2: ['One print, no label. It is resting where nothing can be plotted — above every register, past the end of his life. Drag it along the age axis to the year you think he made it, then let go; arrow keys and Enter work too. <button type="button" class="skip" id="skip-guess">Skip the guess, show me</button>',
+      'Turning date ranges on replaces every dot with the span the article actually gives — a dot is less honest than a bar.'],
+  3: ['This article dates ' + WORKS.length + ' works. He is said to have made about thirty thousand (p2), so this plot is less than a tenth of one per cent of him — and every gap in it is the encyclopaedia’s, not his. Tap one of his eight registers to keep only the works that fall in it.',
       'Derived, not stated: a year <i>y</i> gives ages <i>y</i>−1761 to <i>y</i>−1760. ⊘ marks a print the article dates only through its series. Anchors: <i>p14</i> a paragraph · <i>cap</i> an image caption · <i>gal</i> the Selected works gallery.'],
   4: ['Nothing on this screen can be clicked, because there is nothing on it. He forecast three more attainments — at ninety, at a hundred, at a hundred and ten — and the article records no work in any of them.',
       'Derived, not stated: 1849 − 1760 = 88. The last three registers are empty because the evidence is.']
@@ -482,7 +492,6 @@ function setState(s, force) {
   $('#mv-name').textContent = MV[s].t;
   $('#mv-head').textContent = MV[s].h;
   plate.dataset.ground = s === 4 ? 'ink' : 'bone';
-  document.body.classList.toggle('ink-chrome', s === 4);
   $$('#idx button').forEach(b => b.setAttribute('aria-current', String(b.dataset.go === 'm' + s)));
 
   if (!(s === 2 && revealed)) setNarr(s);
@@ -525,7 +534,11 @@ function setState(s, force) {
 }
 
 function setNarr(s, override) {
-  const c = override || NARR[s];
+  let c = override || NARR[s];
+  if (narrow() && !override && s === 4)
+    c = ['On his deathbed, 1849: “If only Heaven will give me just another ten years … Just another five more years, then I could become a real painter” (p22). At eighty-eight he is asking for what the colophon promised him at eighty-six — which is why the blue point sits below the ring. ' + c[0], c[1]];
+  if (narrow() && !override && s === 1)
+    c = [c[0] + ' His date of birth is unclear (p3) and the infobox says “supposedly” 31 October 1760, so every age here carries that doubt.', c[1]];
   narrEl.innerHTML = c[0];
   dervEl.innerHTML = c[1];
   const sk = $('#skip-guess');
@@ -573,12 +586,14 @@ $('#filt').addEventListener('click', () => setFilter(null));
 const drag = $('#dragsheet');
 function placeDragHome() {
   if (!geom) return;
-  const h = Math.min(narrow() ? 74 : 128, geom.ch * 0.22);
+  // it rests in the one quadrant of the plate nothing can occupy:
+  // above every register that holds data, past the end of his life.
+  const h = Math.min(narrow() ? 78 : 132, geom.ch * 0.24);
   const w = h * 1280 / 876;
   drag.style.width = w + 'px'; drag.style.height = h + 'px';
   if (drag.dataset.moved !== '1') {
-    drag.style.left = (geom.pL + 6) + 'px';
-    drag.style.top = (geom.ch - h - 8) + 'px';
+    drag.style.left = Math.max(geom.pL, geom.pL + geom.plotW - w - 4) + 'px';
+    drag.style.top = (geom.tops ? geom.tops[narrow() ? 7 : 6] + 6 : 8) + 'px';
   }
 }
 
@@ -615,7 +630,10 @@ drag.addEventListener('keydown', e => {
 
 function commitGuess(cx) {
   if (!geom || revealed) return;
-  guessAge = Math.round(Math.max(0, Math.min(maxAge(), (cx - geom.pL) / geom.plotW * maxAge())));
+  // a print that was never moved is not a guess
+  guessAge = drag.dataset.moved === '1'
+    ? Math.round(Math.max(0, Math.min(maxAge(), (cx - geom.pL) / geom.plotW * maxAge())))
+    : null;
   reveal();
 }
 
@@ -642,7 +660,10 @@ function reveal() {
     gm.innerHTML = '';
     const l = el('div', 'gl'); l.style.left = geom.A2X(guessAge) + 'px';
     const t = el('div', 'gt', 'your guess — age ' + guessAge);
-    t.style.left = (geom.A2X(guessAge) + 6) + 'px';
+    const gx = geom.A2X(guessAge);
+    if (gx > geom.pL + geom.plotW * 0.66) {
+      t.style.left = (gx - 6) + 'px'; t.style.transform = 'translateX(-100%)';
+    } else t.style.left = (gx + 6) + 'px';
     gm.append(l, t);
     gm.style.opacity = '1';
   }
@@ -660,7 +681,7 @@ function reveal() {
 function syncRangesTgl() {
   const t = $('#ranges-tgl');
   t.setAttribute('aria-pressed', String(showRanges));
-  t.textContent = showRanges ? 'Date ranges — on' : 'Date ranges — off (a dot is less honest than a bar)';
+  t.textContent = showRanges ? 'Date ranges — on' : 'Date ranges — off';
 }
 $('#ranges-tgl').addEventListener('click', () => { showRanges = !showRanges; syncRangesTgl(); layout(); });
 syncRangesTgl();
@@ -734,9 +755,11 @@ function onScroll() {
     if (p > 0.45) s = 3;
     if (p > 0.775) s = 4;
     setState(s);
+    trackSection();
   });
 }
 window.addEventListener('scroll', onScroll, {passive:true});
+window.addEventListener('scroll', () => { if (!raf) trackSection(); }, {passive:true});
 function gotoState(n) {
   const r = graph.getBoundingClientRect();
   const top = window.scrollY + r.top;
@@ -776,11 +799,14 @@ function buildPost() {
   const host = $('#post');
   if (!host) return;
   host.innerHTML = '';
+  host.classList.remove('narrow');
   const W0 = host.clientWidth, H0 = host.clientHeight;
   if (!W0 || !H0) return;
   const nar = narrow();
   const pL = nar ? 26 : 44;
   host.style.setProperty('--padL5', pL + 'px');
+
+  if (nar) { buildPostNarrow(host, pL); return; }
 
   /* his ladder, above and finished */
   const rh = nar ? 15 : 18;
@@ -837,12 +863,60 @@ function buildPost() {
   });
 }
 
+function buildPostNarrow(host, pL) {
+  host.classList.add('narrow');
+  const lad = el('div', 'ladder');
+  for (let i = REGS.length - 1; i >= 0; i--) {
+    const d = el('div', 'ghostrow');
+    d.append(el('em', null, String(REGS[i].age)), el('span', null, REGS[i].text));
+    lad.appendChild(d);
+  }
+  const dead = el('p', 'deadlab2 mono', 'His scale ends here — 10 May 1849');
+  const lab = el('p', 'plabel2 mono', 'Years after his death');
+  host.append(lad, dead, lab);
+  const ul = el('ul', 'plist');
+  POST.forEach(p => {
+    const li = el('li');
+    const bar = el('div', 'pbar');
+    bar.style.width = (p.d / 178 * 100) + '%';
+    const head = el('div', 'phead');
+    head.append(el('b', null, p.y), el('span', null, '+' + p.d));
+    const t = el('p', 'pt2', p.t);
+    const sc = el('span', 'mono', p.src);
+    li.append(bar, head, t, sc);
+    if (p.img) {
+      const im = new Image(); im.src = 'assets/' + p.img;
+      im.alt = 'Cover of Debussy\u2019s La Mer, 1905'; im.loading = 'lazy';
+      li.appendChild(im);
+    }
+    ul.appendChild(li);
+  });
+  host.appendChild(ul);
+}
+
+/* the movement index tracks whichever section owns the middle of the viewport */
+function trackSection() {
+  const mid = window.innerHeight / 2;
+  const owns = n => { const r = n.getBoundingClientRect(); return r.top <= mid && r.bottom >= mid; };
+  const m0 = $('#m0'), m5 = $('#m5'), m6 = $('#m6');
+  let id = null;
+  if (m6 && owns(m6)) id = 'm6';
+  else if (m5 && owns(m5)) id = 'm5';
+  else if (graph && owns(graph)) id = 'm' + state;
+  else if (m0 && owns(m0)) id = 'm0';
+  if (!id) return;
+  const inPlate = id === 'm1' || id === 'm2' || id === 'm3' || id === 'm4';
+  document.body.classList.toggle('ink-chrome', inPlate && state === 4);
+  $$('#idx button').forEach(b => b.setAttribute('aria-current', String(b.dataset.go === id)));
+}
+
 /* ══════════════════════ boot ══════════════════════ */
 function boot() {
   layout();
   setState(1, true);
   buildPost();
   onScroll();
+  trackSection();
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
 else boot();
