@@ -15,25 +15,32 @@ const DEMOS = {
 const m = src.match(/\/wiki\/([^?#]+)/);
 const article = m ? decodeURIComponent(m[1]) : null;
 let routedToDemo = false;
+let pendingModel = null;
 
 if (article && DEMOS[article]) {
   routedToDemo = true;
   fetch(DEMOS[article], { method: 'HEAD' })
     .then((r) => {
       if (r.ok) location.replace(DEMOS[article]);
-      else routedToDemo = false;
+      else demoUnavailable();
     })
-    .catch(() => (routedToDemo = false));
+    .catch(demoUnavailable);
+}
+
+function demoUnavailable() {
+  routedToDemo = false;
+  if (pendingModel) renderInstantStage(pendingModel);
 }
 
 window.addEventListener('message', (e) => {
-  if (e.data?.type !== 'kw:model' || routedToDemo) return;
+  if (e.data?.type !== 'kw:model') return;
   const model = e.data.model;
   if (!model || !model.sections?.length) {
-    status.textContent = 'could not read this page yet';
+    if (!routedToDemo) status.textContent = 'could not read this page yet';
     return;
   }
-  renderInstantStage(model);
+  pendingModel = model;
+  if (!routedToDemo) renderInstantStage(model);
 });
 
 // Stage 1: a calm, well-set reading layer. This is the *loading state* of the
