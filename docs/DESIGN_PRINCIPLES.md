@@ -196,6 +196,15 @@ Motion means something or it is deleted. The clearest external statement of this
 
 **5.7 SHOULD NOT — scroll-driven camera along a spline through a 3D scene.** 82% of Q1-2026 Awwwards winners use it [H2]. It is now the single most generic move available and should be penalised under the Genericness criterion, not reached for.
 
+**5.8 — the environment layer (content motion vs. environment motion).** §5.3's motion-means-something rule governs CONTENT motion. A second, distinct class is legal: **environment motion** — an ambient, living surface (canvas, shader, layered imagery, pre-rendered loop) whose job is to place the reader inside the subject's world, judged not by "what relationship does it carry" but by "is this the subject's world rendered, or a screensaver". Measured basis: Editions Summer '25 ships 14 pre-rendered video loops, 131 images, smooth scroll, choreographed reveals, and exactly ONE WebGL canvas — atmosphere is baked into assets so runtime stays cheap [D012].
+- Budget: 2–4 environmental moments per experience, placed at ceremonial beats (an opening, a hinge, a coda); every other passage stays plain and fast. Plain-vs-immersive alternation is §4.1's density contrast extended to rendering technology.
+- Derivation still applies (§0.2): the environment renders THIS subject's matter (the lunar surface's ray-light, a print's paper fibre and ink-bleed, deep-sea darkness) — a beautiful gradient that could back any subject fails exactly like a bone ground.
+- Truth boundary (§7.4 unchanged): generative/AI-generated atmosphere must be non-representational or unmistakably ambient; it never depicts events, objects, or documents as evidence.
+- An environment layer never blocks reading: text above it keeps its contrast floor, `prefers-reduced-motion` collapses it to its stilled frame, and it degrades to a static image where WebGL is absent.
+- Vendored runtimes available: three@0.185, @paper-design/shaders@0.0.80 (vanilla ShaderMount). Pre-rendered loops and layered stills are preferred where they look identical — Editions' lesson: expensive-looking, cheap-running.
+
+**5.9 MUST — the page speaks about the subject, not about itself.** No opening that explains how to read the page; no prose about "this article"/"this page"/"the encyclopaedia"; no apparatus explaining apparatus. Interaction instructions appear only at the point of interaction, ≤1 line. Rationale, reading keys, and self-description live in end matter (the DESIGN_RATIONALE block). If the form needs a preamble to work, the form is not working [D011].
+
 ---
 
 ## 6. Colour & material

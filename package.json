@@ -23,9 +23,12 @@
   "private": "true",
   "type": "module",
   "devDependencies": {
+    "esbuild": "^0.28.2",
     "playwright-core": "^1.62.1"
   },
   "dependencies": {
-    "cheerio": "^1.2.0"
+    "@paper-design/shaders": "^0.0.80",
+    "cheerio": "^1.2.0",
+    "three": "^0.185.1"
   }
 }
