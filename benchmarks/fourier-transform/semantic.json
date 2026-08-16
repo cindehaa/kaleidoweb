@@ -2,222 +2,313 @@
   "concepts": [
     {
       "name": "Fourier transform",
-      "definition": "An integral transform that takes a function as input and outputs another function describing the extent to which various frequencies are present.",
+      "definition": "An integral transform decomposing a function into frequency components.",
       "src": "p0"
     },
     {
       "name": "Frequency domain representation",
-      "definition": "The output of the Fourier transform that describes the decomposition of a function into its frequency components.",
+      "definition": "The output of Fourier transform showing decomposition into frequencies.",
       "src": "p0"
     },
     {
       "name": "Integral transform",
-      "definition": "A mathematical operation that transforms a function using an integral formula.",
+      "definition": "Mathematical operation transforming functions using integrals.",
       "src": "p2"
     },
     {
       "name": "Uncertainty principle (time-frequency)",
-      "definition": "Functions localized in time domain have transforms spread in frequency domain and vice versa; fundamental tradeoff between time and frequency localization.",
+      "definition": "Tradeoff between time and frequency localization - cannot be both highly localized.",
       "src": "p1"
     },
     {
       "name": "Gaussian function",
-      "definition": "A critical case for uncertainty principle; its Fourier transform is also a Gaussian, important in probability theory and physics.",
+      "definition": "Critical case for uncertainty; its Fourier transform is also Gaussian.",
       "src": "p1"
     },
     {
       "name": "Fourier series",
-      "definition": "A variant of Fourier analysis for periodic functions, expressing them as sums of sine and cosine terms.",
+      "definition": "Variant for periodic functions, expressing as sums of sines and cosines.",
       "src": "p3"
     },
     {
       "name": "Dirac delta function",
-      "definition": "A generalized function used in Fourier analysis and signal processing, whose Fourier transform is the constant 1.",
+      "definition": "Generalized function whose Fourier transform is the constant 1.",
       "src": "p2"
     },
     {
       "name": "Complex sinusoid",
-      "definition": "A function of the form e^(i*theta) combining amplitude, phase, and frequency in a single complex exponential.",
+      "definition": "Function combining amplitude, phase, and frequency in complex exponential form.",
       "src": "p6"
     },
     {
       "name": "Tempered distribution",
-      "definition": "A generalized function that extends the Fourier transform to cases beyond Lebesgue-integrable functions.",
+      "definition": "Generalized function extending Fourier transform beyond Lebesgue-integrable functions.",
       "src": "p6"
+    },
+    {
+      "name": "Lebesgue integrable function",
+      "definition": "Function for which Lebesgue integral of absolute value is finite.",
+      "src": "p11"
+    },
+    {
+      "name": "Banach algebra",
+      "definition": "Algebraic structure on which Fourier transform acts as homomorphism.",
+      "src": "p15"
+    },
+    {
+      "name": "Inverse Fourier transform",
+      "definition": "Operation that recovers the original function from its frequency domain representation.",
+      "src": "p7"
     }
   ],
   "intuitions": [
     {
-      "text": "Musical chord analogy: The Fourier transform decomposes a signal like decomposing a musical chord into its constituent pitches with their relative intensities.",
+      "text": "Musical chord decomposition: FT decomposes a signal like breaking a chord into its constituent pitches and their amplitudes.",
       "src": "p0"
     },
     {
-      "text": "Time-frequency tradeoff: A function concentrated in time is spread in frequency, and vice versa - you cannot simultaneously pinpoint exact time and exact frequency.",
+      "text": "Time vs frequency tradeoff: Signals concentrated in time spread in frequency and vice versa - the uncertainty principle constraint.",
       "src": "p1"
     },
     {
-      "text": "Frequency domain view: Instead of thinking of a signal as a function of time, the Fourier transform lets you see it as a composition of frequencies.",
+      "text": "Two perspectives: A signal can be viewed as a time-domain function or as a collection of frequency components - both equivalent.",
       "src": "p0"
     },
     {
-      "text": "Frequency extraction: Multiplying by a complex exponential at frequency xi has the effect of checking if that frequency is present - only the matching component produces a non-zero integral.",
+      "text": "Frequency extraction: Multiplying by e^(-i*2*pi*xi*x) filters out frequency xi - only that component doesn't oscillate away in the integral.",
       "src": "p18"
     },
     {
-      "text": "Problem-solving strategy: Some difficult problems become easier in the frequency domain; the Fourier transform provides a different perspective that simplifies mathematical manipulation.",
+      "text": "Problem simplification: Transforming to frequency domain converts differential equations into algebraic ones, often easier to solve.",
       "src": "p47"
     },
     {
-      "text": "Dual representations: Every signal has two equivalent representations - one as a function of time, another as a function of frequency - related by the Fourier transform.",
-      "src": "p3"
-    },
-    {
-      "text": "Domain duality: The time domain and frequency domain are dual spaces - the units must be inverse (seconds vs. hertz), and neither is more fundamental than the other.",
+      "text": "Dual spaces: Time and frequency are dual domains with inverse units (seconds vs hertz) - neither is more fundamental.",
       "src": "p27"
     },
     {
-      "text": "Wave duality: In quantum mechanics, particles can be described in position space or momentum space, connected by the Fourier transform - both perspectives are equivalent.",
+      "text": "Quantum complementarity: Position and momentum representations connected by FT - fundamental to quantum mechanics.",
       "src": "p3"
+    },
+    {
+      "text": "Phase and amplitude: Complex Fourier coefficients encode both amplitude (magnitude) and phase (angle) of each frequency.",
+      "src": "p17"
+    },
+    {
+      "text": "Signal reconstruction: Inverse transform perfectly reconstructs original signal from its frequency components.",
+      "src": "p7"
+    },
+    {
+      "text": "Gaussian stability: Gaussian functions maintain their Gaussian shape under Fourier transform - important mathematical property.",
+      "src": "p1"
+    },
+    {
+      "text": "Energy conservation: Plancherel's theorem - signal energy is same in time and frequency domains.",
+      "src": "p22"
+    },
+    {
+      "text": "Convolution simplification: Convolution (hard operation) becomes simple multiplication in frequency domain.",
+      "src": "p23"
+    },
+    {
+      "text": "Generalization framework: FT extends from functions on R to functions on any locally compact abelian group.",
+      "src": "p3"
+    },
+    {
+      "text": "Localization principle: A narrow signal in time (pulse) spreads broadly in frequency spectrum; precise timing requires many frequencies.",
+      "src": "p1"
+    },
+    {
+      "text": "Oscillation interpretation: The Fourier transform works by making each frequency oscillate and checking its amplitude via integration.",
+      "src": "p18"
     }
   ],
   "applications": [
     {
       "domain": "Differential equations",
-      "use": "Converting differential equations to frequency domain simplifies solving them algebraically, then inverse transform recovers time-domain solution.",
+      "use": "Converts differential equations to algebraic form in frequency domain for easier solution.",
       "src": "p48"
     },
     {
       "domain": "Quantum mechanics",
-      "use": "Relating position and momentum representations of wave functions; essential for quantum mechanics formalism.",
+      "use": "Connects position and momentum representations of quantum wave functions.",
       "src": "p51"
     },
     {
       "domain": "Signal processing",
-      "use": "Analyzing, filtering, and processing signals by examining their frequency content.",
+      "use": "Analyzes, filters, and processes signals by frequency content.",
       "src": "p52"
     },
     {
       "domain": "Spectroscopy",
-      "use": "Analyzing spectral data in chemistry, physics, and astronomy.",
+      "use": "Analyzes spectral data in chemistry, physics, astronomy.",
       "src": "p50"
     },
     {
       "domain": "Wave analysis",
-      "use": "Natural framework for studying waves in physics and engineering.",
+      "use": "Natural framework for studying waves and oscillations.",
       "src": "p3"
+    },
+    {
+      "domain": "Heat transfer",
+      "use": "Joseph Fourier used transform variants in original study of heat diffusion.",
+      "src": "p1"
+    },
+    {
+      "domain": "Electrical engineering",
+      "use": "Used in filter design, frequency response analysis, circuit analysis.",
+      "src": "p52"
+    },
+    {
+      "domain": "Audio processing",
+      "use": "Decomposes sound into frequency components for analysis and manipulation.",
+      "src": "p0"
     }
   ],
   "properties": [
     {
       "name": "Linearity",
-      "statement": "The transform of a linear combination equals the linear combination of the transforms",
+      "statement": "Transform of weighted sum equals weighted sum of transforms",
       "src": "p36"
     },
     {
       "name": "Time shifting",
-      "statement": "Shifting in time introduces a linear phase shift in frequency",
+      "statement": "Time delay produces linear phase shift in frequency",
       "src": "p37"
     },
     {
       "name": "Frequency shifting",
-      "statement": "Multiplication by complex exponential shifts frequency content",
+      "statement": "Modulation by complex exponential shifts frequency content",
       "src": "p38"
     },
     {
       "name": "Time scaling",
-      "statement": "Scaling in time inversely scales frequency",
+      "statement": "Time compression expands frequency, time expansion compresses frequency",
       "src": "p39"
     },
     {
       "name": "Symmetry",
-      "statement": "Decomposing complex functions into real/imaginary and even/odd parts creates symmetric relationships under transform",
+      "statement": "Real/imaginary and even/odd components have symmetric relationships",
       "src": "p40"
     },
     {
       "name": "Conjugation",
-      "statement": "Transform of complex conjugate relates to transform at negative frequencies",
+      "statement": "Transform of complex conjugate relates to conjugate at negative frequencies",
       "src": "p42"
     },
     {
       "name": "Hermitian symmetry",
-      "statement": "Real-valued functions produce conjugate-symmetric transforms",
+      "statement": "Real signal transforms to conjugate-symmetric spectrum",
       "src": "p43"
     },
     {
       "name": "Plancherel's theorem",
-      "statement": "Total energy of a signal is preserved under the transform",
+      "statement": "Signal energy preserved: integral of |f(t)|^2 equals integral of |F(f)|^2",
+      "src": "p22"
+    },
+    {
+      "name": "Parseval's theorem",
+      "statement": "Inner products preserved: inner product of signals relates to inner product of transforms",
       "src": "p22"
     },
     {
       "name": "Convolution theorem",
-      "statement": "Convolution in time becomes multiplication in frequency",
+      "statement": "Time-domain convolution equals frequency-domain multiplication",
       "src": "p23"
     },
     {
-      "name": "Cross-correlation theorem",
-      "statement": "Cross-correlation in time relates to multiplication in frequency domain",
+      "name": "Cross-correlation",
+      "statement": "Cross-correlation in time relates to product in frequency domain",
       "src": "p24"
     },
     {
       "name": "Differentiation",
-      "statement": "Time-domain differentiation becomes frequency-domain multiplication by frequency",
+      "statement": "Time derivative corresponds to multiplication by frequency in transform",
+      "src": "p25"
+    },
+    {
+      "name": "Integration",
+      "statement": "Time-domain integration corresponds to division by frequency in transform",
       "src": "p25"
     }
   ],
   "chronology": [
     {
       "t": "1822",
-      "label": "Fourier publishes theory of heat",
-      "detail": "Fourier claimed any continuous or discontinuous function can be expanded into a series of sines - foundation for modern Fourier analysis.",
+      "label": "Fourier's Analytical Theory of Heat",
+      "detail": "Fourier claimed any continuous or discontinuous function can be expanded as series of sines - revolutionized mathematics.",
       "src": "p16"
     }
   ],
   "people": [
     {
       "name": "Joseph Fourier",
-      "role": "Introduced sine and cosine transforms in study of heat transfer; developed foundational Fourier analysis methods.",
+      "role": "Introduced sine and cosine transforms in heat transfer analysis; founded Fourier analysis methods.",
       "src": "p1"
     }
   ],
   "relatedTransforms": [
     {
       "name": "Discrete Fourier transform (DFT)",
-      "relation": "Finite discrete version for sampled signals (group = Z mod N)",
+      "relation": "Finite version for discrete, sampled signals",
       "src": "p3"
     },
     {
       "name": "Discrete-time Fourier transform (DTFT)",
-      "relation": "Discrete version for infinite sequences (group = Z)",
+      "relation": "Infinite sequence version on integers Z",
       "src": "p3"
     },
     {
       "name": "Fourier series",
-      "relation": "Variant for periodic functions (group = S1, unit circle)",
+      "relation": "Periodic function variant on unit circle S1",
       "src": "p3"
     },
     {
       "name": "Fast Fourier transform (FFT)",
-      "relation": "Efficient algorithm for computing the DFT in O(n log n) time",
+      "relation": "O(n log n) algorithm for computing DFT",
       "src": "p3"
     },
     {
-      "name": "Sine and cosine transforms",
-      "relation": "Real-valued variants corresponding to imaginary and real parts of FT",
+      "name": "Sine transform",
+      "relation": "Real-valued variant from imaginary part of FT",
+      "src": "p34"
+    },
+    {
+      "name": "Cosine transform",
+      "relation": "Real-valued variant from real part of FT",
       "src": "p34"
     },
     {
       "name": "Laplace transform",
-      "relation": "Related transform extending FT to complex half-plane for stability analysis",
+      "relation": "Extended complex version for stability analysis",
       "src": "p30"
+    },
+    {
+      "name": "Fourier-Stieltjes transform",
+      "relation": "Variant for measures and distributions",
+      "src": "p32"
+    },
+    {
+      "name": "Wavelet transform",
+      "relation": "Time-frequency analysis alternative to FT",
+      "src": "p45"
     }
   ],
   "examples": [
     {
-      "description": "Piano chord frequency analysis: Fourier transform of a C major chord waveform shows fundamental frequencies (C, E, G) as peaks, with higher-frequency overtones as smaller peaks.",
+      "description": "Piano chord analysis: Fourier transform of C major piano chord shows fundamental frequencies (C, E, G) as prominent peaks and overtones as smaller peaks.",
       "src": "image caption"
     },
     {
-      "description": "Frequency detection example: Real and imaginary parts of the integrand at different frequencies show how the transform measures presence of each frequency component.",
+      "description": "Time-frequency visualization: Animation shows how time-domain signal relates to its frequency spectrum - demonstrating time-frequency duality.",
+      "src": "image caption"
+    },
+    {
+      "description": "Pulse example: Narrow rectangular pulse in time transforms to sinc function in frequency - illustrating time-frequency tradeoff.",
+      "src": "p21"
+    },
+    {
+      "description": "Frequency detection: Computing Fourier transform at +3 Hz shows real and imaginary parts of integrand for that frequency component.",
       "src": "image caption"
     }
   ]
