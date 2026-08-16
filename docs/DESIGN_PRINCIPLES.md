@@ -1,8 +1,10 @@
-# Kaleidoweb Design Principles v0.1
+# Kaleidoweb Design Principles v0.2
+
+v0.2 integrates the anti-signature amendments (see ANTI_SIGNATURE.md); rules flagged there as signature-encoding are amended accordingly.
 
 Opinionated, actionable rules for the agent that art-directs an experience. Every rule is grounded in something observed in `INSPIRATION.md`; citations in `[brackets]` point at the entry.
 
-Rules are numbered so critiques can cite them. `MUST` = violating it is a blocking failure. `SHOULD` = violating it needs a stated reason.
+Rules are numbered so critiques can cite them. `MUST` = violating it is a blocking failure. `SHOULD` = violating it needs a stated reason. `CONDITIONAL` = permitted only when its stated condition is met; otherwise it is a blocking failure.
 
 ---
 
@@ -13,6 +15,10 @@ Rules are numbered so critiques can cite them. `MUST` = violating it is a blocki
 Two failure directions bracket everything below. On one side, a template with the subject poured into it — this fails Genericness. On the other, invention for its own sake — this fails Legibility. The test that separates them: *could this composition serve a different subject unchanged?* If yes, it was decoration. If it would break, it was design.
 
 The strongest single piece of external validation for this stance is The Pudding's own doctrine: story shape is derived from the shape of the data, and they name specific shapes — V (converge then diverge), inverted-V (local → national → local) — chosen per story [C2].
+
+**0.1 The swap test.** Replace the subject with an unrelated one and re-render with the same layout. If it still works, the composition was decoration, not design.
+
+**0.2 The derivation test.** For each of ground, display face, body face, accent colour, rule weight, grid, and reading axis, name the artifact the value came from and where it was measured. A value you can only justify ("it felt right for the subject", "paper suits it") is a default. A value you can cite ("sampled from `assets/05-great-wave.jpg` at the sheet margin, x=40 y=1180") is a derivation. The swap test catches a layout that fits any subject; the derivation test catches a *palette and typography* that fit any subject, which is the failure the swap test misses.
 
 ---
 
@@ -38,6 +44,8 @@ Before any visual decision, classify the subject's **dominant informational stru
 **1.2 MUST** — if the chosen structure is "chronology", the burden of proof is inverted: justify in writing why a timeline is the *best* form for this subject before emitting one. Most subjects that look chronological are actually causal or geographic.
 
 **1.3 SHOULD** — pick a *shape* for the density curve as well as the sections: converging, diverging, V, inverted-V, or a steady widening. The Pudding derives this from the data [C2]; so should we.
+
+**1.4 MUST — inventory the material record before any visual decision.** Name a specific artifact class (a document, an instrument, a substrate) and answer the nine-slot schema in `ANTI_SIGNATURE.md` §(b) from evidence. Record it in the experience's metadata as `material_record`. No colour, face, rule weight or grid may be chosen before this exists.
 
 ---
 

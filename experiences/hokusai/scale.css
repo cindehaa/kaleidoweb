@@ -195,58 +195,61 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   linear-gradient(to top right,transparent calc(50% - .5px),var(--hair) 50%,transparent calc(50% + .5px))}
 #plate[data-ground="ink"] .sheet.noimg{border-color:var(--hair-ink)}
 .sheet.enter{opacity:0;transform:translateY(7px)}
-.sheet.dim{opacity:.14}
-.sheet.ghost{opacity:.2}
+.sheet.dim{opacity:.12}
+.sheet.gone{opacity:0;pointer-events:none}
 .sheet:hover{outline:1px solid var(--ink);outline-offset:2px}
 .sheet:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
-.sheet.derived .anch::after{content:" ⊘";color:var(--mute)}
+.sheet.derived .anch::after{content:" ⊘"}
 
-/* range bars: a work whose date is a span */
-.bar{
-  position:absolute;pointer-events:none;
-  border-top:1.5px solid var(--blue); opacity:0; transition:opacity 300ms;
-}
-#plate[data-ground="ink"] .bar{border-top-color:var(--blue-lit)}
-.bar i{position:absolute;top:-4px;width:1.5px;height:9px;background:var(--blue)}
-#plate[data-ground="ink"] .bar i{background:var(--blue-lit)}
-.bar i.l{left:0}.bar i.r{right:0}
+/* range bars: a work whose date is a span. A bar that steps between two
+   registers is a work whose date range crosses a level of his scale. */
+.bar{position:absolute;pointer-events:none;opacity:0;transition:opacity 300ms}
+.bar .seg{position:absolute;height:1.5px;background:var(--blue)}
 .bar .step{position:absolute;width:1.5px;background:var(--blue)}
-#plate[data-ground="ink"] .bar .step{background:var(--blue-lit)}
+.bar .cap{position:absolute;width:1.5px;height:9px;background:var(--blue)}
+#plate[data-ground="ink"] .bar .seg,#plate[data-ground="ink"] .bar .step,#plate[data-ground="ink"] .bar .cap{background:var(--blue-lit)}
 
 /* the deathbed point (movement 4) */
-#death{position:absolute;opacity:0;transition:opacity 500ms;pointer-events:none}
-#death .dot{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--blue-lit);transform:translate(-50%,-50%)}
-#death .dline{position:absolute;width:1px;border-left:1px dashed var(--blue-lit);opacity:.6}
+#death{position:absolute;inset:0;opacity:0;transition:opacity 600ms;pointer-events:none}
+#death .dot{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--blue-lit)}
+#death .fdot{position:absolute;width:9px;height:9px;border-radius:50%;border:1.5px solid var(--blue-lit);opacity:.7}
+#death .dline{position:absolute;width:0;border-left:1px dashed var(--blue-lit);opacity:.55}
+#death .flab{position:absolute;color:var(--mute-ink);white-space:nowrap}
 #death .dq{
-  position:absolute; width:400px; font-family:var(--ser); font-style:italic;
-  font-size:var(--t2); line-height:1.4; color:var(--blue-lit);
+  position:absolute; font-family:var(--ser); font-style:italic;
+  font-size:18px; line-height:1.34; color:var(--blue-lit); text-align:right;
 }
-#death .dsrc{display:block;margin-top:7px}
+#death .dsrc{display:block;margin-top:10px;font-style:normal;color:var(--mute-ink);text-align:right}
 
-/* the portrait in the tail */
-#portrait{position:absolute;opacity:0;transition:opacity 900ms;pointer-events:auto;cursor:pointer;padding:0}
+/* the portrait, standing in the years he did not get */
+#portrait{position:absolute;opacity:0;transition:opacity 900ms;pointer-events:none;margin:0}
 #portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center}
-#portrait .pl{position:absolute;left:calc(100% + 10px);bottom:0;width:230px}
+#portrait .pl{position:absolute;left:0;top:calc(100% + 8px);width:100%;color:var(--mute-ink)}
 
 /* age axis */
-#axis{position:relative;flex-shrink:0;height:54px;margin-top:2px}
+#axis{position:relative;flex-shrink:0;height:62px;margin-top:4px}
 #axis .arule{position:absolute;left:0;right:0;top:0;height:1px;background:var(--ink)}
 #plate[data-ground="ink"] #axis .arule{background:#6E6656}
 #axis .atick{position:absolute;top:0;transform:translateX(-50%);text-align:center}
-#axis .atick i{display:block;width:1px;height:5px;background:var(--hair);margin:0 auto 4px}
+#axis .atick i{display:block;width:1px;height:5px;background:var(--hair);margin:0 auto 3px}
 #axis .atick span{font-family:var(--mono);font-size:var(--t105);letter-spacing:.06em;color:var(--mute);font-variant-numeric:tabular-nums}
 #axis .atick.big span{color:var(--ink);font-weight:700}
 #plate[data-ground="ink"] #axis .atick.big span{color:#E6DFCF}
-#axis .aname{position:absolute;top:22px;font-family:var(--ser);font-style:italic;font-size:var(--t2);color:var(--blue);white-space:nowrap;transform:translateX(-50%)}
-#plate[data-ground="ink"] #axis .aname{color:var(--blue-lit)}
-#axis .axl{position:absolute;left:0;top:22px}
-#axis .axr{position:absolute;right:0;top:22px;text-align:right;max-width:520px}
+#axis .axnote{position:absolute;left:0;top:26px;margin:0;max-width:min(760px,62%);
+  font-size:var(--t2);line-height:1.34;font-style:italic;color:var(--ink)}
+#plate[data-ground="ink"] #axis .axnote{color:#CFC6B2}
+#axis .axr{position:absolute;right:0;top:28px;text-align:right}
 
-/* plate footer: caveat + uncertainty, in the running voice */
-.plate-foot{flex-shrink:0;display:flex;gap:34px;align-items:flex-start;padding-top:9px;border-top:1px solid var(--hair);margin-top:6px}
+/* plate footer: the narrator, and the arithmetic */
+.plate-foot{flex-shrink:0;display:flex;gap:40px;align-items:flex-start;padding-top:9px;
+  border-top:1px solid var(--hair);margin-top:6px;min-height:62px}
 #plate[data-ground="ink"] .plate-foot{border-top-color:var(--hair-ink)}
-.plate-foot p{margin:0;font-size:var(--t2);line-height:1.42;max-width:560px}
-.plate-foot .derv{max-width:330px}
+.plate-foot p{margin:0;font-size:var(--t2);line-height:1.42;flex:1 1 auto;max-width:720px}
+#plate[data-ground="ink"] .plate-foot p{color:#DED6C4}
+.plate-foot .derv{flex:0 0 300px;max-width:300px}
+.plate-foot .skip{font-family:var(--mono);font-size:var(--t105);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--mute);border-bottom:1px solid var(--hair);margin-left:6px;white-space:nowrap}
+.plate-foot .skip:hover{color:var(--ink);border-bottom-color:var(--ink)}
 
 /* the undated margin (movement 3) */
 #margin{
@@ -268,26 +271,14 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 /* prediction beat */
 #guess{position:absolute;inset:0;pointer-events:none}
 #guess.on{pointer-events:auto}
-#dragsheet{
-  position:absolute;cursor:grab;touch-action:none;padding:0;
-  box-shadow:none;border:0;
-}
+#dragsheet{position:absolute;cursor:grab;touch-action:none;padding:0;border:0;display:none}
 #dragsheet:active{cursor:grabbing}
 #dragsheet img{display:block;width:100%;height:100%}
 #dragsheet:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
-#guess-ask{position:absolute;max-width:430px}
-#guess-ask h2{margin:0 0 8px;font-size:var(--t4);line-height:1.08;letter-spacing:-.03em;font-weight:400}
-#guess-ask p{margin:0 0 12px;font-size:var(--t2);line-height:1.45}
-#guess-ask .skip{font-family:var(--mono);font-size:var(--t105);letter-spacing:.09em;text-transform:uppercase;color:var(--mute);border-bottom:1px solid var(--hair)}
-#guess-ask .skip:hover{color:var(--ink);border-bottom-color:var(--ink)}
-#guess-mark{position:absolute;opacity:0;transition:opacity 300ms;pointer-events:none}
-#guess-mark .gl{position:absolute;top:0;bottom:0;width:1px;border-left:1px dashed var(--mute)}
-#guess-mark .gt{position:absolute;font-family:var(--mono);font-size:var(--t105);letter-spacing:.09em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
-#verdict-count{
-  position:absolute; max-width:420px; opacity:0; transition:opacity 500ms; pointer-events:none;
-}
-#verdict-count p{margin:0;font-size:var(--t2);line-height:1.45}
-#verdict-count b{font-weight:600}
+#guess-mark{position:absolute;inset:0;opacity:0;transition:opacity 300ms;pointer-events:none}
+#guess-mark .gl{position:absolute;top:0;bottom:0;width:0;border-left:1px dashed var(--mute)}
+#guess-mark .gt{position:absolute;top:1px;font-family:var(--mono);font-size:var(--t105);
+  letter-spacing:.09em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
 
 /* movement index + pause, persistent */
 #chrome{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;justify-content:space-between;
@@ -396,6 +387,8 @@ body.ink-chrome #idx button[aria-current="true"]{background:#E6DFCF;color:var(--
 #insp .meta dt{font-family:var(--mono);font-size:var(--t105);letter-spacing:.09em;text-transform:uppercase;
   color:#B7AF9E;padding-top:9px}
 #insp .meta dd{margin:1px 0 0;font-size:14.5px;line-height:1.4;padding-bottom:9px;border-bottom:1px solid #332E27}
+#insp .noimgbox{width:min(46vw,420px);height:52vh;border:1px solid #4A443A;display:flex;
+  align-items:center;justify-content:center;color:#B7AF9E}
 #insp .close{position:absolute;right:0;top:-30px;font-family:var(--mono);font-size:var(--t105);
   letter-spacing:.09em;text-transform:uppercase;color:#B7AF9E}
 #insp .close:hover{color:var(--bone)}
