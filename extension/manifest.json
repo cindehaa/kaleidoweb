@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Kaleidoweb",
+  "version": "0.1.0",
+  "description": "One button turns an information-dense page into an individually art-directed, immersive experience.",
+  "action": {
+    "default_title": "Transform this page"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["activeTab", "scripting", "storage"],
+  "web_accessible_resources": [
+    {
+      "resources": ["experience/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

@@ -1,0 +1,1038 @@
+{
+  "schema": "kaleidoweb/content-model@0",
+  "title": "Golden Gate Bridge",
+  "description": "Bridge in the San Francisco Bay Area",
+  "extract": "The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide (1.6 km) strait connecting San Francisco Bay and the Pacific Ocean in California, United States. The structure links San Francisco—the northern tip of the San Francisco Peninsula—to Marin County, carrying both U.S. Route 101 and California State Route 1 across the strait. It also carries pedestrian and bicycle traffic, and is designated as part of U.S. Bicycle Route 95. Recognized by the American Society of Civil Engineers as one of the Wonders of the Modern World, the bridge is one of the most internationally recognized symbols of San Francisco and California.",
+  "wikidata": "Q44440",
+  "lang": "en",
+  "sourceUrl": "https://en.wikipedia.org/wiki/Golden_Gate_Bridge",
+  "revision": "1367746260",
+  "coordinates": {
+    "lat": 37.81972,
+    "lon": -122.47861
+  },
+  "infobox": [
+    {
+      "label": "Coordinates",
+      "value": ".mw-parser-output .geo-default,.mw-parser-output .geo-dms,.mw-parser-output .geo-dec{display:inline}.mw-parser-output .geo-nondefault,.mw-parser-output .geo-multi-punct,.mw-parser-output .geo-inline-hidden{display:none}.mw-parser-output .longitude,.mw-parser-output .latitude{white-space:nowrap}37°49′11″N 122°28′43″W / 37.81972°N 122.47861°W / 37.81972; -122.47861"
+    },
+    {
+      "label": "Carries",
+      "value": "6 lanes of US 101 / SR 1 .mw-parser-output div.crossreference{padding-left:0}.mw-parser-output .hatnote{font-style:italic}.mw-parser-output div.hatnote{padding-left:1.6em;margin-bottom:0.5em}.mw-parser-output .hatnote i{font-style:normal}.mw-parser-output .hatnote+.mw-empty-elt+.hatnote{margin-top:-0.5em}@media print{body.ns-0 .mw-parser-output .hatnote{display:none!important}}(see § Traffic)Bicycle route: USBR 95Eastern walkway: pedestrians or bicycles during selected hours (see § Usage and tourism)Western walkway: bicycles (only when pedestrians are allowed on the eastern sidewalk)"
+    },
+    {
+      "label": "Crosses",
+      "value": "Golden Gate"
+    },
+    {
+      "label": "Locale",
+      "value": "San Francisco, California, and Marin County, California, U.S."
+    },
+    {
+      "label": "Official name",
+      "value": "Golden Gate Bridge"
+    },
+    {
+      "label": "Maintained by",
+      "value": "Golden Gate Bridge, Highway and Transportation District"
+    },
+    {
+      "label": "Website",
+      "value": "goldengate.org/bridge"
+    },
+    {
+      "label": "Design",
+      "value": "Suspension, Art Deco, truss arch & truss causeways"
+    },
+    {
+      "label": "Material",
+      "value": "Steel"
+    },
+    {
+      "label": "Total length",
+      "value": "8980 ft, about 1.70 mi (2.74 km)"
+    },
+    {
+      "label": "Width",
+      "value": "90 ft (27.4 m)"
+    },
+    {
+      "label": "Height",
+      "value": "746 ft (227.4 m)"
+    },
+    {
+      "label": "Longest span",
+      "value": "4200 ft, about 0.79 mi (1.27 km)"
+    },
+    {
+      "label": "Clearance above",
+      "value": "14 ft (4.3 m) at toll gates"
+    },
+    {
+      "label": "Clearance below",
+      "value": "220 ft (67.1 m) at high tide"
+    },
+    {
+      "label": "Architect",
+      "value": "Irving Morrow"
+    },
+    {
+      "label": "Engineering design by",
+      "value": "Joseph Strauss, Charles Ellis, Leon Solomon Moisseiff"
+    },
+    {
+      "label": "Constructed by",
+      "value": "Barrett and Hilp"
+    },
+    {
+      "label": "Construction start",
+      "value": "January 5, 1933 (1933-01-05)"
+    },
+    {
+      "label": "Construction end",
+      "value": "April 19, 1937 (1937-04-20)"
+    },
+    {
+      "label": "Opened",
+      "value": "May 27, 1937; 89 years ago (1937-05-27)"
+    },
+    {
+      "label": "Daily traffic",
+      "value": "88,716 (FY2020)"
+    },
+    {
+      "label": "Toll",
+      "value": ".mw-parser-output .plainlist ol,.mw-parser-output .plainlist ul{line-height:inherit;list-style:none;margin:0;padding:0}.mw-parser-output .plainlist ol li,.mw-parser-output .plainlist ul li{margin-bottom:0} Southbound only FasTrak or pay-by-plate, cash not accepted Effective July 1, 2026 – June 30, 2027 (2026-07-01 – 2027-06-30): $10.25 (FasTrak users) $10.50 (Pay-by-plate users) $8.25 (carpools during peak hours, FasTrak only)"
+    },
+    {
+      "label": "Designated",
+      "value": "June 18, 1987"
+    },
+    {
+      "label": "Reference no.",
+      "value": "974"
+    },
+    {
+      "label": "Designated",
+      "value": "May 21, 1999"
+    },
+    {
+      "label": "Reference no.",
+      "value": "222"
+    }
+  ],
+  "images": [
+    {
+      "file": "File:Golden_Gate_Bridge_as_seen_from_Battery_East.jpg",
+      "section_id": 0,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg/1280px-Golden_Gate_Bridge_as_seen_from_Battery_East.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg/1600px-Golden_Gate_Bridge_as_seen_from_Battery_East.jpg"
+    },
+    {
+      "file": "File:Golden_gate_circa_1891.png",
+      "section_id": 3,
+      "caption": "Golden Gate with Fort Point in foreground, c. 1891",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Golden_gate_circa_1891.png/500px-Golden_gate_circa_1891.png",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Golden_gate_circa_1891.png/1600px-Golden_gate_circa_1891.png"
+    },
+    {
+      "file": "File:Golden_Gate_bridge_pillar.jpg",
+      "section_id": 4,
+      "caption": "South tower seen from walkway, with Art Deco elements",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Golden_Gate_bridge_pillar.jpg/1280px-Golden_Gate_bridge_pillar.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Golden_Gate_bridge_pillar.jpg/1600px-Golden_Gate_bridge_pillar.jpg"
+    },
+    {
+      "file": "File:Below_Golden_Gate_Bridge.jpeg",
+      "section_id": 4,
+      "caption": "Below Golden Gate Bridge",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Below_Golden_Gate_Bridge.jpeg/1280px-Below_Golden_Gate_Bridge.jpeg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Below_Golden_Gate_Bridge.jpeg/1600px-Below_Golden_Gate_Bridge.jpeg"
+    },
+    {
+      "file": "File:Golden-Gate-Bridge.svg",
+      "section_id": 4,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Golden-Gate-Bridge.svg/500px-Golden-Gate-Bridge.svg.png",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Golden-Gate-Bridge.svg/1600px-Golden-Gate-Bridge.svg.png"
+    },
+    {
+      "file": "File:Golden_Gate_Bridge_Dec_15_2015_by_Don_Ramey_Logan.jpg",
+      "section_id": 4,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Golden_Gate_Bridge_Dec_15_2015_by_Don_Ramey_Logan.jpg/1280px-Golden_Gate_Bridge_Dec_15_2015_by_Don_Ramey_Logan.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Golden_Gate_Bridge_Dec_15_2015_by_Don_Ramey_Logan.jpg/1600px-Golden_Gate_Bridge_Dec_15_2015_by_Don_Ramey_Logan.jpg"
+    },
+    {
+      "file": "File:Golden_Gate_Bridge_Rivet_1937.jpg",
+      "section_id": 6,
+      "caption": "An original rivet replaced during the seismic retrofit after the 1989 Loma Prieta earthquake. A total of 1.2 million steel rivets hold the bridge's two towers together.",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Golden_Gate_Bridge_Rivet_1937.jpg/1280px-Golden_Gate_Bridge_Rivet_1937.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Golden_Gate_Bridge_Rivet_1937.jpg/1600px-Golden_Gate_Bridge_Rivet_1937.jpg"
+    },
+    {
+      "file": "File:25th_Anniversary_Golden_Gate_Bridge_Plaque_b.jpg",
+      "section_id": 10,
+      "caption": "A plaque on the south tower commemorating the 25th anniversary of the bridge",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/25th_Anniversary_Golden_Gate_Bridge_Plaque_b.jpg/1280px-25th_Anniversary_Golden_Gate_Bridge_Plaque_b.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/25th_Anniversary_Golden_Gate_Bridge_Plaque_b.jpg/1600px-25th_Anniversary_Golden_Gate_Bridge_Plaque_b.jpg"
+    },
+    {
+      "file": "File:GG-ftpoint-bridge-2_b.jpg",
+      "section_id": 10,
+      "caption": "The Golden Gate Bridge and Fort Point",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/GG-ftpoint-bridge-2_b.jpg/1280px-GG-ftpoint-bridge-2_b.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/GG-ftpoint-bridge-2_b.jpg/1600px-GG-ftpoint-bridge-2_b.jpg"
+    },
+    {
+      "file": "File:GoldenGateBridge_openingday.jpg",
+      "section_id": 10,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/GoldenGateBridge_openingday.jpg/500px-GoldenGateBridge_openingday.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/GoldenGateBridge_openingday.jpg/1600px-GoldenGateBridge_openingday.jpg"
+    },
+    {
+      "file": "File:Invitation_to_Golden_Gate_Bridge_opening,_1937.jpg",
+      "section_id": 10,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Invitation_to_Golden_Gate_Bridge_opening%2C_1937.jpg/500px-Invitation_to_Golden_Gate_Bridge_opening%2C_1937.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Invitation_to_Golden_Gate_Bridge_opening%2C_1937.jpg/1600px-Invitation_to_Golden_Gate_Bridge_opening%2C_1937.jpg"
+    },
+    {
+      "file": "File:GG-bridge-cable.jpg",
+      "section_id": 11,
+      "caption": "On the south side of the bridge a 36.5-inch-wide (93 cm) cross-section of the cable, containing 27,572 wires, is on display.",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/GG-bridge-cable.jpg/1280px-GG-bridge-cable.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/GG-bridge-cable.jpg/1600px-GG-bridge-cable.jpg"
+    },
+    {
+      "file": "File:The_Bridge_(August_2013).jpg",
+      "section_id": 12,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/The_Bridge_%28August_2013%29.jpg/1920px-The_Bridge_%28August_2013%29.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/The_Bridge_%28August_2013%29.jpg/1600px-The_Bridge_%28August_2013%29.jpg"
+    },
+    {
+      "file": "File:Golden_Gate_Bridge_tower_views_01.jpg",
+      "section_id": 12,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Golden_Gate_Bridge_tower_views_01.jpg/500px-Golden_Gate_Bridge_tower_views_01.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Golden_Gate_Bridge_tower_views_01.jpg/1600px-Golden_Gate_Bridge_tower_views_01.jpg"
+    },
+    {
+      "file": "File:Golden_Gate_Bridge_tower_views_18.jpg",
+      "section_id": 12,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Golden_Gate_Bridge_tower_views_18.jpg/500px-Golden_Gate_Bridge_tower_views_18.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Golden_Gate_Bridge_tower_views_18.jpg/1600px-Golden_Gate_Bridge_tower_views_18.jpg"
+    },
+    {
+      "file": "File:Golden_Gate_Bridge_at_Fort_Point.jpg",
+      "section_id": 12,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Golden_Gate_Bridge_at_Fort_Point.jpg/500px-Golden_Gate_Bridge_at_Fort_Point.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Golden_Gate_Bridge_at_Fort_Point.jpg/1600px-Golden_Gate_Bridge_at_Fort_Point.jpg"
+    },
+    {
+      "file": "File:Installation_of_the_Golden_Gate_Bridge_Moveable_Median_Barrier_System_on_January_10,_2015_-03.jpg",
+      "section_id": 13,
+      "caption": "Installation of the movable median barrier system in January 2015",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Installation_of_the_Golden_Gate_Bridge_Moveable_Median_Barrier_System_on_January_10%2C_2015_-03.jpg/1280px-Installation_of_the_Golden_Gate_Bridge_Moveable_Median_Barrier_System_on_January_10%2C_2015_-03.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Installation_of_the_Golden_Gate_Bridge_Moveable_Median_Barrier_System_on_January_10%2C_2015_-03.jpg/1600px-Installation_of_the_Golden_Gate_Bridge_Moveable_Median_Barrier_System_on_January_10%2C_2015_-03.jpg"
+    },
+    {
+      "file": "File:Golden_Gate_Bridge_at_sunset_1.jpg",
+      "section_id": 17,
+      "caption": "Golden Gate Bridge at sunset",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Golden_Gate_Bridge_at_sunset_1.jpg/1280px-Golden_Gate_Bridge_at_sunset_1.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Golden_Gate_Bridge_at_sunset_1.jpg/1600px-Golden_Gate_Bridge_at_sunset_1.jpg"
+    },
+    {
+      "file": "File:Golden_Gate_Bridge_SF_CA_North_View.jpg",
+      "section_id": 18,
+      "caption": "Looking south",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Golden_Gate_Bridge_SF_CA_North_View.jpg/1280px-Golden_Gate_Bridge_SF_CA_North_View.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Golden_Gate_Bridge_SF_CA_North_View.jpg/1600px-Golden_Gate_Bridge_SF_CA_North_View.jpg"
+    },
+    {
+      "file": "File:Golden_Gate_Bridge_by_night.jpg",
+      "section_id": 20,
+      "caption": "Time-exposed image of the Golden Gate Bridge illuminated on a clear night, complemented by its aerial and maritime beacons",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Golden_Gate_Bridge_by_night.jpg/1280px-Golden_Gate_Bridge_by_night.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Golden_Gate_Bridge_by_night.jpg/1600px-Golden_Gate_Bridge_by_night.jpg"
+    },
+    {
+      "file": "File:Suicide_prevention_sign_on_the_Golden_Gate_Bridge_2.jpg",
+      "section_id": 24,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Suicide_prevention_sign_on_the_Golden_Gate_Bridge_2.jpg/1280px-Suicide_prevention_sign_on_the_Golden_Gate_Bridge_2.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Suicide_prevention_sign_on_the_Golden_Gate_Bridge_2.jpg/1600px-Suicide_prevention_sign_on_the_Golden_Gate_Bridge_2.jpg"
+    },
+    {
+      "file": "File:Crisis_Counseling_at_Golden_Gate_Bridge.jpg",
+      "section_id": 24,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Crisis_Counseling_at_Golden_Gate_Bridge.jpg/1280px-Crisis_Counseling_at_Golden_Gate_Bridge.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Crisis_Counseling_at_Golden_Gate_Bridge.jpg/1600px-Crisis_Counseling_at_Golden_Gate_Bridge.jpg"
+    },
+    {
+      "file": "File:Suicide_nets_on_the_Pacific_side_of_the_Golden_Gate_Bridge.jpg",
+      "section_id": 24,
+      "caption": "Suicide nets on the Pacific side of the Golden Gate Bridge in December 2022",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Suicide_nets_on_the_Pacific_side_of_the_Golden_Gate_Bridge.jpg/1280px-Suicide_nets_on_the_Pacific_side_of_the_Golden_Gate_Bridge.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Suicide_nets_on_the_Pacific_side_of_the_Golden_Gate_Bridge.jpg/1600px-Suicide_nets_on_the_Pacific_side_of_the_Golden_Gate_Bridge.jpg"
+    },
+    {
+      "file": "File:Details_Golden_Gate_Bridge_04_2015_SFO_1951.jpg",
+      "section_id": 28,
+      "caption": "South approach sub-structure with seismic isolators (short black cylinders) added as part of the Seismic Retrofit Construction Project",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Details_Golden_Gate_Bridge_04_2015_SFO_1951.jpg/1280px-Details_Golden_Gate_Bridge_04_2015_SFO_1951.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Details_Golden_Gate_Bridge_04_2015_SFO_1951.jpg/1600px-Details_Golden_Gate_Bridge_04_2015_SFO_1951.jpg"
+    },
+    {
+      "file": "File:San_Francisco_with_two_bridges_and_the_low_fog.jpg",
+      "section_id": 29,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/San_Francisco_with_two_bridges_and_the_low_fog.jpg/1280px-San_Francisco_with_two_bridges_and_the_low_fog.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/San_Francisco_with_two_bridges_and_the_low_fog.jpg/1600px-San_Francisco_with_two_bridges_and_the_low_fog.jpg"
+    },
+    {
+      "file": "File:Golden_Gate_Bridge_at_night.jpg",
+      "section_id": 29,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Golden_Gate_Bridge_at_night.jpg/1280px-Golden_Gate_Bridge_at_night.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Golden_Gate_Bridge_at_night.jpg/1600px-Golden_Gate_Bridge_at_night.jpg"
+    }
+  ],
+  "sections": [
+    {
+      "section_id": 0,
+      "level": 1,
+      "title": "__lead__",
+      "paragraphs": [
+        {
+          "id": "p0",
+          "text": "The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide (1.6 km) strait connecting San Francisco Bay and the Pacific Ocean in California, United States. The structure links San Francisco—the northern tip of the San Francisco Peninsula—to Marin County, carrying both U.S. Route 101 and California State Route 1 across the strait. It also carries pedestrian and bicycle traffic, and is designated as part of U.S. Bicycle Route 95. Recognized by the American Society of Civil Engineers as one of the Wonders of the Modern World, the bridge is one of the most internationally recognized symbols of San Francisco and California."
+        },
+        {
+          "id": "p1",
+          "text": "The idea of a fixed link between San Francisco and Marin had gained increasing popularity during the late 19th century, but it was not until the early 20th century that such a link became feasible. Joseph Strauss served as chief engineer for the project, with Leon Moisseiff, Irving Morrow and Charles Ellis making significant contributions to its design. The bridge opened to the public on May 27, 1937, and has undergone various retrofits and other improvement projects in the decades since."
+        },
+        {
+          "id": "p2",
+          "text": "The Golden Gate Bridge is described in Frommer's travel guide as \"possibly the most beautiful, certainly the most photographed, bridge in the world\". At the time of its opening in 1937, it was both the longest and the tallest suspension bridge in the world, titles it held until it was overtaken by the 1964 Verrazzano–Narrows Bridge and the 1998 Akashi Kaikyo Bridge, respectively. Its main span is 4,200 feet (1,280 m) and its total height is 746 feet (227 m)."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 1,
+      "level": 2,
+      "title": "History",
+      "paragraphs": [],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 2,
+      "level": 3,
+      "title": "Ferry service",
+      "paragraphs": [
+        {
+          "id": "p3",
+          "text": "Before the bridge was built, the only practical short route between San Francisco and what is now Marin County was by boat across a section of San Francisco Bay. A ferry service began as early as 1820, with a regularly scheduled service beginning in the 1840s for the purpose of transporting water to San Francisco."
+        },
+        {
+          "id": "p4",
+          "text": "In 1867, the Sausalito Land and Ferry Company opened. In 1920, the service was taken over by the Golden Gate Ferry Company, which merged in 1929 with the ferry system of the Southern Pacific Railroad, becoming the Southern Pacific-Golden Gate Ferries, Ltd., the largest ferry operation in the world. Once for railroad passengers and customers only, Southern Pacific's automobile ferries became very profitable and important to the regional economy. The ferry crossing between the Hyde Street Pier in San Francisco and Sausalito Ferry Terminal in Marin County took approximately 20 minutes and cost $1.00 per vehicle prior to 1937, when the price was reduced to compete with the new bridge. The trip from the San Francisco Ferry Building took 27 minutes."
+        },
+        {
+          "id": "p5",
+          "text": "Many wanted to build a bridge to connect San Francisco to Marin County. San Francisco was the largest American city still served primarily by ferry boats. Because it did not have a permanent link with communities around the bay, the city's growth rate was below the national average."
+        },
+        {
+          "id": "p6",
+          "text": "Many experts said that a bridge could not be built across the 6,700-foot (2,000-metre) strait, which had strong, swirling tides and currents, with water 372 ft (113 m) deep at the center of the channel, and frequent strong winds. Experts said that ferocious winds and blinding fogs would prevent construction and operation."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 3,
+      "level": 4,
+      "title": "Conception",
+      "paragraphs": [
+        {
+          "id": "p7",
+          "text": "Although the idea of a bridge spanning the Golden Gate was not new, the proposal that eventually took hold was made in a 1916 San Francisco Bulletin article by former engineering student James Wilkins. San Francisco's City Engineer estimated the cost at $100 million (equivalent to $3 billion in 2025), and impractical for the time. He asked bridge engineers whether it could be built for less. One who responded, Joseph Strauss, was an ambitious engineer and poet who had, for his graduate thesis, designed a 55-mile-long (89 km) railroad bridge across the Bering Strait. At the time, Strauss had completed some 400 drawbridges—most of which were inland—and nothing on the scale of the new project. Strauss's initial drawings were for a massive cantilever on each side of the strait, connected by a central suspension segment, which Strauss promised could be built for $17 million (equivalent to $503 million in 2025)."
+        },
+        {
+          "id": "p8",
+          "text": "A suspension-bridge design was chosen, using recent advances in bridge design and metallurgy."
+        },
+        {
+          "id": "p9",
+          "text": "Strauss spent more than a decade drumming up support in Northern California. The bridge faced opposition, including litigation, from many sources. The Department of War was concerned that the bridge would interfere with ship traffic. The US Navy feared that a ship collision or sabotage to the bridge could block the entrance to one of its main harbors. Unions demanded guarantees that local workers would be favored for construction jobs. Southern Pacific Railroad, one of the most powerful business interests in California, opposed the bridge as competition to its ferry fleet and filed a lawsuit against the project, leading to a mass boycott of the ferry service."
+        },
+        {
+          "id": "p10",
+          "text": "In May 1924, Colonel Herbert Deakyne held the second hearing on the Bridge on behalf of the Secretary of War in a request to use federal land for construction. Deakyne, on behalf of the Secretary of War, approved the transfer of land needed for the bridge structure and leading roads to the \"Bridging the Golden Gate Association\" and both San Francisco County and Marin County, pending further bridge plans by Strauss. Another ally was the fledgling automobile industry, which supported the development of roads and bridges to increase demand for automobiles."
+        },
+        {
+          "id": "p11",
+          "text": "The bridge's name was first used when the project was initially discussed in 1917 by M.M. O'Shaughnessy, city engineer of San Francisco, and Strauss. The name became official with the passage of the Golden Gate Bridge and Highway District Act by the state legislature in 1923, creating a special district to design, build and finance the bridge. San Francisco and most of the counties along the North Coast of California joined the Golden Gate Bridge District, with the exception being Humboldt County, whose residents opposed the bridge's construction and the traffic it would generate."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 4,
+      "level": 3,
+      "title": "Design",
+      "paragraphs": [
+        {
+          "id": "p12",
+          "text": "Strauss was the chief engineer in charge of the overall design and construction of the bridge project. However, because he had little understanding or experience with cable-suspension designs, responsibility for much of the engineering and architecture fell on other experts. Strauss's initial design proposal (two double cantilever spans linked by a central suspension segment) was unacceptable from a visual standpoint. The final suspension design was conceived and championed by Leon Moisseiff, the engineer of the Manhattan Bridge in New York City."
+        },
+        {
+          "id": "p13",
+          "text": "Irving Morrow, a relatively unknown residential architect, designed the overall shape of the bridge towers, the lighting scheme, and Art Deco elements, such as the tower decorations, streetlights, railing, and walkways. The famous International Orange color was Morrow's personal selection, winning out over other possibilities, including the US Navy's suggestion that it be painted with black and yellow stripes to ensure visibility by passing ships."
+        },
+        {
+          "id": "p14",
+          "text": "Senior engineer Charles Alton Ellis, collaborating remotely with Moisseiff, was the principal engineer of the project. Moisseiff produced the basic structural design, introducing his \"deflection theory\" by which a thin, flexible roadway would flex in the wind, greatly reducing stress by transmitting forces via suspension cables to the bridge towers. Although the Golden Gate Bridge design has proved sound, a later Moisseiff design, the original Tacoma Narrows Bridge, collapsed in a strong windstorm soon after it was completed, because of an unexpected aeroelastic flutter. Ellis was also tasked with designing a \"bridge within a bridge\" in the southern abutment, to avoid the need to demolish Fort Point, a pre–Civil War masonry fortification viewed, even then, as worthy of historic preservation. He penned a graceful steel arch spanning the fort and carrying the roadway to the bridge's southern anchorage."
+        },
+        {
+          "id": "p15",
+          "text": "Ellis was a Greek scholar and mathematician who at one time was a University of Illinois professor of engineering despite having no engineering degree. He eventually earned a degree in civil engineering from the University of Illinois prior to designing the Golden Gate Bridge and spent the last twelve years of his career as a professor at Purdue University. He became an expert in structural design, writing the standard textbook of the time. Ellis did much of the technical and theoretical work that built the bridge, but he received none of the credit in his lifetime. In November 1931, Strauss fired Ellis and replaced him with a former subordinate, Clifford Paine, ostensibly for wasting too much money sending telegrams back and forth to Moisseiff. Ellis, obsessed with the project and unable to find work elsewhere during the Depression, continued working 70 hours per week on an unpaid basis, eventually turning in ten volumes of hand calculations."
+        },
+        {
+          "id": "p16",
+          "text": "With an eye toward self-promotion and posterity, Strauss downplayed the contributions of his collaborators who, despite receiving little recognition or compensation, are largely responsible for the final form of the bridge. He succeeded in having himself credited as the person most responsible for the design and vision of the bridge. Only much later were the contributions of the others on the design team properly appreciated. In May 2007, the Golden Gate Bridge District issued a formal report on 70 years of stewardship of the famous bridge and decided to give Ellis major credit for the design of the bridge."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 5,
+      "level": 3,
+      "title": "Finance",
+      "paragraphs": [
+        {
+          "id": "p17",
+          "text": "The Golden Gate Bridge and Highway District, authorized by an act of the California Legislature, was incorporated in 1928 as the official entity to design, construct, and finance the Golden Gate Bridge. However, after the Wall Street Crash of 1929, the District was unable to raise the construction funds, so it lobbied for a $30 million bond measure (equivalent to $563 million in 2025 adjusted for inflation). The bonds were approved in November 1930, by votes in the counties affected by the bridge. The construction budget at the time of approval was $27 million (equivalent to $520 million in 2025 adjusted for inflation). However, the District was unable to sell the bonds until 1932, when Amadeo Giannini, the founder of San Francisco–based Bank of America, agreed on behalf of his bank to buy the entire issue in order to help the local economy."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 6,
+      "level": 3,
+      "title": "Construction",
+      "paragraphs": [
+        {
+          "id": "p18",
+          "text": "Construction began on January 5, 1933. The project cost more than $35 million ($630 million in 2024 dollars), and was completed ahead of schedule and $1.3 million under budget (equivalent to $30.5 million in 2024). The Golden Gate Bridge construction project was carried out by the McClintic-Marshall Construction Co., a subsidiary of Bethlehem Steel Corporation founded by Howard H. McClintic and Charles D. Marshall, both of Lehigh University."
+        },
+        {
+          "id": "p19",
+          "text": "Strauss remained head of the project, overseeing day-to-day construction and making some groundbreaking contributions. A graduate of the University of Cincinnati, he placed a brick from his alma mater's demolished McMicken Hall in the south anchorage before the concrete was poured."
+        },
+        {
+          "id": "p20",
+          "text": "Strauss also innovated the use of movable safety netting beneath the men working, which saved many lives. Nineteen men saved by the nets over the course of the project formed the Half Way to Hell Club. Nonetheless, eleven men were killed in falls, ten on February 17, 1937, when a scaffold (secured by undersized bolts) with twelve men on it fell into and broke through the safety net; two of the twelve survived the 200-foot (61 m) fall into the water."
+        },
+        {
+          "id": "p21",
+          "text": "The Round House Café diner was then included in the southeastern end of the Golden Gate Bridge, adjacent to the tourist plaza which was renovated in 2012. The Round House Café, an Art Deco design by Alfred Finnila completed in 1938, has been popular throughout the years as a starting point for various commercial tours of the bridge and an unofficial gift shop. The diner was renovated in 2012 and the gift shop was then removed as a new, official gift shop has been included in the adjacent plaza."
+        },
+        {
+          "id": "p22",
+          "text": "During the bridge work, the Assistant Civil Engineer of California Alfred Finnila had overseen the entire iron work of the bridge as well as half of the bridge's road work."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 7,
+      "level": 4,
+      "title": "Contributors",
+      "paragraphs": [
+        {
+          "id": "p23",
+          "text": "Plaque of the major contributors to the Golden Gate Bridge lists contractors, engineering-staff, directors and officers:"
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 8,
+      "level": 3,
+      "title": "Torsional bracing retrofit",
+      "paragraphs": [
+        {
+          "id": "p24",
+          "text": "On December 1, 1951, a windstorm revealed swaying and rolling instabilities of the bridge, resulting in its closure. In 1953 and 1954, the bridge was retrofitted with lateral and diagonal bracing that connected the lower chords of the two side trusses. This bracing stiffened the bridge deck in torsion so that it would better resist the types of twisting that had destroyed the Tacoma Narrows Bridge in 1940."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 9,
+      "level": 3,
+      "title": "Bridge deck replacement (1982–1986)",
+      "paragraphs": [
+        {
+          "id": "p25",
+          "text": "The original bridge used a concrete deck. Salt carried by fog or mist reached the rebar, causing corrosion and concrete spalling. From 1982 to 1986, the original bridge deck, in 747 sections, was systematically replaced with a 40% lighter, and stronger, steel orthotropic deck panels, over 401 nights without closing the roadway completely to traffic. The roadway was also widened by two feet, resulting in outside curb lane width of 11 feet, instead of 10 feet for the inside lanes. This deck replacement was the bridge's greatest engineering project since it was built and cost over $68 million."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 10,
+      "level": 3,
+      "title": "Opening festivities, and 50th and 75th anniversaries",
+      "paragraphs": [
+        {
+          "id": "p26",
+          "text": "The bridge-opening celebration in 1937 began on May 27 at 6:00 a.m. and lasted for one week. The day before vehicle traffic was allowed, 200,000 people crossed either on foot or on roller skates. Donald Bryan, a student sprinter from the San Francisco Junior College (now the City College of San Francisco), was the first to make it across the bridge from end to end. On opening day, Mayor Angelo Rossi and other officials rode the ferry to Marin, then crossed the bridge in a motorcade past three ceremonial \"barriers\", the last a blockade of beauty queens who required Joseph Strauss to present the bridge to the Highway District before allowing him to pass. An official song, \"There's a Silver Moon on the Golden Gate,\" was chosen to commemorate the event. It was written by Charles Tobias, Bob Rothberg and Joseph Meyer and first recorded by George Hall and His Hotel Taft Orchestra. Strauss wrote a poem that is now on the Golden Gate Bridge entitled \"The Mighty Task is Done.\" The next day, President Franklin D. Roosevelt pushed a button in Washington, D.C. signaling the official start of vehicle traffic over the Bridge at noon. Weeks of civil and cultural activities called \"the Fiesta\" followed. A statue of Strauss was moved in 1955 to a site near the bridge."
+        },
+        {
+          "id": "p27",
+          "text": "As part of the fiftieth anniversary celebration in 1987, the Golden Gate Bridge district again closed the bridge to automobile traffic and allowed pedestrians to cross it on May 24. This Sunday morning celebration attracted 750,000 to 1,000,000 people, and ineffective crowd control meant the bridge became congested with roughly 300,000 people, causing the center span of the bridge to flatten out under the weight. Although the bridge is designed to flex in that way under heavy loads, and was estimated not to have exceeded 40% of the yielding stress of the suspension cables, bridge officials stated that uncontrolled pedestrian access was not being considered as part of the 75th anniversary on Sunday, May 27, 2012, due to the additional law enforcement costs required \"since 9/11.\" To commemorate the bridge's 75th anniversary, automated user-controlled solar beacons were temporarily installed atop the towers."
+        }
+      ],
+      "quotes": [],
+      "lists": [
+        [
+          "A pedestrian poses at the old railing on opening day, 1937.",
+          "Opening of the Golden Gate Bridge",
+          "Official invitation to the opening of the bridge. This copy was sent to the City of Seattle."
+        ]
+      ],
+      "tables": []
+    },
+    {
+      "section_id": 11,
+      "level": 2,
+      "title": "Structural specifications",
+      "paragraphs": [
+        {
+          "id": "p28",
+          "text": "Until 1964, the Golden Gate Bridge had the longest suspension bridge main span in the world, at 4,200 feet (1,280 m). Since 1964 its main span length has been surpassed by twenty bridges; it now has the second-longest main span in the Americas, after the Verrazzano–Narrows Bridge in New York City. The total length of the Golden Gate Bridge from abutment to abutment is 8,981 feet (2,737 m)."
+        },
+        {
+          "id": "p29",
+          "text": "The Golden Gate Bridge's clearance above high water averages 220 feet (67 m) while its towers, at 746 feet (227 m) above the water, were the world's tallest on a suspension bridge until 1993 when it was surpassed by the Mezcala Bridge, in Mexico."
+        },
+        {
+          "id": "p30",
+          "text": "The weight of the roadway is hung from 250 pairs of vertical suspender ropes, which are attached to two main cables. The main cables pass over the two main towers and are fixed in concrete at each end. Each cable is made of 27,572 strands of wire. The total length of galvanized steel wire used to fabricate both main cables is estimated to be 80,000 miles (130,000 km). Each of the bridge's two towers has approximately 600,000 rivets."
+        },
+        {
+          "id": "p31",
+          "text": "In the 1960s, when the Bay Area Rapid Transit system (BART) was being planned, the engineering community had conflicting opinions about the feasibility of running train tracks north to Marin County over the bridge. In June 1961, consultants hired by BART completed a study that determined the bridge's suspension section was capable of supporting service on a new lower deck. In July 1961, one of the bridge's consulting engineers, Clifford Paine, disagreed with their conclusion. In January 1962, due to more conflicting reports on feasibility, the bridge's board of directors appointed an engineering review board to analyze all the reports. The review board's report, released in April 1962, concluded that running BART on the bridge was not advisable."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 12,
+      "level": 2,
+      "title": "Aesthetics",
+      "paragraphs": [
+        {
+          "id": "p32",
+          "text": "Aesthetics was the foremost reason that the first design of Joseph Strauss was rejected. Upon re-submission of his bridge construction plan, he added details, such as lighting, to outline the bridge's cables and towers. In 1999, it was ranked fifth on the List of America's Favorite Architecture by the American Institute of Architects."
+        },
+        {
+          "id": "p33",
+          "text": "The color of the bridge is officially an orange vermilion called international orange. The color was selected by consulting architect Irving Morrow because it complements the natural surroundings and enhances the bridge's visibility in fog."
+        },
+        {
+          "id": "p34",
+          "text": "The bridge was originally painted with red lead primer and a lead-based topcoat, which was touched up as required. In the mid-1960s, a program was started to improve corrosion protection by stripping the original paint and repainting the bridge with zinc silicate primer and vinyl topcoats. Since 1990, acrylic topcoats have been used instead for air-quality reasons. The program was completed in 1995 and it is now maintained by 38 painters who touch up the paintwork where it becomes seriously corroded. The ongoing maintenance task of painting the bridge is continuous."
+        }
+      ],
+      "quotes": [],
+      "lists": [
+        [
+          "A view of the Golden Gate Bridge from the Marin Headlands on a foggy morning at sunrise",
+          "View of Marin from the south tower",
+          "Top of the south tower",
+          "Golden Gate Bridge seen from Fort Point"
+        ]
+      ],
+      "tables": []
+    },
+    {
+      "section_id": 13,
+      "level": 2,
+      "title": "Traffic",
+      "paragraphs": [
+        {
+          "id": "p35",
+          "text": "Most maps and signage mark the bridge as part of the concurrency between U.S. Route 101 and California State Route 1. Although part of the National Highway System, the bridge is not officially part of California's Highway System. For example, under the California Streets and Highways Code § 401, Route 101 ends at \"the approach to the Golden Gate Bridge\" and then resumes at \"a point in Marin County opposite San Francisco\". The Golden Gate Bridge, Highway and Transportation District has jurisdiction over the segment of highway that crosses the bridge instead of the California Department of Transportation (Caltrans)."
+        },
+        {
+          "id": "p36",
+          "text": "The movable median barrier between the lanes is moved several times daily to conform to traffic patterns. On weekday mornings, traffic flows mostly southbound into the city, so four of the six lanes run southbound. Conversely, on weekday afternoons, four lanes run northbound. During off-peak periods and weekends, traffic is split with three lanes in each direction."
+        },
+        {
+          "id": "p37",
+          "text": "From 1968 to 2015, opposing traffic was separated by small, plastic pylons; during that time, there were 16 fatalities resulting from 128 head-on collisions. To improve safety, the speed limit on the Golden Gate Bridge was reduced from 50 to 45 mph (80 to 72 km/h) on October 1, 1983. Although there had been discussion concerning the installation of a movable barrier since the 1980s, only in March 2005 did the Bridge Board of Directors commit to finding funding to complete the $2 million study required prior to the installation of a movable median barrier. Installation of the resulting barrier was completed on January 11, 2015, following a closure of 45.5 hours to private vehicle traffic, the longest in the bridge's history. The new barrier system, including the zipper trucks, cost approximately $30.3 million to purchase and install."
+        },
+        {
+          "id": "p38",
+          "text": "The bridge carries about 112,000 vehicles per day according to the Golden Gate Bridge Highway and Transportation District."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 14,
+      "level": 3,
+      "title": "Usage and tourism",
+      "paragraphs": [
+        {
+          "id": "p39",
+          "text": "The bridge is popular with pedestrians and bicyclists, and was built with walkways on either side of the six vehicle traffic lanes. Initially, they were separated from the traffic lanes by only a metal curb, but railings between the walkways and the traffic lanes were added in 2003, primarily as a measure to prevent bicyclists from falling into the roadway. The bridge was designated as part of U.S. Bicycle Route 95 in 2021."
+        },
+        {
+          "id": "p40",
+          "text": "The main walkway is on the eastern side, and is open for use by both pedestrians and bicycles in the morning to mid-afternoon during weekdays (5:00 a.m. to 3:30 p.m.), and to pedestrians only for the remaining daylight hours (until 6:00 p.m., or 9:00 p.m. during DST). The eastern walkway is reserved for pedestrians on weekends (5:00 a.m. to 6:00 p.m., or 9:00 p.m. during DST), and is open exclusively to bicyclists in the evening and overnight, when it is closed to pedestrians. The western walkway is open only for bicyclists and only during the hours when they are not allowed on the eastern walkway."
+        },
+        {
+          "id": "p41",
+          "text": "Bus service across the bridge is provided by one public transportation agency, Golden Gate Transit, which runs numerous bus lines throughout the week. The southern end of the bridge, near the toll plaza and parking lot, is also accessible daily from 5:30 a.m. to midnight by San Francisco Muni line 28. Muni formerly offered Saturday and Sunday service across the bridge on the Marin Headlands Express bus line, but this was indefinitely suspended due to the COVID-19 pandemic. The Marin Airporter, a private company, also offers service across the bridge between Marin County and San Francisco International Airport."
+        },
+        {
+          "id": "p42",
+          "text": "A visitor center and gift shop, originally called the \"Bridge Pavilion\" (since renamed the \"Golden Gate Bridge Welcome Center\"), is located on the San Francisco side of the bridge, adjacent to the southeast parking lot. It opened in 2012, in time for the bridge's 75th-anniversary celebration. A cafe, outdoor exhibits, and restroom facilities are located nearby. On the Marin side of the bridge, only accessible from the northbound lanes, is the H. Dana Bower Rest Area and Vista Point, named after the first landscape architect for the California Division of Highways."
+        },
+        {
+          "id": "p43",
+          "text": "Lands and waters under and around the bridge are homes to varieties of wildlife such as bobcats, harbor seals, and sea lions. Three species of cetaceans (whales) that had been absent in the area for many years have shown recoveries and recolonizations in the vicinity of the bridge as of 2017[update]; researchers studying them have encouraged stronger protections and recommended that the public watch them from the bridge or from land, or use a local whale watching operator."
+        },
+        {
+          "id": "p44",
+          "text": "The bridge is used annually as part of the route of the San Francisco Marathon, which organizers of the marathon have used as \"a big selling point\" for the race. During the marathon, only one northbound lane remains open, with no impact to southbound traffic. But for the 2017 marathon, the bridge was closed to all northbound traffic during the race, and in 2018 authorities refused to shut down any northbound traffic, out of security concerns, limiting the race to the bridge's sidewalks (which limited the number of runners). As of 2025, only the bridge's sidewalks are used for the marathon."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 15,
+      "level": 3,
+      "title": "Tolls",
+      "paragraphs": [],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 16,
+      "level": 4,
+      "title": "Current toll rates",
+      "paragraphs": [
+        {
+          "id": "p45",
+          "text": "Tolls are only collected from southbound traffic after they cross from Marin County at the toll plaza on the San Francisco side of the bridge. All-electronic tolling has been in effect since 2013, and drivers may either pay using the FasTrak electronic toll collection device or using the license plate tolling program. It remains not truly an open road tolling system until the remaining unused toll booths are removed, forcing drivers to slow substantially from freeway speeds while passing through. Effective July 1, 2026 – June 30, 2027 (2026-07-01 – 2027-06-30), the toll rate for passenger cars with license plate accounts is $10.50, while FasTrak users pay a discounted toll of $10.25. During peak traffic hours on weekdays between 5:00 am and 9:00 am, and between 4:00 pm and 6:00 pm, carpool vehicles carrying three or more people, or motorcycles may pay a discounted toll of $8.25 if they have FasTrak and use the designated carpool lane. Drivers without Fastrak or a license plate account must open a \"short term\" account within 48 hours after crossing the bridge or they will be sent a toll invoice of $11.25 (the FasTrak toll plus an additional $1 fee). No additional toll violation penalty will be assessed if the invoice is paid within 21 days."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 17,
+      "level": 4,
+      "title": "Historical toll rates",
+      "paragraphs": [
+        {
+          "id": "p46",
+          "text": "When the Golden Gate Bridge opened in 1937, the toll was 50 cents per car (equivalent to $11.2 in 2025), collected in each direction. In 1950 it was reduced to 40 cents each way ($5.35 in 2025), then lowered to 25 cents in 1955 ($3 in 2025). In 1968, the bridge was converted to only collect tolls from southbound traffic, with the toll amount reset back to 50 cents ($4.63 in 2025)."
+        },
+        {
+          "id": "p47",
+          "text": "From May 1937 until December 1970, pedestrians were charged a toll of 10 cents for bridge access via turnstiles on the sidewalks."
+        },
+        {
+          "id": "p48",
+          "text": "The last of the construction bonds were retired in 1971, with $35 million (equivalent to $278M in 2025) in principal and nearly $39 million ($310M in 2025) in interest raised entirely from bridge tolls. Tolls continued to be collected and subsequently incrementally raised; in 1991, the toll was raised a dollar to $3.00 (equivalent to $7.09 in 2025)."
+        },
+        {
+          "id": "p49",
+          "text": "The bridge began accepting tolls via the FasTrak electronic toll collection system in 2002, with $4 tolls for FasTrak users and $5 for those paying cash (equivalent to $7.16 and $8.95 respectively in 2025). In November 2006, the Golden Gate Bridge, Highway and Transportation District recommended a corporate sponsorship program for the bridge to address its operating deficit, projected at $80 million over five years. The District promised that the proposal, which it called a \"partnership program\", would not include changing the name of the bridge or placing advertising on the bridge itself. In October 2007, the Board unanimously voted to discontinue the proposal and seek additional revenue through other means, most likely a toll increase. The District later increased the toll amounts in 2008 to $5 for FasTrak users and $6 to those paying cash (equivalent to $7.48 and $8.97 respectively in 2025)."
+        },
+        {
+          "id": "p50",
+          "text": "In an effort to save $19.2 million over the following 10 years, the Golden Gate District voted in January 2011 to eliminate all toll takers by 2012 and use only open road tolling. Subsequently, this was delayed and toll taker elimination occurred in March 2013. The cost savings have been revised to $19 million over an eight-year period. In addition to FasTrak, the Golden Gate Transportation District implemented the use of license plate tolling (branded as \"Pay-by-Plate\"), and also a one-time payment system for drivers to pay before or after their trip on the bridge. Twenty-eight positions were eliminated as part of this plan."
+        },
+        {
+          "id": "p51",
+          "text": "On April 7, 2014, the toll for users of FasTrak was increased from $5 to $6 (equivalent to $8.16 in 2025), while the toll for drivers using either the license plate tolling or the one time payment system was raised from $6 to $7 (equivalent to $9.52 in 2025). Bicycle, pedestrian, and northbound motor vehicle traffic remain toll free. For vehicles with more than two axles, the toll rate was $7 per axle for those using license plate tolling or the one time payment system, and $6 per axle for FasTrak users. During peak traffic hours, carpool vehicles carrying two or more people and motorcycles paid a discounted toll of $4 (equivalent to $5.44 in 2025); drivers must have had Fastrak to take advantage of this carpool rate. The Golden Gate Transportation District then increased the tolls by 25 cents in July 2015, and then by another 25 cents each of the next three years."
+        },
+        {
+          "id": "p52",
+          "text": "In March 2019, the Golden Gate Transportation District approved a plan to implement 35-cent annual toll increases through 2023, except for the toll-by-plate program which will increase by 20 cents per year. The district then approved another plan in March 2024 to implement 50-cent annual toll increases through 2028."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": [
+        {
+          "headers": [
+            "Effective date",
+            "FasTrak",
+            "Toll-by-plate",
+            "Toll invoice",
+            "Carpool",
+            "Multi-axle vehicle"
+          ],
+          "rows": [
+            [
+              "April 7, 2014",
+              "$6.00",
+              "$7.00",
+              "$4.00",
+              "$7.00 per axle"
+            ],
+            [
+              "July 1, 2015",
+              "$6.25",
+              "$7.25",
+              "$4.25",
+              "$7.25 per axle"
+            ],
+            [
+              "July 1, 2016",
+              "$6.50",
+              "$7.50",
+              "$4.50",
+              "$7.50 per axle"
+            ],
+            [
+              "July 1, 2017",
+              "$6.75",
+              "$7.75",
+              "$4.75",
+              "$7.75 per axle"
+            ],
+            [
+              "July 1, 2018",
+              "$7.00",
+              "$8.00",
+              "$5.00",
+              "$8.00 per axle"
+            ],
+            [
+              "July 1, 2019",
+              "$7.35",
+              "$8.20",
+              "$8.35",
+              "$5.35",
+              "$8.35 per axle"
+            ],
+            [
+              "July 1, 2020",
+              "$7.70",
+              "$8.40",
+              "$8.70",
+              "$5.70",
+              "$8.70 per axle"
+            ],
+            [
+              "July 1, 2021",
+              "$8.05",
+              "$8.60",
+              "$9.05",
+              "$6.05",
+              "$9.05 per axle"
+            ],
+            [
+              "July 1, 2022",
+              "$8.40",
+              "$8.80",
+              "$9.40",
+              "$6.40",
+              "$9.40 per axle"
+            ],
+            [
+              "July 1, 2023",
+              "$8.75",
+              "$9.00",
+              "$9.75",
+              "$6.75",
+              "$9.75 per axle"
+            ],
+            [
+              "July 1, 2024",
+              "$9.25",
+              "$9.50",
+              "$10.25",
+              "$7.25",
+              "$10.25 per axle"
+            ],
+            [
+              "July 1, 2025",
+              "$9.75",
+              "$10.00",
+              "$10.75",
+              "$7.75",
+              "$10.75 per axle"
+            ],
+            [
+              "July 1, 2026",
+              "$10.25",
+              "$10.50",
+              "$11.25",
+              "$8.25",
+              "$11.25 per axle"
+            ],
+            [
+              "July 1, 2027",
+              "$10.75",
+              "$11.00",
+              "$11.75",
+              "$8.75",
+              "$11.75 per axle"
+            ],
+            [
+              "July 1, 2028",
+              "$11.25",
+              "$11.50",
+              "$12.25",
+              "$9.25",
+              "$12.25 per axle"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": 18,
+      "level": 3,
+      "title": "Congestion pricing",
+      "paragraphs": [
+        {
+          "id": "p53",
+          "text": "In March 2008, the Golden Gate Bridge District board approved a resolution to start congestion pricing at the Golden Gate Bridge, charging higher tolls during the peak hours, but rising and falling depending on traffic levels. This decision allowed the Bay Area to meet the federal requirement to receive $158 million in federal transportation funds from USDOT Urban Partnership grant. As a condition of the grant, the congestion toll was to be in place by September 2009."
+        },
+        {
+          "id": "p54",
+          "text": "In August 2008, transportation officials ended the congestion pricing program in favor of varying rates for metered parking along the route to the bridge including on Lombard Street and Van Ness Avenue."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 19,
+      "level": 2,
+      "title": "Navigational aid",
+      "paragraphs": [],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 20,
+      "level": 3,
+      "title": "Beacons",
+      "paragraphs": [
+        {
+          "id": "p55",
+          "text": "The Golden Gate Bridge's first aircraft warning lights used rotating aerobeacons at the top of the towers that flashed red. In the 1980s, the present-day 750-watt red lamps were put into service, along with 16 red outline lanterns on the cables to enhance the structure's visibility at night. For maritime movement, the bridge has white and green navigation lights on both sides at the midspan and red safety lights marking the south tower's fender."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 21,
+      "level": 3,
+      "title": "Foghorns",
+      "paragraphs": [
+        {
+          "id": "p56",
+          "text": "Commonly, particularly during the summer months, fog on the strait becomes so dense that it can fully obscure the whole bridge, creating an even greater hazard for mariners. A system of five foghorns was thus set up on the bridge in 1937 and remains operational to this day. The fog signals are air-powered and are manually switched on and off. Coast Guard regulates the pattern and pitch by which the horns must sound."
+        },
+        {
+          "id": "p57",
+          "text": "Two foghorns are mounted at the base of the south tower 40 feet (12 m) above water level (at high tide). They each point in the opposite direction, west and east, and have an identical profile: 48 inches (120 cm) long and a .mw-parser-output .frac{white-space:nowrap}.mw-parser-output .frac .num,.mw-parser-output .frac .den{font-size:80%;line-height:0;vertical-align:super}.mw-parser-output .frac .den{vertical-align:sub}.mw-parser-output .sr-only{border:0;clip:rect(0,0,0,0);clip-path:polygon(0px 0px,0px 0px,0px 0px);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}23+1⁄2-inch (60 cm) diameter bell. Both horns sound in tandem, producing a 2-second blast every 18 seconds in a distinctively low tone. On October 18, 2013, at around 2:00 a.m., one foghorn emitted a perpetually-sustained sound for nearly an hour due to a malfunctioning relay. It was disconnected by 3:00 a.m. and repaired later that morning."
+        },
+        {
+          "id": "p58",
+          "text": "The other three foghorns are mounted at the midspan of the bridge, just beneath the deck. Two westward-facing horns are each 36 inches (91 cm) long with an 18-inch (46 cm) diameter bell and emit a higher tone than the horns on the south tower. The third horn facing east is smaller, with a length of 24+1⁄2 inches (62 cm) and a bell diameter of 11 inches (28 cm), thus emitting an even higher note. Altogether, the three horns produce two 1-second blasts every 36 seconds with a dual-toned timbre; they are synchronized to sound after every two blasts of the south tower horns. Ships heading in either direction generally stay to the right of the midspan by following the sound of these horns. Dating back to 1985, the midspan foghorns replaced the original horns that had partly failed in the late 1970s, causing them to sound with only a single tone."
+        },
+        {
+          "id": "p59",
+          "text": "The foghorns blared wildly as Queen Mary 2 passed under the bridge for her 2007 visit in San Francisco."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 22,
+      "level": 2,
+      "title": "Issues",
+      "paragraphs": [],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 23,
+      "level": 3,
+      "title": "Protests and stunts",
+      "paragraphs": [
+        {
+          "id": "p60",
+          "text": "Since the late 1970s, the Golden Gate Bridge has seen a share of protest rallies throughout its history. In some cases, participants staged public stunts to draw heightened attention to their political messages by haphazardly scaling the bridge. On November 24, 1996, actor Woody Harrelson joined a group of local environmentalists who draped a large banner above the roadway deck protesting CEO Charles Hurwitz over his aggressive logging advances. The incident snarled traffic and caused delays lasting the entire day. As an effort to deter any more disruptive stunts, a legislation authored by State Senator Quentin Kopp and signed into law by Governor Pete Wilson in 1997, stiffened penalties for trespassing on the bridge. Nonetheless, demonstrations have continued to take place on the Golden Gate Bridge over the years, often resulting in the complete shutdown of the bridge. Notably, on June 6, 2020, protestors occupied the bridge as part of a nationwide denunciation to police brutality in the wake of the George Floyd's murder, and in November 2021 two California Highway Patrol officers and three bridge employees were injured in a vehicular chain-reaction crash during a protest against government-mandated COVID-19 vaccinations. In February 2024 and again in April, pro-Palestinian protestors stopped traffic in both directions to protest the Gaza war."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 24,
+      "level": 3,
+      "title": "Suicides",
+      "paragraphs": [
+        {
+          "id": "p61",
+          "text": "The Golden Gate Bridge was the most used suicide site in the world prior to the installation of suicide prevention nets. Jumpers would fall for four seconds, then hit the water at around 75 mph (120 km/h; 30 m/s). Most would die from impact trauma. About 5% would survive the initial impact but generally drown or die of hypothermia in the cold water. After years of debate and an estimated more than 2,000 deaths, implementation of suicide prevention barriers began in April 2017."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 25,
+      "level": 4,
+      "title": "Suicide nets",
+      "paragraphs": [
+        {
+          "id": "p62",
+          "text": "The so-called nets are taut, designed to be painful to land on. They extend 20 feet (6.1 m) out from the walkway and, because of their design, cause serious—but not fatal—injury to people who jump from the bridge. They are made of \"marine-grade stainless-steel wire rope, akin to a horizontal fence four millimeters thick,\" which does not give, and is located 20 feet (6.1 m) below the walkway."
+        },
+        {
+          "id": "p63",
+          "text": "Construction was first estimated to take approximately four years at a cost of over $200 million; however, installation of the nets was not completed until January 2024, and exceeded the budget by $17 million."
+        },
+        {
+          "id": "p64",
+          "text": "The nets have widely been considered successful, even convincing former skeptics. As of November 21, 2024, the Golden Gate Bridge Highway and Transportation District reported that the number of deaths by suicide year to date had been eight, down from an average 33.5. Through the end of October 2024, thwarted attempts were down from an annual average of 200 to 106."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 26,
+      "level": 3,
+      "title": "Wind",
+      "paragraphs": [
+        {
+          "id": "p65",
+          "text": "The Golden Gate Bridge was designed to safely withstand winds of up to 68 mph (109 km/h). Until 2008, the bridge was closed because of weather conditions only three times: on December 1, 1951, because of gusts of 69 mph (111 km/h); on December 23, 1982, because of winds of 70 mph (113 km/h); and on December 3, 1983, because of wind gusts of 75 mph (121 km/h). An anemometer placed midway between the two towers on the west side of the bridge has been used to measure wind speeds and direction. Another anemometer was placed on one of the towers."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 27,
+      "level": 4,
+      "title": "Wind safety retrofit introduces wind \"songs\"",
+      "paragraphs": [
+        {
+          "id": "p66",
+          "text": "In June 2020 residents across San Francisco and Marin Counties began to notice a humming noise. The noise has been described as \"eerie\", \"a shrill screeching sound\", and for some evokes a feeling that \"something bad is about to happen.\" The Golden Gate Bridge Highway and Transportation District determined that the \"unsettling\" whistle is produced by new railing slats when a strong zephyr blows."
+        },
+        {
+          "id": "p67",
+          "text": "The new slats were installed starting in 2019 on the west side of the bridge; they are more flexible than their predecessors and were selected to improve the bridge's aerodynamic tolerance of high wind to 100 mph (161 km/h). The sound had been predicted from wind tunnel tests, but not included in the environmental impact report."
+        },
+        {
+          "id": "p68",
+          "text": "The Bridge District determined that, in fact, there are two sounds that the bridge produces. When the wind passing through the slats reaches 22 mph (35 km/h), \"a low-pitched, low-frequency tone—between 280 and 700 hertz\" is produced. When the wind passes through the slats at an angle and reaches 27 mph (43 km/h), the slats produce \"higher pitch and frequency (1.1 kHz).\""
+        },
+        {
+          "id": "p69",
+          "text": "On December 16, 2021, the Bridge District approved a fix for the noise; 12,000 ∪-shaped clips with rubber dampers are to be installed between the slats at a cost of $450,000. Testing suggests that this fix will reduce the noise by 75%; however, even with the fix, the bridge is expected to emit the high frequency tone an average of 70 hours per year; the low frequency tone is expected 18 hours per year. The Bridge District expects installation to be \"completed in 2025\"."
+        },
+        {
+          "id": "p70",
+          "text": "An independent engineering analysis of a 2020 sound recording of the tones concludes that the singing noise comprises a variety of Aeolian tones (the sound produced by air flowing past a sharp edge), arising in this case from the ambient wind blowing across metal slats of the newly installed sidewalk railings. The tones observed were frequencies of 354, 398, 439 and 481 Hz, corresponding to the musical notes F4, G4, A4, and B4; these notes form an F Lydian Tetrachord."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 28,
+      "level": 3,
+      "title": "Seismic vulnerability and improvements",
+      "paragraphs": [
+        {
+          "id": "p71",
+          "text": "Modern knowledge of the effect of earthquakes on structures led to a program to retrofit the Golden Gate to better resist seismic events. The proximity of the bridge to the San Andreas Fault places it at risk for a significant earthquake. Once thought to have been able to withstand any magnitude of foreseeable earthquake, the bridge was actually vulnerable to complete structural failure (i.e., collapse) triggered by the failure of supports on the 320-foot (98 m) arch over Fort Point. A $392 million program was initiated to improve the structure's ability to withstand such an event with only minimal (repairable) damage. A custom-built electro-hydraulic synchronous lift system for construction of temporary support towers and a series of intricate lifts, transferring the loads from the existing bridge onto the temporary supports, were completed with engineers from Balfour Beatty and Enerpac, without disrupting day-to-day commuter traffic. Although the retrofit was initially planned to be completed in 2012, as of May 2017[update] it was expected to take several more years."
+        },
+        {
+          "id": "p72",
+          "text": "The former elevated approach to the Golden Gate Bridge through the San Francisco Presidio, known as Doyle Drive, dated to 1933 and was named after Frank Pierce Doyle, a director of the California State Automobile Association. The highway carried about 91,000 vehicles each weekday between downtown San Francisco and the North Bay and points north. The road was deemed \"vulnerable to earthquake damage\", had a problematic 4-lane design, and lacked shoulders; a San Francisco County Transportation Authority study recommended that it be replaced. Construction on the $1 billion replacement, temporarily known as the Presidio Parkway, began in December 2009. The elevated Doyle Drive was demolished on the weekend of April 27–30, 2012, and traffic used a part of the partially completed Presidio Parkway, until it was switched onto the finished Presidio Parkway on the weekend of July 9–12, 2015. As of May 2012[update], an official at Caltrans said there is no plan to permanently rename the portion known as Doyle Drive."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 29,
+      "level": 2,
+      "title": "Gallery",
+      "paragraphs": [],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    }
+  ]
+}

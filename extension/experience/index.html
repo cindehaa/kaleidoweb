@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kaleidoweb</title>
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; height: 100%; background: #0b0b0c; color: #e8e6e1; }
+  body { display: grid; place-items: center; font: 400 16px/1.5 system-ui; }
+  .boot { text-align: center; opacity: 0; animation: in 600ms 120ms ease forwards; }
+  .boot h1 { font-size: 15px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: #8a877f; }
+  .boot p { color: #55524c; font-size: 13px; }
+  @keyframes in { to { opacity: 1; } }
+</style>
+</head>
+<body>
+  <div class="boot">
+    <h1>Kaleidoweb</h1>
+    <p id="status">reading the page…</p>
+  </div>
+  <script src="boot.js"></script>
+</body>
+</html>
