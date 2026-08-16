@@ -19,7 +19,9 @@ immersive experience (replaces page, original preserved)
 
 ## 1. Extraction → Content Model
 
-Deterministic DOM parsing (Wikipedia first: sections, infobox, images + captions, references, coordinates, tables) plus cheap-model passes for: entities, chronology, geography, quantities, causal claims, processes, comparisons, quotations, uncertainty, "what is inherently visual", emphasis ranking. Output: a typed JSON Content Model. Every claim keeps a source pointer (section/paragraph) for traceability.
+Deterministic DOM parsing plus cheap-model passes for: entities, chronology, geography, quantities, causal claims, processes, comparisons, quotations, uncertainty, "what is inherently visual", emphasis ranking. Output: a typed JSON Content Model. Every claim keeps a source pointer (section/paragraph) for traceability.
+
+**Source adapters (validated 2026-08-16):** the Content Model is source-agnostic; only the first parsing step is per-source. Two adapters exist: `extract-wikipedia.mjs` (Parsoid HTML: sections/infobox/images/coords) and `extract-arxiv.mjs` (LaTeXML HTML: sections incl. sub/subsub/paragraph-blocks, equations with LaTeX preserved, figures, tables, authors, abstract). The downstream stages — semantic pass (schema adapted per subject type, same sourcing discipline), concept generation, build, critique — ran unchanged on both source types. The semantic schema varies by subject's dominant structure (chronology/quotes for events, works/names for artists, mechanism/whys for papers) but the "every item carries src" contract is invariant.
 
 ## 2. Art direction
 
