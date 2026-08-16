@@ -1,6 +1,6 @@
-# Kaleidoweb Design Principles v0.2
+# Kaleidoweb Design Principles v0.3
 
-v0.2 integrates the anti-signature amendments (see ANTI_SIGNATURE.md); rules flagged there as signature-encoding are amended accordingly.
+v0.2 integrated the anti-signature amendments (see ANTI_SIGNATURE.md); rules flagged there as signature-encoding are amended accordingly. v0.3 integrates the editorial amendments on omission, subordination and the information narrative (see EDITORIAL.md); citations in `[EDITORIAL En]` point at that document's rules.
 
 Opinionated, actionable rules for the agent that art-directs an experience. Every rule is grounded in something observed in `INSPIRATION.md`; citations in `[brackets]` point at the entry.
 
@@ -13,6 +13,8 @@ Rules are numbered so critiques can cite them. `MUST` = violating it is a blocki
 **The subject decides the form. The form is then executed with fewer elements than feel comfortable.**
 
 Two failure directions bracket everything below. On one side, a template with the subject poured into it — this fails Genericness. On the other, invention for its own sake — this fails Legibility. The test that separates them: *could this composition serve a different subject unchanged?* If yes, it was decoration. If it would break, it was design.
+
+A third failure sits between the two: **the faithful copy in good clothes.** A page that reproduces the source's every section at the source's own relative weight has made no editorial argument, and a design that makes no editorial argument is decoration however restrained its typography. The test that catches it: *state this page's thesis in one sentence; then find a screen that does not advance it.* If most screens do not, this is an annotated copy. (See `EDITORIAL.md` E1, E3.)
 
 The strongest single piece of external validation for this stance is The Pudding's own doctrine: story shape is derived from the shape of the data, and they name specific shapes — V (converge then diverge), inverted-V (local → national → local) — chosen per story [C2].
 
@@ -46,6 +48,10 @@ Before any visual decision, classify the subject's **dominant informational stru
 **1.3 SHOULD** — pick a *shape* for the density curve as well as the sections: converging, diverging, V, inverted-V, or a steady widening. The Pudding derives this from the data [C2]; so should we.
 
 **1.4 MUST — inventory the material record before any visual decision.** Name a specific artifact class (a document, an instrument, a substrate) and answer the nine-slot schema in `ANTI_SIGNATURE.md` §(b) from evidence. Record it in the experience's metadata as `material_record`. No colour, face, rule weight or grid may be chosen before this exists.
+
+**1.5 MUST — declare the thesis with the structure.** Alongside the informational-structure classification (§1.1), record a **thesis**: a complete active sentence with a subject, an action and a consequence, in ≤25 words. Section order follows the structure; section *inclusion* follows the thesis. [EDITORIAL E1]
+
+**1.6 MUST — declare a four-layer allocation for every source section.** Every section of the Content Model is assigned to exactly one of: surface, subordinated, pointer-only, or promoted-into-another-section. The mapping ships in the experience metadata. Truth preservation is satisfied by reachability, never by surface parity. [EDITORIAL E13]
 
 ---
 
@@ -99,6 +105,10 @@ The `≤11px uppercase +.06–.12em` row describes the eyebrow-label tell and mu
 
 **2.10 SHOULD — let the title perform the subject.** Editions typesets "Everywhere" everywhere in the frame [A1]; Pudding's headline is itself a simile with its variable slots colour-coded [C1]. Ask of every subject: *if this were a verb, what would the type do?* A title that merely states the subject in large type is a missed opportunity, not a neutral choice.
 
+**2.11 MUST — a label must contain information the design cannot show.** A label earns its place only by carrying (a) an encoding the design cannot express, (b) the block's claim where the prose does not state it, (c) a register change the reader must trust, or (d) the only navigational handle to a subordinated region. A label whose content words all appear in the adjacent first sentence is a blocking defect. The §2.6 micro-label register is cheap to set and is therefore the most over-used device in our system. [EDITORIAL E5, E9]
+
+**2.12 MUST — headings make claims, not categories.** A heading asserts something an informed reader could dispute. Reusing a source article's section title verbatim (`Background`, `Legacy`, `Personnel`) is a defect: it imports the coverage structure the experience exists to replace. [EDITORIAL E6]
+
 ---
 
 ## 3. Composition
@@ -120,6 +130,8 @@ The `≤11px uppercase +.06–.12em` row describes the eyebrow-label tell and mu
 **3.8 SHOULD — stage artifacts in an environment, not in a frame.** Editions floats product screenshots inside the atmospheric image plate [A1]. A drop-shadowed card around an artifact flattens both the artifact and the space.
 
 **3.9 SHOULD — when an object carries its own label, add no caption.** Stripe Press shows book spines with no titles or descriptions because the spine already says it [D2].
+
+**3.10 MUST — a caption adds a fact the image cannot carry.** Extends §3.9. Where an object carries its own label, add no caption; where a caption is warranted, it must state something absent from the image. Captions are read roughly twice as often as body copy (Ogilvy), which makes a describing caption the most expensive redundancy on the page. [EDITORIAL E8]
 
 ---
 
@@ -146,6 +158,10 @@ The `≤11px uppercase +.06–.12em` row describes the eyebrow-label tell and mu
 **4.9 MUST — offer an escape from the guided path.** Happy Map puts "Skip story" directly under "Start" [F1]. Guided narrative and free exploration must coexist; a linear-only experience is a worse reference tool than the Wikipedia page it replaced, which fails the Legibility criterion.
 
 **4.10 MUST (latency) — the first paint is a composition, not a spinner.** Open with the model or motif already running behind the title [G1], and stream expensive sections in behind it. The mission's "magical in the first seconds" requirement is a pacing rule, not an infrastructure rule.
+
+**4.11 MUST — declare a surface budget before composition.** Fix, in metadata, before layout: surface words (≤35% of source body prose), words per 900px viewport (150–250, ceiling 300), viewport count, plate count, label ceiling, surface-photograph count. Write to fit; cut at proof. Measured references: apple.com 184 w/vp, Pudding 205 w/vp, Wikipedia 557 w/vp. [EDITORIAL E2, E3, E4]
+
+**4.12 MUST — one idea per screen.** A screen carries one claim and one piece of evidence. A screen carrying two ideas carries neither. [EDITORIAL E7]
 
 ---
 
@@ -216,6 +232,10 @@ Derived from the mission's non-negotiables, given form by observed patterns.
 
 **7.4 MUST — no invented imagery presented as evidence.** Generative motifs (§6.4) must be abstract or clearly non-representational, or they become fabricated evidence. Editions' particle-dissolve is safe precisely because nobody could mistake it for documentation.
 
+**7.5 MUST — subordinated content stays searchable, one level deep.** Hidden-by-default content uses `hidden="until-found"`, `<details>`, or an equivalent that find-in-page can reach and the browser can reveal. `display:none` converts subordination into deletion and fails the truth requirement. Maximum two disclosure levels; the control must predict what is behind it. [EDITORIAL E11]
+
+**7.6 MUST — provenance is one affordance per block, plus a concordance.** §7.2's "visible without hover" is satisfied by a single quiet affordance per block and a complete source-to-block concordance in end matter — never by a parallel column of source tokens at label weight. [EDITORIAL E10]
+
 ---
 
 ## 8. Anti-cliché rules
@@ -247,6 +267,10 @@ Each entry: the cliché, why it fails, and what to do instead.
 | A single terracotta/clay accent | Anthropic's own brand accent; the most recognisable single value in AI output | A pigment the subject's world actually contains, at its real saturation (§6.9) |
 | `cubic-bezier(.4,0,.2,1)` | Material Design's default curve, shipped in both experiences | A curve that models the subject's physics (§5.1) |
 | Latin-horizontal reading axis for a non-Latin subject, unremarked | The invisible default | Adopt the subject's axis at least once, or state the refusal (ANTI_SIGNATURE.md §(a) C7) |
+| A label that repeats the adjacent first sentence | Zero information at the cost of a line, a register and a beat | Delete, or carry a datum (§2.11) |
+| Section headings copied from the source article | Imports the coverage structure we exist to replace | Headings that make claims (§2.12) |
+| Every block carrying a source token at label weight | Apparatus at surface parity with content | One affordance + end-matter concordance (§7.6) |
+| Apparatus persisting with nothing to measure | An instrument reading `——:——:——` is noise pretending to be rigour | Suppress the instrument, not just its value (§2.11) |
 
 ---
 
@@ -267,3 +291,6 @@ Run before any experience is considered done. Any `MUST` failure blocks.
 11. **Sibling diff (machine check).** Diff this experience's CSS custom properties against every previously shipped experience. If ground, ink, hairline, body size, body leading, apparatus-label construction and both measures all fall within 5% of a prior experience, **that is a blocking failure** regardless of how well each value is individually justified. This is the only check that catches convergence across experiences; no other check in this document does.
 12. **Derivation citation audit.** Ground, display face, body face, accent, rule weight, grid, reading axis — seven provenance lines, each naming an artifact. Any missing line is a default. (§0.2, §1.4)
 13. **Anti-signature score.** Run `ANTI_SIGNATURE.md` §(a). ≥6 "default" tells across ≥3 groups blocks.
+14. **Thesis trace.** State the thesis in one sentence. Walk every surface screen and name the part of the thesis it advances. Screens that cannot be traced are subordinated or cut. (§1.5)
+15. **Surface audit.** Measure words-per-viewport and surface-words ÷ source-body-words. Outside 150–300 and ≤0.35 respectively is blocking. Run the label audit in `EDITORIAL.md` §3. (§4.11)
+16. **Content removal test.** Delete the three surface elements you are proudest of and re-read. If thesis comprehension is unchanged, they stay deleted. (Extends the §5.6 motion removal test to content.) [EDITORIAL E14]
