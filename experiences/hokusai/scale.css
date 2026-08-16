@@ -97,11 +97,19 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 #plate[data-ground="ink"]{background:var(--ink-plate);color:#E6DFCF}
 #plate[data-ground="ink"] .mono{color:var(--mute-ink)}
 
-.plate-top{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-shrink:0;padding-bottom:10px}
-.mv-id{display:flex;gap:12px;align-items:baseline}
-.mv-id b{font-family:var(--mono);font-size:var(--t1);font-weight:700;letter-spacing:.06em;color:var(--ink)}
+.plate-top{display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-shrink:0;padding-bottom:6px}
+.mv-id{display:flex;gap:14px;align-items:baseline;min-width:0}
+.mv-id b{font-family:var(--mono);font-size:var(--t1);font-weight:700;letter-spacing:.06em;color:var(--ink);flex:0 0 auto}
+.mv-id > .mono{flex:0 0 auto}
+#mv-head{margin:0;font-size:20px;line-height:1.15;letter-spacing:-.02em;font-weight:400;
+  padding-left:10px;border-left:1px solid var(--hair);color:var(--ink)}
+#plate[data-ground="ink"] #mv-head{color:#EFE7D6;border-left-color:var(--hair-ink)}
 #plate[data-ground="ink"] .mv-id b{color:#E6DFCF}
-.plate-tools{display:flex;gap:22px;align-items:baseline}
+.plate-tools{display:flex;gap:22px;align-items:baseline;flex:0 0 auto}
+
+/* the name changes, on their own rule above the graph */
+#namesband{position:relative;flex-shrink:0;height:30px;border-bottom:1px solid var(--hair);margin-bottom:8px}
+#plate[data-ground="ink"] #namesband{border-bottom-color:var(--hair-ink)}
 .tgl{font-family:var(--mono);font-size:var(--t105);letter-spacing:.09em;text-transform:uppercase;color:var(--mute);border-bottom:1px solid transparent;white-space:nowrap}
 .tgl[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
 #plate[data-ground="ink"] .tgl[aria-pressed="true"]{color:#E6DFCF;border-bottom-color:#E6DFCF}
@@ -131,9 +139,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   font-variant-numeric:tabular-nums;
 }
 .reg.verdict .rlab{font-style:normal;font-weight:500}
-.reg.verdict .rule{background:var(--blue);height:1.5px}
-#plate[data-ground="ink"] .reg.verdict .rule{background:var(--blue-lit)}
-.reg[data-empty="1"] .rlab{opacity:.62}
+.reg[data-empty="1"] .rlab{opacity:.6}
 .reg.filt-off .rlab{opacity:.28}
 .reg .rhit{position:absolute;inset:0;cursor:pointer;background:transparent}
 .reg .rhit:hover{background:rgba(32,64,107,.045)}
@@ -141,28 +147,32 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* the verdict: everything left of seventy */
 #wash{
-  position:absolute; top:0; bottom:0; left:0; width:0;
-  background:rgba(32,64,107,.055); pointer-events:none;
-  transition:left 900ms cubic-bezier(.4,0,.2,1), width 900ms cubic-bezier(.4,0,.2,1), opacity 500ms;
+  position:absolute; left:0; width:0; top:0; height:0;
+  background:rgba(32,64,107,.07); pointer-events:none; opacity:0;
+  border-right:1.5px solid transparent;
+  transition:left 900ms cubic-bezier(.4,0,.2,1), width 900ms cubic-bezier(.4,0,.2,1),
+             top 900ms cubic-bezier(.4,0,.2,1), height 900ms cubic-bezier(.4,0,.2,1), opacity 500ms;
 }
+#plate[data-ground="ink"] #wash{background:rgba(127,163,210,.07)}
 #seventy{
   position:absolute; top:0; bottom:0; width:1.5px; background:var(--blue);
   pointer-events:none; opacity:0; transition:left 900ms cubic-bezier(.4,0,.2,1), opacity 500ms;
 }
 #plate[data-ground="ink"] #seventy{background:var(--blue-lit)}
 #seventy-lab{
-  position:absolute; transform:translateX(-50%); text-align:center; white-space:nowrap;
+  position:absolute; white-space:nowrap;
   font-family:var(--mono); font-size:var(--t105); letter-spacing:.12em; text-transform:uppercase;
-  color:var(--blue); opacity:0; transition:left 900ms cubic-bezier(.4,0,.2,1), opacity 500ms;
+  color:var(--blue); opacity:0; transition:left 900ms cubic-bezier(.4,0,.2,1), top 900ms cubic-bezier(.4,0,.2,1), opacity 500ms;
   pointer-events:none;
 }
 #plate[data-ground="ink"] #seventy-lab{color:var(--blue-lit)}
 
-/* names rule along the top */
-#names{position:absolute;left:0;right:0;top:0;height:20px;pointer-events:none;opacity:0;transition:opacity 500ms}
-#names .ntick{position:absolute;top:0;transform:translateX(-50%);text-align:center;white-space:nowrap}
-#names .ntick i{display:block;width:1px;height:6px;background:var(--hair);margin:0 auto 3px}
-#names .ntick span{font-family:var(--mono);font-size:var(--t105);letter-spacing:.06em;color:var(--mute);text-transform:none}
+/* names rule above the graph */
+#names{position:absolute;left:0;right:0;top:0;bottom:0;pointer-events:none;opacity:0;transition:opacity 500ms}
+#names .ntick{position:absolute;white-space:nowrap;padding-left:5px;border-left:1px solid var(--hair);height:14px}
+#names .ntick i{display:none}
+#names .ntick span{font-family:var(--mono);font-size:var(--t105);letter-spacing:.04em;color:var(--mute);text-transform:none}
+#plate[data-ground="ink"] #names .ntick{border-left-color:var(--hair-ink)}
 
 /* sheets */
 #layer{position:absolute;inset:0;pointer-events:none}
