@@ -56,6 +56,7 @@
       <div class="mv-id">
         <b id="mv-no">01</b>
         <span class="mono" id="mv-name">The scale</span>
+        <h2 id="mv-head">His scale, drawn. Nothing on it yet.</h2>
       </div>
       <div class="plate-tools">
         <button type="button" class="tgl" id="filt" hidden></button>
@@ -63,31 +64,26 @@
       </div>
     </div>
 
+    <div id="namesband"><div id="names"></div></div>
+
     <div id="chart">
       <div id="wash"></div>
       <div id="regs"></div>
       <div id="seventy"></div>
       <div id="seventy-lab">seventy</div>
-      <div id="names"></div>
       <div id="layer"></div>
       <div id="death"></div>
-      <button type="button" id="portrait" aria-label="Hokusai as an old man — the article's lead image, uncaptioned">
+      <figure id="portrait">
         <img src="assets/00-hokusai-as-an-old-man.jpg" alt="Hokusai as an old man">
-        <span class="pl mono lc">The article’s lead image. It carries no caption at all.</span>
-      </button>
-      <div id="verdict-count"></div>
+        <figcaption class="pl mono lc">Hokusai as an old man — the article’s lead image.
+          It carries no caption at all.</figcaption>
+      </figure>
       <aside id="margin" aria-label="Works this article does not date"></aside>
 
       <div id="guess">
-        <button type="button" id="dragsheet" aria-label="An unlabelled print. Drag it to the age you think he made it.">
+        <button type="button" id="dragsheet" aria-label="An unlabelled print. Drag it to the age you think he made it, then press Enter.">
           <img src="assets/05-great-wave.jpg" alt="An unlabelled print">
         </button>
-        <div id="guess-ask">
-          <h2>Where does this one go?</h2>
-          <p>One print, no label. Drag it along the age axis to the year of his life you think he made it —
-            then drop it. Arrow keys work too.</p>
-          <button type="button" class="skip" id="skip-guess">Skip the guess, show me</button>
-        </div>
         <div id="guess-mark"></div>
       </div>
     </div>
@@ -95,12 +91,10 @@
     <div id="axis"></div>
 
     <div class="plate-foot">
-      <p id="foot-caveat" style="opacity:0">This article dates <span id="nworks">23</span> works. He is said to have
-        made about thirty thousand (p2). What follows is less than a tenth of one per cent of him, and every
-        absence on it is the encyclopaedia’s, not his.</p>
-      <p class="derv mono lc" id="foot-derv" style="opacity:0">Derived, not stated: a year <i>y</i> in this article
-        against a birth of c.&nbsp;1760 gives ages <i>y</i>−1761 to <i>y</i>−1760. Every age on this plate is that
-        arithmetic. ⊘ marks a work the article dates only through its series.</p>
+      <p id="narr">The graph is his sentence and nothing else — eight attainments, eight ages.
+        Three of the eight fall after the end of his life.</p>
+      <p class="derv mono lc" id="foot-derv">Derived, not stated: every age here is a year in this
+        article minus a birth of c.&nbsp;1760.</p>
     </div>
 
   </div>
