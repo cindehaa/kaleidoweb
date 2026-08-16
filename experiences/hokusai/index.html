@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hokusai — Nothing Before Seventy</title>
+<meta name="description" content="Hokusai left a scale that graded his life's work by age. This page draws it and plots his surviving work against it — including the print he made inside the years he wrote off.">
+<!-- §1.1 structure declaration:
+     dominant informational structure = collection of artifacts / imagery;
+     secondary = a single object of overwhelming importance (The Great Wave), which
+     this design demotes by measurement rather than by scale.
+     Organising axis: the subject's own eight-level attainment scale (colophon, 1834).
+     Density curve: a filled climb with an unreachable tail. -->
+<meta name="kaleidoweb:structure" content="collection-of-artifacts; secondary=single-object; organising-axis=subject-supplied ordinal scale; density-curve=filled climb with unreachable tail">
+<link rel="stylesheet" href="scale.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MOVEMENT 0 — THE VERDICT
+     His sentence at display scale, in his own blue. The largest type
+     on the page is a quotation, not a headline. (§2.10)
+     ══════════════════════════════════════════════════════════════ -->
+<section id="m0">
+  <div class="v-top">
+    <span class="mono">Hokusai · English Wikipedia · rev 1367785328 · 2,760 words · 26 images</span>
+    <span class="mono">~9 min &nbsp;·&nbsp; <a class="st" href="#m6">skip the argument, read the article</a></span>
+  </div>
+
+  <div class="v-body">
+    <p class="attrib mono lc">Katsushika Hokusai, in the colophon to <i>One Hundred Views of Mount Fuji</i>, 1834.
+      Quoted in full in the article’s <i>Later life</i> section.</p>
+    <p class="v-pre">of all I drew by my seventieth year</p>
+    <h1 class="v-big">there is nothing worth<br>taking into account</h1>
+    <p class="v-gloss">He was seventy-three when he wrote it, and he had fifteen years left. Wikipedia sets the
+      sentence as an inspirational block quote and moves on. It is not an aside. It is a scale — eight graded
+      attainments with age as the independent variable — and it is the only place in the whole article where
+      anything is measured against anything. This page draws his scale as a graph and plots his surviving work
+      on it. He supplies both axes. Nobody has ever used them.</p>
+  </div>
+
+  <div class="v-foot">
+    <span class="mono">Scroll — the scale builds first, empty</span>
+    <span class="mono">Blue is his voice. Nothing else on this page is blue.</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MOVEMENTS 1–4 — one fixed plate. The axis never scrolls;
+     scrolling changes the plate's state. (binding constraint 1)
+     ══════════════════════════════════════════════════════════════ -->
+<section id="graph" aria-label="The plot: his scale against his age">
+  <div id="plate" data-ground="bone">
+
+    <div class="plate-top">
+      <div class="mv-id">
+        <b id="mv-no">01</b>
+        <span class="mono" id="mv-name">The scale</span>
+      </div>
+      <div class="plate-tools">
+        <button type="button" class="tgl" id="filt" hidden></button>
+        <button type="button" class="tgl" id="ranges-tgl" aria-pressed="false">Date ranges — off</button>
+      </div>
+    </div>
+
+    <div id="chart">
+      <div id="wash"></div>
+      <div id="regs"></div>
+      <div id="seventy"></div>
+      <div id="seventy-lab">seventy</div>
+      <div id="names"></div>
+      <div id="layer"></div>
+      <div id="death"></div>
+      <button type="button" id="portrait" aria-label="Hokusai as an old man — the article's lead image, uncaptioned">
+        <img src="assets/00-hokusai-as-an-old-man.jpg" alt="Hokusai as an old man">
+        <span class="pl mono lc">The article’s lead image. It carries no caption at all.</span>
+      </button>
+      <div id="verdict-count"></div>
+      <aside id="margin" aria-label="Works this article does not date"></aside>
+
+      <div id="guess">
+        <button type="button" id="dragsheet" aria-label="An unlabelled print. Drag it to the age you think he made it.">
+          <img src="assets/05-great-wave.jpg" alt="An unlabelled print">
+        </button>
+        <div id="guess-ask">
+          <h2>Where does this one go?</h2>
+          <p>One print, no label. Drag it along the age axis to the year of his life you think he made it —
+            then drop it. Arrow keys work too.</p>
+          <button type="button" class="skip" id="skip-guess">Skip the guess, show me</button>
+        </div>
+        <div id="guess-mark"></div>
+      </div>
+    </div>
+
+    <div id="axis"></div>
+
+    <div class="plate-foot">
+      <p id="foot-caveat" style="opacity:0">This article dates <span id="nworks">23</span> works. He is said to have
+        made about thirty thousand (p2). What follows is less than a tenth of one per cent of him, and every
+        absence on it is the encyclopaedia’s, not his.</p>
+      <p class="derv mono lc" id="foot-derv" style="opacity:0">Derived, not stated: a year <i>y</i> in this article
+        against a birth of c.&nbsp;1760 gives ages <i>y</i>−1761 to <i>y</i>−1760. Every age on this plate is that
+        arithmetic. ⊘ marks a work the article dates only through its series.</p>
+    </div>
+
+  </div>
+
+  <!-- scroll runway for the four states; the plate above stays put -->
+  <div style="height:100svh"></div>
+  <div style="height:100svh"></div>
+  <div style="height:100svh"></div>
+  <div style="height:100svh"></div>
+  <div style="height:60svh"></div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MOVEMENT 5 — AFTER THE AXIS. Same plate, relabelled: his ladder
+     empty and grey, posterity in vermilion above it. A sequel, not
+     a second lane. (binding constraint 3)
+     ══════════════════════════════════════════════════════════════ -->
+<section id="m5" aria-label="After the axis">
+  <div class="m5-top">
+    <div class="mv-id"><b>05</b><span class="mono">After the axis</span></div>
+    <span class="mono">Vermilion is posterity’s voice. He never speaks again.</span>
+  </div>
+  <h2>His scale ended at a hundred and ten. The <em>eclipse</em> happens entirely outside the range
+    in which he could comment.</h2>
+  <div id="post"></div>
+  <div class="m5-close">
+    <blockquote>“Hokusai is not just one artist among others in the Floating World.
+      He is an island, a continent, a whole world in himself”</blockquote>
+    <p class="att mono lc">Edgar Degas, who collected his woodcuts · p25.
+      <br><br>Derived, not stated: 1849 + 168 = 2017. 2017 − 1760 = 257. The last exhibition on this axis
+      falls at what would have been his two hundred and fifty-seventh year.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     MOVEMENT 6 — THE READING ROOM
+     ══════════════════════════════════════════════════════════════ -->
+<!--READING_ROOM-->
+<section id="m6" aria-label="The reading room">
+  <div class="rr-top">
+    <div class="mv-id"><b>06</b><span class="mono">The reading room</span></div>
+    <span class="mono">Every word of the article, at reading width. Nothing here is collapsed away from find-in-page.</span>
+  </div>
+
+  <div class="rr-head">
+    <h2>Hokusai</h2>
+    <p>Japanese artist (1760–1849) · The whole of the English Wikipedia article as it stood at revision 1367785328,
+    in its own order. Names of works link back to their position on the plot. Everything above this line was an
+    argument built out of two of these paragraphs; everything below is the article itself.</p>
+  </div>
+
+  <div class="rr">
+
+    <p id="p0">Katsushika Hokusai (葛飾 北斎; c. 31 October 1760 – 10 May 1849) was a Japanese ukiyo-e artist of the Edo period, active as a painter and printmaker. His woodblock print series Thirty-Six Views of Mount Fuji includes the iconic print <a class="st toplot" href="#graph" data-work="w-great-wave">The Great Wave off Kanagawa</a>. Hokusai was instrumental in developing ukiyo-e from a style of portraiture largely focused on courtesans and actors into a much broader style of art that focused on landscapes, plants, and animals. His works had a significant influence on Vincent van Gogh and Claude Monet during the wave of Japonisme that spread across Europe in the late 19th century.</p>
+<p id="p1">Hokusai created the monumental Thirty-Six Views of Mount Fuji as a response to a domestic travel boom in Japan and as part of a personal interest in Mount Fuji. It was this series, specifically, <a class="st toplot" href="#graph" data-work="w-great-wave">The Great Wave off Kanagawa</a> and <a class="st toplot" href="#graph" data-work="w-fine-wind">Fine Wind, Clear Morning</a>, that secured his fame both in Japan and overseas.</p>
+<p id="p2">Hokusai was best known for his woodblock ukiyo-e prints, but he worked in a variety of mediums including painting and book illustration. Starting as a young child, he continued working and improving his style until his death, aged 88. In a long and successful career, Hokusai produced over 30,000 paintings, sketches, woodblock prints, and images for picture books. Innovative in his compositions and exceptional in his drawing technique, Hokusai is considered one of the greatest masters in the history of art.</p>
+
+    <h3>Early life</h3>
+    <p id="p3">Hokusai's date of birth is unclear, but is often stated as the 23rd day of the 9th month of the 10th year of the Hōreki era (in the old calendar, or 31 October 1760) to an artisan family, in the Katsushika[ja] district of Edo, the capital of the ruling Tokugawa shogunate (currently Katsushika-ku, Tokyo). At birth, his childhood name was Tokitarō (時太郎). It is believed his father was Nakajima Ise, a mirror-maker for the shōgun. His father never made Hokusai an heir, so it is possible that his mother was a concubine. Hokusai began painting around the age of six, perhaps learning from his father, whose work included the painting of designs around mirrors.</p>
+<p id="p4">Hokusai was known by at least thirty names during his lifetime. While the use of multiple names was a common practice of Japanese artists of the time, his number of pseudonyms exceeds that of any other major Japanese artist. His name changes are so frequent, and so often related to changes in his artistic production and style, that they are used for breaking his life up into periods.</p>
+<p id="p5">At the age of 12, his father sent him to work in a bookshop and lending library, a popular institution in Japanese cities, where reading books made from woodcut blocks was a popular entertainment of the middle and upper classes. At 14, he worked as an apprentice to a woodcarver, until the age of 18, when he entered the studio of Katsukawa Shunshō. Shunshō was an artist of ukiyo-e, a style of woodblock prints and paintings that Hokusai would master, and head of the so-called Katsukawa school. Ukiyo-e, as practised by artists like Shunshō, focused on images of the courtesans (bijin-ga) and kabuki actors (yakusha-e) who were popular in Japan's cities at the time.</p>
+<p id="p6">After a year, Hokusai's name changed for the first time, when he was dubbed Shunrō by his master. It was under this name that he published his first prints, a series of pictures of kabuki actors published in 1779. During the decade he worked in Shunshō's studio, Hokusai was married to his first wife, about whom very little is known except that she died in the early 1790s. He married again in 1797, although this second wife also died after a short time. He fathered two sons and three daughters with these two wives, and his youngest daughter Ei, also known as Ōi, eventually became an artist and his assistant. <a class="st toplot" href="#graph" data-work="w-fireworks">Fireworks in the Cool of Evening at Ryogoku Bridge in Edo</a> (c. 1788–89) dates from this period of Hokusai's life.</p>
+<p id="p7">Upon the death of Shunshō in 1793, Hokusai began exploring other styles of art, including European styles he was exposed to through French and Dutch copper engravings he was able to acquire. He was soon expelled from the Katsukawa school by Shunkō, the chief disciple of Shunshō, possibly due to his studies at the rival Kanō school. This event was, in his own words, inspirational: "What really motivated the development of my artistic style was the embarrassment I suffered at Shunkō's hands".</p>
+<p id="p8">Hokusai also changed the subjects of his works, moving away from the images of courtesans and actors that were the traditional subjects of ukiyo-e. Instead, his work became focused on landscapes and images of the daily life of Japanese people from a variety of social levels. This change of subject was a breakthrough in ukiyo-e and in Hokusai's career.</p>
+    <figure><img src="assets/01-courtesan-asleep.jpg" alt="Courtesan Asleep, a bijin-ga surimono print, c. late 18th to early 19th century" loading="lazy">
+<figcaption class="mono lc">Courtesan Asleep, a bijin-ga surimono print, c. late 18th to early 19th century</figcaption></figure>
+    <figure><img src="assets/02-ryogoku-fireworks.jpg" alt="Fireworks in the Cool of Evening at Ryogoku Bridge in Edo, print, c. 1788–89" loading="lazy">
+<figcaption class="mono lc">Fireworks in the Cool of Evening at Ryogoku Bridge in Edo, print, c. 1788–89</figcaption></figure>
+
+    <h3>Middle period</h3>
+    <p id="p9">The next period saw Hokusai's association with the Tawaraya School and the adoption of the name "Tawaraya Sōri". He produced many privately commissioned prints for special occasions (surimono), and illustrations for books of humorous poems (kyōka ehon) during this time. In 1798, Hokusai passed his name on to a pupil and set out as an independent artist, free from ties to a school for the first time, adopting the name Hokusai Tomisa.</p>
+<p id="p10">By 1800, Hokusai was further developing his use of ukiyo-e for purposes other than portraiture. He had also adopted the name he would most widely be known by, Katsushika Hokusai, the former name referring to the part of Edo where he was born, the latter meaning 'north studio', in honour of the North Star, symbol of a deity important in his religion of Nichiren Buddhism. That year, he published two collections of landscapes, <a class="st toplot" href="#graph" data-work="w-famous-sights">Famous Sights of the Eastern Capital</a> and <a class="st toplot" href="#graph" data-work="w-eight-views">Eight Views of Edo</a> (modern Tokyo). He also began to attract students of his own, eventually teaching 50 pupils over the course of his life.</p>
+<p id="p11">He became increasingly famous over the next decade, both due to his artwork and his talent for self-promotion. During an Edo festival in 1804, he created an enormous portrait of the Buddhist prelate Daruma, said to be 200 square meters, using a broom and buckets full of ink. Another story places him in the court of the shōgun Tokugawa Ienari, invited there to compete with another artist who practised more traditional brushstroke painting. Hokusai painted a blue curve on paper, then chased a chicken whose feet had been dipped in red paint across the image. He described the painting to the shōgun as a landscape showing the Tatsuta River with red maple leaves floating in it, winning the competition.</p>
+<p id="p12">Between 1804 and 1815, Hokusai collaborated with the popular novelist Takizawa Bakin on a series of illustrated books. Especially popular was the fantasy novel <a class="st toplot" href="#graph" data-work="w-chinsetsu">Chinsetsu Yumiharizuki</a> (Strange Tales of the Crescent Moon, 1807–1811) with Minamoto no Tametomo as the main character, and Hokusai gained fame with his creative and powerful illustrations, but the collaboration ended after thirteen works. There are various theories as to why they dissolved their cooperation, such as discordant personalities and conflicting opinions on how to draw illustrations. Hokusai also created several albums of erotic art (shunga). His most famous image in this genre is <a class="st toplot" href="#graph" data-work="w-kinoe">The Dream of the Fisherman's Wife</a>, which depicts a young woman entwined sexually with a pair of octopuses, from Kinoe no Komatsu, a three-volume book of shunga from 1814.</p>
+<p id="p13">Hokusai paid close attention to the production of his work. In letters during his involvement with Toshisen Ehon, a Japanese edition of an anthology of Chinese poetry, Hokusai wrote to the publisher that the blockcutter Egawa Tomekichi, with whom Hokusai had previously worked and whom he respected, had strayed from Hokusai's style in the cutting of certain heads. He also wrote directly to another blockcutter involved in the project, Sugita Kinsuke, stating that he disliked the Utagawa school style in which Kinsuke had cut the figure's eyes and noses and that amendments were needed for the final prints to be true to his style. In his letter, Hokusai included examples of both his style of illustrating eyes and noses and the Utagawa school style.</p>
+<p id="p14">In 1811, at the age of 51, Hokusai changed his name to Taito and entered the period in which he created the <a class="st toplot" href="#graph" data-work="w-manga1">Hokusai Manga</a> and various etehon, or art manuals. These manuals beginning in 1812 with <a class="st toplot" href="#graph" data-work="w-quick-lessons">Quick Lessons in Simplified Drawing</a>, were intended as a convenient way to make money and attract more students. The first volume of Manga (meaning random drawings) was published in 1814 and was an immediate success. By 1820, he had produced twelve volumes (with three more published posthumously) which include thousands of drawings of objects, plants, animals, religious figures, and everyday people, often with humorous overtones.</p>
+<p id="p15">On 5 October 1817, he painted the <a class="st toplot" href="#graph" data-work="w-daruma-nagoya">Great Daruma</a> outside the Hongan-ji Nagoya Betsuin in Nagoya. This portrait in ink on paper measured 18 × 10.8 metres, and the event drew huge crowds. The feat was recounted in a popular song and he received the name "Darusen" or "Daruma Master" Although the original was destroyed in 1945, Hokusai's promotional handbills from that time survived and are preserved at the Nagoya City Museum.</p>
+<p id="p16">In 1820, Hokusai changed his name yet again, this time to Iitsu, a change which marked the start of a period in which he secured fame as an artist throughout Japan. His most celebrated work, Thirty-six Views of Mount Fuji, including the famous <a class="st toplot" href="#graph" data-work="w-great-wave">The Great Wave off Kanagawa</a> and Red Fuji was produced in the early 1830s. The results of Hokusai's perspectival studies in Manga can be seen here in The Great Wave where he uses what would have been seen as a western perspective to represent depth and volume. It proved so popular that ten more prints were later added to the series. Among the other popular series of prints he made during this time are <a class="st toplot" href="#graph" data-work="u-kirifuri">A Tour of the Waterfalls of the Provinces</a>, <a class="st toplot" href="#graph" data-work="u-choshi">Oceans of Wisdom</a> and <a class="st toplot" href="#graph" data-work="u-tenman">Unusual Views of Celebrated Bridges in the Provinces</a>. He also began producing a number of detailed individual images of flowers and birds (kachō-e), including the extraordinarily detailed Poppies and Flock of Chickens.</p>
+    <figure><img src="assets/03-manga-bathers.jpg" alt="Image of bathers from the Hokusai Manga" loading="lazy">
+<figcaption class="mono lc">Image of bathers from the Hokusai Manga</figcaption></figure>
+    <figure><img src="assets/04-great-daruma-1817.jpg" alt="Contemporary print of Hokusai painting the Great Daruma in 1817" loading="lazy">
+<figcaption class="mono lc">Contemporary print of Hokusai painting the Great Daruma in 1817</figcaption></figure>
+    <figure><img src="assets/05-great-wave.jpg" alt="The Great Wave off Kanagawa, Hokusai's most famous print, the first in the series Thirty-six Views of Mount Fuji, c. 1829–1832" loading="lazy">
+<figcaption class="mono lc">The Great Wave off Kanagawa, Hokusai's most famous print, the first in the series Thirty-six Views of Mount Fuji, c. 1829–1832</figcaption></figure>
+    <figure><img src="assets/06-fine-wind-clear-morning.jpg" alt="Fine Wind, Clear Morning (or Red Fuji),  from Thirty-six Views of Mount Fuji" loading="lazy">
+<figcaption class="mono lc">Fine Wind, Clear Morning (or Red Fuji),  from Thirty-six Views of Mount Fuji</figcaption></figure>
+
+    <h3>Later life</h3>
+    <p id="p17">The next period, beginning in 1834, saw Hokusai working under the name "Gakyō Rōjin Manji" (画狂老人卍; "The Old Man Mad About Art"). It was at this time that he produced <a class="st toplot" href="#graph" data-work="w-100-views">One Hundred Views of Mount Fuji</a>, another significant series, generally considered "the masterpiece among his landscape picture books".</p>
+<p id="p18">In the colophon to this work, Hokusai writes:</p>
+
+    <blockquote class="colo">From the age of six, I had a passion for copying the form of things and since the age of fifty I have published many drawings, yet of all I drew by my seventieth year there is nothing worth taking into account. At seventy-three years I partly understood the structure of animals, birds, insects and fishes, and the life of grasses and plants. And so, at eighty-six I shall progress further; at ninety I shall even further penetrate their secret meaning, and by one hundred I shall perhaps truly have reached the level of the marvellous and divine. When I am one hundred and ten, each dot, each line will possess a life of its own.
+      <cite class="mono lc">The colophon to One Hundred Views of Mount Fuji, quoted in the article’s Later life section.
+      This is the whole of the scale the plot above is drawn from — eight attainments, eight ages, three of them
+      past the end of his life.</cite></blockquote>
+
+    <p id="p19"><a class="st toplot" href="#graph" data-work="w-true-mirror">A True Mirror of Chinese and Japanese Poetry</a> (Shika shashin kyo), produced in about 1833 to 1834, was printed in extra-long vertical formats resembling the form of Chinese hand scrolls. Prints in this series include poems by Chinese and Japanese poets combined with scenes in those countries, and scenes from Noh plays (a form of dance theater predating kabuki). Ten designs in this series survive. Hokusai's Great Picture Book of Everything, now in the British Museum, a set of drawings from 1820s through 1840s, offers unique insights into his practices since the book was never made, so the drawings never destroyed as typically happened in the woodblock making process. These images focus on Buddhist India, ancient China and the natural world.</p>
+<p id="p20">Hokusai's final print series, produced around 1835 to 1836, was called <a class="st toplot" href="#graph" data-work="w-100-poems">One Hundred Poems Explained by a Nurse</a> (Hyakunin isshu tuba ga etoki). The series was never published in full, perhaps due to financial hardships faced by Hokusai's publishers during Japan's economic downturn in the mid-1830's. These prints featured scenes with the poems inscribed in a square. Each print also contains the series title listed in its own vertical rectangle.</p>
+<p id="p21">In 1839, a fire destroyed Hokusai's studio and much of his work. By this time, his career was beginning to fade as younger artists such as Andō Hiroshige became increasingly popular. At the age of 83, Hokusai traveled to Obuse in Shinano Province (now Nagano Prefecture) at the invitation of a wealthy farmer, Takai Kozan, where he stayed for several years. During his time in Obuse, he created several masterpieces, including the <a class="st toplot" href="#graph" data-work="u-masculine">Masculine Wave</a> and the <a class="st toplot" href="#graph" data-work="w-feminine-wave">Feminine Wave</a>. Between 1842 and 1843, in what he described as "daily exorcisms" (nisshin joma), Hokusai painted Chinese lions (shishi) every morning in ink on paper as a talisman against misfortune. Hokusai continued working almost until the end, painting <a class="st toplot" href="#graph" data-work="w-dragon-smoke">The Dragon of Smoke Escaping from Mt Fuji</a> and <a class="st toplot" href="#graph" data-work="w-tiger">Tiger in the Snow</a> in early 1849.</p>
+<p id="p22">Constantly seeking to produce better work, he apparently exclaimed on his deathbed, "If only Heaven will give me just another ten years ... Just another five more years, then I could become a real painter". He died on 10 May 1849 and was buried at the Seikyō-ji (誓教寺) in Tokyo (Taito Ward). A haiku he composed shortly before his death reads: "Though as a ghost, I shall lightly tread, the summer fields".</p>
+    <figure><img src="assets/07-portrait-eisen.png" alt="Portrait of Hokusai by disciple Keisai Eisen" loading="lazy">
+<figcaption class="mono lc">Portrait of Hokusai by disciple Keisai Eisen</figcaption></figure>
+
+    <h3>Selected works</h3>
+    <p class="mono lc" style="max-width:660px">The article’s own gallery: seventeen works and not one word of prose
+    around them. Eight of the seventeen carry no date, which is why the plot above has a margin.</p>
+    <ol class="sel"><li><span class="num">01</span><a class="st toplot" href="#graph" data-work="w-thunderstorm">Thunderstorm Beneath the Summit, from Thirty-six Views of Mount Fuji</a></li>
+<li><span class="num">02</span><a class="st toplot" href="#graph" data-work="u-kirifuri">Kirifuri waterfall at Kurokami Mountain in Shimotsuke, from A Tour of Japanese Waterfalls</a></li>
+<li><span class="num">03</span><a class="st toplot" href="#graph" data-work="w-kinoe">The Dream of the Fisherman's Wife (1814), included in Kinoe no Komatsu, a three-volume book of shunga erotica</a></li>
+<li><span class="num">04</span><a class="st toplot" href="#graph" data-work="w-cuckoo">Cuckoo and Azaleas, 1834from the Small Flower series</a></li>
+<li><span class="num">05</span><a class="st toplot" href="#graph" data-work="w-quick-lessons">Egrets from Quick Lessons in Simplified Drawing</a></li>
+<li><span class="num">06</span><a class="st toplot" href="#graph" data-work="u-carp">Carp Leaping up a Cascade</a></li>
+<li><span class="num">07</span><a class="st toplot" href="#graph" data-work="u-oiwa">The Ghost of Oiwa, from One Hundred Ghost Stories</a></li>
+<li><span class="num">08</span><a class="st toplot" href="#graph" data-work="u-stilllife">Still Life, surimono print</a></li>
+<li><span class="num">09</span><a class="st toplot" href="#graph" data-work="w-kajikazawa">Kajikazawa in Kai Province, from Thirty-six Views of Mount Fuji</a></li>
+<li><span class="num">10</span><a class="st toplot" href="#graph" data-work="u-tenman">Tenma Bridge in Setsu Province, from Rare Views of Famous Japanese Bridges</a></li>
+<li><span class="num">11</span><a class="st toplot" href="#graph" data-work="u-choshi">Chōshi in Shimosha, from Oceans of Wisdom</a></li>
+<li><span class="num">12</span><a class="st toplot" href="#graph" data-work="w-100-views">"The Big Wave" from One Hundred Views of Mount Fuji</a></li>
+<li><span class="num">13</span><a class="st toplot" href="#graph" data-work="u-amida">Amida Falls, from A Tour of Japanese Waterfalls</a></li>
+<li><span class="num">14</span><a class="st toplot" href="#graph" data-work="w-obuse-dragon">Dragon on the Higashimachi Festival Float, Obuse, 1844</a></li>
+<li><span class="num">15</span><a class="st toplot" href="#graph" data-work="w-feminine-wave">Feminine Wave, painted while living in Obuse, 1845</a></li>
+<li><span class="num">16</span><a class="st toplot" href="#graph" data-work="w-dragon-smoke">The Dragon of Smoke Escaping From Mount Fuji, painting, 1849</a></li>
+<li><span class="num">17</span><a class="st toplot" href="#graph" data-work="w-tiger">Tiger in the Snow, hanging scroll, ink and colour on silk, 1849</a></li></ol>
+
+    <h3>Influence on art and culture</h3>
+    <p id="p23">Hokusai had achievements in various fields as an artist. He made designs for book illustrations and woodblock prints, sketches, and paintings for over 70 years. Hokusai was an early experimenter with western linear perspective among Japanese artists. Hokusai himself was influenced by Sesshū Tōyō and other styles of Chinese painting. His influence stretches across the globe to his western contemporaries in nineteenth-century Europe with Japonism, which started with a craze for collecting Japanese art, particularly ukiyo-e. Some of the first samples were to be seen in Paris, when in about 1856, the French printmaker, designer and colleague of many Impressionist artists such as Édouard Manet, Félix Bracquemond first came across a copy of a Hokusai sketchbook at the workshop of August Dalatre, his printer.</p>
+<p id="p24">With the sketchbook as his influence Bracquemond designed the "Rousseau Service", an elegant set of dinnerware, on behalf of Francois-Eugene Rousseau, the owner of a glass and ceramics shop. Exhibited at the Universal Exposition in Paris in 1867, the Rousseau Service was a success both critically and commercially and was reissued in several editions over the years. The Rousseau Service featured images of birds and fish copied from the Japanese book illustrations and placed asymmetrically against a white background for a look that would have been very modern at that time.</p>
+<p id="p25">Hokusai also influenced the Impressionism movement, with themes echoing his work appearing in the work of Claude Monet and Pierre-Auguste Renoir, as well as Art Nouveau, or Jugendstil in Germany. His woodcuts were collected by many European artists, including Degas, Gauguin, Klimt, Franz Marc, August Macke, Édouard Manet, and van Gogh. Degas said of him, "Hokusai is not just one artist among others in the Floating World. He is an island, a continent, a whole world in himself". Hermann Obrist's whiplash motif, or Peitschenhieb, which came to exemplify the new movement, is visibly influenced by Hokusai's work.[original research?]</p>
+<p id="p26">The French composer Claude Debussy's tone poem La Mer, which debuted in 1905, is believed to have been inspired by Hokusai's print The Great Wave. The composer had an impression of it hanging in his living room and specifically requested that it be used on the cover of the published score, which was widely distributed, and the music itself incorporated Japanese-inflected harmonies.</p>
+<p id="p27">Even after his death, exhibitions of his artworks continue to grow. In 2005, Tokyo National Museum held a Hokusai exhibition which had the largest number of visitors of any exhibit there that year. Several paintings from the Tokyo exhibition were also exhibited in the United Kingdom. The British Museum held the first exhibition of Hokusai's later year artworks including 'The Great Wave' in 2017.</p>
+<p id="p28">Hokusai inspired the Hugo Award–winning short story by science fiction author Roger Zelazny, "24 Views of Mt. Fuji, by Hokusai", in which the protagonist tours the area surrounding Mount Fuji, stopping at locations painted by Hokusai. A 2011 book on mindfulness closes with the poem "Hokusai Says" by Roger Keyes, preceded with the explanation that "ometimes poetry captures the soul of an idea better than anything else".</p>
+<p id="p29">In the 1985 Encyclopædia Britannica, Richard Lane characterizes Hokusai as "since the later 19th century [having] impressed Western artists, critics and art lovers alike, more, possibly, than any other single Asian artist".</p>
+<p id="p30">'<a class="st toplot" href="#graph" data-work="u-store">Store Selling Picture Books and Ukiyo-e</a>' by Hokusai shows how ukiyo-e during the time was actually sold; it shows how these prints were sold at local shops, and ordinary people could buy ukiyo-e. Unusually in this image, Hokusai used a hand-colored approach instead of using several separated woodblocks.</p>
+<p id="p31">His youngest daughter Ei has her own manga and film called Miss Hokusai.</p>
+<p id="p32">A biographical film about the painter was released in Japan on 28 May 2021. It was premiered at the 33rd Tokyo International Film Festival.</p>
+    <figure><img src="assets/25-debussy-la-mer.jpg" alt="Cover of Debussy's La Mer, 1905" loading="lazy">
+<figcaption class="mono lc">Cover of Debussy's La Mer, 1905</figcaption></figure>
+
+    <h3>The eight names this article documents</h3>
+    <p class="mono lc" style="max-width:660px">p4: “Hokusai was known by at least thirty names during his lifetime…
+    His name changes are so frequent, and so often related to changes in his artistic production and style, that they
+    are used for breaking his life up into periods.” The article states the right periodisation and then files
+    everything under three headings instead. Six of these eight are dated, and those six are the ticks along the top
+    of the plot.</p>
+    <ul class="names-tbl">
+      <li><span class="nm">Tokitarō</span><span class="mn">Childhood name at birth</span>
+  <span class="ag mono">— · p3</span></li>
+<li><span class="nm">Shunrō</span><span class="mn">First art name; adopted after one year studying with Katsukawa Shunshō; used for first published prints in 1779</span>
+  <span class="ag mono">age 18–19 · p6</span></li>
+<li><span class="nm">Tawaraya Sōri</span><span class="mn">Associated with Tawaraya School; used during middle period</span>
+  <span class="ag mono">— · p9</span></li>
+<li><span class="nm">Hokusai Tomisa</span><span class="mn">Adopted 1798 when he became independent artist, free from school ties; passed previous name to a pupil</span>
+  <span class="ag mono">age 37–38 · p9</span></li>
+<li><span class="nm">Katsushika Hokusai</span><span class="mn">Adopted by 1800; the name he would be most widely known by; Katsushika refers to district of Edo where he was born; Hokusai means north studio in honor of the North Star, symbol of deity important in Nichiren Buddhism</span>
+  <span class="ag mono">age 39–40 · p10</span></li>
+<li><span class="nm">Taito</span><span class="mn">Adopted 1811 at age 51; marked start of period creating Hokusai Manga and art manuals</span>
+  <span class="ag mono">age 50–51 · p14</span></li>
+<li><span class="nm">Iitsu</span><span class="mn">Adopted 1820; change marked start of period in which he secured fame as artist throughout Japan</span>
+  <span class="ag mono">age 59–60 · p16</span></li>
+<li><span class="nm">Gakyō Rōjin Manji</span><span class="mn">Japanese 画狂老人卍; The Old Man Mad About Art; used beginning 1834; period in which he produced One Hundred Views of Mount Fuji</span>
+  <span class="ag mono">age 73–74 · p17</span></li>
+      <li><span class="nm blank">and at least twenty-two more</span><span class="mn blank">not documented in this
+      article</span><span class="ag mono">p4</span></li>
+    </ul>
+
+    <h3>End matter</h3>
+    <details><summary>General and cited references — 7</summary><ul><li>Calza, Gian Carlo (2003). Hokusai. Phaidon. ISBN 978-0-7148-4457-2.</li><li>Clark, Timothy ed. (2017). Hokusai: Beyond the Great Wave. London: Thames &amp; Hudson/The British Museum. ISBN 978-0-50009-406-8</li><li>Lane, Richard (1978). Images from the Floating World: The Japanese Print. Oxford: Oxford University Press. ISBN 978-0-19-211447-1; OCLC 5246796.</li><li>Nagata, Seiji (1995). Hokusai: Genius of the Japanese Ukiyo-e. Tokyo: Kodansha International. ISBN 978-4-770-01928-8</li><li>Ray, Deborah Kogan (2001). Hokusai: The Man Who Painted a Mountain. New York: Frances Foster Books. ISBN 978-0-374-33263-1.</li><li>Smith, Henry D. II (1988). Hokusai: One Hundred Views of Mt. Fuji. New York: George Braziller, Inc., Publishers. ISBN 978-0-8076-1195-1.</li><li>Weston, Mark (1999). Giants of Japan: The Lives of Japan's Most Influential Men and Women. New York: Kodansha International. ISBN 978-1-56836-286-1.</li></ul></details>
+    <details><summary>Further reading — general biography — 8</summary><ul><li>Bowie, Theodore (1964). The Drawings of Hokusai. Indiana University Press, Bloomington.</li><li>Sadao Kikuchi (1970), Hokusai (Osaka: Hoikusha).</li><li>Forrer, Matthi (1988). Hokusai Rizzoli, New York. ISBN 978-0-8478-0989-9.</li><li>Forrer, Matthi; van Gulik, Willem R., and Kaempfer, Heinz M. (1982). Hokusai and His School: Paintings, Drawings and Illustrated Books. Frans Halsmuseum, Haarlem. ISBN 978-90-70216-02-3</li><li>Hillier, Jack (1955). Hokusai: Paintings, Drawings and Woodcuts. Phaidon, London.</li><li>Hillier, Jack (1980). Art of Hokusai in Book Illustration. Sotheby Publications, London. ISBN 978-0-520-04137-0.</li><li>Lane, Richard (1989). Hokusai: Life and Work. E.P. Dutton. ISBN 978-0-525-24455-4.</li><li>van Rappard-Boon, Charlotte (1982). Hokusai and his School: Japanese Prints c. 1800–1840 (Catalogue of the Collection of Japanese Prints, Rijksmuseum, Part III). Rijksmuseum, Amsterdam.</li></ul></details>
+    <details><summary>Further reading — specific works of art — 10</summary><ul><li>Hillier, Jack, and Dickens, F.W. (1960). Fugaku Hiyaku-kei (One Hundred Views of Fuji by Hokusai). Frederick, New York.</li><li>Kondo, Ichitaro (1966). Trans. Terry, Charles S. The Thirty-six Views of Mount Fuji by Hokusai. East-West Center, Honolulu.</li><li>Michener, James A. (1958). The Hokusai Sketch-Books: Selections from the 'Manga'. Charles E. Tuttle, Rutland.</li><li>Morse, Peter (1989). Hokusai: One Hundred Poets. George Braziller, New York. ISBN 978-0-8076-1213-2.</li><li>Narazaki, Muneshige (1968). Trans. Bester, John. Masterworks of Ukiyo-E: Hokusai – The Thirty-Six Views of Mt. Fuji. Kodansha, Tokyo.</li><li>Balcou, Amelie (2019). "Hokusai: Thirty-Six Views of Mount Fuji". Prestel. ISBN 978-3791386072.</li><li>Marks, Andreas (2021). "Thirty-six Views of Mount Fuji". Taschen, New York. ISBN 978-3836575720.</li><li>Price, Jonathan Reeve (2020). "Viewing Hokusai Viewing Mount Fuji". Communication Circle, Albuquerque, New Mexico. ISBN 978-0-9719954-7-5.</li><li>Thompson, Sarah (2019). "Hokusai's Landscapes: The Complete Series". MFA Publications, Boston. ISBN 978-0878468669.</li><li>Zelazny, Roger (2000). "24 Views of Mount Fuji". In "Cthulu 2000: Stories" (1999). Arkham House, Sauk City, WI. ISBN 978-0345422033</li></ul></details>
+    <details><summary>Further reading — art monographs — 3</summary><ul><li>Goncourt, Edmond de (2014). Essential Hokusai. Bournemouth, Parkstone International. ISBN 978-1-78310-128-3.</li><li>Goncourt, Edmond de (2014). Hokusai Mega Square. Bournemouth, Parkstone International. ISBN 978-1-78310-566-3.</li><li>Andreas Marks: Hokusai (XXL). Taschen, Cologne 2024, ISBN 978-3-8365-9188-1.</li></ul></details>
+    <details><summary>External links — prints — 6</summary><ul><li>Hokusai complete works</li><li>Ukiyo-e Prints by Katsushika Hokusai</li><li>Hokusai prints at the Museum of Fine Arts, Boston</li><li>Hokusai's works at Tokyo Digital Museum Archived 3 October 2008 at the Wayback Machine</li><li>Hokusai's works at the University of Michigan Museum of Art Archived 11 November 2023 at the Wayback Machine</li><li>Hokusai works at the Bibliotheque Nationale de France (Paris)</li></ul></details>
+    <details><summary>External links — biographies — 1</summary><ul><li>Biography of Katsushika Hokusai, British Museum</li></ul></details>
+
+    <p class="backtoplot mono lc" style="margin-top:34px">Source: <a class="ext" href="https://en.wikipedia.org/wiki/Hokusai">https://en.wikipedia.org/wiki/Hokusai</a>
+    — revision 1367785328. Every fact on this page comes from that article and nothing else. The ages,
+    the counts and the arithmetic that produced them are this page’s, and are marked wherever they appear.</p>
+
+  </div>
+</section>
+
+<!-- persistent chrome: movement index + global pause (§4.9, §5.2) -->
+<div id="chrome">
+  <button type="button" id="pause" aria-pressed="false">Motion — running</button>
+  <nav id="idx" aria-label="Movements">
+    <button type="button" data-go="m0" aria-current="false">00 Verdict</button>
+    <button type="button" data-go="m1" aria-current="true">01 Scale</button>
+    <button type="button" data-go="m2" aria-current="false">02 Guess</button>
+    <button type="button" data-go="m3" aria-current="false">03 Works</button>
+    <button type="button" data-go="m4" aria-current="false">04 Tail</button>
+    <button type="button" data-go="m5" aria-current="false">05 After</button>
+    <button type="button" data-go="m6" aria-current="false">06 Read</button>
+  </nav>
+</div>
+
+<!-- inspector: ≥55% of the viewport, paper tone and foxing untouched (§6.6) -->
+<div id="insp" role="dialog" aria-modal="true" aria-label="Work">
+  <div class="scrim"></div>
+  <div class="box">
+    <button type="button" class="close" id="insp-close">Close · esc</button>
+    <div class="fig" id="insp-fig"></div>
+    <div class="meta" id="insp-meta"></div>
+  </div>
+</div>
+
+<script src="scale.js"></script>
+</body>
+</html>

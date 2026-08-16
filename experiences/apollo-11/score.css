@@ -307,6 +307,9 @@ ol.crit li::before{
   border-top:1px solid var(--ink-18);border-bottom:1px solid var(--ink-18);
   background:repeating-linear-gradient(180deg,transparent 0 5px,var(--ink-06) 5px 6px);
 }
+/* the staff rules of the un-drawn duration stop at its own words */
+.silence>*{background:var(--paper);padding:3px 12px}
+.silence>*:first-child{padding-left:0}
 .silence .d{font-family:var(--mono);font-size:26px;font-weight:500;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
 .silence .l{font-family:var(--cond);font-weight:600;font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-62)}
 .silence .w{font-family:var(--serif);font-size:16.5px;line-height:1.5;color:var(--ink-62);margin-left:auto;text-align:right;max-width:var(--w-arg)}

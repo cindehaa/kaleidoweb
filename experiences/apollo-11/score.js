@@ -758,7 +758,7 @@
   /* The reader must always know WHERE, not only WHEN. */
   var lastMV = null;
   function setWhere(mv) {
-    if (mv === lastMV) return;
+    if (!mv || mv === lastMV) return;   // between movements: hold the last name
     lastMV = mv;
     var no = mv ? (mv.dataset.no || '') : '';
     var nm = mv ? (mv.dataset.name || '') : '';
@@ -798,9 +798,11 @@
       progEl.style.setProperty('--pct', (dh > 0 ? clamp(y / dh, 0, 1) * 100 : 0).toFixed(2) + '%');
     }
 
-    if (!mv || mv.dataset.clock === 'off') {
+    // between two movements (a silence band, an ink plate): hold the last
+    // reading rather than blanking — the reader has not left the score.
+    if (mv && mv.dataset.clock === 'off') {
       setOff();
-    } else {
+    } else if (mv) {
       // staves belonging to this movement
       var mine = staves.filter(function (s) { return s.mv === mv; });
       var inside = null, before = null, after = null;
