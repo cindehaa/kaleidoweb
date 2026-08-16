@@ -1,0 +1,424 @@
+{
+  "claims": [
+    {
+      "text": "The Transformer is a new simple network architecture based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+      "src": "p3"
+    },
+    {
+      "text": "Transformer models are superior in quality while being more parallelizable and requiring significantly less time to train compared to recurrent and convolutional approaches.",
+      "src": "abstract"
+    },
+    {
+      "text": "The Transformer achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over existing best results including ensembles by over 2 BLEU.",
+      "src": "abstract"
+    },
+    {
+      "text": "The Transformer establishes a new single-model state-of-the-art BLEU score of 41.8 on WMT 2014 English-to-French after training for 3.5 days on eight GPUs.",
+      "src": "abstract"
+    },
+    {
+      "text": "The Transformer is the first transduction model relying entirely on self-attention to compute representations of its input and output without using sequence-aligned RNNs or convolution.",
+      "src": "p7"
+    },
+    {
+      "text": "The Transformer generalizes well to other tasks such as English constituency parsing.",
+      "src": "abstract"
+    }
+  ],
+  "mechanism": [
+    {
+      "step": 1,
+      "title": "Input embedding",
+      "detail": "Convert input tokens to vectors using learned embeddings of dimension d_model. Multiply embedding weights by sqrt(d_model).",
+      "src": "p27"
+    },
+    {
+      "step": 2,
+      "title": "Positional encoding",
+      "detail": "Add positional encodings to input embeddings at the bottoms of encoder and decoder stacks. Use sine and cosine functions of different frequencies: PE(pos,2i) = sin(pos/10000^(2i/d_model)) and PE(pos,2i+1) = cos(pos/10000^(2i/d_model)).",
+      "src": "p28"
+    },
+    {
+      "step": 3,
+      "title": "Encoder stack",
+      "detail": "Stack of N=6 identical layers. Each layer has two sub-layers: (1) multi-head self-attention mechanism, (2) position-wise fully connected feed-forward network. Residual connection around each sub-layer followed by layer normalization: LayerNorm(x + Sublayer(x)). All sub-layers produce outputs of dimension d_model=512.",
+      "src": "p10"
+    },
+    {
+      "step": 4,
+      "title": "Multi-head self-attention in encoder",
+      "detail": "Linearly project queries, keys, values h=8 times with different learned projections to d_k, d_k, d_v dimensions respectively. Perform attention function on each projected version in parallel, yielding d_v-dimensional outputs. Concatenate and project to final values. In practice: h=8 heads, d_k=d_v=d_model/h=64.",
+      "src": "p17"
+    },
+    {
+      "step": 5,
+      "title": "Feed-forward network in encoder",
+      "detail": "Position-wise fully connected feed-forward network applied to each position separately: FFN(x) = max(0, xW_1 + b_1)W_2 + b_2. Linear transformation with ReLU activation followed by another linear transformation. Input/output dimension d_model=512, inner-layer dimension d_ff=2048.",
+      "src": "p25"
+    },
+    {
+      "step": 6,
+      "title": "Decoder stack",
+      "detail": "Stack of N=6 identical layers. Each layer has three sub-layers: (1) multi-head self-attention with masking to prevent attending to subsequent positions, (2) multi-head encoder-decoder attention over encoder stack output, (3) position-wise feed-forward network. Residual connections and layer normalization around each sub-layer.",
+      "src": "p11"
+    },
+    {
+      "step": 7,
+      "title": "Masked self-attention in decoder",
+      "detail": "Self-attention layer preventing positions from attending to subsequent positions by masking out (setting to -infinity) all softmax input values corresponding to illegal connections. Ensures predictions for position i depend only on known outputs at positions less than i.",
+      "src": "p11"
+    },
+    {
+      "step": 8,
+      "title": "Encoder-decoder attention",
+      "detail": "Queries come from previous decoder layer, memory keys and values come from encoder output. Allows every position in decoder to attend over all positions in input sequence.",
+      "src": "p22"
+    },
+    {
+      "step": 9,
+      "title": "Output projection and softmax",
+      "detail": "Linear transformation converts decoder output to predicted next-token probabilities. Share same weight matrix between two embedding layers and pre-softmax linear transformation.",
+      "src": "p27"
+    }
+  ],
+  "concepts": [
+    {
+      "name": "Attention function",
+      "definition": "Maps a query and a set of key-value pairs to an output, computed as a weighted sum of values where weights are determined by a compatibility function of the query with corresponding keys.",
+      "equation": "eq0",
+      "src": "p12"
+    },
+    {
+      "name": "Scaled dot-product attention",
+      "definition": "Computes attention by taking dot products of queries with keys, dividing each by sqrt(d_k), and applying softmax to obtain weights on values.",
+      "equation": "eq13",
+      "src": "p13"
+    },
+    {
+      "name": "Multi-head attention",
+      "definition": "Instead of single attention function, linearly project queries, keys, values h times with different learned projections, perform attention in parallel on each, concatenate and project results. Allows model to jointly attend to information from different representation subspaces.",
+      "equation": "eq14",
+      "src": "p17"
+    },
+    {
+      "name": "Self-attention",
+      "definition": "An attention mechanism relating different positions of a single sequence in order to compute a representation of the sequence. All keys, values, and queries come from the same place (previous layer output).",
+      "src": "p5"
+    },
+    {
+      "name": "Positional encoding",
+      "definition": "Information about relative or absolute position of tokens in sequence added to input embeddings. Uses sinusoidal functions of different frequencies to allow model to learn to attend by relative positions.",
+      "equation": "eq19",
+      "src": "p28"
+    },
+    {
+      "name": "Encoder-decoder attention",
+      "definition": "Multi-head attention where queries come from decoder layer and keys/values come from encoder output, allowing decoder to attend over input sequence.",
+      "src": "p22"
+    },
+    {
+      "name": "Residual connection",
+      "definition": "Feedforward connection around sub-layers such that output = LayerNorm(x + Sublayer(x)), used to facilitate training.",
+      "src": "p10"
+    },
+    {
+      "name": "Layer normalization",
+      "definition": "Normalization technique applied after residual connections in each sub-layer, following form: LayerNorm(x + Sublayer(x)).",
+      "src": "p10"
+    },
+    {
+      "name": "Dot-product attention",
+      "definition": "Attention mechanism identical to scaled dot-product attention. Faster and more space-efficient than additive attention as it can be implemented using optimized matrix multiplication.",
+      "src": "p15"
+    }
+  ],
+  "quantities": [
+    {
+      "value": "N=6",
+      "meaning": "Number of identical layers in both encoder and decoder stacks",
+      "src": "p10"
+    },
+    {
+      "value": "d_model=512",
+      "meaning": "Dimension of all sub-layer outputs and embeddings in base model",
+      "src": "p10"
+    },
+    {
+      "value": "h=8",
+      "meaning": "Number of parallel attention heads (multi-head attention)",
+      "src": "p20"
+    },
+    {
+      "value": "d_k=d_v=64",
+      "meaning": "Dimension of each attention head (d_k = d_v = d_model/h = 512/8 = 64)",
+      "src": "p20"
+    },
+    {
+      "value": "d_ff=2048",
+      "meaning": "Inner layer dimensionality of position-wise feed-forward network in base model",
+      "src": "p26"
+    },
+    {
+      "value": "28.4 BLEU",
+      "meaning": "BLEU score on WMT 2014 English-to-German translation task (big model)",
+      "src": "abstract"
+    },
+    {
+      "value": "41.8 BLEU",
+      "meaning": "BLEU score on WMT 2014 English-to-French translation task (big model)",
+      "src": "abstract"
+    },
+    {
+      "value": "3.5 days",
+      "meaning": "Training time for big model on 8 NVIDIA P100 GPUs",
+      "src": "abstract"
+    },
+    {
+      "value": "12 hours",
+      "meaning": "Training time for base model",
+      "src": "p3"
+    },
+    {
+      "value": "8 P100 GPUs",
+      "meaning": "Hardware used for training",
+      "src": "abstract"
+    },
+    {
+      "value": "65 million",
+      "meaning": "Number of parameters in base model",
+      "src": "table:Variations on the Transformer architecture"
+    },
+    {
+      "value": "213 million",
+      "meaning": "Number of parameters in big model",
+      "src": "table:Variations on the Transformer architecture"
+    },
+    {
+      "value": "0.1",
+      "meaning": "Dropout rate P_drop for base model",
+      "src": "p44"
+    },
+    {
+      "value": "0.3",
+      "meaning": "Dropout rate P_drop for big model",
+      "src": "table:Variations on the Transformer architecture"
+    },
+    {
+      "value": "0.1",
+      "meaning": "Label smoothing value epsilon_ls",
+      "src": "p45"
+    },
+    {
+      "value": "4000",
+      "meaning": "Number of warmup_steps for learning rate schedule",
+      "src": "p42"
+    },
+    {
+      "value": "d_model=1024",
+      "meaning": "Embedding dimension in big model and parsing experiments",
+      "src": "table:Variations on the Transformer architecture"
+    },
+    {
+      "value": "d_ff=4096",
+      "meaning": "Inner feed-forward dimension in big model",
+      "src": "table:Variations on the Transformer architecture"
+    },
+    {
+      "value": "h=16",
+      "meaning": "Number of attention heads in big model",
+      "src": "table:Variations on the Transformer architecture"
+    },
+    {
+      "value": "3.3×10^18 FLOPs",
+      "meaning": "Training cost (floating point operations) for base model EN-DE",
+      "src": "table:The Transformer achieves better BLEU scores"
+    },
+    {
+      "value": "2.3×10^19 FLOPs",
+      "meaning": "Training cost (floating point operations) for big model EN-DE",
+      "src": "table:The Transformer achieves better BLEU scores"
+    },
+    {
+      "value": "100,000 steps",
+      "meaning": "Total training steps for base model",
+      "src": "p40"
+    },
+    {
+      "value": "300,000 steps",
+      "meaning": "Total training steps for big model",
+      "src": "p40"
+    },
+    {
+      "value": "0.4 seconds",
+      "meaning": "Time per training step for base model",
+      "src": "p40"
+    },
+    {
+      "value": "1.0 seconds",
+      "meaning": "Time per training step for big model",
+      "src": "p40"
+    },
+    {
+      "value": "4.5 million",
+      "meaning": "Number of sentence pairs in WMT 2014 English-German dataset",
+      "src": "p39"
+    },
+    {
+      "value": "36 million",
+      "meaning": "Number of sentences in WMT 2014 English-French dataset",
+      "src": "p39"
+    },
+    {
+      "value": "37,000 tokens",
+      "meaning": "Vocabulary size for English-German (byte-pair encoding)",
+      "src": "p39"
+    },
+    {
+      "value": "32,000 tokens",
+      "meaning": "Vocabulary size for English-French (word-piece)",
+      "src": "p39"
+    },
+    {
+      "value": "25,000 source tokens",
+      "meaning": "Approximate tokens per training batch (source)",
+      "src": "p39"
+    },
+    {
+      "value": "beta_1=0.9, beta_2=0.98, epsilon=10^-9",
+      "meaning": "Adam optimizer hyperparameters",
+      "src": "p41"
+    }
+  ],
+  "comparisons": [
+    {
+      "text": "Self-attention layers connect all positions with constant O(1) sequential operations, whereas recurrent layers require O(n) sequential operations. Self-attention is faster than recurrent when sequence length n is smaller than representation dimension d.",
+      "src": "p35"
+    },
+    {
+      "text": "Single convolutional layer with kernel width k<n does not connect all pairs of positions, requiring O(n/k) convolutional layers for contiguous kernels or O(log_k(n)) for dilated convolutions to connect all pairs, increasing maximum path length. Convolutional layers are more expensive by factor of k.",
+      "src": "p36"
+    },
+    {
+      "text": "Self-attention complexity per layer is O(n^2·d) with O(1) maximum path length. Recurrent complexity is O(n·d^2) with O(n) maximum path length. Convolutional complexity is O(k·n·d^2) with O(log_k(n)) maximum path length.",
+      "src": "table:Maximum path lengths, per-layer complexity and minimum number of sequential operations"
+    },
+    {
+      "text": "Transformer (big) achieves 28.4 BLEU on EN-DE vs 26.36 BLEU for ConvS2S Ensemble and 26.30 BLEU for GNMT+RL Ensemble, at a fraction of training cost (2.3×10^19 FLOPs vs 7.7×10^19 to 1.8×10^20 FLOPs).",
+      "src": "p46"
+    },
+    {
+      "text": "Transformer (big) achieves 41.8 BLEU on EN-FR, outperforming all previous single models like ConvS2S Ensemble (41.29 BLEU), at less than 1/4 the training cost of previous state-of-the-art.",
+      "src": "p47"
+    },
+    {
+      "text": "Dot-product attention is identical to additive attention except for scaling factor of 1/sqrt(d_k). Dot-product is much faster and more space-efficient in practice as it can be implemented using optimized matrix multiplication code.",
+      "src": "p15"
+    }
+  ],
+  "whys": [
+    {
+      "text": "Recurrent models have sequential computation that precludes parallelization within training examples, which becomes critical at longer sequence lengths as memory constraints limit batching. The Transformer uses attention to allow parallelization.",
+      "src": "p1"
+    },
+    {
+      "text": "Dot products grow large in magnitude for large d_k, pushing softmax into regions with extremely small gradients. Scaling dot products by 1/sqrt(d_k) counteracts this effect. This is because when components of q and k are independent random variables with mean 0 and variance 1, their dot product has variance d_k.",
+      "src": "p16"
+    },
+    {
+      "text": "Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With single attention head, averaging inhibits this.",
+      "src": "p18"
+    },
+    {
+      "text": "Sinusoidal positional encoding was chosen because it allows the model to easily learn to attend by relative positions, since for any fixed offset k, PE(pos+k) can be represented as a linear function of PE(pos). Also allows extrapolation to sequence lengths longer than training.",
+      "src": "p30"
+    },
+    {
+      "text": "Three desiderata motivated use of self-attention: (1) total computational complexity per layer, (2) amount of parallelizable computation (minimum sequential operations), (3) path length between long-range dependencies (shorter paths make learning dependencies easier).",
+      "src": "p32"
+    },
+    {
+      "text": "Self-attention layers are used instead of sequence-aligned recurrence to enable full parallelization and reduce maximum path length to constant operations.",
+      "src": "p35"
+    },
+    {
+      "text": "The Transformer uses multi-headed attention with reduced dimensions per head (d_k = d_v = 64 for 8 heads) because the total computational cost remains similar to single-head attention with full dimensionality.",
+      "src": "p20"
+    },
+    {
+      "text": "Residual connections and layer normalization facilitate the training of deep networks by allowing gradient flow and stabilizing activations.",
+      "src": "p10"
+    },
+    {
+      "text": "Dropout is applied to prevent over-fitting during training and is helpful as evidenced by ablation studies in Table 3 rows (D).",
+      "src": "p44"
+    },
+    {
+      "text": "Label smoothing (epsilon_ls=0.1) hurts perplexity but improves accuracy and BLEU score by making the model learn to be more unsure.",
+      "src": "p45"
+    },
+    {
+      "text": "Sinusoidal positional encoding was chosen over learned embeddings because experiments showed nearly identical results but sinusoidal version allows extrapolation to longer sequences.",
+      "src": "p31"
+    }
+  ],
+  "people": [
+    {
+      "name": "Ashish Vaswani",
+      "contribution": "author",
+      "src": "abstract"
+    },
+    {
+      "name": "Noam Shazeer",
+      "contribution": "author",
+      "src": "abstract"
+    },
+    {
+      "name": "Niki Parmar",
+      "contribution": "author",
+      "src": "abstract"
+    },
+    {
+      "name": "Jakob Uszkoreit",
+      "contribution": "author",
+      "src": "abstract"
+    },
+    {
+      "name": "Llion Jones",
+      "contribution": "author",
+      "src": "abstract"
+    },
+    {
+      "name": "Aidan N. Gomez",
+      "contribution": "author",
+      "src": "abstract"
+    },
+    {
+      "name": "Łukasz Kaiser",
+      "contribution": "author",
+      "src": "abstract"
+    },
+    {
+      "name": "Illia Polosukhin",
+      "contribution": "author",
+      "src": "abstract"
+    }
+  ],
+  "limits": [
+    {
+      "text": "For tasks with very long sequences, self-attention could be restricted to considering only a neighborhood of size r around the output position, increasing maximum path length to O(n/r). This approach requires further investigation.",
+      "src": "p35"
+    },
+    {
+      "text": "Future work plans to apply attention-based models to other tasks and extend Transformer to problems with input/output modalities other than text.",
+      "src": "p60"
+    },
+    {
+      "text": "Plans to investigate local, restricted attention mechanisms to efficiently handle large inputs and outputs such as images, audio and video.",
+      "src": "p60"
+    },
+    {
+      "text": "Making generation less sequential is another research goal.",
+      "src": "p60"
+    }
+  ]
+}
