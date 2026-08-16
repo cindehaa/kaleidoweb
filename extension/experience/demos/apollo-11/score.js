@@ -590,7 +590,8 @@
       e.textContent = s; svg.appendChild(e); return e;
     }
 
-    var INK = '#1A1712', DIM = 'rgba(26,23,18,.28)', RED = '#BE2A17';
+    // flat mimeo greys — the page has no opacity ramp (see score.css)
+    var INK = '#121417', DIM = '#9AA0A3', RED = '#CC1F14';
     var yH = 30, yE = 74, yC = 112;
     var xSplit = X(Date.UTC(1969, 6, 20, 17, 44, 0));
     var xJoin = X(Date.UTC(1969, 6, 21, 21, 35, 0));
@@ -608,8 +609,8 @@
       [xSplit, 'THE SPLIT · 17:44:00', 'end', 0], [xStep, 'FIRST STEP', 'start', 1],
       [xJoin, 'REJOIN 21:35:00', 'start', 0], [xSplash, 'SPLASHDOWN', 'end', 1]];
     marks.forEach(function (m) {
-      line(m[0], 10, m[0], 156, 'rgba(26,23,18,.11)', 1);
-      txt(m[0] + (m[2] === 'end' ? -5 : 5), 10 + m[3] * 11, m[1], m[2], 8, 'rgba(26,23,18,.42)');
+      line(m[0], 10, m[0], 156, '#DCDDD8', 1);
+      txt(m[0] + (m[2] === 'end' ? -5 : 5), 10 + m[3] * 11, m[1], m[2], 9.5, '#6C7175');
     });
 
     // day ticks
@@ -617,12 +618,12 @@
       var x = X(Date.UTC(1969, 6, day, 0, 0, 0));
       if (x < L || x > R) continue;
       line(x, 156, x, 162, DIM, 1);
-      txt(x + 4, 176, 'Jul ' + day, 'start', 8.5, 'rgba(26,23,18,.35)');
+      txt(x + 4, 176, 'Jul ' + day, 'start', 10, '#6C7175');
     }
 
     // Houston: continuous
     line(xLaunch, yH, xEnd, yH, INK, 1.25);
-    txt(mob ? L : 0, mob ? yH - 6 : yH + 3, 'HOUSTON', 'start', 8.5, 'rgba(26,23,18,.55)');
+    txt(mob ? L : 0, mob ? yH - 6 : yH + 3, 'HOUSTON', 'start', 10, '#3E4347');
 
     // spacecraft: one line, forking at the split, rejoining
     path('M' + xLaunch + ',' + yE + ' L' + xSplit + ',' + yE, INK, 1.25);
@@ -631,18 +632,18 @@
     path('M' + xJoin + ',' + yC + ' C' + (xJoin + 14) + ',' + yC + ' ' + (xJoin + 14) + ',' + yE + ' ' + (xJoin + 30) + ',' + yE, INK, 1.25);
     path('M' + xJoin + ',' + yE + ' L' + xEnd + ',' + yE, INK, 1.25);
 
-    txt(mob ? L : 0, mob ? yE - 6 : yE + 3, 'EAGLE + COLUMBIA', 'start', 8.5, 'rgba(26,23,18,.55)');
+    txt(mob ? L : 0, mob ? yE - 6 : yE + 3, 'EAGLE + COLUMBIA', 'start', 10, '#3E4347');
     if (!mob) {
-      txt(xSplit + 36, yE - 7, 'EAGLE — ON THE SURFACE 21½ h', 'start', 8, 'rgba(26,23,18,.42)');
-      txt(xSplit + 36, yC + 15, 'COLUMBIA — ALONE 27 h 51 m', 'start', 8, 'rgba(26,23,18,.42)');
+      txt(xSplit + 36, yE - 7, 'EAGLE — ON THE SURFACE 21½ h', 'start', 9.5, '#6C7175');
+      txt(xSplit + 36, yC + 15, 'COLUMBIA — ALONE 27 h 51 m', 'start', 9.5, '#6C7175');
     }
 
     // Luna 15 — the uninvited lane, in orbit before them and gone before the ascent
     var xL13 = L;
     line(xL13, yC + 30, xLuna, yC + 30, RED, 1.25);
     line(xLuna, yC + 25, xLuna, yC + 35, RED, 1.25);
-    txt(xLuna - 6, yC + 24, 'CRASHED 15:50:00', 'end', 8, RED);
-    txt(mob ? L : 0, mob ? yC + 24 : yC + 33, 'LUNA 15', 'start', 8.5, RED);
+    txt(xLuna - 6, yC + 24, 'CRASHED 15:50:00', 'end', 9.5, RED);
+    txt(mob ? L : 0, mob ? yC + 24 : yC + 33, 'LUNA 15', 'start', 10, RED);
   }
 
   /* ============================================================
