@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apollo 11 — Three Bodies</title>
+<meta name="description" content="The Apollo 11 mission read as a three-stave score on one shared clock: Houston, Eagle, Columbia.">
+<link rel="stylesheet" href="score.css">
+</head>
+<body data-solo="">
+
+<header id="head">
+  <div class="brand">Apollo&nbsp;11 <em>/ Three Bodies</em></div>
+  <div id="readout">
+    <div><span class="k">UTC</span><span class="v" id="ro-utc">1969-07-16 &nbsp;13:32:00</span></div>
+    <div class="metfield"><span class="k">MET</span><span class="v" id="ro-met">000:00:00:00</span></div>
+    <div class="alt" id="ro-alt" hidden><span class="k">Alt</span><span class="v" id="ro-altv">6,000 ft</span></div>
+    <div id="ro-off" class="off"></div>
+  </div>
+  <nav id="solo" aria-label="Solo a single body">
+    <span class="sl">Solo</span>
+    <button type="button" data-solo="" aria-pressed="true"><span class="lg">All</span><span class="sm">All</span></button>
+    <button type="button" data-solo="hou" aria-pressed="false"><span class="lg">Houston</span><span class="sm">Hou</span></button>
+    <button type="button" data-solo="eag" aria-pressed="false"><span class="lg">Eagle</span><span class="sm">Eag</span></button>
+    <button type="button" data-solo="col" aria-pressed="false"><span class="lg">Columbia</span><span class="sm">Col</span></button>
+  </nav>
+</header>
+
+<aside id="map" aria-label="Minimap: true time against page space"></aside>
+
+<main>
+
+<!-- ══════════════════════════════════════════════════════════
+     MOVEMENT 0 — BEFORE THE CLOCK
+     ══════════════════════════════════════════════════════════ -->
+<section id="m0" class="wrap movement" data-mv="0" data-clock="off" data-name="Before the clock">
+
+  <div id="plate">
+    <div class="eyebrow">Three bodies · one clock</div>
+    <h1>Apollo&nbsp;11</h1>
+    <div class="subs">
+      <p class="thesis">Wikipedia tells this mission in one line, one thing after another. It was not one thing after another. From <b>17:44:00 UTC on 20 July 1969</b> there were three separated places with three different sets of information, and one of them spent forty-eight minutes of every orbit out of radio contact with the Earth. Read here as a score: vertical position is Universal Time, and silence is drawn.</p>
+      <div class="meta">
+        <div><i>Source</i>en.wikipedia.org/wiki/Apollo_11</div>
+        <div><i>Duration</i>8 d 03 h 18 m 35 s</div>
+        <div><i>Crew</i>3</div>
+        <div><i>Lunar orbits</i>30</div>
+        <div><i>Sample returned</i>21.55 kg</div>
+        <div><i>Clock reads</i>UTC, as the article gives it</div>
+      </div>
+    </div>
+
+    <svg id="thesis-svg" viewBox="0 0 1240 176" preserveAspectRatio="none" role="img" aria-label="The eight-day span: one lane divides into two on 20 July and rejoins on 21 July."></svg>
+
+    <div class="bodies">
+      <div>
+        <div class="who">Neil Armstrong<br>Buzz Aldrin</div>
+        <div class="role">Commander · Lunar Module Pilot</div>
+        <div class="where">Aboard <i>Eagle</i>, and then on the surface at Tranquility Base for 21½ hours.</div>
+      </div>
+      <div>
+        <div class="who">Michael Collins</div>
+        <div class="role">Command Module Pilot</div>
+        <div class="where">Alone aboard <i>Columbia</i> in lunar orbit — out of radio contact with Earth for 48 minutes of each orbit.</div>
+      </div>
+      <div>
+        <div class="who">Houston</div>
+        <div class="role">Mission Control Center</div>
+        <div class="where">Five flight-director teams, named for five colours. Those five colours are this page's palette.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="mv-rule"><span class="n">00</span><span class="t">Before the clock</span><span class="c">no time base</span></div>
+  </div>
+
+  <div class="sec" style="padding-top:38px">
+    <div class="hang">
+      <div class="h">The mission<span>§ lead</span></div>
+      <div class="prose">
+        <p class="lede">Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program.</p>
+        <div class="cols2" style="margin-top:26px">
+          <p>The mission was crewed by Commander Neil Armstrong, Command Module Pilot Michael Collins, and Lunar Module Pilot Edwin "Buzz" Aldrin, all of whom were on their second and final spaceflight.</p>
+          <p>Launched atop a Saturn V rocket from Kennedy Space Center in Florida on July 16 at 13:32 UTC, the Apollo spacecraft consisted of three parts: the command module (CM), which housed the three astronauts and was the only part to return to Earth; the service module (SM), which provided propulsion, electrical power, oxygen, and water to the command module; and the Lunar Module (LM), which had two stages—a descent stage with a large engine and fuel tanks for landing on the Moon, and a lighter ascent stage containing a cabin for two astronauts and a small engine to return them to lunar orbit.</p>
+          <p>After a three-day transit, Armstrong and Aldrin descended to the surface aboard the LM <i>Eagle</i>, landing in the Sea of Tranquility (Mare Tranquillitatis) on July 20 at 20:17 UTC while Collins remained in lunar orbit aboard the CM <i>Columbia</i>. Armstrong became the first human to walk on the Moon approximately six hours after landing, followed by Aldrin nineteen minutes later. Together they spent around two and a half hours walking on the surface, planting an American flag, speaking with President Richard Nixon who was in the White House, deploying scientific instruments, and collecting 21.5 kg (47.5 lb) of lunar material. After more than 21 hours on the surface, they rejoined Collins in lunar orbit, and the crew returned safely to Earth on July 24, splashing down in the Pacific Ocean.</p>
+          <p>Apollo 11 was the culmination of the Space Race, a geopolitical competition between the United States and the Soviet Union rooted in Cold War rivalry. It fulfilled a national goal set by President John F. Kennedy in May 1961, who had challenged the United States to land a man on the Moon and return him safely before the end of the decade. The program overcame a severe setback with the fatal Apollo 1 launchpad fire in January 1967 and drew on technologies developed through the preceding Mercury and Gemini programs. The Soviet Union, despite early leads in spaceflight, was unable to match the Saturn V rocket, and its uncrewed lunar probe Luna 15 crashed on the Moon on July 21, while Neil Armstrong and Buzz Aldrin were still on the lunar surface.</p>
+          <p>Armstrong's moonwalk was broadcast live to an estimated 600 million viewers, roughly one-fifth of the world's population, making it among the most-watched television events in history. Lunar samples returned by the mission led to the identification of three previously unrecognized minerals, and scientific instruments deployed on the surface continued returning data for years afterwards. The crew were honoured with ticker-tape parades, a world goodwill tour, and the Presidential Medal of Freedom. The command module <i>Columbia</i> is preserved at the National Air and Space Museum in Washington, D.C., while the descent stage of <i>Eagle</i> remains on the lunar surface.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="hang">
+      <div class="h">Background<span>§ Background</span></div>
+      <div class="prose cols2">
+        <p>In the late 1950s and early 1960s, the United States was engaged in the Cold War, a geopolitical rivalry with the Soviet Union. On October 4, 1957, the Soviet Union launched Sputnik 1, the first artificial satellite, surprising the world and fueling fears about Soviet technological and military capabilities. Its success demonstrated that the USSR could potentially deliver nuclear weapons over intercontinental distances, challenging American claims of military, economic, and technological superiority.</p>
+        <p>This incident sparked the Sputnik crisis and ignited the Space Race, as both superpowers sought to demonstrate superiority in spaceflight. President Dwight D. Eisenhower responded to the challenge posed by Sputnik by creating the National Aeronautics and Space Administration (NASA), and initiating Project Mercury, which aimed to place a man into Earth orbit. The Soviets took the lead on April 12, 1961, when cosmonaut Yuri Gagarin became the first person in space and the first to orbit the Earth. Nearly a month later, on May 5, 1961, Alan Shepard became the first American in space; his 15-minute flight was suborbital, not a full orbit.</p>
+        <p>Because the Soviet Union had launch vehicles with higher lift capacity, President John F. Kennedy, Eisenhower's successor, chose a challenge that exceeded the capabilities of the existing generation of rockets, so that both countries would be starting from an equal position. A crewed mission to the Moon would serve this purpose.</p>
+        <p>On May 25, 1961, Kennedy addressed the United States Congress on "Urgent National Needs."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="plate-ink">
+  <p class="q"><strong>I believe that this nation should commit itself to achieving the goal, before this decade [1960s] is out, of landing a man on the Moon and returning him safely to the Earth.</strong> No single space project in this period will be more impressive to mankind, or more important for the long-range exploration of space; and none will be so difficult or expensive to accomplish.</p>
+  <p class="q small">We propose to accelerate the development of the appropriate lunar space craft. We propose to develop alternate liquid and solid fuel boosters, much larger than any now being developed, until certain which is superior. We propose additional funds for other engine development and for unmanned explorations—explorations which are particularly important for one purpose which this nation will never overlook: the survival of the man who first makes this daring flight. But in a very real sense, it will not be one man going to the Moon—if we make this judgment affirmatively, it will be an entire nation. For all of us must work to put him there.</p>
+  <p class="att">John F. Kennedy · address to Congress on Urgent National Needs · 25 May 1961</p>
+</section>
+
+<figure class="bleed-fig">
+  <img src="assets/03-John_F._Kennedy_speaks_at_Rice_University.jpg" alt="President John F. Kennedy speaking at Rice University, 1962" loading="lazy">
+  <figcaption><b>President John F. Kennedy speaking at Rice University on September 12, 1962</b><span>before a crowd of about 40,000 in the football stadium</span></figcaption>
+</figure>
+
+<section class="plate-ink" style="margin-top:0">
+  <p class="q small" style="margin-top:0">There is no strife, no prejudice, no national conflict in outer space as yet. Its hazards are hostile to us all. Its conquest deserves the best of all mankind, and its opportunity for peaceful cooperation may never come again. But why, some say, the Moon? Why choose this as our goal? And they may well ask, why climb the highest mountain? Why, 35 years ago, fly the Atlantic? Why does Rice play Texas?</p>
+  <p class="q" style="margin-top:34px"><strong>We choose to go to the Moon! We choose to go to the Moon ... We choose to go to the Moon in this decade and do the other things, not because they are easy, but because they are hard;</strong> because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone, and one we intend to win, and the others, too.</p>
+  <p class="att">John F. Kennedy · Rice University, Houston · 12 September 1962</p>
+</section>
+
+<section class="wrap movement" data-mv="0b" data-clock="off" data-name="Before the clock">
+  <div class="sec" style="padding-top:56px">
+    <div class="hang">
+      <div class="h">Opposition, and the architecture<span>§ Background</span></div>
+      <div class="prose cols2">
+        <p>In spite of that, the proposed program faced widespread opposition and was dubbed a "moondoggle" by Norbert Wiener, a mathematician at the Massachusetts Institute of Technology. The effort to land a man on the Moon already had a name: Project Apollo. When Kennedy met with Nikita Khrushchev, the Premier of the Soviet Union in June 1961, he proposed making the Moon landing a joint project, but Khrushchev declined the offer. Kennedy again proposed a joint expedition to the Moon in a speech to the United Nations General Assembly on September 20, 1963. The idea of a joint Moon mission was ultimately abandoned after Kennedy's death.</p>
+        <p>An early and crucial decision was choosing lunar orbit rendezvous over both direct ascent and Earth orbit rendezvous. A space rendezvous is an orbital maneuver in which two spacecraft navigate through space and meet up. In July 1962, NASA head James Webb announced that lunar orbit rendezvous would be used and that the Apollo spacecraft would have three major parts: a command module (CM) with a cabin for the three astronauts, and the only part that returned to Earth; a service module (SM), which supported the command module with propulsion, electrical power, oxygen, and water; and a lunar module (LM) that had two stages—a descent stage for landing on the Moon, and an ascent stage to place the astronauts back into lunar orbit. This design meant the spacecraft could be launched by a single Saturn V rocket that was then under development.</p>
+        <p>Technologies and techniques required for Apollo were developed by Project Gemini. The Apollo project was enabled by NASA's adoption of new advances in semiconductor device, including metal–oxide–semiconductor field-effect transistors (MOSFETs) in the Interplanetary Monitoring Platform (IMP) and silicon integrated circuit (IC) chips in the Apollo Guidance Computer (AGC).</p>
+        <p>Project Apollo was abruptly halted by the Apollo 1 fire on January 27, 1967, in which astronauts Gus Grissom, Ed White, and Roger B. Chaffee died, and the subsequent investigation. In October 1968, Apollo 7 evaluated the command module in Earth orbit, and in December Apollo 8 tested it in lunar orbit. In March 1969, Apollo 9 put the lunar module through its paces in Earth orbit, and in May Apollo 10 conducted a "dress rehearsal" in lunar orbit. By July 1969, all was in readiness for Apollo 11 to take the final step onto the Moon.</p>
+        <p>The Soviet Union appeared to be winning the Space Race, but its early lead was overtaken by the US Gemini program and Soviet failure to develop the N1 launcher, which would have been comparable to the Saturn V. Seeing these failures, the Soviets then attempted to beat the US to return lunar material to the Earth by means of uncrewed probes. On July 13, three days before Apollo 11's launch, the Soviet Union launched Luna 15, which reached lunar orbit before Apollo 11. During descent, a malfunction caused Luna 15 to crash in Mare Crisium about two hours before Armstrong and Aldrin took off from the Moon's surface to return to earth. The Nuffield Radio Astronomy Laboratories radio telescope in England recorded transmissions from Luna 15 during its descent, and these were released in July 2009 for the 40th anniversary of Apollo 11.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONNEL -->
+  <div class="sec">
+    <h2>Personnel</h2>
+    <div class="roster">
+      <dl>
+        <dt>Prime crew</dt>
+        <dd>Neil Armstrong <span>Commander</span></dd>
+        <dd>Michael Collins <span>Command Module Pilot</span></dd>
+        <dd>Edwin "Buzz" Aldrin Jr. <span>Lunar Module Pilot</span></dd>
+        <dd style="margin-top:8px"><span>All three on their second and last spaceflight.</span></dd>
+      </dl>
+      <dl>
+        <dt>Backup crew</dt>
+        <dd>Jim Lovell <span>Commander</span></dd>
+        <dd>William Anders <span>Command Module Pilot</span></dd>
+        <dd>Fred Haise <span>Lunar Module Pilot</span></dd>
+        <dd style="margin-top:8px"><span>Ken Mattingly moved into parallel training as backup CMP in case of delay past July.</span></dd>
+      </dl>
+      <dl>
+        <dt>Support crew &amp; CAPCOM</dt>
+        <dd>Mattingly · Evans · Pogue <span>support crew</span></dd>
+        <dd>Anders · Evans · Haise · Lovell · Mattingly <span>capsule communicators</span></dd>
+        <dd>Duke · Garriott · Lind · McCandless II · Schmitt <span>capsule communicators</span></dd>
+      </dl>
+    </div>
+
+    <div class="prose cols2" style="margin-top:32px">
+      <p>The initial crew assignment of Commander Neil Armstrong, Command Module Pilot Jim Lovell, and Lunar Module Pilot Buzz Aldrin on the backup crew for Apollo 9 was officially announced on November 20, 1967. Due to design and manufacturing delays in the LM, Apollo 8 and Apollo 9 swapped prime and backup crews, and Armstrong's crew became the backup for Apollo 8. Based on the normal crew rotation scheme, Armstrong was then expected to command Apollo 11. There would be one change: Michael Collins, the CMP on the Apollo 8 crew, began experiencing trouble with his legs. Doctors diagnosed a bony growth between his fifth and sixth vertebrae, requiring surgery. Lovell took his place on the Apollo 8 crew, and when Collins recovered he joined Armstrong's crew as CMP.</p>
+        <p>Deke Slayton gave Armstrong the option to replace Aldrin with Lovell, since some thought Aldrin was difficult to work with. Armstrong had no issues working with Aldrin but thought it over for a day before declining. He thought Lovell deserved to command his own mission (eventually Apollo 13).</p>
+        <p>The Apollo 11 prime crew had none of the close cheerful camaraderie characterized by that of Apollo 12. Instead, they forged an amiable working relationship. Armstrong in particular was notoriously aloof, but Collins, who considered himself a loner, confessed to rebuffing Aldrin's attempts to create a more personal relationship. Aldrin and Collins described the crew as "amiable strangers". Armstrong did not agree with the assessment, and said "all the crews I was on worked very well together."</p>
+        <p>The capsule communicator (CAPCOM) was an astronaut stationed at the Mission Control Center in Houston, Texas, and was typically the only person permitted to communicate directly with the flight crew. This practice ensured that messages came from someone best able to understand the situation in the spacecraft and to relay guidance from flight controllers as clearly as possible.</p>
+      </div>
+  </div>
+
+  <figure class="bleed-fig bleed" style="margin-top:52px">
+    <img src="assets/02-Apollo_11.jpg" alt="The Apollo 11 prime crew: Armstrong, Collins and Aldrin" loading="lazy" style="object-position:center 34%">
+    <figcaption><b>Armstrong, Collins, Aldrin — “amiable strangers”, in Collins' and Aldrin's own description.</b><span>§ lead image · § Prime crew · p17</span></figcaption>
+  </figure>
+
+  <!-- FLIGHT DIRECTORS = THE PALETTE -->
+  <div class="sec">
+    <h2>Five colours, assigned</h2>
+    <div class="fd">
+      <div class="row head"><span></span><span class="nm" style="font-family:var(--cond);font-weight:600;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-30)">Flight director</span><span class="mn">Shift</span><span class="mn">Team</span><span class="ac">Activities</span></div>
+      <div class="row"><span class="sw" style="background:var(--team-green)"></span><span class="nm">Clifford E. Charlesworth</span><span class="mn">1</span><span class="mn">Green</span><span class="ac">Launch and extravehicular activity (EVA)</span></div>
+      <div class="row"><span class="sw" style="background:var(--team-gold)"></span><span class="nm">Gerald D. Griffin</span><span class="mn">1</span><span class="mn">Gold</span><span class="ac">Backup for shift 1</span></div>
+      <div class="row"><span class="sw wh" style="background:var(--team-white)"></span><span class="nm">Gene Kranz</span><span class="mn">2</span><span class="mn">White</span><span class="ac">Lunar landing</span></div>
+      <div class="row"><span class="sw" style="background:var(--team-black)"></span><span class="nm">Glynn Lunney</span><span class="mn">3</span><span class="mn">Black</span><span class="ac">Lunar ascent</span></div>
+      <div class="row"><span class="sw" style="background:var(--team-maroon)"></span><span class="nm">Milton Windler</span><span class="mn">4</span><span class="mn">Maroon</span><span class="ac">Planning</span></div>
+    </div>
+    <p class="micro" style="margin-top:14px;max-width:56em;line-height:1.7">These are the only five colours on the following pages, and they are not decoration: from here on, a coloured band beside the Houston lane says which team held the console. A sixth ink — <span style="color:var(--alert)">red</span> — appears three times only: the 1201/1202 program alarms, the propellant calls during the final descent, and Luna 15.</p>
+
+    <details class="sec" style="padding-top:26px">
+      <summary class="lab" style="cursor:pointer;color:var(--ink-45)">Other key personnel — twelve names, from the article's table</summary>
+      <div class="roster" style="margin-top:16px">
+        <dl><dt>Science</dt>
+          <dd>Farouk El-Baz <span>Geologist; studied geology of the Moon, identified landing locations, trained pilots</span></dd>
+          <dd>Gene Shoemaker <span>Geologist who trained astronauts in field geology</span></dd>
+          <dd>Millicent Goldschmidt <span>Microbiologist; aseptic lunar material collection techniques</span></dd>
+        </dl>
+        <dl><dt>Computing</dt>
+          <dd>Margaret Hamilton <span>Onboard flight computer software engineer</span></dd>
+          <dd>Eldon C. Hall <span>Apollo Guidance Computer hardware designer</span></dd>
+          <dd>Jack Garman <span>Computer engineer and technician</span></dd>
+        </dl>
+        <dl><dt>Hardware &amp; ground</dt>
+          <dd>Kurt Debus <span>Supervised construction of launch pads and infrastructure</span></dd>
+          <dd>Eleanor Foraker <span>Tailor who designed space suits</span></dd>
+          <dd>Milton E. Harr <span>Geotechnical engineer; designed the LM footpads</span></dd>
+          <dd>John Houbolt <span>Route planner</span></dd>
+          <dd>Bill Tindall <span>Coordinated mission techniques</span></dd>
+          <dd>Jamye Flowers <span>Secretary for astronauts</span></dd>
+        </dl>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- PREPARATIONS -->
+<section class="wrap movement" data-mv="0c" data-clock="off" data-name="Before the clock">
+  <div class="sec">
+    <h2>Preparations</h2>
+    <div class="hang">
+      <div class="h">Insignia<span>§ Insignia</span></div>
+      <div class="prose">
+        <div class="vehiclerow" style="margin-top:0">
+          <img src="assets/01-Apollo_11_insignia.png" alt="The Apollo 11 mission insignia: an eagle carrying an olive branch, landing on the Moon" style="width:100%;max-width:236px;height:auto">
+          <div>
+            <p>The Apollo 11 mission emblem was designed by Collins, who wanted a symbol for "peaceful lunar landing by the United States". At Lovell's suggestion, he chose the bald eagle, the national bird of the United States, as the symbol. Tom Wilson, a simulator instructor, suggested an olive branch in its beak to represent their peaceful mission. Collins added a lunar background with the Earth in the distance. The sunlight in the image was coming from the wrong direction; the shadow should have been in the lower part of the Earth instead of the left.</p>
+            <p>Aldrin, Armstrong and Collins decided the Eagle and the Moon would be in their natural colors, and decided on a blue and gold border. Armstrong was concerned that "eleven" would not be understood by non-English speakers, so they went with "Apollo 11", and they decided not to put their names on the patch, so it would "be representative of everyone who had worked toward a lunar landing".</p>
+            <p>An illustrator at the Manned Spacecraft Center (MSC) did the artwork, which was then sent off to NASA officials for approval. <b>The design was rejected.</b> Bob Gilruth, the director of the MSC felt the talons of the eagle looked "too warlike". After some discussion, the olive branch was moved to the talons. When the Eisenhower dollar coin was released in 1971, the patch design provided the eagle for its reverse side. The design was also used for the smaller Susan B. Anthony dollar unveiled in 1979.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec twoup">
+    <div>
+      <h3 style="border-top:1px solid var(--ink);padding-top:9px">Call signs <span class="src" style="margin-left:10px">§ Call signs</span></h3>
+      <div class="prose">
+        <p>After the crew of Apollo 10 named their spacecraft <i>Charlie Brown</i> and <i>Snoopy</i>, assistant manager for public affairs Julian Scheer wrote to George Low, the Manager of the Apollo Spacecraft Program Office at the MSC, to suggest the Apollo 11 crew be less flippant in naming their craft. The name <i>Snowcone</i> was used for the CM and <i>Haystack</i> was used for the LM in both internal and external communications during early mission planning.</p>
+        <p>The LM was named <i>Eagle</i> after the motif which was featured prominently on the mission insignia. At Scheer's suggestion, the CM was named <i>Columbia</i> after Columbiad, the giant cannon that launched a spacecraft (also from Florida) in Jules Verne's 1865 novel <i>From the Earth to the Moon</i>. It also referred to Columbia, a historical name of the United States. In Collins' 1976 book, he said <i>Columbia</i> was in reference to Christopher Columbus.</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="border-top:1px solid var(--ink);padding-top:9px">Mementos <span class="src" style="margin-left:10px">§ Mementos</span></h3>
+      <div class="prose">
+        <p>The astronauts had personal preference kits (PPKs), small bags containing personal items of significance they wanted to take with them on the mission. Five 0.5-pound (0.23 kg) PPKs were carried on Apollo 11: three (one for each astronaut) were stowed on <i>Columbia</i> before launch, and two on <i>Eagle</i>.</p>
+        <p>Neil Armstrong's LM PPK contained a piece of wood from the Wright brothers' 1903 Wright Flyer's left propeller and a piece of fabric from its wing, along with a diamond-studded astronaut pin originally given to Slayton by the widows of the Apollo 1 crew. This pin had been intended to be flown on that mission and given to Slayton afterwards, but following the disastrous launch pad fire and subsequent funerals, the widows gave the pin to Slayton. Armstrong took it with him on Apollo 11.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="hang">
+      <div class="h">Site selection<span>§ Site selection</span></div>
+      <div class="prose">
+        <p style="max-width:46em">NASA's Apollo Site Selection Board announced five potential landing sites on February 8, 1968. These were the result of two years' worth of studies based on high-resolution photography of the lunar surface by the five uncrewed probes of the Lunar Orbiter program and information about surface conditions provided by the Surveyor program. The best Earth-bound telescopes could not resolve features with the resolution Project Apollo required. The landing site had to be close to the lunar equator to minimize the amount of propellant required, clear of obstacles to minimize maneuvering, and flat to simplify the task of the landing radar. <b>Scientific value was not a consideration.</b></p>
+        <p style="max-width:46em">Areas that appeared promising on photographs taken on Earth were often found to be totally unacceptable. The original requirement that the site be free of craters had to be relaxed, as no such site was found. Five sites were considered: Sites 1 and 2 were in the Sea of Tranquility (Mare Tranquillitatis); Site 3 was in the Central Bay (Sinus Medii); and Sites 4 and 5 were in the Ocean of Storms (Oceanus Procellarum). The final site selection was based on seven criteria:</p>
+        <ol class="crit" style="margin-top:22px">
+          <li>The site needed to be smooth, with relatively few craters;</li>
+          <li>with approach paths free of large hills, tall cliffs or deep craters that might confuse the landing radar and cause it to issue incorrect readings;</li>
+          <li>reachable with a minimum amount of propellant;</li>
+          <li>allowing for delays in the launch countdown;</li>
+          <li>providing the Apollo spacecraft with a free-return trajectory, one that would allow it to coast around the Moon and safely return to Earth without requiring any engine firings should a problem arise on the way to the Moon;</li>
+          <li>with good visibility during the landing approach, meaning the Sun would be between 7 and 20 degrees behind the LM; and</li>
+          <li>a general slope of less than two degrees in the landing area.</li>
+        </ol>
+        <p style="max-width:46em;margin-top:22px">The requirement for the Sun angle was particularly restrictive, <b>limiting the launch date to one day per month.</b> A landing just after dawn was chosen to limit the temperature extremes the astronauts would experience. The Apollo Site Selection Board selected Site 2, with Sites 3 and 5 as backups in the event of the launch being delayed. In May 1969, Apollo 10's lunar module flew to within 15 kilometers (9.3 mi) of Site 2, and reported it was acceptable.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="hang">
+      <div class="h">Who steps out first<span>§ First-step decision</span></div>
+      <div class="prose">
+        <p style="max-width:46em">During the first press conference after the Apollo 11 crew was announced, the first question was, "Which one of you gentlemen will be the first man to step onto the lunar surface?" Slayton told the reporter it had not been decided, and Armstrong added that it was "not based on individual desire". The decision was announced in a press conference on April 14, 1969. The article gives four accounts of why, and does not choose between them.</p>
+      </div>
+    </div>
+    <div class="rivals" style="margin-top:26px">
+      <div>
+        <div class="n">01</div>
+        <div class="cl">The hatch opened the wrong way</div>
+        <p>For decades, Aldrin believed the final decision was largely driven by the Lunar Module's hatch location. The crew tried a simulation in which Aldrin left the spacecraft first, but he damaged the simulator while attempting to egress.</p>
+      </div>
+      <div>
+        <div class="n">02</div>
+        <div class="cl">Because Armstrong was a civilian</div>
+        <p>Aldrin heard that Armstrong would be the first because Armstrong was a civilian, which made Aldrin livid. He attempted to persuade other Lunar Module pilots he should be first, but they responded cynically about what they perceived as a lobbying campaign.</p>
+      </div>
+      <div>
+        <div class="n">03</div>
+        <div class="cl">Commander's prerogative</div>
+        <p>Attempting to stem interdepartmental conflict, Slayton told Aldrin that Armstrong would be first since he was the commander. The media accused Armstrong of exercising his commander's prerogative to exit the spacecraft first.</p>
+      </div>
+      <div>
+        <div class="n">04</div>
+        <div class="cl">A meeting held to make sure</div>
+        <p>Chris Kraft revealed in his 2001 autobiography that a meeting occurred between Gilruth, Slayton, Low, and himself to make sure Aldrin would not be the first to walk on the Moon. They argued the first person should be like Charles Lindbergh, a calm and quiet person.</p>
+      </div>
+    </div>
+    <p class="rivals-note">Four accounts, one decision. The source resolves none of them, and neither does this page. Slayton told Armstrong the plan was to have him leave the spacecraft first, if he agreed. Armstrong said, "Yes, that's the way to do it."</p>
+  </div>
+</section>
+
+<!-- PRE-LAUNCH: the vehicle, assembled. Off the clock. -->
+<section class="wrap movement" data-mv="0d" data-clock="off" data-name="Before the clock">
+  <div class="sec">
+    <div class="hang">
+      <div class="h">The vehicle<span>§ Pre-launch</span></div>
+      <div class="prose">
+        <p style="max-width:46em">The ascent stage of LM-5 <i>Eagle</i> arrived at the Kennedy Space Center on January 8, 1969, followed by the descent stage four days later, and CSM-107 <i>Columbia</i> on January 23. There were several differences between <i>Eagle</i> and Apollo 10's LM-4 <i>Snoopy</i>: <i>Eagle</i> had a VHF radio antenna to facilitate communication with the astronauts during their EVA on the lunar surface; a lighter ascent engine; more thermal protection on the landing gear; and a package of scientific experiments known as the Early Apollo Scientific Experiments Package (EASEP). The only change in the configuration of the command module was the removal of some insulation from the forward hatch.</p>
+        <p style="max-width:46em">The S-IVB third stage of Saturn V AS-506 had arrived on January 18, followed by the S-II second stage on February 6, S-IC first stage on February 20, and the Saturn V Instrument Unit on February 27. At 12:30 on May 20, the 5,443-tonne assembly departed the Vehicle Assembly Building atop the crawler-transporter, bound for Launch Pad 39A, part of Launch Complex 39, while Apollo 10 was still on its way to the Moon. A countdown test commenced on June 26, and concluded on July 2. The launch complex was floodlit on the night of July 15, when the crawler-transporter carried the mobile service structure back to its parking area. In the early hours of the morning, the fuel tanks of the S-II and S-IVB stages were filled with liquid hydrogen. Fueling was completed by three hours before launch. Launch operations were partly automated, with 43 programs written in the ATOLL programming language.</p>
+      </div>
+    </div>
+    <div class="vehiclerow">
+      <figure style="margin:0">
+        <img src="assets/08-69-HC-620_-_SA506.jpg" alt="Saturn V SA-506 moving out of the Vehicle Assembly Building" style="width:100%;max-width:236px;height:auto;filter:grayscale(.15)">
+        <figcaption class="micro" style="margin-top:7px;line-height:1.5">Saturn V SA-506 moves out of the Vehicle Assembly Building towards Launch Complex 39.</figcaption>
+      </figure>
+      <div class="micro chron">
+        <div>Jan&nbsp;08&nbsp;1969 &nbsp;·&nbsp; LM-5 <i>Eagle</i> ascent stage arrives at KSC</div>
+        <div>Jan&nbsp;12&nbsp;1969 &nbsp;·&nbsp; LM-5 descent stage arrives</div>
+        <div>Jan&nbsp;18&nbsp;1969 &nbsp;·&nbsp; S-IVB third stage arrives</div>
+        <div>Jan&nbsp;23&nbsp;1969 &nbsp;·&nbsp; CSM-107 <i>Columbia</i> arrives</div>
+        <div>Jan&nbsp;29&nbsp;1969 &nbsp;·&nbsp; CSM mated to the LM</div>
+        <div>Feb&nbsp;06&nbsp;1969 &nbsp;·&nbsp; S-II second stage arrives</div>
+        <div>Feb&nbsp;20&nbsp;1969 &nbsp;·&nbsp; S-IC first stage arrives</div>
+        <div>Feb&nbsp;27&nbsp;1969 &nbsp;·&nbsp; Saturn V Instrument Unit arrives</div>
+        <div>Apr&nbsp;14&nbsp;1969 &nbsp;·&nbsp; Spacecraft moved to the VAB</div>
+        <div>May&nbsp;20&nbsp;1969 &nbsp;·&nbsp; 12:30 — rollout to Pad 39A</div>
+        <div>Jun&nbsp;26&nbsp;1969 &nbsp;·&nbsp; Countdown test commences</div>
+        <div>Jul&nbsp;02&nbsp;1969 &nbsp;·&nbsp; Countdown test concludes</div>
+        <div>Jul&nbsp;13&nbsp;1969 &nbsp;·&nbsp; <span style="color:var(--alert)">Luna&nbsp;15 launched</span></div>
+        <div>Jul&nbsp;15&nbsp;1969 &nbsp;·&nbsp; Complex floodlit; hydrogen loaded</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="sec" id="legend">
+    <div class="mv-rule"><span class="n">key</span><span class="t">How to read the score</span><span class="c">vertical position is Universal Time</span></div>
+    <div class="legendgrid">
+      <div class="lgcell">
+        <svg width="60" height="30" aria-hidden="true"><line x1="1" y1="0" x2="1" y2="30" stroke="rgba(26,23,18,.18)" stroke-width="1"/><line x1="1" y1="15" x2="56" y2="15" stroke="rgba(26,23,18,.18)" stroke-width="1"/><circle cx="1" cy="15" r="3" fill="#EDE8DE" stroke="rgba(26,23,18,.45)"/></svg>
+        <div class="lab" style="margin-top:6px">Timestamped</div>
+        <div class="micro" style="line-height:1.6;margin-top:5px">The source gives this instant to the second or minute. Its vertical position is true.</div>
+      </div>
+      <div class="lgcell">
+        <svg width="60" height="30" aria-hidden="true"><line x1="1" y1="0" x2="1" y2="30" stroke="rgba(26,23,18,.18)" stroke-width="1"/><line x1="1" y1="15" x2="56" y2="15" stroke="rgba(26,23,18,.10)" stroke-width="1"/></svg>
+        <div class="lab" style="margin-top:6px">Sequence only</div>
+        <div class="micro" style="line-height:1.6;margin-top:5px">The source gives order, not time. Marked “—”. Placed in order, between the instants that <em>are</em> timed.</div>
+      </div>
+      <div class="lgcell">
+        <svg width="60" height="30" aria-hidden="true"><line x1="1" y1="0" x2="1" y2="10" stroke="rgba(26,23,18,.18)" stroke-width="1"/><line x1="1" y1="10" x2="1" y2="24" stroke="rgba(26,23,18,.055)" stroke-width="1"/><rect x="2" y="10" width="54" height="14" fill="rgba(26,23,18,.028)"/><line x1="1" y1="24" x2="1" y2="30" stroke="rgba(26,23,18,.18)" stroke-width="1"/></svg>
+        <div class="lab" style="margin-top:6px">Loss of signal</div>
+        <div class="micro" style="line-height:1.6;margin-top:5px">The lane's rule drops to a hairline. No transition: signal loss is instantaneous.</div>
+      </div>
+      <div class="lgcell">
+        <svg width="60" height="30" aria-hidden="true"><rect x="0" y="2" width="3" height="26" fill="#2F5B3C"/><line x1="12" y1="2" x2="12" y2="28" stroke="rgba(26,23,18,.18)" stroke-width="1"/></svg>
+        <div class="lab" style="margin-top:6px">Console</div>
+        <div class="micro" style="line-height:1.6;margin-top:5px">Which flight-director team held Houston: Green, Gold, White, Black, Maroon.</div>
+      </div>
+      <div class="lgcell">
+        <svg width="60" height="30" aria-hidden="true"><line x1="1" y1="0" x2="1" y2="30" stroke="rgba(26,23,18,.18)" stroke-width="1"/><line x1="1" y1="15" x2="56" y2="15" stroke="#BE2A17" stroke-width="1"/><circle cx="1" cy="15" r="3" fill="#BE2A17" stroke="#BE2A17"/></svg>
+        <div class="lab" style="margin-top:6px;color:var(--alert)">Red</div>
+        <div class="micro" style="line-height:1.6;margin-top:5px">Three things only: the 1201/1202 program alarms, the propellant calls, and Luna 15.</div>
+      </div>
+    </div>
+    <p class="micro" style="margin-top:22px;max-width:70em;line-height:1.75">And at the right edge of the window, permanently: the whole eight days drawn twice. The left rail is <b style="font-weight:400;color:var(--ink-62)">true time</b>, linear from the launch morning to the deck of the <i>Hornet</i>. The right rail is <b style="font-weight:400;color:var(--ink-62)">this page</b>. The hairlines between them tie each passage to its real duration — where they fan out, the page is stretching time; where they converge, it is compressing it. The scale of this page is dishonest by design and the minimap is where it admits it.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     MOVEMENT 1 — T-MINUS
+     ══════════════════════════════════════════════════════════ -->
+<section class="movement" data-mv="1" data-clock="on" data-name="T-minus">
+  <div class="wrap mvhead">
+    <div class="row">
+      <div class="num">01</div>
+      <div class="ttl">T-minus</div>
+      <div class="rng"><b>16 Jul 1969</b><br>08:00:00 → 13:32:00 UTC<br><b>05 h 32 m</b></div>
+    </div>
+    <p class="note">The clock starts here, and it is a local clock converted: the article gives the launch morning in Eastern Daylight Time and the launch itself in both — 13:32:00 UTC, 9:32:00 am EDT. Every EDT value below is placed at EDT + 4 h, and both are printed.</p>
+  </div>
+  <div class="wrap">
+    <div class="stave n2" data-id="s1" data-t0="1969-07-16T08:00:00Z" data-t1="1969-07-16T13:32:00Z" data-h="1000" data-grid="3600000">
+      <div class="axis"></div>
+      <div class="lane hou" data-lane="hou" data-body="hou">
+        <div class="lanehead"><div class="nm">Firing Room</div><div class="sub">Launch Complex 39 · KSC</div></div>
+        <div class="blk minor" data-p="0.10" data-lane="hou">
+          <div class="gutter">Firing Room</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Fuelling</span><span class="blk-src">p39</span></div>
+            <div class="blk-lede">Fueling was completed by three hours before launch.</div>
+          </div>
+        </div>
+        <div class="blk minor" data-p="0.44" data-lane="hou">
+          <div class="gutter">Firing Room</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Automation</span><span class="blk-src">p39</span></div>
+            <div class="blk-lede">Launch operations were partly automated, with 43 programs written in the ATOLL programming language.</div>
+          </div>
+        </div>
+        <div class="blk" data-t="1969-07-16T13:28:40Z" data-lane="hou">
+          <div class="gutter">Firing Room</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">13:28:40</span><span class="blk-lab">T−3:20</span><span class="blk-src">p40</span></div>
+            <div class="blk-lede">The countdown became automated at three minutes and twenty seconds before launch time. Over 450 personnel were at the consoles in the firing room.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lane crew" data-lane="eag" data-body="hou eag col">
+        <div class="lanehead"><div class="nm">Apollo 11</div><div class="sub">Armstrong · Collins · Aldrin</div></div>
+        <div class="blk" data-t="1969-07-16T08:00:00Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">08:00:00</span><span class="blk-lab">04:00 EDT · Reveille</span><span class="blk-src">p40</span></div>
+            <div class="blk-lede">Slayton roused the crew shortly after 04:00, and they showered, shaved, and had the traditional pre-flight breakfast of steak and eggs with Slayton and the backup crew.</div>
+            <span class="ex">+ full paragraph</span>
+          </div>
+          <div class="blk-more">
+            <p>They then donned their space suits and began breathing pure oxygen. At 06:30, they headed out to Launch Complex 39. Haise entered <i>Columbia</i> about three hours and ten minutes before launch time. Along with a technician, he helped Armstrong into the left-hand couch at 06:54. Five minutes later, Collins joined him, taking up his position on the right-hand couch. Finally, Aldrin entered, taking the center couch. Haise left around two hours and ten minutes before launch. The closeout crew sealed the hatch, and the cabin was purged and pressurized. The closeout crew then left the launch complex about an hour before launch time.</p>
+            <div class="prov">§ Pre-launch · p40</div>
+          </div>
+        </div>
+        <div class="blk" data-t="1969-07-16T10:54:00Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">10:54:00</span><span class="blk-lab">06:54 EDT · Ingress</span><span class="blk-src">p40</span></div>
+            <div class="blk-lede">Along with a technician, Haise helped Armstrong into the left-hand couch at 06:54. Five minutes later, Collins joined him, taking up his position on the right-hand couch. Finally, Aldrin entered, taking the center couch.</div>
+          </div>
+        </div>
+        <div class="blk minor" data-t="1969-07-16T12:32:00Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">12:32:00</span><span class="blk-lab">08:32 EDT · T−1:00</span><span class="blk-src">p40</span></div>
+            <div class="blk-lede">The closeout crew left the launch complex about an hour before launch time.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     MOVEMENT 2 — ASCENT
+     ══════════════════════════════════════════════════════════ -->
+<section class="movement" data-mv="2" data-clock="on" data-name="Ascent">
+  <div class="wrap mvhead">
+    <div class="row">
+      <div class="num">02</div>
+      <div class="ttl">Ascent</div>
+      <div class="rng"><b>16 Jul 1969</b><br>13:32:00 → 16:56:03 UTC<br><b>03 h 24 m 03 s</b></div>
+    </div>
+    <p class="note">A second lane opens, and it is not a spacecraft: it is the ground. One million people on the highways and beaches, thirty-three countries, twenty-five million American televisions. For three and a half hours the two lanes are looking at the same object from opposite ends.</p>
+  </div>
+  <div class="wrap">
+    <div class="stave n2" data-id="s2" data-t0="1969-07-16T13:32:00Z" data-t1="1969-07-16T16:56:03Z" data-h="1500" data-grid="1800000">
+      <div class="axis"></div>
+      <div class="lane hou" data-lane="hou" data-body="hou" data-shift="green" data-shift-label="Green — Charlesworth · launch">
+        <div class="lanehead"><div class="nm">Earth</div><div class="sub">Houston · the Cape · 33 countries</div></div>
+        <div class="blk" data-t="1969-07-16T13:32:00Z" data-lane="hou">
+          <div class="gutter">Earth</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">13:32:00</span><span class="blk-lab">Watching</span><span class="blk-src">p41</span></div>
+            <div class="blk-lede">An estimated one million spectators watched the launch of Apollo 11 from the highways and beaches in the vicinity of the launch site.</div>
+            <span class="ex">+ full paragraph</span>
+          </div>
+          <div class="blk-more">
+            <p>Dignitaries included the Chief of Staff of the United States Army, General William Westmoreland, four cabinet members, 19 state governors, 40 mayors, 60 ambassadors and 200 congressmen. Vice President Spiro Agnew viewed the launch with former president Lyndon B. Johnson and his wife Lady Bird Johnson. Around 3,500 media representatives were present. About two-thirds were from the United States; the rest came from 55 other countries. The launch was televised live in 33 countries, with an estimated 25 million viewers in the United States alone. Millions more around the world listened to radio broadcasts. President Richard Nixon viewed the launch from his office in the White House with his NASA liaison officer, Apollo astronaut Frank Borman. Lodging near Cape Canaveral was reported as being booked months ahead in advance for the launch by a Florida newspaper.</p>
+            <div class="prov">§ Launch and flight to lunar orbit · p41</div>
+          </div>
+        </div>
+        <div class="blk minor" data-p="0.30" data-lane="hou">
+          <div class="gutter">Earth</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Audience</span><span class="blk-src">p41</span></div>
+            <div class="blk-lede">Around 3,500 media representatives were present; about two-thirds from the United States, the rest from 55 other countries. The launch was televised live in 33 countries, with an estimated 25 million viewers in the United States alone.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lane ap11" data-lane="eag" data-body="eag col">
+        <div class="lanehead"><div class="nm">Apollo 11</div><div class="sub">Saturn V AS-506 · Columbia · Eagle</div></div>
+        <div class="blk big" data-t="1969-07-16T13:32:00Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">13:32:00</span><span class="blk-lab">Launch · T+0</span><span class="blk-src">p42</span></div>
+            <div class="blk-lede">Saturn V AS-506 launched Apollo 11 on July 16, 1969, at 13:32:00 UTC (9:32:00 EDT).</div>
+          </div>
+          <figure>
+            <img src="assets/09-Apollo_11_Launch_-_GPN-2000-000630.jpg" alt="The Apollo 11 Saturn V lifting off from Launch Complex 39A" loading="lazy">
+            <figcaption><b>The Apollo 11 Saturn V space vehicle lifts off with astronauts Neil A. Armstrong, Michael Collins and Edwin E. Aldrin Jr. at 9:32 am. EDT July 16, 1969, from Kennedy Space Center's Launch Complex 39A.</b></figcaption>
+          </figure>
+        </div>
+        <div class="blk minor" data-t="1969-07-16T13:32:13Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">13:32:13</span><span class="blk-lab">T+13.2 s</span><span class="blk-src">p42</span></div>
+            <div class="blk-lede">The vehicle began to roll into its flight azimuth of 72.058°.</div>
+          </div>
+        </div>
+        <div class="blk minor" data-t="1969-07-16T13:34:42Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">13:34:42</span><span class="blk-lab">T+2:42 · S-IC</span><span class="blk-src">p42</span></div>
+            <div class="blk-lede">Full shutdown of the first-stage engines, followed by separation of the S-IC and ignition of the S-II engines.</div>
+          </div>
+        </div>
+        <div class="blk minor" data-t="1969-07-16T13:41:08Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">13:41:08</span><span class="blk-lab">T+9:08 · S-II</span><span class="blk-src">p42</span></div>
+            <div class="blk-lede">The second stage engines cut off and separated, allowing the first ignition of the S-IVB engine a few seconds later.</div>
+          </div>
+        </div>
+        <div class="blk" data-t="1969-07-16T13:44:00Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">13:44:00</span><span class="blk-lab">T+12:00 · Earth orbit</span><span class="blk-src">p43</span></div>
+            <div class="blk-lede">Apollo 11 entered a near-circular Earth orbit at an altitude of 100.4 nautical miles (185.9 km) by 98.9 nautical miles (183.2 km), twelve minutes into its flight.</div>
+          </div>
+        </div>
+        <div class="blk" data-t="1969-07-16T16:16:16Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">16:16:16</span><span class="blk-lab">Trans-lunar injection</span><span class="blk-src">p43</span></div>
+            <div class="blk-lede">After one and a half orbits, which took around two and a half hours, a second ignition of the S-IVB engine pushed the spacecraft onto its trajectory toward the Moon.</div>
+            <span class="ex">+ full paragraph</span>
+          </div>
+          <div class="blk-more">
+            <p>The trans-lunar injection (TLI) burn took about 5 minutes and 47 seconds and started at 16:16:16 UTC. About 30 minutes later, with Collins in the left seat and at the controls, the transposition, docking, and extraction maneuver was performed. This involved separating <i>Columbia</i> from the spent S-IVB stage, turning around, and docking with <i>Eagle</i> still attached to the stage. After the LM was extracted, the combined spacecraft headed for the Moon, while the rocket stage flew on a trajectory past the Moon. This was done to avoid the third stage colliding with the spacecraft, the Earth, or the Moon. A slingshot effect from passing around the Moon threw it into an orbit around the Sun.</p>
+            <div class="prov">§ Launch and flight to lunar orbit · p43</div>
+          </div>
+        </div>
+        <div class="blk minor derived" data-t="1969-07-16T16:46:00Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">≈16:46</span><span class="blk-lab">Transposition</span><span class="blk-src">p43</span></div>
+            <div class="blk-lede">“About 30 minutes later”, with Collins in the left seat and at the controls, the transposition, docking, and extraction maneuver was performed. <span class="dv">Placed at TLI + 30 min; the source gives the interval, not the instant.</span></div>
+          </div>
+        </div>
+        <div class="blk" data-t="1969-07-16T16:56:03Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">16:56:03</span><span class="blk-lab">Docked</span><span class="blk-src">infobox</span></div>
+            <div class="blk-lede"><i>Columbia</i> docked with <i>Eagle</i>. They stay joined for 96 hours, 47 minutes and 57 seconds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     MOVEMENT 2b — TRANSIT + LUNAR ORBIT
+     ══════════════════════════════════════════════════════════ -->
+<section class="movement" data-mv="2b" data-clock="on" data-name="Transit">
+  <div class="wrap mvhead">
+    <div class="row">
+      <div class="num">03</div>
+      <div class="ttl">Transit, and thirty orbits</div>
+      <div class="rng"><b>16 → 20 Jul 1969</b><br>16:56:03 → 12:52:00 UTC<br><b>3 d 19 h 55 m 57 s</b></div>
+    </div>
+    <p class="note">Almost four days in the vertical space that the previous three and a half hours occupied. This is the largest scale distortion on the page and the minimap shows it splaying. The lane's rule begins to break here: from lunar orbit insertion onward the spacecraft spends 48 minutes of every 2-hour orbit behind the Moon, unable to hear the Earth.</p>
+  </div>
+  <div class="wrap">
+    <div class="stave n2" data-id="s3" data-t0="1969-07-16T16:56:03Z" data-t1="1969-07-20T12:52:00Z" data-h="1050" data-grid="43200000">
+      <div class="axis"></div>
+      <div class="lane hou" data-lane="hou" data-body="hou">
+        <div class="lanehead"><div class="nm">Houston</div><div class="sub">Mission Control Center</div></div>
+        <div class="blk minor" data-p="0.08" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">S-IVB</span><span class="blk-src">p43</span></div>
+            <div class="blk-lede">The spent third stage flew on a trajectory past the Moon, to avoid colliding with the spacecraft, the Earth, or the Moon. A slingshot effect threw it into an orbit around the Sun, where it remains.</div>
+          </div>
+        </div>
+      </div>
+      <div class="lane ap11" data-lane="eag" data-body="eag col" data-los="1" data-los-from="1969-07-19T17:21:50Z">
+        <div class="lanehead"><div class="nm">Apollo 11</div><div class="sub">Columbia + Eagle, docked</div></div>
+        <div class="blk" data-t="1969-07-19T17:21:50Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">17:21:50</span><span class="blk-lab">19 Jul · Lunar orbit insertion</span><span class="blk-src">p44 · infobox</span></div>
+            <div class="blk-lede">On July 19 at 17:21:50 UTC, Apollo 11 passed behind the Moon and fired its service propulsion engine to enter lunar orbit.</div>
+            <span class="ex">+ full paragraph</span>
+          </div>
+          <div class="blk-more">
+            <p>In the thirty orbits that followed, the crew saw passing views of their landing site in the southern Sea of Tranquility about 12 miles (19 km) southwest of the crater Sabine D. The site was selected in part because it had been characterized as relatively flat and smooth by the automated Ranger 8 and Surveyor 5 landers and the Lunar Orbiter mapping spacecraft, and because it was unlikely to present major landing or EVA challenges. It lay about 25 kilometers (16 mi) southeast of the Surveyor 5 landing site, and 68 kilometers (42 mi) southwest of Ranger 8's crash site.</p>
+            <div class="prov">§ Launch and flight to lunar orbit · p44 · infobox: Orbital insertion, Periselene 100.9 km, Aposelene 122.4 km, Inclination 1.25°, Period 2 h, Orbits 30</div>
+          </div>
+        </div>
+        <div class="blk big" data-p="0.20" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Three days</span><span class="blk-src">§ Launch and flight to lunar orbit</span></div>
+            <div class="blk-lede" style="color:var(--ink-45)">Between the docking and lunar orbit insertion the article records nothing that happened aboard the spacecraft. Three days and twenty-five minutes of the mission, and one sentence about a discarded rocket stage. This emptiness is the source's, not the design's.</div>
+          </div>
+        </div>
+        <div class="blk derived minor" data-t="1969-07-19T19:30:00Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">from 17:21:50</span><span class="blk-lab">The rhythm begins</span><span class="blk-src">p77 · infobox</span></div>
+            <div class="blk-lede">Every two hours, the spacecraft passes behind the Moon and goes dark for forty-eight minutes. Thirty times. <span class="dv">Derived: the article gives “48 minutes of each orbit”, an orbital period of 2 hours and a count of 30 orbits, but no individual acquisition times. The pattern drawn beside this lane is phase-anchored to lunar orbit insertion.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     MOVEMENT 3 — THE SPLIT
+     ══════════════════════════════════════════════════════════ -->
+<section class="movement" data-mv="3" data-clock="on" data-name="The split">
+  <div class="wrap mvhead">
+    <div class="row">
+      <div class="num">04</div>
+      <div class="ttl">The split</div>
+      <div class="rng"><b>20 Jul 1969</b><br>12:52:00 → 17:44:00 UTC<br><b>04 h 52 m</b></div>
+    </div>
+    <p class="note">Everything before this is one line. Everything after it is two, and then three. This is the only structural event in the mission that the article renders as a subordinate clause.</p>
+  </div>
+  <div class="wrap">
+    <div class="stave n2" data-id="s4" data-t0="1969-07-20T12:52:00Z" data-t1="1969-07-20T17:44:00Z" data-h="720" data-grid="3600000">
+      <div class="axis"></div>
+      <div class="lane hou" data-lane="hou" data-body="hou" data-shift="white" data-shift-label="White — Kranz · lunar landing">
+        <div class="lanehead"><div class="nm">Houston</div><div class="sub">White team · Kranz</div></div>
+        <div class="blk" data-p="0.16" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">The console</span><span class="blk-src">p21 · p22</span></div>
+            <div class="blk-lede">Gene Kranz's White team holds the console for the lunar landing. Charles Duke is CAPCOM — typically the only person permitted to speak directly to the flight crew.</div>
+          </div>
+          <figure>
+            <img src="assets/04-capcom-duke.jpg" alt="CAPCOM Charles Duke with Jim Lovell and Fred Haise at the console during Apollo 11's descent" loading="lazy">
+            <figcaption><b>CAPCOM Charles Duke (left), with backup crewmembers Lovell and Haise listening in during Apollo 11's descent</b></figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="lane ap11" data-lane="eag" data-body="eag col" data-los="1" data-los-from="1969-07-19T17:21:50Z">
+        <div class="lanehead"><div class="nm">Apollo 11</div><div class="sub">Columbia + Eagle, still docked</div></div>
+        <div class="blk" data-t="1969-07-20T12:52:00Z" data-lane="eag">
+          <div class="gutter">Apollo 11</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">12:52:00</span><span class="blk-lab">Two men move across</span><span class="blk-src">p45</span></div>
+            <div class="blk-lede">At 12:52:00 UTC on July 20, Aldrin and Armstrong entered <i>Eagle</i>, and began the final preparations for lunar descent.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE FORK -->
+  <div class="wrap splitwrap">
+    <div id="forkbox" aria-hidden="true"><svg><path id="fork-a" d=""></path><path id="fork-b" d=""></path></svg></div>
+    <div class="splithead">
+      <div class="bar"></div>
+      <div class="row">
+        <span class="t">17:44:00</span>
+        <span class="w">Undocking</span>
+        <span class="r">20 July 1969 · MET 004:04:12:00<br>infobox: Undocking date<br>ends 96 h 47 m 57 s docked</span>
+      </div>
+      <p class="say">From this second there are two vehicles, two crews and two sets of information, and the article has one paragraph for it. Below: each craft photographed by the other, from the two sides of the gap that had just opened.</p>
+    </div>
+
+    <div class="splitgrid">
+      <div></div>
+      <div class="col" id="sp-hou">
+        <div class="lb">Houston</div>
+        <div class="sb">Mission Control Center</div>
+        <div class="shiftchip"><i style="background:var(--team-white);box-shadow:inset 0 0 0 1px rgba(26,23,18,.3)"></i><span>White team · Kranz · lunar landing</span></div>
+        <p class="hou-note">Houston now has two vehicles to listen to, and for forty-eight minutes of every orbit it can only hear one of them.</p>
+      </div>
+      <div class="col" id="sp-eag">
+        <div class="lb">Eagle</div>
+        <div class="sb">Armstrong · Aldrin</div>
+        <figure>
+          <img src="assets/11-eagle-from-columbia.jpg" alt="The Lunar Module Eagle in landing configuration in lunar orbit" loading="lazy">
+          <figcaption><b><i>Eagle</i> in lunar orbit photographed from <i>Columbia</i></b>§ Lunar descent · article caption</figcaption>
+        </figure>
+        <div class="said">“The Eagle has wings!”</div>
+        <div class="who">Neil Armstrong · p45</div>
+      </div>
+      <div class="col" id="sp-col">
+        <div class="lb">Columbia</div>
+        <div class="sb">Collins, alone</div>
+        <figure>
+          <img src="assets/10-columbia-from-eagle.jpg" alt="The Command and Service Module Columbia in lunar orbit" loading="lazy">
+          <figcaption><b><i>Columbia</i> in lunar orbit, photographed from <i>Eagle</i></b>§ Lunar descent · article caption</figcaption>
+        </figure>
+        <div class="note">Collins, alone aboard <i>Columbia</i>, inspected <i>Eagle</i> as it pirouetted before him to ensure the craft was not damaged, and that the landing gear was correctly deployed. </div>
+        <div class="who">§ Lunar descent · p45</div>
+      </div>
+    </div>
+    <div class="splitrec">
+      <span>Docked 16 Jul 16:56:03 → 20 Jul 17:44:00 · 96 h 47 m 57 s</span>
+      <span>Next contact between these two craft: 21 Jul 21:35:00 · 27 h 51 m later</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     MOVEMENT 4 — POWERED DESCENT (axis becomes altitude)
+     ══════════════════════════════════════════════════════════ -->
+<section class="movement" data-mv="4" data-clock="on" data-name="Powered descent">
+  <div class="wrap mvhead">
+    <div class="row">
+      <div class="num">05</div>
+      <div class="ttl">Powered descent</div>
+      <div class="rng"><b>20 Jul 1969</b><br>6,000 ft → 0<br><b>ends 20:17:40 UTC</b></div>
+    </div>
+    <p class="note">For the last 6,000 feet the source stops giving times and starts giving heights — 6,000 ft, 250 ft, 107 ft, 100 ft — so this stave stops measuring time and measures height instead. The scale is logarithmic, because the source spends more words on the last hundred feet than on the first five thousand. The clock returns once, at the bottom.</p>
+  </div>
+  <div class="wrap">
+    <div class="stave n3 altmode" data-id="s5" data-mode="alt" data-h="2600" data-ticks="6000*,3000,2000,1000,500,250*,107*,100*,50,20,10">
+      <div class="axis">
+        <div class="gauge"></div><div class="gaugefill"></div>
+      </div>
+      <div class="lane hou" data-lane="hou" data-body="hou" data-shift="white" data-shift-label="White — Kranz · lunar landing">
+        <div class="lanehead"><div class="nm">Houston</div><div class="sub">White team · Kranz · CAPCOM Duke</div></div>
+        <div class="blk alert" data-a="6000" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">6,000 ft</span><span class="blk-lab">1202 · 1201</span><span class="blk-src">p47</span></div>
+            <div class="blk-lede">Inside Mission Control Center, computer engineer Jack Garman told Guidance Officer Steve Bales it was safe to continue the descent, and this was relayed to the crew.</div>
+            <span class="ex">+ what the alarms were, and Margaret Hamilton on them</span>
+          </div>
+          <div class="blk-more">
+            <p>The program alarms indicated "executive overflows", meaning the guidance computer could not complete all its tasks in real-time and had to postpone some of them.</p>
+            <p><i>Margaret Hamilton, Director of Apollo Flight Computer Programming at the MIT Charles Stark Draper Laboratory, later recalled:</i> “To blame the computer for the Apollo 11 problems is like blaming the person who spots a fire and calls the fire department. Actually, the computer was programmed to do more than recognize error conditions. A complete set of recovery programs was incorporated into the software. The software's action, in this case, was to eliminate lower priority tasks and re-establish the more important ones. The computer, rather than almost forcing an abort, prevented an abort. If the computer hadn't recognized this problem and taken recovery action, I doubt if Apollo 11 would have been the successful Moon landing it was.”</p>
+            <p>During the mission, the cause was diagnosed as the rendezvous radar switch being in the wrong position, causing the computer to process data from both the rendezvous and landing radars at the same time. Software engineer Don Eyles concluded in a 2005 Guidance and Control Conference paper that the problem was due to a hardware design bug previously seen during testing of the first uncrewed LM in Apollo 5. Having the rendezvous radar on (so it was warmed up in case of an emergency landing abort) should have been irrelevant to the computer, but an electrical phasing mismatch between two parts of the rendezvous radar system could cause the stationary antenna to appear to the computer as dithering back and forth between two positions, depending upon how the hardware randomly powered up. The extra spurious cycle stealing, as the rendezvous radar updated an involuntary counter, caused the computer alarms.</p>
+            <div class="prov">§ Lunar descent · p47, p48 · quote from § Lunar descent</div>
+          </div>
+        </div>
+        <div class="blk" data-p="0.955" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">20:17:40</span><span class="blk-lab">Reply</span><span class="blk-src">p54</span></div>
+            <div class="said">“Roger, Twan—Tranquility, we copy you on the ground. You got a bunch of guys about to turn blue. We're breathing again. Thanks a lot.”</div>
+            <div class="who">Charles Duke, CAPCOM</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lane eag" data-lane="eag" data-body="eag">
+        <div class="lanehead"><div class="nm">Eagle</div><div class="sub">Armstrong · Aldrin · descending</div></div>
+        <div class="blk minor" data-p="0.0" data-lane="eag">
+          <div class="gutter">Eagle</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Long</span><span class="blk-src">p46</span></div>
+            <div class="blk-lede">As the descent began, Armstrong and Aldrin found themselves passing landmarks on the surface two or three seconds early, and reported that they were “long”; they would land miles west of their target point.</div>
+            <span class="ex">+ full paragraph</span>
+          </div>
+          <div class="blk-more">
+            <p><i>Eagle</i> was traveling too fast. The problem could have been mascons—concentrations of high mass in a region or regions of the Moon's crust that contains a gravitational anomaly, potentially altering <i>Eagle</i>'s trajectory. Flight Director Gene Kranz speculated that it could have resulted from extra air pressure in the docking tunnel, or a result of <i>Eagle</i>'s pirouette maneuver.</p>
+            <div class="prov">§ Lunar descent · p46</div>
+          </div>
+        </div>
+        <div class="blk alert" data-a="6000" data-lane="eag">
+          <div class="gutter">Eagle</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">6,000 ft</span><span class="blk-lab">Program alarm</span><span class="blk-src">p47</span></div>
+            <div class="blk-lede">Five minutes into the descent burn, and 6,000 feet (1,800 m) above the surface of the Moon, the LM guidance computer distracted the crew with the first of several unexpected 1201 and 1202 program alarms.</div>
+          </div>
+        </div>
+        <div class="blk" data-p="0.24" data-lane="eag">
+          <div class="gutter">Eagle</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Semi-automatic control</span><span class="blk-src">p49</span></div>
+            <div class="blk-lede">When Armstrong again looked outside, he saw that the computer's landing system was targeting a boulder-strewn area just north and east of a 300-foot-diameter crater (later determined to be West crater), so he took semi-automatic control.</div>
+            <span class="ex">+ full paragraph</span>
+          </div>
+          <div class="blk-more">
+            <p>Armstrong considered landing short of the boulder field so they could collect geological samples from it, but could not since their horizontal velocity was too high. Throughout the descent, Aldrin called out navigation data to Armstrong, who was busy piloting <i>Eagle</i>.</p>
+            <div class="prov">§ Landing · p49</div>
+          </div>
+          <figure>
+            <img src="assets/12-Apollo_11_Landing_Site___West_Crater.png" alt="Lunar Reconnaissance Orbiter image showing the Apollo 11 landing site relative to West crater" loading="lazy">
+            <figcaption><b>The landing site relative to West crater</b>§ Landing · article caption</figcaption>
+          </figure>
+        </div>
+        <div class="blk" data-a="250" data-lane="eag">
+          <div class="gutter">Eagle</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">250 ft</span><span class="blk-lab">A crater in it</span><span class="blk-src">p50</span></div>
+            <div class="blk-lede">Armstrong found a clear patch of ground and maneuvered the spacecraft towards it. As he got closer, now 250 feet (76 m) above the surface, he discovered his new landing site had a crater in it.</div>
+          </div>
+        </div>
+        <div class="blk" data-a="107" data-lane="eag">
+          <div class="gutter">Eagle</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">107 ft</span><span class="blk-lab">Dwindling</span><span class="blk-src">p50</span></div>
+            <div class="blk-lede">Now 107 feet (33 m) above the surface, Armstrong knew their propellant supply was dwindling and was determined to land at the first possible landing site. He cleared the crater and found another patch of level ground.</div>
+          </div>
+        </div>
+        <div class="blk alert big" data-a="100" data-lane="eag">
+          <div class="gutter">Eagle</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">100 ft</span><span class="blk-lab">90 seconds</span><span class="blk-src">p50</span></div>
+            <div class="blk-lede">They were now 100 feet (30 m) from the surface, <b>with only 90 seconds of propellant remaining.</b></div>
+            <span class="ex">+ full paragraph</span>
+          </div>
+          <div class="blk-more">
+            <p>Lunar dust kicked up by the LM's engine began to impair his ability to determine the spacecraft's motion. Some large rocks jutted out of the dust cloud, and Armstrong focused on them during his descent so he could determine the spacecraft's speed.</p>
+            <div class="prov">§ Landing · p50</div>
+          </div>
+        </div>
+        <div class="blk" data-p="0.79" data-lane="eag">
+          <div class="gutter">Eagle</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Contact</span><span class="blk-src">p51</span></div>
+            <div class="blk-lede">A light informed Aldrin that at least one of the 67-inch (170 cm) probes hanging from <i>Eagle</i>'s footpads had touched the surface a few moments before the landing.</div>
+            <div class="said">“Contact light!”</div>
+            <div class="who">Buzz Aldrin</div>
+            <span class="ex">+ what happened in the next three seconds</span>
+          </div>
+          <div class="blk-more">
+            <p>Armstrong was supposed to immediately shut the engine down, as the engineers suspected the pressure caused by the engine's own exhaust reflecting off the lunar surface could make it explode, but he forgot. Three seconds later, <i>Eagle</i> landed and Armstrong shut the engine down. Aldrin immediately said “Okay, engine stop. ACA—out of detent.” Armstrong acknowledged: “Out of detent. Auto.” Aldrin continued: “Mode control—both auto. Descent engine command override off. Engine arm—off. 413 is in.”</p>
+            <p>ACA was the Attitude Control Assembly—the LM's control stick. Output went to the LGC to command the reaction control system (RCS) jets to fire. “Out of Detent” meant the stick had moved away from its centered position; it was spring-centered like the turn indicator in a car. Address 413 of the Abort Guidance System (AGS) contained the variable that indicated the LM had landed.</p>
+            <div class="prov">§ Landing · p51, p52</div>
+          </div>
+        </div>
+        <div class="blk big" data-p="1.0" data-lane="eag">
+          <div class="gutter">Eagle</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">20:17:40</span><span class="blk-lab">Tranquility Base</span><span class="blk-src">p53 · p54 · infobox</span></div>
+            <div class="said">“Houston, Tranquility Base here. The Eagle has landed.”</div>
+            <div class="who">Neil Armstrong</div>
+            <div class="blk-lede" style="margin-top:12px"><i>Eagle</i> landed at 20:17:40 UTC on Sunday July 20 with <b>216 pounds (98 kg) of usable fuel remaining.</b></div>
+            <span class="ex">+ how close it actually was</span>
+          </div>
+          <div class="blk-more">
+            <p>Information available to the crew and mission controllers during the landing showed the LM had enough fuel for another 25 seconds of powered flight before an abort without touchdown would have become unsafe, but post-mission analysis showed that the real figure was probably closer to 50 seconds. Apollo 11 landed with less fuel than most subsequent missions, and the astronauts encountered a premature low fuel warning. This was later found to be the result of the propellant sloshing more than expected, uncovering a fuel sensor. On subsequent missions, extra anti-slosh baffles were added to the tanks to prevent this.</p>
+            <p>Armstrong's unrehearsed change of call sign from “Eagle” to “Tranquility Base” emphasized to listeners that landing was complete and successful.</p>
+            <div class="prov">§ Landing · p53, p54 · infobox: Landing date 20:17:40 UTC</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lane col" data-lane="col" data-body="col">
+        <div class="lanehead"><div class="nm">Columbia</div><div class="sub">Collins · in orbit</div></div>
+        <div class="blk minor" data-p="0.30" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">No altitude</span><span class="blk-src">§ Columbia in lunar orbit</span></div>
+            <div class="blk-lede" style="color:var(--ink-45)">This stave is measured in feet above the Sea of Tranquility, and Collins has no altitude. He is 60 nautical miles up, going round, and the article records nothing at all of what he did during these twelve minutes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="gaugecap" style="margin-top:14px">Left margin: propellant. The bar tracks your descent through the stave and does not refill when you scroll back — it is the one thing on this page other than time that is allowed to move, and it only decreases. Its two labelled values, <b>90 seconds remaining at 100 feet</b> and <b>216 lb usable at touchdown</b>, are the only propellant quantities the article gives.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     MOVEMENT 5a — SURFACE, BEFORE THE HATCH
+     ══════════════════════════════════════════════════════════ -->
+<section class="movement" data-mv="5" data-clock="on" data-name="Surface">
+  <div class="wrap mvhead">
+    <div class="row">
+      <div class="num">06</div>
+      <div class="ttl">Surface</div>
+      <div class="rng"><b>20 → 21 Jul 1969</b><br>20:17:40 → 02:39:33 UTC<br><b>06 h 21 m 53 s</b></div>
+    </div>
+    <p class="note">Three lanes now, and this is the passage the article gets structurally wrong: “Columbia in lunar orbit” is printed <i>after</i> “Lunar ascent”, three sections later, although every sentence in it happens here, alongside the surface. It has been moved back to where it belongs. Collins' lane goes dark on schedule.</p>
+  </div>
+  <div class="wrap">
+    <div class="stave n3" data-id="s6" data-t0="1969-07-20T20:17:40Z" data-t1="1969-07-21T02:39:33Z" data-h="1750" data-grid="3600000">
+      <div class="axis"></div>
+      <div class="lane hou" data-lane="hou" data-body="hou" data-shift="white" data-shift-label="White — Kranz">
+        <div class="lanehead"><div class="nm">Houston</div><div class="sub">Mission Control Center</div></div>
+        <div class="blk minor" data-p="0.30" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">A lawsuit</span><span class="blk-src">p56</span></div>
+            <div class="blk-lede">At this time NASA was still fighting a lawsuit brought by atheist Madalyn Murray O'Hair — who had objected to the Apollo 8 crew reading from the Book of Genesis — demanding that their astronauts refrain from broadcasting religious activities while in space.</div>
+          </div>
+        </div>
+        <div class="blk minor" data-p="0.52" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Five hours of sleep, declined</span><span class="blk-src">p56</span></div>
+            <div class="blk-lede">The schedule for the mission called for the astronauts to follow the landing with a five-hour sleep period, but they chose to begin preparations for the EVA early, thinking they would be unable to sleep.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lane eag" data-lane="eag" data-body="eag">
+        <div class="lanehead"><div class="nm">Tranquility Base</div><div class="sub">Armstrong · Aldrin · on the surface</div></div>
+        <div class="blk big derived" data-t="1969-07-20T22:47:40Z" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">≈22:47:40</span><span class="blk-lab">Two and a half hours after landing</span><span class="blk-src">p55</span></div>
+            <div class="said">“This is the LM pilot. I'd like to take this opportunity to ask every person listening in, whoever and wherever they may be, to pause for a moment and contemplate the events of the past few hours and to give thanks in his or her own way.”</div>
+            <div class="who">Buzz Aldrin · radioed to Earth</div>
+            <div class="dv" style="margin-top:9px">Placed at landing + 2 h 30 m; the source gives the interval, not the instant.</div>
+            <span class="ex">+ what he did next, and why he did not say so</span>
+          </div>
+          <div class="blk-more">
+            <p>He then took communion privately. Aldrin chose to refrain from directly mentioning taking communion on the Moon. Aldrin was an elder at the Webster Presbyterian Church, and his communion kit was prepared by the pastor of the church, Dean Woodruff. Webster Presbyterian possesses the chalice used on the Moon and commemorates the event each year on the Sunday closest to July 20.</p>
+            <div class="prov">§ Landing · p55, p56</div>
+          </div>
+        </div>
+        <div class="blk" data-t="1969-07-20T23:43:00Z" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">23:43:00</span><span class="blk-lab">Preparations begin</span><span class="blk-src">p57</span></div>
+            <div class="blk-lede">Preparations for Neil Armstrong and Buzz Aldrin to walk on the Moon began at 23:43 UTC. These took longer than expected; three and a half hours instead of two.</div>
+            <span class="ex">+ why</span>
+          </div>
+          <div class="blk-more">
+            <p>During training on Earth, everything required had been neatly laid out in advance, but on the Moon the cabin contained a large number of other items as well, such as checklists, food packets, and tools. Six hours and thirty-nine minutes after landing, Armstrong and Aldrin were ready to go outside, and <i>Eagle</i> was depressurized.</p>
+            <div class="prov">§ Lunar surface operations · p57</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lane col" data-lane="col" data-body="col" data-los="1" data-los-from="1969-07-19T17:21:50Z" data-los-count="1">
+        <div class="lanehead"><div class="nm">Columbia</div><div class="sub">Collins · alone · 48 min dark per orbit</div></div>
+        <div class="blk big" data-p="0.10" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Solitude</span><span class="blk-src">p77</span></div>
+            <div class="blk-lede">During his day flying solo around the Moon, Collins never felt lonely. Although it has been said “not since Adam has any human known such solitude”, Collins felt very much a part of the mission.</div>
+            <span class="ex">+ what he reported feeling in the dark</span>
+          </div>
+          <div class="blk-more">
+            <p>In his autobiography he wrote: “this venture has been structured for three men, and I consider my third to be as necessary as either of the other two”. In the 48 minutes of each orbit when he was out of radio contact with the Earth while <i>Columbia</i> passed round the far side of the Moon, the feeling he reported was not fear or loneliness, but rather:</p>
+            <div class="prov">§ Columbia in lunar orbit · p77</div>
+          </div>
+        </div>
+        <div class="blk minor" data-p="0.335" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="said" style="font-size:24px;line-height:1.28">“awareness, anticipation, satisfaction, confidence, almost exultation”</div>
+            <div class="who">Michael Collins, on the 48 minutes · p77</div>
+          </div>
+        </div>
+        <div class="blk minor" data-p="0.60" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Looking for them</span><span class="blk-src">p78</span></div>
+            <div class="blk-lede">One of Collins' first tasks was to identify the Lunar Module on the ground. Mission Control radioed that they believed it landed about 4 miles (6.4 km) off target. Each time he passed over the suspected site, he tried in vain to find it.</div>
+            <span class="ex">+ full paragraph</span>
+          </div>
+          <div class="blk-more">
+            <p>On his first orbits on the back side of the Moon, Collins performed maintenance activities such as dumping excess water produced by the fuel cells and preparing the cabin for Armstrong and Aldrin to return.</p>
+            <div class="prov">§ Columbia in lunar orbit · p78</div>
+          </div>
+        </div>
+        <div class="blk" data-p="0.82" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Third orbit · coolant</span><span class="blk-src">p79 · p80</span></div>
+            <div class="blk-lede">Just before he reached the dark side on the third orbit, Mission Control informed Collins there was a problem with the temperature of the coolant. If it became too cold, parts of <i>Columbia</i> might freeze.</div>
+            <span class="ex">+ what he did about it</span>
+          </div>
+          <div class="blk-more">
+            <p>Mission Control advised him to assume manual control and implement Environmental Control System Malfunction Procedure 17. Instead, Collins flicked the switch on the system from automatic to manual and back to automatic again, and carried on with normal housekeeping chores, while keeping an eye on the temperature. When <i>Columbia</i> came back around to the near side of the Moon again, Collins was able to report that the problem had been resolved. For the next couple of orbits, he described his time on the back side of the Moon as “relaxing”.</p>
+            <div class="prov">§ Columbia in lunar orbit · p79, p80</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     MOVEMENT 5b — THE EVA
+     ══════════════════════════════════════════════════════════ -->
+<section class="movement" data-mv="5b" data-clock="on" data-name="EVA">
+  <div class="wrap mvhead">
+    <div class="row">
+      <div class="num">07</div>
+      <div class="ttl">Extravehicular activity</div>
+      <div class="rng"><b>21 Jul 1969</b><br>02:39:33 → 05:11:13 UTC<br><b>02 h 31 m 40 s</b></div>
+    </div>
+    <p class="note">The densest passage on the page, and the one where the source is least helpful about time: four instants are given to the second, and everything else is given only as sequence. Blocks marked “—” are placed in order between the instants that <i>are</i> timed. Houston's console has changed hands: Charlesworth's Green team held launch and EVA.</p>
+  </div>
+  <div class="wrap">
+    <div class="stave n3" data-id="s7" data-t0="1969-07-21T02:39:33Z" data-t1="1969-07-21T05:11:13Z" data-h="4300" data-grid="900000">
+      <div class="axis"></div>
+      <div class="lane hou" data-lane="hou" data-body="hou" data-shift="green" data-shift-label="Green — Charlesworth · EVA">
+        <div class="lanehead"><div class="nm">Houston</div><div class="sub">Green team · Charlesworth</div></div>
+        <div class="blk" data-t="1969-07-21T02:51:00Z" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">02:51:00</span><span class="blk-lab">A broadcast of a broadcast</span><span class="blk-src">p59</span></div>
+            <div class="blk-lede">Apollo 11 used slow-scan television incompatible with broadcast TV, so it was displayed on a special monitor and a conventional TV camera viewed this monitor — thus, a broadcast of a broadcast — significantly reducing the quality of the picture.</div>
+          </div>
+        </div>
+        <div class="blk minor" data-p="0.11" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Goldstone · Honeysuckle Creek</span><span class="blk-src">p59</span></div>
+            <div class="blk-lede">The signal was received at Goldstone in the United States, but with better fidelity by Honeysuckle Creek Tracking Station near Canberra in Australia.</div>
+          </div>
+        </div>
+        <div class="blk minor" data-p="0.19" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Parkes</span><span class="blk-src">p59</span></div>
+            <div class="blk-lede">Minutes later the feed was switched to the more sensitive Parkes radio telescope in Australia. Despite some technical and weather difficulties, black and white images of the first lunar EVA were received and broadcast.</div>
+          </div>
+        </div>
+        <div class="blk" data-t="1969-07-21T02:56:15Z" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">02:56:15</span><span class="blk-lab">Received by</span><span class="blk-src">p59 · p105</span></div>
+            <div class="bignum">600,000,000</div>
+            <div class="blk-lede">people, at least — one fifth of the world's population — watching a picture that had lost most of its quality on the way to the screen.</div>
+          </div>
+        </div>
+        <div class="blk" data-p="0.34" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">And then taped over</span><span class="blk-src">p59</span></div>
+            <div class="blk-lede">Copies of this video in broadcast format were saved and are widely available, but <b>recordings of the original slow scan source transmission from the lunar surface were likely destroyed during routine magnetic tape re-use at NASA.</b></div>
+          </div>
+        </div>
+        <div class="blk" data-p="0.50" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">A telephone call</span><span class="blk-src">p65</span></div>
+            <div class="blk-lede">Before Aldrin could take a photo of Armstrong with the flag, President Richard Nixon spoke to them through a telephone-radio transmission, which Nixon called “the most historic phone call ever made from the White House.”</div>
+            <span class="ex">+ the call, verbatim</span>
+          </div>
+          <div class="blk-more">
+            <p>Nixon originally had a long speech prepared to read during the phone call, but Frank Borman, who was at the White House as a NASA liaison during Apollo 11, convinced Nixon to keep his words brief.</p>
+            <p><b>Nixon:</b> Hello, Neil and Buzz. I'm talking to you by telephone from the Oval Room at the White House. And this certainly has to be the most historic telephone call ever made from the White House. I just can't tell you how proud we all are of what you have done. For every American, this has to be the proudest day of our lives. And for people all over the world, I am sure that they too join with Americans in recognizing what an immense feat this is. Because of what you have done, the heavens have become a part of man's world. And as you talk to us from the Sea of Tranquility, it inspires us to redouble our efforts to bring peace and tranquility to Earth. For one priceless moment in the whole history of man, all the people on this Earth are truly one: one in their pride in what you have done, and one in our prayers that you will return safely to Earth.</p>
+            <p><b>Armstrong:</b> Thank you, Mr. President. It's a great honor and privilege for us to be here, representing not only the United States, but men of peace of all nations, and with interest and a curiosity, and men with a vision for the future. It's an honor for us to be able to participate here today.</p>
+            <p><b>Nixon:</b> Thank you very much, and I look forward, all of us look forward, to seeing you on the <i>Hornet</i> on Thursday.</p>
+            <div class="prov">§ Mission · quote block · p65</div>
+          </div>
+        </div>
+        <div class="blk" data-p="0.90" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">A coded phrase</span><span class="blk-src">p70</span></div>
+            <div class="blk-lede">Mission Control used a coded phrase to warn Armstrong his metabolic rates were high, and that he should slow down. He was moving rapidly from task to task as time ran out.</div>
+            <span class="ex">+ full paragraph</span>
+          </div>
+          <div class="blk-more">
+            <p>As metabolic rates remained generally lower than expected for both astronauts throughout the walk, Mission Control granted the astronauts a 15-minute extension. In a 2010 interview, Armstrong explained that NASA limited the first moonwalk's time and distance because there was no empirical proof of how much cooling water the astronauts' PLSS backpacks would consume to handle their body heat generation while working on the Moon.</p>
+            <div class="prov">§ Lunar surface operations · p70</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lane eag" data-lane="eag" data-body="eag">
+        <div class="lanehead"><div class="nm">Tranquility Base</div><div class="sub">Armstrong · Aldrin</div></div>
+        <div class="blk" data-t="1969-07-21T02:39:33Z" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">02:39:33</span><span class="blk-lab">Hatch open</span><span class="blk-src">p58</span></div>
+            <div class="blk-lede">Armstrong initially had some difficulties squeezing through the hatch with his portable life support system. Some of the highest heart rates recorded from Apollo astronauts occurred during LM egress and ingress.</div>
+          </div>
+        </div>
+        <div class="blk" data-t="1969-07-21T02:51:00Z" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">02:51:00</span><span class="blk-lab">Down the ladder</span><span class="blk-src">p58</span></div>
+            <div class="blk-lede">At 02:51 Armstrong began his descent to the lunar surface. The remote-control unit on his chest kept him from seeing his feet. Climbing down the nine-rung ladder, Armstrong pulled a D-ring to deploy the modular equipment stowage assembly folded against <i>Eagle</i>'s side and activate the TV camera.</div>
+          </div>
+        </div>
+        <div class="blk big" data-t="1969-07-21T02:56:15Z" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">02:56:15</span><span class="blk-lab">First step</span><span class="blk-src">p60</span></div>
+            <div class="blk-lede">After describing the surface dust as “very fine-grained” and “almost like a powder”, at 02:56:15, six and a half hours after landing, Armstrong stepped off <i>Eagle</i>'s landing pad and declared:</div>
+            <div class="said">“That's one small step for man, one giant leap for mankind.”</div>
+            <div class="who">Neil Armstrong · 02:56:15 UTC · 21 July 1969</div>
+          </div>
+        </div>
+        <div class="blk minor" data-p="0.128" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">The missing “a”</span><span class="blk-src">p61</span></div>
+            <div class="blk-lede">Armstrong intended to say “That's one small step for a man”, but the word “a” is not audible in the transmission, and thus was not initially reported by most observers of the live broadcast.</div>
+            <span class="ex">+ four explanations, none settled</span>
+          </div>
+          <div class="blk-more">
+            <p>When later asked about his quote, Armstrong said he believed he said “for a man”, and subsequent printed versions of the quote included the “a” in square brackets. One explanation for the absence may be that his accent caused him to slur the words “for a” together; another is the intermittent nature of the audio and video links to Earth, partly because of storms near Parkes Observatory. A more recent digital analysis of the tape claims to reveal the “a” may have been spoken but obscured by static. Other analysis points to the claims of static and slurring as “face-saving fabrication”, and that Armstrong himself later admitted to misspeaking the line.</p>
+            <div class="prov">§ Lunar surface operations · p61</div>
+          </div>
+        </div>
+        <div class="blk derived" data-t="1969-07-21T03:03:15Z" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">≈03:03</span><span class="blk-lab">Contingency sample</span><span class="blk-src">p62</span></div>
+            <div class="blk-lede">About seven minutes after stepping onto the Moon's surface, Armstrong collected a contingency soil sample using a sample bag on a stick — to guarantee there would be some lunar soil brought back in case an emergency required the astronauts to abandon the EVA. <span class="dv">Placed at first step + 7 min.</span></div>
+            <span class="ex">+ the camera, and the cable</span>
+          </div>
+          <div class="blk-more">
+            <p>He then folded the bag and tucked it into a pocket on his right thigh. Twelve minutes after the sample was collected, he removed the TV camera from the MESA and made a panoramic sweep, then mounted it on a tripod. <b>The TV camera cable remained partly coiled and presented a tripping hazard throughout the EVA.</b> Still photography was accomplished with a Hasselblad camera that could be operated hand-held or mounted on Armstrong's Apollo space suit.</p>
+            <div class="prov">§ Lunar surface operations · p62</div>
+          </div>
+        </div>
+        <div class="blk big derived" data-t="1969-07-21T03:15:15Z" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">≈03:15</span><span class="blk-lab">Nineteen minutes later</span><span class="blk-src">p1 · p62</span></div>
+            <div class="blk-lede">Aldrin joined Armstrong on the surface. He described the view with the simple phrase:</div>
+            <div class="said">“Magnificent desolation.”</div>
+            <div class="who">Buzz Aldrin</div>
+            <div class="dv" style="margin-top:9px">Placed at first step + 19 min, the interval the lead section gives.</div>
+          </div>
+        </div>
+        <div class="blk" data-p="0.30" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">One-sixth gravity</span><span class="blk-src">p63</span></div>
+            <div class="blk-lede">Armstrong said moving in the lunar gravity, one-sixth of Earth's, was “even perhaps easier than the simulations … It's absolutely no trouble to walk around.”</div>
+            <span class="ex">+ full paragraph</span>
+          </div>
+          <div class="blk-more">
+            <p>Aldrin joined him on the surface and tested methods for moving around, including two-footed kangaroo hops. The PLSS backpack created a tendency to tip backward, but neither astronaut had serious problems maintaining balance. Loping became the preferred method of movement. The astronauts reported that they needed to plan their movements six or seven steps ahead. The fine soil was quite slippery. Aldrin remarked that moving from sunlight into <i>Eagle</i>'s shadow produced no temperature change inside the suit, but the helmet was warmer in sunlight, so he felt cooler in shadow. The MESA failed to provide a stable work platform and was in shadow, slowing work somewhat. As they worked, the moonwalkers kicked up gray dust, which soiled the outer part of their suits.</p>
+            <div class="prov">§ Lunar surface operations · p63</div>
+          </div>
+        </div>
+        <div class="blk" data-p="0.395" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">The flag</span><span class="blk-src">p64</span></div>
+            <div class="blk-lede">The astronauts planted the Lunar Flag Assembly containing a flag of the United States on the lunar surface, in clear view of the TV camera. Aldrin remembered, “Of all the jobs I had to do on the Moon the one I wanted to go the smoothest was the flag raising.”</div>
+            <span class="ex">+ two inches into the hard lunar surface</span>
+          </div>
+          <div class="blk-more">
+            <p>But the astronauts struggled with the telescoping rod and could only insert the pole about 2 inches (5 cm) into the hard lunar surface. Aldrin was afraid it might topple in front of TV viewers, but gave “a crisp West Point salute”.</p>
+            <div class="prov">§ Lunar surface operations · p64</div>
+          </div>
+          <figure>
+            <img src="assets/14-Buzz_salutes_the_U.S._Flag.jpg" alt="Aldrin saluting the deployed United States flag on the lunar surface" loading="lazy">
+            <figcaption><b>Aldrin salutes the deployed United States flag on the lunar surface.</b>§ Lunar surface operations · article caption</figcaption>
+          </figure>
+        </div>
+        <div class="blk minor" data-p="0.545" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Reply from the surface</span><span class="blk-src">p65</span></div>
+            <div class="said" style="font-size:17px">“…representing not only the United States, but men of peace of all nations, and with interest and a curiosity, and men with a vision for the future.”</div>
+            <div class="who">Neil Armstrong, answering the White House</div>
+          </div>
+          <figure>
+            <img src="assets/00-A_Man_on_the_Moon__AS11-40-5903__cropped_.jpg" alt="Buzz Aldrin on the lunar surface, photographed by Neil Armstrong" loading="lazy">
+            <figcaption><b>Aldrin on the surface, photographed by Armstrong.</b>§ lead image — the source gives this photograph no caption.</figcaption>
+          </figure>
+        </div>
+        <div class="blk" data-p="0.66" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">EASEP · 196 feet</span><span class="blk-src">p66</span></div>
+            <div class="blk-lede">They deployed the EASEP, which included a Passive Seismic Experiment Package used to measure moonquakes and a retroreflector array used for the lunar laser ranging experiment.</div>
+            <span class="ex">+ the only time the hammer was used</span>
+          </div>
+          <div class="blk-more">
+            <p>Then Armstrong walked 196 feet (60 m) from the LM to take photographs at the rim of Little West Crater while Aldrin collected two core samples. He used the geologist's hammer to pound in the tubes—the only time the hammer was used on Apollo 11—but was unable to penetrate more than 6 inches (15 cm) deep. The astronauts then collected rock samples using scoops and tongs on extension handles.</p>
+            <div class="prov">§ Lunar surface operations · p66</div>
+          </div>
+          <figure>
+            <img src="assets/17-Aldrin_Looks_Back_at_Tranquility_Base_-_GPN-2000-001102.jpg" alt="Aldrin next to the Passive Seismic Experiment Package with the Lunar Module Eagle behind" loading="lazy">
+            <figcaption><b>Aldrin next to the Passive Seismic Experiment Package with the Lunar Module <i>Eagle</i> in the background</b>§ Lunar ascent · article caption</figcaption>
+          </figure>
+        </div>
+        <div class="blk" data-p="0.775" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Thirty-four minutes</span><span class="blk-src">p67</span></div>
+            <div class="blk-lede">Many of the surface activities took longer than expected, so they had to stop documenting sample collection halfway through the allotted 34 minutes. Aldrin shoveled 6 kilograms (13 lb) of soil into the box of rocks to pack them in tightly.</div>
+            <span class="ex">+ three minerals that did not have names</span>
+          </div>
+          <div class="blk-more">
+            <p>Two types of rocks were found in the geological samples: basalt and breccia. Three new minerals were discovered in the rock samples collected by the astronauts: <b>armalcolite, tranquillityite, and pyroxferroite.</b> Armalcolite was named after Armstrong, Aldrin, and Collins. All have subsequently been found on Earth.</p>
+            <div class="prov">§ Lunar surface operations · p67</div>
+          </div>
+          <figure>
+            <img src="assets/15-Buzz_Aldrin_s_bootprint_on_the_Moon__AS11-40-5877.jpg" alt="Aldrin's bootprint in the lunar regolith" loading="lazy">
+            <figcaption><b>Aldrin's bootprint, part of an experiment to test the properties of the lunar regolith</b>§ Lunar surface operations · article caption. Not a monument — an experiment.</figcaption>
+          </figure>
+        </div>
+        <div class="blk" data-p="0.875" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">The plaque</span><span class="blk-src">p68 · p69</span></div>
+            <div class="blk-lede">While on the surface, Armstrong uncovered a plaque mounted on the LM ladder, bearing two drawings of Earth (of the Western and Eastern Hemispheres), an inscription, and signatures of the astronauts and President Nixon. The inscription read:</div>
+            <div class="said" style="font-size:17px">“Here men from the planet Earth first set foot upon the Moon July 1969, A. D. We came in peace for all mankind.”</div>
+            <span class="ex">+ why the date is vague</span>
+          </div>
+          <div class="blk-more">
+            <p>At the behest of the Nixon administration to add a reference to God, NASA included the vague date as a reason to include A.D., which stands for <i>Anno Domini</i> (“in the year of our Lord”).</p>
+            <div class="prov">§ Lunar surface operations · p68, p69</div>
+          </div>
+          <figure>
+            <img src="assets/16-Apollo_11_plaque_closeup_on_Moon.jpg" alt="Close-up of the plaque left on the ladder of Eagle" loading="lazy">
+            <figcaption><b>The plaque left on the ladder of <i>Eagle</i></b>§ Lunar surface operations · article caption</figcaption>
+          </figure>
+        </div>
+        <div class="blk big" data-t="1969-07-21T05:11:13Z" data-lane="eag">
+          <div class="gutter">Tranquility</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">05:11:13</span><span class="blk-lab">Hatch closed</span><span class="blk-src">p71 · infobox</span></div>
+            <div class="blk-lede">The hatch was closed again at 05:11:13. EVA duration: 2 hours, 31 minutes, 40 seconds. One EVA, and 21.55 kg of the Moon in two boxes.</div>
+            <span class="ex">+ what they threw out to get back up</span>
+          </div>
+          <div class="blk-more">
+            <p>Aldrin entered <i>Eagle</i> first. With some difficulty the astronauts lifted film and two sample boxes containing 21.55 kilograms (47.5 lb) of lunar surface material to the LM hatch using a flat cable pulley device called the Lunar Equipment Conveyor (LEC). This proved to be an inefficient tool, and later missions preferred to carry equipment and samples up to the LM by hand. Armstrong reminded Aldrin of a bag of memorial items in his sleeve pocket, and Aldrin tossed the bag down. Armstrong then jumped onto the ladder's third rung, and climbed into the LM. After transferring to LM life support, the explorers lightened the ascent stage for the return to lunar orbit by tossing out their PLSS backpacks, lunar overshoes, an empty Hasselblad camera, and other equipment. They then pressurized the LM and settled down to sleep.</p>
+            <div class="prov">§ Lunar ascent · p71 · infobox: EVA duration 2 h 31 m 40 s</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lane col" data-lane="col" data-body="col" data-los="1" data-los-from="1969-07-19T17:21:50Z">
+        <div class="lanehead"><div class="nm">Columbia</div><div class="sub">Collins · alone</div></div>
+        <div class="blk minor" data-p="0.42" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Nothing recorded</span><span class="blk-src">§ Columbia in lunar orbit</span></div>
+            <div class="blk-lede" style="color:var(--ink-45)">For the two and a half hours that six hundred million people are watching the other two, the article says nothing about Collins at all. The lane is not unfinished. This is the size of the gap in the source.</div>
+          </div>
+        </div>
+        <div class="blk minor" data-p="0.93" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Sleep</span><span class="blk-src">p80</span></div>
+            <div class="blk-lede">After Aldrin and Armstrong completed their EVA, Collins slept so he could be rested for the rendezvous. While the flight plan called for <i>Eagle</i> to meet up with <i>Columbia</i>, Collins was prepared for a contingency in which he would fly <i>Columbia</i> down to meet <i>Eagle</i>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="silence">
+    <span class="d">10 : 38 : 47</span><span class="l">not drawn</span>
+    <span class="w">21 Jul 05:11:13 → 15:50:00 UTC. “After about seven hours of rest, the crew was awakened by Houston to prepare for the return flight.” Collins' lane goes dark another five times in here.</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     MOVEMENT 6 — ASCENT AND REJOIN
+     ══════════════════════════════════════════════════════════ -->
+<section class="movement" data-mv="6" data-clock="on" data-name="Ascent and rejoin">
+  <div class="wrap mvhead">
+    <div class="row">
+      <div class="num">08</div>
+      <div class="ttl">Ascent and rejoin</div>
+      <div class="rng"><b>21 Jul 1969</b><br>14:30:00 → 23:41:31 UTC<br><b>09 h 11 m 31 s</b></div>
+    </div>
+    <p class="note">A fourth lane opens here, uninvited, and ends after eighty minutes. Luna 15 had been in lunar orbit since before Apollo 11 arrived; it began its descent to beat them home. Its lane is the only other thing on this page permitted to be red.</p>
+  </div>
+  <div class="wrap">
+    <div class="stave n4" data-id="s8" data-t0="1969-07-21T14:30:00Z" data-t1="1969-07-21T23:41:31Z" data-h="3600" data-grid="1800000">
+      <div class="axis"></div>
+      <div class="lane hou" data-lane="hou" data-body="hou" data-shift="black" data-shift-label="Black — Lunney · lunar ascent">
+        <div class="lanehead"><div class="nm">Houston</div><div class="sub">Black team · Lunney</div></div>
+        <div class="blk minor" data-p="0.06" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Reveille</span><span class="blk-src">p75</span></div>
+            <div class="blk-lede">After about seven hours of rest, the crew was awakened by Houston to prepare for the return flight. At that time, unknown to them, some hundred kilometers away the Soviet probe Luna 15 was about to descend and impact.</div>
+          </div>
+        </div>
+        <div class="blk" data-p="0.20" data-lane="hou">
+          <div class="gutter">Houston</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">A speech that was not read</span><span class="blk-src">p72</span></div>
+            <div class="blk-lede">Presidential speech writer William Safire had prepared an <i>In Event of Moon Disaster</i> announcement for Nixon to read in the event the Apollo 11 astronauts were stranded on the Moon.</div>
+            <span class="ex">+ the protocol it proposed</span>
+          </div>
+          <div class="blk-more">
+            <p>The remarks were in a memo from Safire to Nixon's White House Chief of Staff H. R. Haldeman, in which Safire suggested a protocol the administration might follow in reaction to such a disaster. According to the plan, Mission Control would “close down communications” with the LM, and a clergyman would “commend their souls to the deepest of the deep” in a public ritual likened to burial at sea. The last line of the prepared text contained an allusion to Rupert Brooke's World War I poem “The Soldier”. <b>The script for the speech does not make reference to Collins</b>; as he remained onboard <i>Columbia</i> in orbit around the Moon, it was expected that he would be able to return the module to Earth in the event of a mission failure.</p>
+            <div class="prov">§ Lunar ascent · p72</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lane eag" data-lane="eag" data-body="eag">
+        <div class="lanehead"><div class="nm">Eagle</div><div class="sub">ascent stage · Armstrong · Aldrin</div></div>
+        <div class="blk" data-p="0.10" data-lane="eag">
+          <div class="gutter">Eagle</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">A broken circuit breaker</span><span class="blk-src">p73</span></div>
+            <div class="blk-lede">While moving inside the cabin, Aldrin accidentally damaged the circuit breaker that would arm the main engine for liftoff from the Moon. There was a concern this would prevent firing the engine, stranding them on the Moon. <b>The nonconductive tip of a Duro felt-tip pen was sufficient to activate the switch.</b></div>
+          </div>
+        </div>
+        <div class="blk" data-p="0.245" data-lane="eag">
+          <div class="gutter">Eagle</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Left behind</span><span class="blk-src">p74</span></div>
+            <div class="blk-lede">After more than 21½ hours on the lunar surface, in addition to the scientific instruments, the astronauts left behind four things they had carried a quarter of a million miles in order to abandon.</div>
+            <span class="ex">+ the four things, in the source's own order</span>
+          </div>
+          <div class="blk-more">
+            <p>An Apollo 1 mission patch in memory of astronauts Roger Chaffee, Gus Grissom, and Edward White, who died when their command module caught fire during a test in January 1967; two memorial medals of Soviet cosmonauts Vladimir Komarov and Yuri Gagarin, who died in 1967 and 1968 respectively; a memorial bag containing a gold replica of an olive branch as a traditional symbol of peace; and a silicon message disk carrying the goodwill statements by presidents Eisenhower, Kennedy, Johnson, and Nixon along with messages from leaders of 73 countries around the world. The disk also carries a listing of the leadership of the US Congress, a listing of members of the four committees of the House and Senate responsible for the NASA legislation, and the names of NASA's past and then-current top management.</p>
+            <div class="prov">§ Lunar ascent · p74</div>
+          </div>
+        </div>
+        <div class="blk big" data-t="1969-07-21T17:54:00Z" data-lane="eag">
+          <div class="gutter">Eagle</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">17:54:00</span><span class="blk-lab">Liftoff from the Moon</span><span class="blk-src">p76 · infobox</span></div>
+            <div class="blk-lede">Roughly two hours after Luna 15 came down, at 17:54:00 UTC, the Apollo 11 crew on the surface safely lifted off in <i>Eagle</i>'s ascent stage to rejoin Collins aboard <i>Columbia</i> in lunar orbit.</div>
+            <div class="said" style="font-size:19px">“The ascent stage of the LM separated … I was concentrating on the computers, and Neil was studying the attitude indicator, but I looked up long enough to see the flag fall over.”</div>
+            <div class="who">Buzz Aldrin</div>
+            <span class="ex">+ the flag, 25 feet away</span>
+          </div>
+          <div class="blk-more">
+            <p>Film taken from the LM ascent stage upon liftoff from the Moon reveals the American flag, planted some 25 feet (8 m) from the descent stage, whipping violently in the exhaust of the ascent stage engine. Subsequent Apollo missions planted their flags farther from the LM.</p>
+            <div class="prov">§ Lunar ascent · p76 · infobox: Return launch 17:54:00 UTC</div>
+          </div>
+        </div>
+        <div class="blk" data-t="1969-07-21T23:41:31Z" data-lane="eag">
+          <div class="gutter">Eagle</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">23:41:31</span><span class="blk-lab">Jettisoned</span><span class="blk-src">p81 · infobox</span></div>
+            <div class="blk-lede"><i>Eagle</i>'s ascent stage was jettisoned into lunar orbit. Nobody tracked it. This lane does not end — it simply stops being observed.</div>
+            <span class="ex">+ where it might be</span>
+          </div>
+          <div class="blk-more">
+            <p>Just before the Apollo 12 flight, it was noted that <i>Eagle</i> was still likely to be orbiting the Moon. Later NASA reports mentioned that <i>Eagle</i>'s orbit had decayed, resulting in it impacting in an “uncertain location” on the lunar surface. In 2021, however, some calculations show that the lander may still be in orbit.</p>
+            <div class="prov">§ Return · p81 · infobox: Undocking date 23:41:31 UTC · continued in Movement 09</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lane col" data-lane="col" data-body="col" data-los="1" data-los-from="1969-07-19T17:21:50Z">
+        <div class="lanehead"><div class="nm">Columbia</div><div class="sub">Collins · 27 h 51 m alone</div></div>
+        <div class="blk" data-t="1969-07-21T21:24:00Z" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">21:24:00</span><span class="blk-lab">Rendezvous</span><span class="blk-src">p81</span></div>
+            <div class="blk-lede"><i>Eagle</i> rendezvoused with <i>Columbia</i> at 21:24 UTC on July 21.</div>
+          </div>
+          <figure>
+            <img src="assets/19-Earth__Moon_and_Lunar_Module__AS11-44-6643_c.jpg" alt="Eagle's ascent stage approaching Columbia, with the Earth beyond" loading="lazy">
+            <figcaption><b><i>Eagle</i>'s ascent stage approaching <i>Columbia</i></b>§ Return · article caption</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="lane lun" data-lane="lun" data-body="lun" data-rule-end="1969-07-21T15:50:00Z">
+        <div class="lanehead"><div class="nm">Luna 15</div><div class="sub">USSR · uncrewed</div></div>
+        <div class="blk minor" data-p="0.02" data-lane="lun">
+          <div class="gutter">Luna 15</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">13 Jul</span><span class="blk-lab">Already there</span><span class="blk-src">p13</span></div>
+            <div class="blk-lede">Launched three days before Apollo 11, it reached lunar orbit first.</div>
+          </div>
+        </div>
+        <div class="blk big" data-t="1969-07-21T15:50:00Z" data-lane="lun">
+          <div class="gutter">Luna 15</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">15:50:00</span><span class="blk-lab">Crash</span><span class="blk-src">p75</span></div>
+            <div class="blk-lede">Luna 15 crashed in Mare Crisium, two hours before Apollo 11's launch from the Moon.</div>
+            <span class="ex">+ full paragraph</span>
+          </div>
+          <div class="blk-more">
+            <p>Despite having been known to be orbiting the Moon at the same time, through a ground-breaking precautious goodwill exchange of data, the mission control of Luna 15 unexpectedly hastened its robotic sample-return mission, initiating descent, in an attempt to return before Apollo 11. British astronomers monitored Luna 15 and recorded the situation; one commented: “I say, this has really been drama of the highest order”, bringing the Space Race to a culmination.</p>
+            <div class="prov">§ Lunar ascent · p75 · § Background · p13</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="joinmark" data-t="1969-07-21T21:35:00Z">
+        <div class="bar"></div>
+        <div class="row"><span class="t">21:35:00</span><span class="w">Docked · three men in one vehicle again</span><span class="r">infobox: Docking date · 2 h 06 m 31 s until the ascent stage is let go</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="silence">
+    <span class="d">05 : 14 : 11</span><span class="l">not drawn</span>
+    <span class="w">21 Jul 23:41:31 → 22 Jul 04:55:42 UTC. Two more far-side passes, and then the engine that takes them out of lunar orbit.</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     MOVEMENT 7 — HOME
+     ══════════════════════════════════════════════════════════ -->
+<section class="movement" data-mv="7" data-clock="on" data-name="Coast home">
+  <div class="wrap mvhead">
+    <div class="row">
+      <div class="num">09</div>
+      <div class="ttl">Coast home</div>
+      <div class="rng"><b>22 → 24 Jul 1969</b><br>04:55:42 → 16:44:00 UTC<br><b>2 d 11 h 48 m 18 s</b></div>
+    </div>
+    <p class="note">Three lanes collapse to one. The clock stretches out again for two and a half days — and the most consequential decision of the return was taken on the ground, by three men reading a satellite photograph one of them was not cleared to discuss.</p>
+  </div>
+  <div class="wrap">
+    <div class="stave n2" data-id="s9" data-t0="1969-07-22T04:55:42Z" data-t1="1969-07-24T16:44:00Z" data-h="1350" data-grid="21600000">
+      <div class="axis"></div>
+      <div class="lane hou" data-lane="hou" data-body="hou" data-shift="maroon" data-shift-label="Maroon — Windler · planning">
+        <div class="lanehead"><div class="nm">Earth</div><div class="sub">Houston · Pearl Harbor · USS Hornet</div></div>
+        <div class="blk" data-p="0.30" data-lane="hou">
+          <div class="gutter">Earth</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">A storm nobody was allowed to mention</span><span class="blk-src">p86</span></div>
+            <div class="blk-lede">Weather satellites were not yet common, but US Air Force Captain Hank Brandli had access to top-secret spy satellite images. He realized that a storm front was headed for the Apollo recovery area.</div>
+            <span class="ex">+ each man risking his career</span>
+          </div>
+          <div class="blk-more">
+            <p>Poor visibility which could make locating the capsule difficult, and strong upper-level winds which “would have ripped their parachutes to shreds” according to Brandli, posed a serious threat to the safety of the mission. Brandli alerted Navy Captain Willard S. Houston Jr., the commander of the Fleet Weather Center at Pearl Harbor, who had the required security clearance. On their recommendation, Rear Admiral Donald C. Davis, commander of Manned Spaceflight Recovery Forces, Pacific, advised NASA to change the recovery area, <b>each man risking his career.</b> A new location was selected 215 nautical miles (398 km) northeast.</p>
+            <p>This altered the flight plan. A different sequence of computer programs was used, one never before attempted. In a conventional entry, trajectory event P64 was followed by P67. For a skip-out re-entry, P65 and P66 were employed to handle the exit and entry parts of the skip. In this case, because they were extending the re-entry but not actually skipping out, P66 was not invoked and instead, P65 led directly to P67. The crew were also warned they would not be in a full-lift (heads-down) attitude when they entered P67. The first program's acceleration subjected the astronauts to 6.5 standard gravities (64 m/s²); the second, to 6.0 standard gravities (59 m/s²).</p>
+            <div class="prov">§ Splashdown and quarantine · p86, p87</div>
+          </div>
+        </div>
+        <div class="blk minor" data-p="0.60" data-lane="hou">
+          <div class="gutter">Earth</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Guam · a bearing</span><span class="blk-src">p83</span></div>
+            <div class="blk-lede">On the return to Earth, a bearing at the Guam tracking station failed, potentially preventing communication on the last segment of the Earth return. A regular repair was not possible in the available time, but the station director, Charles Force, had his ten-year-old son Greg use his small hands to reach into the housing and pack it with grease. Greg was later thanked by Armstrong.</div>
+          </div>
+        </div>
+        <div class="blk minor" data-p="0.80" data-lane="hou">
+          <div class="gutter">Earth</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">The recovery force</span><span class="blk-src">p84 · p85</span></div>
+            <div class="blk-lede">The aircraft carrier USS <i>Hornet</i>, under the command of Captain Carl J. Seiberlich, was selected as the primary recovery ship on June 5.</div>
+            <span class="ex">+ full paragraphs</span>
+          </div>
+          <div class="blk-more">
+            <p>She replaced her sister ship, the LPH USS <i>Princeton</i>, which had recovered Apollo 10 on May 26. <i>Hornet</i> was then at her home port of Long Beach, California. On reaching Pearl Harbor on July 5, <i>Hornet</i> embarked the Sikorsky SH-3 Sea King helicopters of HS-4, a unit which specialized in recovery of Apollo spacecraft, specialized divers of UDT Detachment Apollo, a 35-man NASA recovery team, and about 120 media representatives. To make room, most of <i>Hornet</i>'s air wing was left behind in Long Beach. Special recovery equipment was also loaded, including a boilerplate command module used for training.</p>
+            <p>On July 12, with Apollo 11 still on the launch pad, <i>Hornet</i> departed Pearl Harbor for the recovery area in the central Pacific. A presidential party consisting of Nixon, Borman, Secretary of State William P. Rogers and National Security Advisor Henry Kissinger flew to Johnston Atoll on Air Force One, then to the command ship USS <i>Arlington</i> in Marine One. After a night on board, they would fly to <i>Hornet</i> in Marine One for a few hours of ceremonies. On arrival aboard <i>Hornet</i>, the party was greeted by the Commander-in-Chief, Pacific Command, Admiral John S. McCain Jr., and NASA Administrator Thomas O. Paine, who flew to <i>Hornet</i> from Pago Pago in one of <i>Hornet</i>'s carrier onboard delivery aircraft.</p>
+            <div class="prov">§ Splashdown and quarantine · p84, p85</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lane col" data-lane="col" data-body="eag col">
+        <div class="lanehead"><div class="nm">Columbia</div><div class="sub">Armstrong · Collins · Aldrin</div></div>
+        <div class="blk" data-t="1969-07-22T04:55:42Z" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">04:55:42</span><span class="blk-lab">22 Jul · Orbital departure</span><span class="blk-src">infobox</span></div>
+            <div class="blk-lede">After 30 orbits, <i>Columbia</i> departs lunar orbit for home. The infobox gives this instant and nothing else about it; the article's prose skips from the jettison of <i>Eagle</i> to the television broadcast of the following night.</div>
+          </div>
+        </div>
+        <div class="blk big" data-t="1969-07-23T20:00:00Z" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">23 Jul</span><span class="blk-lab">The last night · a broadcast</span><span class="blk-src">p82 · § Return quote</span></div>
+            <div class="blk-lede">On July 23, the last night before splashdown, the three astronauts made a television broadcast in which they reflected on the mission's significance.</div>
+            <div class="said" style="font-size:19px">“All you see is the three of us, but beneath the surface are thousands and thousands of others, and to all of those, I would like to say, ‘Thank you very much’.”</div>
+            <div class="who">Michael Collins</div>
+            <span class="ex">+ Aldrin, and the full statement</span>
+          </div>
+          <div class="blk-more">
+            <p>Aldrin added: “This has been far more than three men on a mission to the Moon; more, still, than the efforts of a government and industry team; more, even, than the efforts of one nation. We feel that this stands as a symbol of the insatiable curiosity of all mankind to explore the unknown …”</p>
+            <p>“The responsibility for this flight lies first with history and with the giants of science who have preceded this effort; next with the American people, who have, through their will, indicated their desire; next with four administrations and their Congresses, for implementing that will; and then, with the agency and industry teams that built our spacecraft, the Saturn, the <i>Columbia</i>, the <i>Eagle</i>, and the little EMU, the spacesuit and backpack that was our small spacecraft out on the lunar surface. We would like to give special thanks to all those Americans who built the spacecraft; who did the construction, design, the tests, and put their hearts and all their abilities into those craft. To those people tonight, we give a special thank you, and to all the other people that are listening and watching tonight, God bless you. Good night from Apollo 11.”</p>
+            <div class="prov">§ Return · p82 · § Mission quote block · placed on the evening of 23 July; the source gives the date, not the hour</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     MOVEMENT 7b — SEVEN MINUTES
+     ══════════════════════════════════════════════════════════ -->
+<section class="movement" data-mv="7b" data-clock="on" data-name="Splashdown">
+  <div class="wrap mvhead">
+    <div class="row">
+      <div class="num">10</div>
+      <div class="ttl">Sixty-nine minutes</div>
+      <div class="rng"><b>24 Jul 1969</b><br>16:44:00 → 17:53:00 UTC<br><b>01 h 09 m</b></div>
+    </div>
+    <p class="note">The scale compresses harder here than anywhere on the page: sixty-nine minutes are given more vertical space than the three days of transit. Seven of those minutes are the fall between the drogue parachutes and the water.</p>
+  </div>
+  <div class="wrap">
+    <div class="stave n2" data-id="s10" data-t0="1969-07-24T16:44:00Z" data-t1="1969-07-24T17:53:00Z" data-h="1700" data-grid="300000">
+      <div class="axis"></div>
+      <div class="lane hou" data-lane="hou" data-body="hou">
+        <div class="lanehead"><div class="nm">Recovery</div><div class="sub">USS Hornet · HS-4 · UDT Apollo</div></div>
+        <div class="blk minor" data-p="0.0" data-lane="hou">
+          <div class="gutter">Recovery</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">before dawn</span><span class="blk-lab">Aircraft up</span><span class="blk-src">p88</span></div>
+            <div class="blk-lede"><i>Hornet</i> launched four Sea King helicopters and three Grumman E-1 Tracers. Two of the E-1s were designated as “air boss” while the third acted as a communications relay. Two Sea Kings carried divers and recovery equipment; the third carried photographic equipment, and the fourth carried the decontamination swimmer and the flight surgeon.</div>
+          </div>
+        </div>
+        <div class="blk" data-p="0.16" data-lane="hou">
+          <div class="gutter">Recovery</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Confirmed</span><span class="blk-src">p88</span></div>
+            <div class="blk-lede">Reconnaissance aircraft flying to the original splashdown location reported the conditions Brandli and Houston had predicted.</div>
+          </div>
+        </div>
+        <div class="blk" data-p="0.30" data-lane="hou">
+          <div class="gutter">Recovery</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">—</span><span class="blk-lab">Divers</span><span class="blk-src">p89 · p90</span></div>
+            <div class="blk-lede">A diver from the Navy helicopter hovering above attached a sea anchor to prevent it from drifting. More divers attached flotation collars to stabilize the module and positioned rafts for astronaut extraction.</div>
+            <span class="ex">+ decontamination</span>
+          </div>
+          <div class="blk-more">
+            <p>The divers then passed biological isolation garments (BIGs) to the astronauts, and assisted them into the life raft. The possibility of bringing back pathogens from the lunar surface was considered remote, but NASA took precautions at the recovery site. The astronauts were rubbed down with a sodium hypochlorite solution and <i>Columbia</i> wiped with povidone-iodine to remove any lunar dust that might be present. The astronauts were winched on board the recovery helicopter. BIGs were worn until they reached isolation facilities on board <i>Hornet</i>. The raft containing decontamination materials was intentionally sunk.</p>
+            <div class="prov">§ Splashdown and quarantine · p89, p90</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lane col" data-lane="col" data-body="eag col">
+        <div class="lanehead"><div class="nm">Columbia</div><div class="sub">re-entry · splashdown · recovery</div></div>
+        <div class="blk" data-t="1969-07-24T16:44:00Z" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">16:44:00</span><span class="blk-lab">Drogues</span><span class="blk-src">p88</span></div>
+            <div class="blk-lede">At 16:44 UTC (05:44 local time) <i>Columbia</i>'s drogue parachutes were deployed. This was observed by the helicopters.</div>
+          </div>
+        </div>
+        <div class="blk big" data-t="1969-07-24T16:50:35Z" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">16:50:35</span><span class="blk-lab">Splashdown</span><span class="blk-src">p88 · infobox</span></div>
+            <div class="blk-lede">Seven minutes later <i>Columbia</i> struck the water forcefully 2,660 km east of Wake Island, 380 km south of Johnston Atoll, and 24 km from <i>Hornet</i>, at 13°19′N 169°9′W.</div>
+            <span class="ex">+ the weather they got instead</span>
+          </div>
+          <div class="blk-more">
+            <p>82 °F (28 °C) with 6 feet (1.8 m) seas and winds at 17 knots (31 km/h) from the east were reported under broken clouds at 1,500 feet (460 m) with visibility of 10 nautical miles (19 km) at the recovery site.</p>
+            <p>During splashdown, <i>Columbia</i> landed upside down but was righted within ten minutes by flotation bags activated by the astronauts.</p>
+            <div class="prov">§ Splashdown and quarantine · p88, p89 · infobox: Landing date 16:50:35 UTC</div>
+          </div>
+          <figure>
+            <img src="assets/20-Splashdown_3.jpg" alt="Columbia floating on the ocean as Navy divers assist in retrieving the astronauts" loading="lazy">
+            <figcaption><b><i>Columbia</i> floats on the ocean as Navy divers assist in retrieving the astronauts.</b>§ Splashdown and quarantine · article caption</figcaption>
+          </figure>
+        </div>
+        <div class="blk derived" data-t="1969-07-24T17:00:35Z" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">≈17:00:35</span><span class="blk-lab">Righted</span><span class="blk-src">p89</span></div>
+            <div class="blk-lede">During splashdown, <i>Columbia</i> landed upside down but was righted within ten minutes by flotation bags activated by the astronauts. <span class="dv">Placed at splashdown + 10 min.</span></div>
+          </div>
+        </div>
+        <div class="blk big" data-t="1969-07-24T17:53:00Z" data-lane="col">
+          <div class="gutter">Columbia</div>
+          <div class="blk-toggle">
+            <div class="blk-head"><span class="blk-t">17:53:00</span><span class="blk-lab">Thirty feet</span><span class="blk-src">p91</span></div>
+            <div class="blk-lede">After touchdown on <i>Hornet</i>, the helicopter was lowered by the elevator into the hangar bay, where the astronauts walked the 30 feet (9.1 m) to the mobile quarantine facility, where they would begin the Earth-based portion of their 21 days of quarantine.</div>
+            <span class="ex">+ and the clock stops</span>
+          </div>
+          <div class="blk-more">
+            <p>This practice would continue for two more Apollo missions, Apollo 12 and Apollo 14, before the Moon was proven to be barren of life, and the quarantine process dropped. Nixon welcomed the astronauts back to Earth. He told them: “[A]s a result of what you've done, the world has never been closer together before.”</p>
+            <p><b>Mission duration: 8 days, 3 hours, 18 minutes, 35 seconds.</b> Landing mass 10,873 lb, from a launch mass of 109,646 lb: nine-tenths of what left Florida did not come back.</p>
+            <div class="prov">§ Splashdown and quarantine · p91 · infobox: Mission duration, Launch mass, Landing mass</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     MOVEMENT 8 — AFTER THE CLOCK
+     ══════════════════════════════════════════════════════════ -->
+<section class="movement" id="m8" data-mv="8" data-clock="off" data-name="After the clock">
+  <div class="wrap mvhead">
+    <div class="row">
+      <div class="num">11</div>
+      <div class="ttl">After the clock</div>
+      <div class="rng"><b>from 10 Aug 1969</b><br>quarantine lifted<br><b>and then fifty years</b></div>
+    </div>
+    <p class="note">The staves do not simply stop. Position still means something here — but it is place, not time. Everything the mission carried went somewhere, and most of it is still there.</p>
+  </div>
+  <div class="wrap">
+    <svg id="disperse" aria-label="The three lanes dissolving into seven present locations"></svg>
+    <div class="where">
+      <div class="row">
+        <div class="loc">Still on the Moon<span>Mare Tranquillitatis · 0°40′27″N 23°28′23″E</span></div>
+        <div>
+          <div class="obj">The descent stage of the LM <em>Eagle</em> remains on the Moon. In 2009, the Lunar Reconnaissance Orbiter imaged the various Apollo landing sites, for the first time with sufficient resolution to see the descent stages of the lunar modules, scientific instruments, and foot trails made by the astronauts.</div>
+          <div class="obj">The plaque on the ladder. An Apollo 1 mission patch for Chaffee, Grissom and White. Two memorial medals of the Soviet cosmonauts Vladimir Komarov and Yuri Gagarin. A memorial bag containing a gold replica of an olive branch. A silicon message disk carrying goodwill statements from the leaders of 73 countries.</div>
+          <div class="obj">Two PLSS backpacks, lunar overshoes and an empty Hasselblad, thrown out to lighten the ascent stage. And a flag, planted 25 feet from the descent stage, which the ascent engine knocked over while Aldrin watched.</div>
+          <div class="obj">The Passive Seismic Experiment ran until the command uplink failed on August 25, 1969; the downlink failed on December 14, 1969. <em>As of 2025, the Lunar Laser Ranging experiment remains operational.</em></div>
+        </div>
+        <div class="cnt">§ Spacecraft · p111<br>§ Lunar ascent · p71, p74, p76<br>§ Experiment results · p116</div>
+      </div>
+      <div class="row gone">
+        <div class="loc">In an orbit nobody can find<span>uncertain · possibly still there</span></div>
+        <div>
+          <div class="obj">The remains of the ascent stage are assumed to lie at an unknown location on the lunar surface. The ascent stage, <em>Eagle</em>, was not tracked after it was jettisoned. The lunar gravity field is sufficiently non-uniform to make low Moon orbits unstable after a short time. However, using a program developed by NASA and high-resolution lunar gravity data, a paper published in 2021 indicated that <em>Eagle</em> might still be in orbit as late as 2020. A Monte Carlo method was used to generate parameter sets bracketing the uncertainties in the published orbital elements. <em>All simulations of the orbit predicted that Eagle would never impact the lunar surface.</em></div>
+        </div>
+        <div class="cnt">§ Spacecraft · p112</div>
+      </div>
+      <div class="row gone">
+        <div class="loc">In solar orbit<span>near to that of Earth</span></div>
+        <div><div class="obj">The S-IVB third stage which performed Apollo 11's trans-lunar injection remains in a solar orbit near to that of Earth. It was deliberately sent past the Moon so that it could not collide with the spacecraft, the Earth, or the Moon; the slingshot threw it around the Sun instead.</div></div>
+        <div class="cnt">§ Spacecraft · p113<br>§ Launch and flight · p43</div>
+      </div>
+      <div class="row">
+        <div class="loc">On the Atlantic seabed<span>and two of them, raised</span></div>
+        <div><div class="obj">In March 2012 a team of specialists financed by Amazon founder Jeff Bezos located the F-1 engines from the S-IC stage that launched Apollo 11 into space. They were found on the Atlantic seabed using advanced sonar scanning. His team brought parts of two of the five engines to the surface. In July 2013, a conservator discovered a serial number under the rust on one of the engines raised from the Atlantic, which NASA confirmed was from Apollo 11.</div></div>
+        <div class="cnt">§ Spacecraft · p113</div>
+      </div>
+      <div class="row">
+        <div class="loc">At the Smithsonian<span>Washington DC · Chantilly, Virginia</span></div>
+        <div>
+          <div class="obj">The command module <em>Columbia</em> went on a tour of the United States, visiting 49 state capitals, the District of Columbia, and Anchorage, Alaska. In 1971 it was transferred to the Smithsonian Institution and displayed at the National Air and Space Museum, in the central Milestones of Flight hall, sharing the main hall with the Wright Flyer, <em>Spirit of St. Louis</em>, Bell X-1, North American X-15 and <em>Friendship 7</em>.</div>
+          <div class="obj">It moved again in 2017, to the Mary Baker Engen Restoration Hangar at the Steven F. Udvar-Hazy Center, to be readied for a four-city tour: Space Center Houston, the Saint Louis Science Center, the Senator John Heinz History Center in Pittsburgh, and the Museum of Flight in Seattle. Continued renovations allowed an additional stop at the Cincinnati Museum Center; the ribbon cutting was on September 29, 2019.</div>
+          <div class="obj">Armstrong's and Aldrin's space suits were displayed for 40 years in the <em>Apollo to the Moon</em> exhibit until it closed permanently on December 3, 2018; a special display of Armstrong's suit was unveiled for the 50th anniversary in July 2019. The quarantine trailer, the flotation collar and the flotation bags are at Udvar-Hazy, on display with a test lunar module.</div>
+          <div class="obj">In 2015, after Armstrong died in 2012, his widow contacted the museum to say she had found a white cloth bag in one of his closets. It contained various items which should have been left behind in the Lunar Module <em>Eagle</em>, including the 16 mm Data Acquisition Camera that had been used to capture images of the first Moon landing. The camera is currently on display.</div>
+        </div>
+        <div class="cnt">§ Spacecraft · p108–110<br>§ LM Eagle memorabilia · p118</div>
+      </div>
+      <div class="row">
+        <div class="loc">Distributed<span>135 nations · 50 states · the United Nations</span></div>
+        <div>
+          <div class="obj">In November 1969, Nixon asked NASA to make up about 250 presentation Apollo 11 lunar sample displays for 135 nations, the fifty states and its possessions, and the United Nations. Each display included Moon dust from Apollo 11 and flags, including one of the Soviet Union, taken along by Apollo 11. The rice-sized particles were four small pieces of Moon soil weighing about 50 mg, enveloped in a clear acrylic button about as big as a half-dollar coin, which magnified them. Nixon gave them as goodwill gifts in 1970.</div>
+          <div class="obj">The main repository for the Apollo Moon rocks is the Lunar Sample Laboratory Facility at the Johnson Space Center in Houston; a smaller collection is stored at the White Sands Test Facility near Las Cruces, New Mexico. Most of the rocks are stored in nitrogen to keep them free of moisture and are handled only indirectly, using special tools. Over 100 research laboratories worldwide conduct studies of the samples; approximately 500 samples are prepared and sent to investigators every year.</div>
+          <div class="obj">Two American flags that had travelled to the lunar surface were presented to the House of Representatives and the Senate on September 16, 1969. The Flag of American Samoa, also carried aboard, was later displayed at the Jean P. Haydon Museum in Pago Pago.</div>
+        </div>
+        <div class="cnt">§ Moon rocks · p114, p115<br>§ Celebrations · p96, p97</div>
+      </div>
+      <div class="row gone">
+        <div class="loc">Lost<span>or taped over</span></div>
+        <div>
+          <div class="obj">The Hasselblad camera used during the moonwalk was thought to be lost or left on the Moon's surface.</div>
+          <div class="obj">Copies of the moonwalk video in broadcast format were saved and are widely available, but <em>recordings of the original slow scan source transmission from the lunar surface were likely destroyed during routine magnetic tape re-use at NASA.</em> The picture lost most of its quality being re-filmed off a monitor to get it on air, and then the original was recorded over.</div>
+        </div>
+        <div class="cnt">§ Moonwalk camera · p117<br>§ Lunar surface operations · p59</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<figure class="bleed-fig" style="margin-top:64px">
+  <img src="assets/05-NASM-NASM2013-02663.jpg" alt="The original cockpit of the Apollo 11 command module with three seats, photographed from above" loading="lazy">
+  <figcaption><b>The original cockpit of the command module, photographed from above, at the National Air and Space Museum.</b><span>Very high resolution image produced in 2007 by the Smithsonian Institution.</span></figcaption>
+</figure>
+
+<section class="wrap movement" data-mv="8b" data-clock="off" data-name="After the clock">
+  <div class="sec">
+    <div class="hang">
+      <div class="h">Celebrations<span>§ Celebrations · § World tour</span></div>
+      <div class="prose cols2">
+        <p>Following their return to Earth, the Apollo 11 crew received widespread international acclaim. On August 13, 1969, astronauts Neil Armstrong, Buzz Aldrin, and Michael Collins were honored with ticker-tape parades in New York City and Chicago, with an estimated six million people lining the streets. In New York the parade started at Bowling Green going down Broadway to City Hall where Mayor John Lindsay greeted them and ended at the United Nations headquarters. Broadway was even temporarily renamed for that day to "Apollo Way". In Chicago the parade went to the Loop and culminated at the Chicago Civic Center where the astronauts and local officials spoke to the crowd.</p>
+        <p>That evening, a state dinner was held in Los Angeles at the Century Plaza Hotel to commemorate the historic achievement. The event was attended by members of Congress, 44 state governors, Chief Justice of the United States Warren E. Burger and his predecessor Earl Warren, as well as ambassadors from 83 nations. President Richard Nixon and Vice President Spiro Agnew awarded each astronaut the Presidential Medal of Freedom, the highest civilian honor in the United States.</p>
+        <p>Numerous countries and organizations honored the Moon landing by issuing special commemorative items. These included postage stamps, coins, medals, plaques, and magazine features. TIME, National Geographic, LIFE, and dozens of international publications featured the astronauts on their covers. Many of these commemoratives are now held in public and private collections, and some were placed aboard later Apollo missions in symbolic tribute. Additionally, the success of Apollo 11 contributed to a brief spike in interest in science and technology education, often referred to as the "Apollo effect", influencing a generation of engineers and scientists.</p>
+        <p>The celebrations continued with a 38-day world goodwill tour titled "Giant Leap", which began on September 29 and concluded on November 5, 1969. The astronauts visited 22 countries and met with numerous heads of state, prime ministers, royalty, and civic leaders. The tour, intended to thank the international community for their support of the space program, began in Mexico City and ended in Tokyo. Notable stops included Bogotá, Buenos Aires, Rio de Janeiro, Madrid, Paris, Amsterdam, Brussels, London, West Berlin, Rome, Belgrade, Tehran, Mumbai, Bangkok, Sydney, Guam, and Honolulu. Crowds in the tens or hundreds of thousands gathered to greet the astronauts in each city.</p>
+        <p>In London the astronauts went to Buckingham Palace were they were greeted by Queen Elizabeth II. When they went to West Berlin they were toured the Berlin Wall by the city's mayor. When they saw Belgrade were greeted by a crowd of between 400,000 and 500,000 people from the airport to the Tomb of the Unknown Soldier where they placed a wreath and were welcomed to a luncheon by Josip Broz Tito. When they stopped in Kinshasa they received the National Order of the Leopard by Mobutu Sese Seko.</p>
+        <p>Before any of it, they spent 21 days in quarantine — first in the Apollo spacecraft, then in their trailer on <i>Hornet</i>, and finally in the Lunar Receiving Laboratory. On August 10, 1969, the Interagency Committee on Back Contamination met in Atlanta and lifted the quarantine on the astronauts, on those who had joined them (NASA physician William Carpentier and John Hirasaki), and on <i>Columbia</i> itself. Loose equipment from the spacecraft remained in isolation until the lunar samples were released for study.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<figure class="bleed-fig">
+  <img src="assets/23-Apollo_11_ticker_tape_parade_1.jpg" alt="Ticker-tape parade for the Apollo 11 astronauts in New York City" loading="lazy" style="object-position:center 40%">
+  <figcaption><b>August 13, 1969, New York City</b><span>an estimated six million people lined the streets of New York and Chicago</span></figcaption>
+</figure>
+
+<!-- DISSENT: no decoration, no motion, no rules -->
+<section class="wrap movement" data-mv="8c" data-clock="off" data-name="Not everyone">
+  <div class="sec" style="padding-top:96px">
+    <div style="max-width:34em;margin-left:0">
+      <h2 style="border-top:0;padding-top:0;margin-bottom:26px">Not everyone</h2>
+      <div class="prose">
+        <p>While most people celebrated the accomplishment, disenfranchised Americans saw it as a symbol of the divide in America, evidenced by protesters led by Ralph Abernathy outside of Kennedy Space Center the day before Apollo 11 launched. NASA Administrator Thomas Paine met with Abernathy at the occasion, both hoping that the space program can spur progress also in other regards, such as poverty in the US. Paine was then asked, and agreed, to host protesters as spectators at the launch, and Abernathy, awestruck by the spectacle, prayed for the astronauts.</p>
+        <p>Jazz poet Gil Scott-Heron wrote a poem called "Whitey on the Moon" (1970) expressing his view that the mission was emblematic of racial inequality in the United States. The poem starts with:</p>
+      </div>
+      <p style="font-family:var(--serif);font-size:20px;line-height:1.75;margin:34px 0 34px">A rat done bit my sister Nell.<br><span style="color:var(--ink-45)">(with Whitey on the moon)</span><br>Her face and arms began to swell.<br><span style="color:var(--ink-45)">(and Whitey's on the moon)</span><br>I can't pay no doctor bill.<br><span style="color:var(--ink-45)">(but Whitey's on the moon)</span><br>Ten years from now I'll be paying still.<br><span style="color:var(--ink-45)">(while Whitey's on the moon)</span></p>
+      <div class="prose">
+        <p>Twenty percent of the world's population watched humans walk on the Moon for the first time. While Apollo 11 sparked the interest of the world, the follow-on Apollo missions did not hold the interest of the nation. One possible explanation was the shift in complexity. Landing someone on the Moon was an easy goal to understand; lunar geology was too abstract for the average person. Another is that Kennedy's goal of landing humans on the Moon had already been accomplished. A well-defined objective helped Project Apollo accomplish its goal, but after it was completed it was hard to justify continuing the lunar missions.</p>
+        <p>While most Americans were proud of their nation's achievements in space exploration, only once during the late 1960s did the Gallup Poll indicate that a majority of Americans favored "doing more" in space as opposed to "doing less". By 1973, 59 percent of those polled favored cutting spending on space exploration. The Space Race had been won, and Cold War tensions were easing as the US and Soviet Union entered the era of détente. This was also a time when inflation was rising, which put pressure on the government to reduce spending. The space program was saved due to the perception that it was one of the few government programs that had achieved something great. Drastic cuts, warned Caspar Weinberger, the deputy director of the Office of Management and Budget, might send a signal that "our best years are behind us".</p>
+        <p>After the Apollo 11 mission, officials from the Soviet Union said landing humans on the Moon was dangerous and unnecessary. At the time the Soviet Union was attempting to retrieve lunar samples robotically. The Soviets publicly denied there was a race to the Moon, and indicated they were not making an attempt. Mstislav Keldysh said in July 1969, "We are concentrating wholly on the creation of large satellite systems." It was revealed in 1989 that the Soviets had tried to send people to the Moon, but were unable due to technological difficulties. The public's reaction in the Soviet Union was mixed. The Soviet government limited the release of information about the lunar landing, which affected the reaction. A portion of the populace did not give it any attention, and another portion was angered by it.</p>
+        <p>Humans walking on the Moon and returning safely to Earth accomplished Kennedy's goal set eight years earlier. In Mission Control during the Apollo 11 landing, Kennedy's speech flashed on the screen, followed by the words "TASK ACCOMPLISHED, July 1969". New phrases permeated into the English language. "If they can send a man to the Moon, why can't they …?" became a common saying following Apollo 11. Armstrong's words on the lunar surface also spun off various parodies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<figure class="bleed-fig">
+  <img src="assets/26-Land_on_the_Moon_7_21_1969-repair.jpg" alt="A girl holding a copy of The Washington Post with the headline 'The Eagle Has Landed' – Two Men Walk on the Moon" loading="lazy" style="object-position:center 30%">
+  <figcaption><b>A girl holding <i>The Washington Post</i>: "'The Eagle Has Landed' – Two Men Walk on the Moon"</b><span>§ Cultural significance · article caption</span></figcaption>
+</figure>
+
+<section class="wrap movement" data-mv="8d" data-clock="off" data-name="Anniversaries">
+  <div class="sec">
+    <div class="hang">
+      <div class="h">Forty years<span>§ 40th anniversary</span></div>
+      <div class="prose cols2">
+        <p>On July 15, 2009, Life.com released a photo gallery of previously unpublished photos of the astronauts taken by Life photographer Ralph Morse prior to the Apollo 11 launch. From July 16 to 24, 2009, NASA streamed the original mission audio on its website <b>in real time 40 years to the minute after the events occurred.</b> It is in the process of restoring the video footage and has released a preview of key moments. In July 2010, air-to-ground voice recordings and film footage shot in Mission Control during the Apollo 11 powered descent and landing was re-synchronized and released for the first time. The John F. Kennedy Presidential Library and Museum set up a website that rebroadcasts the transmissions of Apollo 11 from launch to landing on the Moon.</p>
+        <p>On July 20, 2009, Armstrong, Aldrin, and Collins met with President Barack Obama at the White House. "We expect that there is, as we speak, another generation of kids out there who are looking up at the sky and are going to be the next Armstrong, Collins, and Aldrin", Obama said. "We want to make sure that NASA is going to be there for them when they want to take their journey." On August 7, 2009, an act of Congress awarded the three astronauts a Congressional Gold Medal, the highest civilian award in the United States.</p>
+        <p>A group of British scientists interviewed as part of the anniversary events reflected on the significance of the Moon landing: "It was carried out in a technically brilliant way with risks taken … that would be inconceivable in the risk-averse world of today … The Apollo programme is arguably the greatest technical achievement of mankind to date … nothing since Apollo has come close [to] the excitement that was generated by those astronauts—Armstrong, Aldrin and the 10 others who followed them."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="hang">
+      <div class="h">Fifty years<span>§ 50th anniversary</span></div>
+      <div class="prose cols2">
+        <p>In June 2015, Congressman Bill Posey introduced resolution H.R. 2726 directing the United States Mint to design and sell commemorative coins in gold, silver and clad for the 50th anniversary. On January 24, 2019, the Mint released the Apollo 11 Fiftieth Anniversary commemorative coins to the public. A documentary film, <i>Apollo 11</i>, with restored footage of the 1969 event, premiered in IMAX on March 1, 2019, and broadly in theaters on March 8.</p>
+        <p>The Smithsonian's National Air and Space Museum and NASA sponsored the "Apollo 50 Festival" on the National Mall in Washington DC from July 18 to 20, 2019, with hands-on exhibits and activities, live performances, and speakers such as Adam Savage and NASA scientists.</p>
+        <p>As part of the festival, a projection of the 363-foot (111 m) tall Saturn V rocket was displayed on the east face of the 555-foot (169 m) tall Washington Monument from July 16 to the 20th from 9:30 pm until 11:30 pm EDT. The program included a 17-minute show that combined full-motion video projected on the Monument to recreate the assembly and launch of the Saturn V. The projection was joined by a 40-foot (12 m) wide recreation of the Kennedy Space Center countdown clock and two large video screens showing archival footage.</p>
+        <p>There were three shows per night on July 19–20, <b>with the last show on Saturday delayed slightly so the portion where Armstrong first set foot on the Moon would happen exactly 50 years to the second after the actual event.</b> On July 19, 2019, the Google Doodle paid tribute to the Apollo 11 Moon landing, with a link to an animated video with voiceover by Michael Collins. Aldrin, Collins, and Armstrong's sons were hosted by President Donald Trump in the Oval Office.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" style="padding-top:80px">
+    <h2>End matter</h2>
+    <div class="hang">
+      <div class="h">Films and documentaries<span>§ Films and documentaries</span></div>
+      <div class="index" style="border-top:0;padding-top:0">
+        <ul>
+          <li><i>Footprints on the Moon</i>, a 1969 documentary film by Bill Gibson and Barry Coe</li>
+          <li><i>Moonwalk One</i>, a 1971 documentary film by Theo Kamecke</li>
+          <li><i>Apollo 11: As It Happened</i>, a 1994 six-hour documentary on ABC News' coverage of the event</li>
+          <li><i>Apollo 11</i>, a 1996 docudrama</li>
+          <li><i>First Man</i>, 2018 film by Damien Chazelle based on the 2005 James R. Hansen book <i>First Man: The Life of Neil A. Armstrong</i></li>
+          <li><i>Apollo 11</i>, a 2019 documentary film by Todd Douglas Miller with restored footage of the 1969 event</li>
+          <li><i>Chasing the Moon</i>, a July 2019 PBS three-night six-hour documentary, directed by Robert Stone, examined the events leading up to the mission. An accompanying book of the same name was also released.</li>
+          <li><i>8 Days: To the Moon and Back</i>, a PBS and BBC Studios 2019 documentary film by Anthony Philipson re-enacting major portions of the mission using mission audio recordings, new studio footage, NASA and news archives, and computer-generated imagery.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hang" style="margin-top:44px">
+      <div class="h">Multimedia<span>§ Multimedia</span></div>
+      <div class="index" style="border-top:0;padding-top:0">
+        <ul>
+          <li>Garner, Robert (ed.). "Apollo 11 Partial Restoration HD Videos (Downloads)". NASA. Remastered videos of the original landing.</li>
+          <li>Dynamic timeline of lunar excursion. Lunar Reconnaissance Orbiter Camera</li>
+          <li><i>Moonwalk One</i>, a 1-hour documentary on the Apollo program, available for free viewing and download at the Internet Archive</li>
+          <li><i>The Eagle Has Landed: The Flight of Apollo 11</i> (1969) (transcript) from US National Archives</li>
+          <li>Apollo 11 Restored EVA Part 1 (1 hour of restored footage)</li>
+          <li>"Apollo 11: As They Photographed It" (Augmented Reality) — <i>The New York Times</i>, Interactive, July 18, 2019</li>
+          <li>"Coverage of the Flight of Apollo 11" as aired on CBS Radio and WCCO Radio (Minneapolis/St. Paul) for RadioTapes.com.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="r">
+      <a href="https://en.wikipedia.org/wiki/Apollo_11">en.wikipedia.org/wiki/Apollo_11</a>
+      <span class="micro">Revision 1369197321 · 39 sections · 34 images · 40-row infobox</span>
+    </div>
+    <p class="n" style="margin-top:20px"><b>Where this page adds anything.</b> Every fact, time, quantity and quotation above comes from that article and its infobox. Six kinds of connective material are the page's own, and each is marked where it appears:
+      <br>— <b>EDT → UTC.</b> The launch-morning times are given in local time; they are placed at UTC = EDT + 4 h, the offset the article's own "13:32:00 UTC (9:32:00 am EDT)" establishes.
+      <br>— <b>T+ offsets.</b> Staging events given as elapsed time ("about 2 minutes and 42 seconds into the mission") are placed at launch plus that offset.
+      <br>— <b>Intervals converted to instants,</b> marked "≈": landing + 2 h 30 m (Aldrin's broadcast), first step + 7 min (contingency sample), first step + 19 min (Aldrin's egress), TLI + 30 min (transposition).
+      <br>— <b>The blackout pattern.</b> The article gives "48 minutes of each orbit", a 2-hour period and 30 orbits, but no acquisition times. The dark segments drawn beside <i>Columbia</i>'s lane are that pattern, phase-anchored to lunar orbit insertion. They are a rhythm, not a log.
+      <br>— <b>Console attributions.</b> Which flight-director team held Houston is taken from the Activities column of the article's own table; the handover instants are not given and are not drawn.
+      <br>— <b>Sequence, not time.</b> Blocks marked "—" are events the source orders but does not clock. They are placed in order between timed instants, never assigned a fabricated time.
+      <br>Nothing else has been added, and nothing has been removed: every section of the source article appears here, in prose, either on the clock or after it.</p>
+  </footer>
+</section>
+
+
+</main>
+<script src="score.js"></script>
+</body>
+</html>
