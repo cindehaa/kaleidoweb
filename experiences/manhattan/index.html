@@ -94,6 +94,31 @@
   
   .mtgl{background:none;border:1px solid var(--hair);color:var(--ink-38);font-family:var(--ui);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;margin-left:14px;cursor:pointer}
   .mtgl:focus-visible{outline:2px solid var(--brass)}
+
+  /* pour-in: the column builds in mixing order (sequence+scale) */
+  .col.unpoured .band{flex-grow:0 !important}
+  .col.unpoured .dash{transform:scaleY(0)}
+  .col .band{transition:flex-grow .8s cubic-bezier(.25,.6,.2,1), background .5s ease}
+  .col .dash{transition:transform .4s ease .9s;transform-origin:bottom}
+  .col .band .bl, .col .dash .bl{transition:opacity .5s ease}
+  .col.unpoured .bl{opacity:0}
+  /* ordered reveals: opacity only, in sequence */
+  .rv{opacity:0;transition:opacity .7s ease}
+  .rv.on{opacity:1}
+  /* scroll-linked sharpen of the claim heading (focus) */
+  .vars h2{color:var(--ink-38)}
+  .vars h2.on{color:var(--ink);transition:color .9s ease}
+  @supports (animation-timeline: view()) {
+    .vars h2{animation:sharpen linear both;animation-timeline:view();animation-range:entry 10% entry 90%;transition:none}
+    .vars h2.on{transition:none}
+    @keyframes sharpen{from{color:var(--ink-38)}to{color:var(--ink)}}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .col.unpoured .band{flex-grow:initial}
+    .col .band,.col .dash,.rv,.vars h2.on{transition:none}
+    .rv{opacity:1}
+    .vars h2{animation:none;color:var(--ink)}
+  }
 </style>
 
 <section class="herowrap"><div id="env" aria-hidden="true"></div><div class="hero">
@@ -119,11 +144,11 @@
 
 <section class="make">
   <div class="make-in">
-    <div class="act"><span class="lbl">I — Stir</span>
+    <div class="act rv"><span class="lbl">I — Stir</span>
       <p><span class="stir" aria-hidden="true"></span>All three into a mixing glass over ice, <strong>stirred until well-chilled</strong>. Stirring, not shaking: the ice gives its cold and a little of its water, and the drink stays silk-clear.</p></div>
-    <div class="act"><span class="lbl">II — Strain</span>
+    <div class="act rv"><span class="lbl">II — Strain</span>
       <p>Strained up into a <strong>chilled Nick &amp; Nora or coupe</strong>. Nothing else goes in the glass — no ice to keep diluting what the stir already finished.</p></div>
-    <div class="act"><span class="lbl">III — Garnish</span>
+    <div class="act rv"><span class="lbl">III — Garnish</span>
       <p>A <strong>brandied cherry</strong>, dropped in — or a lemon twist if you'd rather end on brightness than depth.</p></div>
   </div>
 </section>
@@ -141,11 +166,11 @@
 </section>
 
 <section class="tail">
-  <div class="origin">
+  <div class="origin rv">
     <p class="lbl" style="display:block;margin-bottom:12px">Where it began</p>
     <p>New York, sometime in the 1870s–80s — beyond that, the record argues with itself. The famous story puts the first Manhattan at the <b>Manhattan Club</b>, at a banquet involving Winston Churchill's mother; historians consider that legend, not fact, since she was in England at the time. What's solid is simpler: the drink is among the oldest cocktails to marry American whiskey with Italian vermouth, and it never left the repertoire. <span style="color:var(--ink-38)">— our summary of the drink's commonly told history; the origin is contested.</span></p>
   </div>
-  <div class="srccard">
+  <div class="srccard rv">
     <span class="lbl">The source recipe, as published</span>
     <ul>
       <li>2 ounces bourbon or rye</li>
@@ -203,6 +228,42 @@
     g.appendChild(t);
   }
 })();
+
+  // Scroll choreography. Reduced motion: everything is already visible via CSS.
+  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const col = document.getElementById('col');
+  if (!rm) {
+    col.classList.add('unpoured');
+    // the pour, in mixing order: whiskey, vermouth, bitters — once, on arrival
+    new IntersectionObserver((es, io) => {
+      if (!es[0].isIntersecting) return;
+      io.disconnect();
+      requestAnimationFrame(() => col.classList.remove('unpoured'));
+    }, { threshold: 0.35 }).observe(col);
+    // ordered reveals: each .rv turns on with a stagger within its group
+    const groups = new Map();
+    document.querySelectorAll('.rv').forEach(el => {
+      const g = el.parentElement;
+      if (!groups.has(g)) groups.set(g, []);
+      groups.get(g).push(el);
+    });
+    const ro = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const sibs = groups.get(e.target.parentElement) || [e.target];
+      const idx = sibs.indexOf(e.target);
+      setTimeout(() => e.target.classList.add('on'), Math.max(0, idx) * 160);
+      ro.unobserve(e.target);
+    }), { threshold: 0.25 });
+    document.querySelectorAll('.rv').forEach(el => ro.observe(el));
+    // sharpen fallback where scroll-timeline is unsupported
+    if (!CSS.supports('animation-timeline: view()')) {
+      const h2 = document.querySelector('.vars h2');
+      new IntersectionObserver((es, io) => {
+        if (!es[0].isIntersecting) return;
+        h2.classList.add('on'); io.disconnect();
+      }, { threshold: 0.6 }).observe(h2);
+    }
+  }
 </script>
 
 <script>(function(){
