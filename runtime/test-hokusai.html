@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kaleidoweb runtime — Hokusai from spec</title>
+<meta name="description" content="M0: the interpreter chassis renders experiences/hokusai from runtime/specs/hokusai.ndjson, joined against benchmarks/hokusai.">
+
+<!-- The chassis stylesheet carries no colour, size or measure of its own:
+     every value is a custom property the `materials` record sets. -->
+<link rel="stylesheet" href="chassis.css">
+<style>html,body{margin:0;padding:0;background:#DDD4C5}</style>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- vendored shader runtime (classic build, for file://) -->
+<script src="vendor/paper-shaders.iife.js"></script>
+
+<!-- the chassis -->
+<script src="chassis/core.js"></script>
+<script src="derive.js"></script>
+<script src="chassis/sequence.js"></script>
+<script src="chassis/scenes.js"></script>
+<script src="chassis/evidence.js"></script>
+<script src="chassis/env.js"></script>
+<script src="chassis/endmatter.js"></script>
+
+<!-- genre kits -->
+<script src="kits/quotation-axis-plot.js"></script>
+
+<!-- the interpreter -->
+<script src="interpreter.js"></script>
+
+<!-- INPUTS. Over http these are a fetch of specs/hokusai.ndjson and the
+     live DOM; a file:// origin forbids fetch/XHR/modules, so the same
+     bytes arrive as one classic script (runtime/tools/bundle.mjs). -->
+<script src="specs/hokusai.bundle.js"></script>
+<script src="specs/hokusai.digest.js"></script>
+
+<script>
+(function () {
+  'use strict';
+  const q = new URLSearchParams(location.search);
+  const B = window.KW_BUNDLE;
+
+  /* phase 1 picks the ground candidate itself: the SUBSTRATE, not the
+     picture — the left sheet margin of the surimono Still Life (§6.5).
+     This is what derive.groundCandidates() will choose in M1. */
+  const SAMPLE = { ref: 'img:15', args: 'img:15@x0-96,y288-384', x: 0, y: 288, w: 96, h: 96 };
+
+  function source() {
+    if (location.protocol !== 'file:' && !q.has('text')) {
+      /* the real path: one streaming response, rendered line by line */
+      return async function* () {
+        const res = await fetch('specs/hokusai.ndjson');
+        yield* KW.Source.fromStream(res)();
+      };
+    }
+    /* ?stream — feed one record per animation frame so the progressive
+       render can be watched: instant stage → materials → scenes in order.
+       KW_SPEC_OVERRIDE lets the fallback suite feed a damaged stream. */
+    const text = window.KW_SPEC_OVERRIDE != null ? window.KW_SPEC_OVERRIDE : B.spec;
+    return KW.Source.fromText(text, { perFrame: q.has('stream') });
+  }
+
+  const t0 = performance.now();
+  KW.Interpreter.run({
+    root: document.getElementById('root'),
+    data: { contentModel: B.data.contentModel, semantic: B.data.semantic, media: B.data.media },
+    assetBase: '../experiences/hokusai/assets/',
+    fontBase: '../experiences/hokusai/assets/fonts/',
+    digest: window.KW_DIGEST || null,
+    sampleFrom: SAMPLE,
+    source: source(),
+  }).then(function (ctx) {
+    window.__kw = ctx;
+    window.__timing = ctx.timing;
+    window.__notes = ctx.notes;
+    const t = ctx.timing;
+    console.info('[kw] stage %sms · derive %sms · materials %sms · scenes %sms · first scene %sms · all scenes %sms · total %sms',
+      f(t.stage), f(t.derive), f(t.materials), f(t.scenes), f(t.firstScene), f(t.lastScene), f(t.total));
+    if (ctx.notes.length) console.info('[kw] interpreter notes: ' + ctx.notes.join(' | '));
+    document.documentElement.dataset.kwReady = '1';
+  });
+  function f(v) { return v == null ? '—' : v.toFixed(1); }
+})();
+</script>
+</body>
+</html>

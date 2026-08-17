@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>derive digest host</title></head>
+<body>
+<!-- Loads the real derivation module and exposes it to the digest tool.
+     Served over http so getImageData is allowed. -->
+<script src="../chassis/core.js"></script>
+<script src="../derive.js"></script>
+<script src="../specs/hokusai.bundle.js"></script>
+<script>
+const BASE = '../../experiences/hokusai/assets/';
+function load(src){return new Promise((res,rej)=>{const i=new Image();i.crossOrigin='anonymous';i.onload=()=>res(i);i.onerror=()=>rej(new Error(src));i.src=src;});}
+window.__derive = async function (S) {
+  const data = window.KW_BUNDLE.data;
+  const refs = KW.Refs({ contentModel: data.contentModel, semantic: data.semantic });
+  const im = refs.resolve(S.ref).items[0];
+  const img = await load(BASE + im.local);
+  const p = KW.derive.samplePalette(img, { x: S.x, y: S.y, w: S.w, h: S.h, file: im.local });
+  const tile = KW.derive.fibreTile(img, { x: S.x, y: S.y, w: S.w, h: S.h });
+  const census = await KW.derive.imageCensus(data.contentModel.images, BASE);
+  const dominant = {};
+  Object.entries(census.perImage).forEach(([k, v]) => { dominant[k] = v.dominant; });
+  return {
+    ground: p.hex, sigma: p.sigma, provenance: p.provenance, coord: p.coord,
+    tile: tile,
+    plateFill: dominant[15] || null,
+    dominant: dominant,
+    sample: { [S.args]: p.hex },
+    fibre: { [S.args]: tile },
+  };
+};
+</script>
+</body></html>
