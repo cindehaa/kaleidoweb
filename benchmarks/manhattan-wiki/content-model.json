@@ -1,0 +1,170 @@
+{
+  "schema": "kaleidoweb/content-model@0",
+  "title": "Manhattan (cocktail)",
+  "description": "Cocktail made with whiskey, sweet vermouth, and bitters",
+  "extract": "A Manhattan is a cocktail made with whiskey, sweet vermouth, and bitters. While rye is the traditional whiskey of choice, other commonly used whiskies include Canadian whisky, bourbon, blended whiskey, and Tennessee whiskey. The cocktail is usually stirred with ice then strained into a chilled cocktail glass and garnished traditionally with a maraschino cherry. A Manhattan may also be served in a champagne coupe or on the rocks in a lowball glass.",
+  "wikidata": "Q1414032",
+  "lang": "en",
+  "sourceUrl": "https://en.wikipedia.org/wiki/Manhattan_(cocktail)",
+  "revision": "1363873508",
+  "coordinates": null,
+  "infobox": [
+    {
+      "label": "Type",
+      "value": "Cocktail"
+    },
+    {
+      "label": "Ingredients",
+      "value": ".mw-parser-output .plainlist ol,.mw-parser-output .plainlist ul{line-height:inherit;list-style:none;margin:0;padding:0}.mw-parser-output .plainlist ol li,.mw-parser-output .plainlist ul li{margin-bottom:0} 50 ml Rye whiskey 20 ml Sweet red vermouth 1 dash Angostura bitters"
+    },
+    {
+      "label": "Base spirit",
+      "value": "Whiskey"
+    },
+    {
+      "label": "Standard drinkware",
+      "value": "Cocktail glass"
+    },
+    {
+      "label": "Standard garnish",
+      "value": "Maraschino cherry"
+    },
+    {
+      "label": "Served",
+      "value": "Straight up: chilled, without ice"
+    },
+    {
+      "label": "Preparation",
+      "value": "Pour all ingredients into mixing glass with ice cubes. Stir well. Strain into a chilled cocktail glass."
+    }
+  ],
+  "images": [
+    {
+      "file": "File:Manhattan_Cocktail2.jpg",
+      "section_id": 0,
+      "caption": null,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Manhattan_Cocktail2.jpg/1280px-Manhattan_Cocktail2.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Manhattan_Cocktail2.jpg/1600px-Manhattan_Cocktail2.jpg"
+    },
+    {
+      "file": "File:A_Manhattan.jpg",
+      "section_id": 0,
+      "caption": "A Manhattan served in a cocktail glass",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/A_Manhattan.jpg/1280px-A_Manhattan.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/A_Manhattan.jpg/1600px-A_Manhattan.jpg"
+    },
+    {
+      "file": "File:Manhattan_cocktail.jpg",
+      "section_id": 3,
+      "caption": "A Manhattan served in a champagne coupe",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Manhattan_cocktail.jpg/500px-Manhattan_cocktail.jpg",
+      "srcLarge": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Manhattan_cocktail.jpg/1600px-Manhattan_cocktail.jpg"
+    }
+  ],
+  "sections": [
+    {
+      "section_id": 0,
+      "level": 1,
+      "title": "__lead__",
+      "paragraphs": [
+        {
+          "id": "p0",
+          "text": "A Manhattan is a cocktail made with whiskey, sweet vermouth, and bitters. While rye is the traditional whiskey of choice, other commonly used whiskies include Canadian whisky, bourbon, blended whiskey, and Tennessee whiskey. The cocktail is usually stirred with ice then strained into a chilled cocktail glass and garnished traditionally with a maraschino cherry. A Manhattan may also be served in a champagne coupe or on the rocks in a lowball glass."
+        },
+        {
+          "id": "p1",
+          "text": "The whiskey-based Manhattan is one of five cocktails named for a New York City borough. It is closely related to the Brooklyn cocktail, which uses dry vermouth and Maraschino liqueur in place of the Manhattan's sweet vermouth, and Amer Picon in place of the Manhattan's angostura bitters."
+        },
+        {
+          "id": "p2",
+          "text": "The Manhattan is one of six basic drinks listed in David A. Embury's 1948 classic The Fine Art of Mixing Drinks."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 1,
+      "level": 2,
+      "title": "Origin and history",
+      "paragraphs": [
+        {
+          "id": "p3",
+          "text": "Popular history suggests that the drink originated at the Manhattan Club in New York City in the mid-1870s, where it was invented by Iain Marshall for a banquet hosted by Jennie Jerome (Lady Randolph Churchill, mother of Winston) in honor of presidential candidate Samuel J. Tilden. The success of the banquet made the drink fashionable, later prompting several people to request the drink by referring to the name of the club where it originated—\"the Manhattan cocktail\". However, Lady Randolph was in France at the time and pregnant, so the story is likely to be fiction."
+        },
+        {
+          "id": "p4",
+          "text": "However, there are prior references to various similar cocktail recipes called \"Manhattan\" and served in the Manhattan area. By one account it was invented in the 1860s by a bartender named Black at a bar on Broadway near Houston Street."
+        },
+        {
+          "id": "p5",
+          "text": "Some of the earliest records of the cocktail can be found in Charlie Paul's American and other Drinks and O.H. Byron's The Modern Bartender's Guide, both written in 1884. Paul describes it containing \"three or four drops of angostura bitters, ditto of plain syrup; add half a liqueur glass of vermouth, half wine glassful of Scotch whiskey\" and garnished with lemon. Byron describes two versions, one with French vermouth and the other with Italian. Another early record of the cocktail can be found in William Schmidt's The Flowing Bowl, published in 1891. In it, he details a drink containing 2 dashes of gum (gomme syrup), 2 dashes of bitters, 1 dash of absinthe, .mw-parser-output .frac{white-space:nowrap}.mw-parser-output .frac .num,.mw-parser-output .frac .den{font-size:80%;line-height:0;vertical-align:super}.mw-parser-output .frac .den{vertical-align:sub}.mw-parser-output .sr-only{border:0;clip:rect(0,0,0,0);clip-path:polygon(0px 0px,0px 0px,0px 0px);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}2⁄3 portion of whiskey, and 1⁄3 portion of vermouth."
+        },
+        {
+          "id": "p6",
+          "text": "The same cocktail appears listed as a \"Tennessee Cocktail\" in Shake 'em Up! by V. Elliott and P. Strong: \"Two parts of whiskey, one part of Italian Vermouth, and a dash of bitters poured over ice and stirred vigorously.\""
+        },
+        {
+          "id": "p7",
+          "text": "During Prohibition (1920–1933) Canadian whisky was primarily used because it was available."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 2,
+      "level": 2,
+      "title": "Traditions",
+      "paragraphs": [
+        {
+          "id": "p8",
+          "text": "On the small North Frisian island of Föhr, the Manhattan cocktail is a standard drink at almost every cafe, restaurant, and \"get together\" of locals. The story goes that many of the people of Föhr went to Manhattan during deep sea fishing trips, took a liking to the drink, and brought it back to Föhr with them. The drink is usually mixed 1 part vermouth to 2 parts whiskey, with a dash of bitters, served ice cold, in an ice cold glass, or with ice and a cherry garnish."
+        }
+      ],
+      "quotes": [],
+      "lists": [],
+      "tables": []
+    },
+    {
+      "section_id": 3,
+      "level": 2,
+      "title": "Variations",
+      "paragraphs": [
+        {
+          "id": "p9",
+          "text": "Traditional views insist that a Manhattan be made with American rye whiskey. However it can also be made with bourbon or Canadian whisky. The Manhattan is subject to considerable variation and innovation, and is often a way for the best bartenders to show off their creativity. Some shake the ingredients with ice in a cocktail shaker instead of stirring it, creating a froth on the surface of the drink. Angostura is the classic bitters, but orange bitters or Peychaud's Bitters may be used. Some make their own bitters and syrups, substitute comparable digestifs in place of vermouth, specialize in local or rare whiskeys, or use other exotic ingredients. A lemon peel may be used as garnish. Some add juice from the cherry jar or Maraschino liqueur to the cocktail for additional sweetness and color."
+        },
+        {
+          "id": "p10",
+          "text": "Originally, bitters were considered an integral part of any cocktail, as the ingredient that differentiated a cocktail from a sling. Over time, those definitions of cocktail and sling have become archaic, as sling has fallen out of general use (other than in certain drink names), and cocktail can mean any drink that resembles a martini, or simply any mixed drink."
+        },
+        {
+          "id": "p11",
+          "text": "The following are other variations on the classic Manhattan:"
+        }
+      ],
+      "quotes": [],
+      "lists": [
+        [
+          "Black Manhattan – replaces vermouth with Averna amaro, add one dash orange bitters (in addition to one dash Angostura bitters). Created in 2005 at San Francisco bar Bourbon & Branch by bartender Todd Smith.",
+          "Blonde Manhattan – made with 2 oz moonshine, 1 oz sweet vermouth, 0.5 oz orange liqueur, and 3 dashes of orange bitters.",
+          "Brandy Manhattan – made with brandy instead of whiskey, and is very popular in Wisconsin.",
+          "Cuban Manhattan – a perfect Manhattan (see below) with dark rum as its principal ingredient.",
+          "Dean Lyder – a twist on the perfect Manhattan, made with orange bitters and zest, giving it a 'big, bold character'. It is named for Courtney Lyder, dean of UCLA School of Nursing.",
+          "Dry Manhattan – made with dry vermouth instead of sweet vermouth, usually also replacing the maraschino cherry with a twist in keeping with the overall principle of reducing the cocktail's sweetness. A Manhattan made with dry vermouth but retaining the cherry rather than twist is sometimes known as a \"half-dry Manhattan\", but this name risks confusion with the perfect Manhattan, whose quantity of vermouth consists of equal parts sweet vermouth and dry vermouth.",
+          "Fanciulli – adds the bitter flavors of Fernet-Branca.",
+          "Tipperary - uses Irish Whiskey in place of Rye whiskey, and add Green Chartreuse.",
+          "The Fourth Regiment – a classic (ca. 1889) cocktail that uses a 1:1 ratio of whiskey and vermouth, and uses three dashes of three different bitters – orange bitters, celery bitters, and Peychaud's Bitters.",
+          "Metropolitan – similar to a brandy Manhattan, but with a 3-to-1 ratio of brandy to vermouth and a dash of simple syrup.",
+          "Perfect Manhattan – made with equal parts sweet and dry vermouth.",
+          "Rob Roy – made with Scotch whisky.",
+          "Manhattan Project - to a standard Manhattan, add ½ oz cherry brandy."
+        ]
+      ],
+      "tables": []
+    }
+  ]
+}

@@ -131,6 +131,10 @@
   .plate{position:relative}
   #bokeh2{position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:screen;opacity:.55}
   .plate svg,.plate-cap{position:relative;z-index:1}
+
+  .ledesrc{font-family:var(--ui);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-38);margin:14px 0 0}
+  .varsrc{max-width:44em;margin:30px 0 0;color:var(--ink-60)}
+  .varsrc p{margin:0 0 1.1em}
 </style>
 
 <section class="herowrap"><div id="env" aria-hidden="true"></div><canvas id="bokeh" aria-hidden="true"></canvas>
@@ -168,7 +172,8 @@
   <div class="htext">
     <p class="lbl">One drink, told by its proportions</p>
     <h1>The<br>Manhattan</h1>
-    <p class="thesis">Everything this drink is lives in one ratio — <em>two of whiskey</em> to <i>one of sweet vermouth</i>, tilted bitter by two dashes. Hold the ratio and you can carry the recipe in your head forever; move any part of it and the drink changes its name.</p>
+    <p class="thesis">A Manhattan is a cocktail made with <em>whiskey</em>, <i>sweet vermouth</i>, and bitters. While rye is the traditional whiskey of choice, other commonly used whiskies include Canadian whisky, bourbon, blended whiskey, and Tennessee whiskey. The cocktail is usually stirred with ice then strained into a chilled cocktail glass and garnished traditionally with a maraschino cherry. A Manhattan may also be served in a champagne coupe or on the rocks in a lowball glass.</p>
+      <p class="ledesrc">— Wikipedia, “Manhattan (cocktail)”, lead</p>
     <div class="hfoot">
       <span class="r">4.4<small> / 5 · 1,840 ratings at the source</small></span>
       <span class="r" style="font-size:15px;color:var(--ink-60)">stirred, never shaken · served up, chilled</span>
@@ -188,11 +193,11 @@
 <section class="make">
   <div class="make-in">
     <div class="act rv"><span class="lbl">I — Stir</span>
-      <p><span class="stir" aria-hidden="true"></span>All three into a mixing glass over ice, <strong>stirred until well-chilled</strong>. Stirring, not shaking: the ice gives its cold and a little of its water, and the drink stays silk-clear.</p></div>
+      <p><span class="stir" aria-hidden="true"></span>Add the whiskey, sweet vermouth, and bitters into a mixing glass with ice and <strong>stir until well-chilled</strong>.</p></div>
     <div class="act rv"><span class="lbl">II — Strain</span>
-      <p>Strained up into a <strong>chilled Nick &amp; Nora or coupe</strong>. Nothing else goes in the glass — no ice to keep diluting what the stir already finished.</p></div>
+      <p>Strain into a <strong>chilled Nick &amp; Nora or coupe glass</strong>.</p></div>
     <div class="act rv"><span class="lbl">III — Garnish</span>
-      <p>A <strong>brandied cherry</strong>, dropped in — or a lemon twist if you'd rather end on brightness than depth.</p></div>
+      <p>Garnish with a <strong>brandied cherry</strong> — or a lemon twist, if preferred.</p></div>
   </div>
 </section>
 
@@ -227,7 +232,7 @@
   <path d="M450 484 q-92 6 -104 30 q0 10 104 10 q104 0 104 -10 q-12 -24 -104 -30 z" fill="url(#glass)"/>
   <ellipse cx="450" cy="514" rx="104" ry="9" fill="#F3E9DC" opacity=".12"/>
 </svg>
-<p class="plate-cap">Served up: the coupe keeps the stir's work — no ice past the strain. <span>illustration, ours</span></p>
+<p class="plate-cap">Served up, in a coupe. <span>illustration, ours</span></p>
 </section>
 <section class="vars">
   <h2>Move one ingredient and it becomes a different drink.</h2>
@@ -238,13 +243,21 @@
     <button aria-pressed="false" data-v="perfect">Perfect</button>
     <button aria-pressed="false" data-v="robroy">Rob Roy</button>
   </div>
-  <p class="vgloss" id="vgloss"><b>The original measure.</b> Rye for spice or bourbon for roundness; sweet vermouth carries the red fruit; the cherry agrees with it.</p>
+  <p class="vgloss" id="vgloss"><b>The original measure</b> — as the source recipe gives it.</p>
+  <div class="varsrc"><p>Traditional views insist that a Manhattan be made with American rye whiskey. However it can also be made with bourbon or Canadian whisky. The Manhattan is subject to considerable variation and innovation, and is often a way for the best bartenders to show off their creativity. Some shake the ingredients with ice in a cocktail shaker instead of stirring it, creating a froth on the surface of the drink. Angostura is the classic bitters, but orange bitters or Peychaud's Bitters may be used. Some make their own bitters and syrups, substitute comparable digestifs in place of vermouth, specialize in local or rare whiskeys, or use other exotic ingredients. A lemon peel may be used as garnish. Some add juice from the cherry jar or Maraschino liqueur to the cocktail for additional sweetness and color.</p>
+  <p>Originally, bitters were considered an integral part of any cocktail, as the ingredient that differentiated a cocktail from a sling. Over time, those definitions of cocktail and sling have become archaic, as sling has fallen out of general use (other than in certain drink names), and cocktail can mean any drink that resembles a martini, or simply any mixed drink.</p>
+  <p>The following are other variations on the classic Manhattan:</p><p>On the small North Frisian island of Föhr, the Manhattan cocktail is a standard drink at almost every cafe, restaurant, and "get together" of locals. The story goes that many of the people of Föhr went to Manhattan during deep sea fishing trips, took a liking to the drink, and brought it back to Föhr with them. The drink is usually mixed 1 part vermouth to 2 parts whiskey, with a dash of bitters, served ice cold, in an ice cold glass, or with ice and a cherry garnish.</p><p class="ledesrc">— Wikipedia, “Manhattan (cocktail)”, Variations &amp; Traditions</p></div>
 </section>
 
 <section class="tail">
   <div class="origin rv">
-    <p class="lbl" style="display:block;margin-bottom:12px">Where it began</p>
-    <p>New York, sometime in the 1870s–80s — beyond that, the record argues with itself. The famous story puts the first Manhattan at the <b>Manhattan Club</b>, at a banquet involving Winston Churchill's mother; historians consider that legend, not fact, since she was in England at the time. What's solid is simpler: the drink is among the oldest cocktails to marry American whiskey with Italian vermouth, and it never left the repertoire. <span style="color:var(--ink-38)">— our summary of the drink's commonly told history; the origin is contested.</span></p>
+    <p class="lbl" style="display:block;margin-bottom:12px">Origin and history</p>
+    <p>Popular history suggests that the drink originated at the Manhattan Club in New York City in the mid-1870s, where it was invented by Iain Marshall for a banquet hosted by Jennie Jerome (Lady Randolph Churchill, mother of Winston) in honor of presidential candidate Samuel J. Tilden. The success of the banquet made the drink fashionable, later prompting several people to request the drink by referring to the name of the club where it originated—"the Manhattan cocktail". However, Lady Randolph was in France at the time and pregnant, so the story is likely to be fiction.</p>
+    <p>However, there are prior references to various similar cocktail recipes called "Manhattan" and served in the Manhattan area. By one account it was invented in the 1860s by a bartender named Black at a bar on Broadway near Houston Street.</p>
+    <p>Some of the earliest records of the cocktail can be found in Charlie Paul's American and other Drinks and O.H. Byron's The Modern Bartender's Guide, both written in 1884. Paul describes it containing "three or four drops of angostura bitters, ditto of plain syrup; add half a liqueur glass of vermouth, half wine glassful of Scotch whiskey" and garnished with lemon. Byron describes two versions, one with French vermouth and the other with Italian. Another early record of the cocktail can be found in William Schmidt's The Flowing Bowl, published in 1891. In it, he details a drink containing 2 dashes of gum (gomme syrup), 2 dashes of bitters, 1 dash of absinthe, .mw-parser-output .frac{white-space:nowrap}.mw-parser-output .frac .num,.mw-parser-output .frac .den{font-size:80%;line-height:0;vertical-align:super}.mw-parser-output .frac .den{vertical-align:sub}.mw-parser-output .sr-only{border:0;clip:rect(0,0,0,0);clip-path:polygon(0px 0px,0px 0px,0px 0px);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}2⁄3 portion of whiskey, and 1⁄3 portion of vermouth.</p>
+    <p>The same cocktail appears listed as a "Tennessee Cocktail" in Shake 'em Up! by V. Elliott and P. Strong: "Two parts of whiskey, one part of Italian Vermouth, and a dash of bitters poured over ice and stirred vigorously."</p>
+    <p>During Prohibition (1920–1933) Canadian whisky was primarily used because it was available.</p>
+    <p class="ledesrc">— Wikipedia, “Manhattan (cocktail)”, Origin and history</p>
   </div>
   <div class="srccard rv">
     <span class="lbl">The source recipe, as published</span>
@@ -255,23 +268,23 @@
       <li>Garnish: brandied cherry</li>
     </ul>
     <p class="meta">Stir with ice until well-chilled → strain into a chilled Nick &amp; Nora or coupe → garnish with a brandied cherry, or a lemon twist.<br><br>
-    Recipe facts from <a href="https://www.liquor.com/recipes/manhattan-2/">liquor.com — “Manhattan”</a> (Dylan Garret; 4.4/5, 1,840 ratings). All other text on this page is Kaleidoweb's own retelling.</p>
+    Recipe facts from <a href="https://www.liquor.com/recipes/manhattan-2/">liquor.com — “Manhattan”</a> (Dylan Garret; 4.4/5, 1,840 ratings). Article text from <a href="https://en.wikipedia.org/wiki/Manhattan_(cocktail)">Wikipedia, “Manhattan (cocktail)”</a>, reproduced verbatim under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
   </div>
 </section>
 
-<footer>Kaleidoweb · an information page, retold · proportions drawn to scale <button class="mtgl" id="mtgl" aria-pressed="true">motion — stirring</button></footer>
+<footer>Kaleidoweb · source text throughout · proportions drawn to scale <button class="mtgl" id="mtgl" aria-pressed="true">motion — stirring</button></footer>
 
 <script>
 (() => {
   const V = {
     manhattan:{b1:[2,'2 oz','rye or bourbon whiskey','spirit'], b2:[1,'1 oz','sweet vermouth','verm'], b3:null,
-      gloss:'<b>The original measure.</b> Rye for spice or bourbon for roundness; sweet vermouth carries the red fruit; the cherry agrees with it.'},
+      gloss:'<b>Manhattan.</b> Whiskey, sweet vermouth, bitters.'},
     dry:{b1:[2,'2 oz','rye or bourbon whiskey','spirit'], b2:[1,'1 oz','dry vermouth','verm2'], b3:null,
-      gloss:'<b>Dry Manhattan.</b> Sweet vermouth swapped for dry; the customary garnish turns with it, cherry to lemon twist. Same skeleton, cooler voice.'},
+      gloss:'<b>Dry Manhattan.</b> Made with dry vermouth; garnished with a lemon twist.'},
     perfect:{b1:[2,'2 oz','rye or bourbon whiskey','spirit'], b2:[0.5,'½ oz','sweet vermouth','verm'], b3:[0.5,'½ oz','dry vermouth','verm2'],
-      gloss:'<b>Perfect Manhattan.</b> The vermouth ounce split evenly, sweet and dry — “perfect” is the old bar word for that even split, not a boast.'},
+      gloss:'<b>Perfect Manhattan.</b> Made with equal parts sweet and dry vermouth.'},
     robroy:{b1:[2,'2 oz','Scotch whisky','spirit'], b2:[1,'1 oz','sweet vermouth','verm'], b3:null,
-      gloss:'<b>Rob Roy.</b> The whiskey crosses the Atlantic: Scotch in place of rye. Named for the highland outlaw, drunk mostly in Manhattan.'}
+      gloss:'<b>Rob Roy.</b> Made with Scotch whisky.'}
   };
   const $ = id => document.getElementById(id);
   const bands = {b1:$('b1'), b2:$('b2'), b3:$('b3')};
