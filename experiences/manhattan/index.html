@@ -20,7 +20,8 @@
   .lbl{font-family:var(--ui);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-38)}
 
   /* ── hero: the ratio ─────────────────────────────── */
-  .hero{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(300px,44%) 1fr;max-width:1180px;margin:0 auto;padding:0 32px;gap:48px}
+  .herowrap{position:relative}
+  .hero{position:relative;z-index:1;min-height:100svh;display:grid;grid-template-columns:minmax(300px,44%) 1fr;max-width:1180px;margin:0 auto;padding:0 32px;gap:48px}
   .measure{display:flex;align-items:stretch;justify-content:center;padding:9svh 0 7svh}
   .col{position:relative;width:min(210px,52%);display:flex;flex-direction:column}
   .col .band{position:relative;transition:flex-grow .5s cubic-bezier(.3,0,.2,1),background .5s ease}
@@ -90,12 +91,12 @@
 
   #env{position:absolute;inset:0;z-index:0;pointer-events:none}
   #env canvas{width:100%;height:100%;display:block}
-  .hero>*:not(#env){position:relative;z-index:1}
+  
   .mtgl{background:none;border:1px solid var(--hair);color:var(--ink-38);font-family:var(--ui);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;margin-left:14px;cursor:pointer}
   .mtgl:focus-visible{outline:2px solid var(--brass)}
 </style>
 
-<section class="hero"><div id="env" aria-hidden="true"></div>
+<section class="herowrap"><div id="env" aria-hidden="true"></div><div class="hero">
   <div class="htext">
     <p class="lbl">One drink, told by its proportions</p>
     <h1>The<br>Manhattan</h1>
@@ -114,7 +115,7 @@
       <div class="dash"><span class="bl"><b>2</b>dashes Angostura bitters</span></div>
     </div>
   </div>
-</section>
+</div></section>
 
 <section class="make">
   <div class="make-in">
@@ -5582,15 +5583,15 @@ window.PaperShaders={DitheringShapes:ro,DitheringTypes:so,DotGridShapes:Ke,GemSm
   let mnt = null;
   try {
     const C = P.getShaderColorFromString;
-    mnt = new P.ShaderMount(host, P.grainGradientFragmentShader, {
-      u_colorBack: C('#1A120E'),
-      u_colors: [C('#2E1B0F'), C('#26141A'), C('#1A120E')],
-      u_colorsCount: 3,
-      u_shape: P.GrainGradientShapes.wave,
-      u_softness: 0.85, u_intensity: 0.38, u_noise: 0.5,
-      u_scale: 1.25, u_rotation: 0,
-      u_offsetX: 0, u_offsetY: 0, u_originX: 0.5, u_originY: 0.5,
-      u_worldWidth: 0, u_worldHeight: 0, u_fit: 0,
+    mnt = new P.ShaderMount(host, P.meshGradientFragmentShader, {
+      // the drink's own materials, swirled at stir speed — mesh points in
+      // ground mahogany, rye amber, vermouth garnet, low brass
+      u_colors: [C('#1A120E'), C('#3A200E'), C('#2B141B'), C('#241813'), C('#33230F')],
+      u_colorsCount: 5,
+      u_distortion: 0.6,
+      u_swirl: 0.65,        // the stir, as a parameter
+      u_grainMixer: 0.12,
+      u_grainOverlay: 0.06,
     }, undefined, 0.04, 0, 1);
   } catch (e) { host.remove(); return; } // no WebGL: the flat ground stands
   const still = () => mnt.setSpeed(0);
