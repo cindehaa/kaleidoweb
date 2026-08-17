@@ -1,0 +1,199 @@
+<title>The Manhattan</title>
+<style>
+  :root{
+    --ground:#1A120E; --panel:#241813; --panel2:#2B1D16;
+    --ink:#F3E9DC; --ink-60:#B5A28D; --ink-38:#7A6A58;
+    --whiskey:#C9721E; --whiskey-lit:#E2933B;
+    --vermouth:#7E2A33; --vermouth-lit:#A03D48;
+    --brass:#8A7350; --hair:#3D2C21;
+    --disp:"Didot","Bodoni 72","Bodoni MT","Playfair Display",Georgia,serif;
+    --ser:"Iowan Old Style",Georgia,"Times New Roman",serif;
+    --ui:system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:var(--ser);font-size:18px;line-height:1.62;
+  }
+  ::selection{background:rgba(201,114,30,.32)}
+  .lbl{font-family:var(--ui);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-38)}
+
+  /* ── hero: the ratio ─────────────────────────────── */
+  .hero{min-height:100svh;display:grid;grid-template-columns:minmax(300px,44%) 1fr;max-width:1180px;margin:0 auto;padding:0 32px;gap:48px}
+  .measure{display:flex;align-items:stretch;justify-content:center;padding:9svh 0 7svh}
+  .col{position:relative;width:min(210px,52%);display:flex;flex-direction:column}
+  .col .band{position:relative;transition:flex-grow .5s cubic-bezier(.3,0,.2,1),background .5s ease}
+  .col .band.spirit{background:linear-gradient(160deg,var(--whiskey-lit),var(--whiskey) 58%,#a55c14)}
+  .col .band.verm{background:linear-gradient(160deg,var(--vermouth-lit),var(--vermouth) 62%,#5e1e26)}
+  .col .band.verm2{background:linear-gradient(160deg,#b3a06a,#8a7350 70%,#6e5a3c)}
+  .col .band .bl{position:absolute;left:calc(100% + 18px);top:50%;transform:translateY(-50%);white-space:nowrap}
+  .col .band .bl b{display:block;font-family:var(--disp);font-size:clamp(30px,3.6vw,46px);font-weight:400;line-height:1;letter-spacing:-.01em;color:var(--ink)}
+  .col .band .bl span{display:block;padding-top:6px;font-size:14px;color:var(--ink-60)}
+  .col .dash{height:7px;flex:0 0 auto;background:#3a2417;position:relative}
+  .col .dash .bl{position:absolute;left:calc(100% + 18px);top:50%;transform:translateY(-50%);white-space:nowrap;font-size:14px;color:var(--ink-60)}
+  .col .dash .bl b{font-family:var(--disp);font-size:22px;font-weight:400;color:var(--ink);padding-right:8px}
+  .gradu{position:absolute;left:-26px;top:0;bottom:0;width:18px}
+  .gradu i{position:absolute;left:0;width:100%;border-top:1px solid var(--hair);font-style:normal}
+  .gradu i em{position:absolute;right:calc(100% + 8px);top:-.7em;font-style:normal;font-family:var(--ui);font-size:10px;letter-spacing:.08em;color:var(--ink-38)}
+  .htext{display:flex;flex-direction:column;justify-content:center;padding:8svh 0}
+  h1{font-family:var(--disp);font-weight:400;font-size:clamp(58px,8.5vw,116px);line-height:.92;letter-spacing:-.015em;margin:0 0 26px;text-wrap:balance}
+  .thesis{max-width:30em;font-size:20px;color:var(--ink);margin:0}
+  .thesis em{color:var(--whiskey-lit);font-style:normal}
+  .thesis i{color:var(--vermouth-lit);font-style:normal}
+  .hfoot{margin-top:44px;display:flex;gap:28px;align-items:baseline;flex-wrap:wrap}
+  .hfoot .r{font-family:var(--disp);font-size:26px}
+  .hfoot .r small{font-family:var(--ui);font-size:12px;color:var(--ink-60);letter-spacing:.04em}
+
+  /* ── the making: three acts ──────────────────────── */
+  .make{border-top:1px solid var(--hair);background:var(--panel)}
+  .make-in{max-width:1180px;margin:0 auto;padding:64px 32px 58px;display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
+  .act .lbl{display:block;margin-bottom:12px}
+  .act p{margin:0;font-size:17px;color:var(--ink-60)}
+  .act p strong{color:var(--ink);font-weight:600}
+  .stir{display:inline-block;width:15px;height:15px;border:2px solid var(--brass);border-radius:50%;border-top-color:transparent;vertical-align:-2px;margin-right:8px;animation:stir 2.6s linear infinite}
+  @keyframes stir{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.stir{animation:none}}
+
+  /* ── variations: one substitution away ───────────── */
+  .vars{max-width:1180px;margin:0 auto;padding:78px 32px 30px}
+  .vars h2{font-family:var(--disp);font-weight:400;font-size:clamp(30px,4vw,44px);line-height:1.05;margin:0 0 10px;max-width:18em}
+  .vars .note{max-width:36em;color:var(--ink-60);margin:0 0 34px;font-size:17px}
+  .tabs{display:flex;gap:0;border:1px solid var(--hair);width:max-content;max-width:100%;overflow-x:auto}
+  .tabs button{font-family:var(--ui);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60);background:none;border:0;border-right:1px solid var(--hair);padding:13px 22px;cursor:pointer}
+  .tabs button:last-child{border-right:0}
+  .tabs button[aria-pressed="true"]{background:var(--panel2);color:var(--ink)}
+  .tabs button:focus-visible{outline:2px solid var(--brass);outline-offset:-2px}
+  .vgloss{min-height:3.2em;max-width:44em;margin:26px 0 0;color:var(--ink-60)}
+  .vgloss b{color:var(--ink);font-weight:600}
+
+  /* ── origin + source ─────────────────────────────── */
+  .tail{max-width:1180px;margin:0 auto;padding:60px 32px 70px;display:grid;grid-template-columns:minmax(0,58ch) 1fr;gap:56px}
+  .origin p{margin:0;color:var(--ink-60)}
+  .origin p b{color:var(--ink);font-weight:600}
+  .srccard{border:1px solid var(--hair);padding:22px 24px;align-self:start;background:var(--panel)}
+  .srccard .lbl{display:block;margin-bottom:14px;color:var(--brass)}
+  .srccard ul{list-style:none;margin:0 0 16px;padding:0;font-size:15.5px}
+  .srccard li{padding:7px 0;border-top:1px solid var(--hair)}
+  .srccard li:first-child{border-top:0}
+  .srccard .meta{font-size:13.5px;color:var(--ink-38);line-height:1.55}
+  .srccard a{color:var(--ink-60)}
+  footer{border-top:1px solid var(--hair);padding:26px 32px 34px;text-align:center;font-family:var(--ui);font-size:12px;color:var(--ink-38)}
+
+  @media (max-width:840px){
+    .hero{grid-template-columns:1fr;gap:0;padding-top:8svh}
+    .measure{padding:2svh 0 0;order:2}
+    .htext{padding:0 0 4svh}
+    .make-in{grid-template-columns:1fr;gap:26px}
+    .tail{grid-template-columns:1fr}
+  }
+</style>
+
+<section class="hero">
+  <div class="htext">
+    <p class="lbl">One drink, told by its proportions</p>
+    <h1>The<br>Manhattan</h1>
+    <p class="thesis">Everything this drink is lives in one ratio — <em>two of whiskey</em> to <i>one of sweet vermouth</i>, tilted bitter by two dashes. Hold the ratio and you can carry the recipe in your head forever; move any part of it and the drink changes its name.</p>
+    <div class="hfoot">
+      <span class="r">4.4<small> / 5 · 1,840 ratings at the source</small></span>
+      <span class="r" style="font-size:15px;color:var(--ink-60)">stirred, never shaken · served up, chilled</span>
+    </div>
+  </div>
+  <div class="measure">
+    <div class="col" id="col">
+      <div class="gradu" id="gradu"></div>
+      <div class="band spirit" id="b1" style="flex-grow:2"><span class="bl"><b id="b1n">2 oz</b><span id="b1l">rye or bourbon whiskey</span></span></div>
+      <div class="band verm" id="b2" style="flex-grow:1"><span class="bl"><b id="b2n">1 oz</b><span id="b2l">sweet vermouth</span></span></div>
+      <div class="band verm2" id="b3" style="flex-grow:0;display:none"><span class="bl"><b id="b3n"></b><span id="b3l"></span></span></div>
+      <div class="dash"><span class="bl"><b>2</b>dashes Angostura bitters</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="make">
+  <div class="make-in">
+    <div class="act"><span class="lbl">I — Stir</span>
+      <p><span class="stir" aria-hidden="true"></span>All three into a mixing glass over ice, <strong>stirred until well-chilled</strong>. Stirring, not shaking: the ice gives its cold and a little of its water, and the drink stays silk-clear.</p></div>
+    <div class="act"><span class="lbl">II — Strain</span>
+      <p>Strained up into a <strong>chilled Nick &amp; Nora or coupe</strong>. Nothing else goes in the glass — no ice to keep diluting what the stir already finished.</p></div>
+    <div class="act"><span class="lbl">III — Garnish</span>
+      <p>A <strong>brandied cherry</strong>, dropped in — or a lemon twist if you'd rather end on brightness than depth.</p></div>
+  </div>
+</section>
+
+<section class="vars">
+  <h2>Move one ingredient and it becomes a different drink.</h2>
+  <p class="note">The Manhattan sits at the center of a small family. Each neighbor is one substitution away — the ratio barely moves. <span style="color:var(--ink-38)">(The family tree is bar tradition, not part of the source recipe.)</span></p>
+  <div class="tabs" role="group" aria-label="Variations">
+    <button aria-pressed="true"  data-v="manhattan">Manhattan</button>
+    <button aria-pressed="false" data-v="dry">Dry</button>
+    <button aria-pressed="false" data-v="perfect">Perfect</button>
+    <button aria-pressed="false" data-v="robroy">Rob Roy</button>
+  </div>
+  <p class="vgloss" id="vgloss"><b>The original measure.</b> Rye for spice or bourbon for roundness; sweet vermouth carries the red fruit; the cherry agrees with it.</p>
+</section>
+
+<section class="tail">
+  <div class="origin">
+    <p class="lbl" style="display:block;margin-bottom:12px">Where it began</p>
+    <p>New York, sometime in the 1870s–80s — beyond that, the record argues with itself. The famous story puts the first Manhattan at the <b>Manhattan Club</b>, at a banquet involving Winston Churchill's mother; historians consider that legend, not fact, since she was in England at the time. What's solid is simpler: the drink is among the oldest cocktails to marry American whiskey with Italian vermouth, and it never left the repertoire. <span style="color:var(--ink-38)">— our summary of the drink's commonly told history; the origin is contested.</span></p>
+  </div>
+  <div class="srccard">
+    <span class="lbl">The source recipe, as published</span>
+    <ul>
+      <li>2 ounces bourbon or rye</li>
+      <li>1 ounce sweet vermouth</li>
+      <li>2 dashes Angostura bitters</li>
+      <li>Garnish: brandied cherry</li>
+    </ul>
+    <p class="meta">Stir with ice until well-chilled → strain into a chilled Nick &amp; Nora or coupe → garnish with a brandied cherry, or a lemon twist.<br><br>
+    Recipe facts from <a href="https://www.liquor.com/recipes/manhattan-2/">liquor.com — “Manhattan”</a> (Dylan Garret; 4.4/5, 1,840 ratings). All other text on this page is Kaleidoweb's own retelling.</p>
+  </div>
+</section>
+
+<footer>Kaleidoweb · an information page, retold · proportions drawn to scale</footer>
+
+<script>
+(() => {
+  const V = {
+    manhattan:{b1:[2,'2 oz','rye or bourbon whiskey','spirit'], b2:[1,'1 oz','sweet vermouth','verm'], b3:null,
+      gloss:'<b>The original measure.</b> Rye for spice or bourbon for roundness; sweet vermouth carries the red fruit; the cherry agrees with it.'},
+    dry:{b1:[2,'2 oz','rye or bourbon whiskey','spirit'], b2:[1,'1 oz','dry vermouth','verm2'], b3:null,
+      gloss:'<b>Dry Manhattan.</b> Sweet vermouth swapped for dry; the customary garnish turns with it, cherry to lemon twist. Same skeleton, cooler voice.'},
+    perfect:{b1:[2,'2 oz','rye or bourbon whiskey','spirit'], b2:[0.5,'½ oz','sweet vermouth','verm'], b3:[0.5,'½ oz','dry vermouth','verm2'],
+      gloss:'<b>Perfect Manhattan.</b> The vermouth ounce split evenly, sweet and dry — “perfect” is the old bar word for that even split, not a boast.'},
+    robroy:{b1:[2,'2 oz','Scotch whisky','spirit'], b2:[1,'1 oz','sweet vermouth','verm'], b3:null,
+      gloss:'<b>Rob Roy.</b> The whiskey crosses the Atlantic: Scotch in place of rye. Named for the highland outlaw, drunk mostly in Manhattan.'}
+  };
+  const $ = id => document.getElementById(id);
+  const bands = {b1:$('b1'), b2:$('b2'), b3:$('b3')};
+  function apply(key){
+    const v = V[key];
+    for (const k of ['b1','b2','b3']){
+      const el = bands[k], spec = v[k];
+      if (!spec){ el.style.display='none'; el.style.flexGrow=0; continue; }
+      el.style.display='';
+      el.style.flexGrow = spec[0];
+      el.className = 'band ' + spec[3];
+      $(k+'n').textContent = spec[1];
+      $(k+'l').textContent = spec[2];
+    }
+    $('vgloss').innerHTML = v.gloss;
+  }
+  document.querySelectorAll('.tabs button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-pressed', x===b ? 'true':'false'));
+      apply(b.dataset.v);
+    });
+  });
+  // gradations: quarter-ounce marks over the 3 oz column
+  const g = $('gradu');
+  for (let i=0;i<=12;i++){
+    const t = document.createElement('i');
+    t.style.top = (100 - i/12*100) + '%';
+    if (i%4===0) t.innerHTML = '<em>'+ (i/4) +' oz</em>';
+    else t.style.width='9px';
+    g.appendChild(t);
+  }
+})();
+</script>
