@@ -26,7 +26,7 @@
 <meta name="kaleidoweb:material_record" content="artifact=arXiv:1706.03762v7, nips_2017.sty single-column US Letter, text block 5.5x9in; substrate=white (modal pixel of ModalNet-21.png, 62.65%); marking=pure black #000000 body ink, #202020 figure text, flat opaque fills, no gradient in any figure; letterforms=prose ptm (Times), mathematics Computer Modern, \texttt Computer Modern Typewriter; boundary=4pt rule over the title box + 1pt under + 1pt \specialrule in Table 2 + booktabs 0.08em/0.05em; reading-axis=LTR prose, but the paper's own attention figures are rotated 90 degrees; numerals=lining Times figures compared down columns, best-in-column bold; the-one-colour=LaTeX red #FF0000, used twice in the document's life; format=8.5x11in, 1in margins">
 <meta name="kaleidoweb:ground_provenance" content="file=benchmarks/attention-paper/figures/ModalNet-21.png; modal colour #FFFFFF over 62.65% of 1520x2239 px = the page itself; second ground #F3F3F4 = the Nx stack backdrop, same file, y480-1612 (14.57%). The subject has a material ground and it is white.">
 <meta name="kaleidoweb:derivation" content="ground #FFFFFF and #F3F3F4 = ModalNet-21.png modal colours | ink #000000 = Fig.1 outlines (8.49%), figure ink #202020 = rg operator in vis/making_more_difficult5_new.pdf | display face Latin Modern (Computer Modern lineage) because ms.tex loads no math-font package, so the mathematics is CM and the only things in this paper worth display size are its equations and its numbers | body face STIX Two Text, the Times lineage of nips_2017.sty:38 \rmdefault{ptm} — a near miss, stated: ptm resolves to URW Nimbus Roman (Adobe Times), STIX Two is a Times New Roman lineage | five operation fills #C5BEDF #FDF9C0 #F9CBDF #CCE7CF #C5BEDF measured off ModalNet-19.png at y76,507,364,221,654 | eight head colours #1F77B4 #FF7E0E #2C9F2C #D52728 #9367BC #8B554A #E277C2 #7E7E7E = literal rg operators in vis/making_more_difficult5_new.pdf (tab10 through an Illustrator CS6 round-trip) | accent #FF0000 = ms.tex \textcolor{red}, reserved for -inf and for unpublished manuscript | rules 4px/1px/0.08em/0.05em = nips_2017.sty:269,276 and booktabs | grid: page scale 1.9px per point, left margin 137px = the paper's 1in; argument 668px = the paper's line held to 70 characters instead of its own 88 (the one stated deviation); evidence width is the data's own, capped at 1160px | easing cubic-bezier(.62,0,.38,1) = softmax at k=6, the function this page is about">
-<meta name="kaleidoweb:surface_budget" content="source body prose 3553 words; surface prose ceiling 40% = 1421 words; target 150-250 words per 900px viewport; plates 4; every source section reachable via hidden=until-found, one disclosure level, concordance in end matter; one apparatus marker per block">
+<meta name="kaleidoweb:surface_budget" content="source body prose 3553 words; surface prose ceiling 40% = 1421 words; MEASURED at ship: 1332 narrative words across the eleven movements = 37.5%, excluding reproduced tables, computed data furniture and the apparatus register; end matter adds 812 more, of which roughly half is unpublished manuscript rather than published body prose and the rest is the design rationale and the source concordance both rules require; 146 words per 900px viewport; plates 4; every source section reachable via hidden=until-found, one disclosure level, concordance in end matter; one apparatus marker per block">
 <meta name="kaleidoweb:allocation" content="surface = 3.2.1 Scaled Dot-Product Attention, 3.2.2 Multi-Head Attention, 3.2.3 Applications, 3.5 Positional Encoding, 6.1 Machine Translation | subordinated (until-found) = every one of the 22 sections in full, at the movement it belongs to or in end matter | pointer-only = the 40 references | promoted = footnote 1 of p16 (into movement 3, which is built out of it) and footnote 2 of p49 (into movement 9)">
 
 <link rel="stylesheet" href="divide.css">
@@ -42,9 +42,11 @@
      ══════════════════════════════════════════════════════════════════ -->
 <section id="m0">
   <div class="titlebox">
-    <h1 class="eqtitle">Attention(<i>Q</i>,<i>K</i>,<i>V</i>) =<span class="l2"><span
-      class="tint t-sm">softmax</span>(<span class="frac"><span class="fnum tint t-mm"><i>QK</i><sup>T</sup></span><span
-      class="fden tint t-sc"><span class="sqrt"><svg viewBox="0 0 100 200" aria-hidden="true"><path d="M2,128 L30,112 L56,190 L96,8"/></svg><span class="rcd"><i>d</i><sub>k</sub></span></span></span></span>)<span class="tint t-mm"><i>V</i></span></span></h1>
+    <h1 class="eqtitle"><span class="l1">Attention(<i>Q</i>,<i>K</i>,<i>V</i>)<span class="rel">=</span></span><span
+      class="l2"><span class="tint t-sm">softmax</span><svg class="par" viewBox="0 0 22 100" preserveAspectRatio="none" aria-hidden="true"><path d="M18,1 C7.5,22 7.5,78 18,99"/></svg><span
+      class="frac"><span class="fnum"><span class="tint t-mm"><i>QK</i><sup>T</sup></span></span><span class="fbar"></span><span
+      class="fden"><span class="tint t-sc"><span class="sqrt"><svg viewBox="0 0 100 200" aria-hidden="true"><path d="M2,128 L30,112 L56,190 L96,8"/></svg><span class="rcd"><i>d</i><sub>k</sub></span></span></span></span></span><svg
+      class="par flip" viewBox="0 0 22 100" preserveAspectRatio="none" aria-hidden="true"><path d="M18,1 C7.5,22 7.5,78 18,99"/></svg><span class="tint t-mm"><i>V</i></span></span></h1>
   </div>
 
   <div class="col meta">
@@ -53,7 +55,7 @@
   </div>
 
   <div class="wide envwrap">
-    <canvas id="envmat" aria-label="The eighty-one dot products of one nine-token sentence, drawn as bars from a centre line, first at full size and then divided by eight."></canvas>
+    <div class="cvbox"><canvas id="envmat" aria-label="The eighty-one dot products of one nine-token sentence, drawn as bars from a centre line, first at full size and then divided by eight."></canvas><button class="cpause" type="button" data-pause aria-pressed="false">pause</button></div>
     <p class="app ours" style="margin-top:10px">Eighty-one dot products, from nine tokens against nine tokens. Full size, then divided by eight. The outline is where each one started.</p>
   </div>
 </section>
@@ -416,9 +418,9 @@
     <p class="app ours">Largest difference between those rows: <b class="n"><span id="pediff" data-role="data">0.000</span></b>. Computed here, with the paper's formula evaluated at 64 dimensions — the width of one head.</p>
   </div>
 
-  <div class="wide" style="margin-top:44px">
-    <canvas id="pefield" aria-label="The positional encoding of the paper's equations 19 and 20, evaluated over 512 dimensions and 160 positions and drawn as ink density: white for minus one, black for plus one."></canvas>
-    <p class="app ours" style="margin-top:10px">PE(<i>pos</i>,2<i>i</i>) = sin(<i>pos</i>/10000<sup>2<i>i</i>/<i>d</i><sub>model</sub></sup>) and its cosine, evaluated over 512 dimensions across and 160 positions down. Ink is +1, white is −1. Our rendering of the paper's formula; the drift is one position per second.</p>
+  <div class="wide envwrap" style="margin-top:44px">
+    <div class="cvbox"><canvas id="pefield" aria-label="The positional encoding of the paper's equation 19, evaluated across 420 positions for each of the 256 sine dimensions, one dimension per row: the wave lengthens from a period of two pi at the top to ten thousand times two pi at the bottom. Blue is plus one, red is minus one, white is zero."></canvas><button class="cpause" type="button" data-pause aria-pressed="false">pause</button></div>
+    <p class="app ours" style="margin-top:10px">PE(<i>pos</i>,2<i>i</i>) = sin(<i>pos</i>/10000<sup>2<i>i</i>/<i>d</i><sub>model</sub></sup>), evaluated across 420 positions for each of the 256 sine dimensions — one dimension per row, <i>i</i> = 0 at the top. The period runs 2π at the top to 10000·2π at the bottom; that widening is the geometric progression. The odd dimensions are the same wavelengths as cosines, a quarter-cycle over. <b style="color:#1F77B4">Blue is +1</b>, <b style="color:#D52728">red is −1</b>, white is 0 — cycle indices 0 and 3 of the eight head colours. Our rendering of the paper's formula; the drift is one position per second.</p>
   </div>
 
   <div class="col" style="margin-top:44px">
@@ -498,6 +500,10 @@
       <dd>The page is set at 1.9px per point, so the paper's 10pt body is 19px and its 1in margin is 137px. The one deviation: the paper's line is 88 characters because it had a page limit, and 88 characters is not a reading decision, so the column holds about 70. Evidence has no fixed width — a matrix is as wide as the sentence is long.</dd>
       <dt>the easing</dt>
       <dd><span class="mth">cubic-bezier(.62,0,.38,1)</span> — a fit to softmax itself at <i>k</i>=6, an S with symmetric shoulders, because that is the shape of the function this page is about.</dd>
+      <dt>the two fixed datums</dt>
+      <dd>On the Scale plate the dashed line is <b>1/9</b> — the weight every token would carry if a row were flat. It is the only thing on that plate that does not move when the divisor does, which is what makes the divisor readable. On the positional plate the axes are chosen to make the paper's own phrase testable: position runs across, dimension runs down, one row per sine dimension, so a period of 2π at the top and 10000·2π at the bottom put the geometric progression on the page as a shape rather than as a sentence.</dd>
+      <dt>where the pause lives</dt>
+      <dd>Two things here move without being asked — the opening matrix and the positional field — and each carries the same control at the bottom-left of its own canvas. There is no strip fixed to the window, because for fifteen of this page's seventeen screens such a strip would be an instrument with nothing to read.</dd>
       <dt>what is computed rather than read</dt>
       <dd>Every number in a matrix, a bar or a vector on this page, and every claim marked <span class="ours"></span>. The sentence, the embeddings and the projections are ours; the arithmetic, the divisor, the head count, the mask and the positional formula are the paper's.</dd>
     </dl>
@@ -569,16 +575,12 @@
 </section>
 
 
-<!-- persistent chrome. The nine squares are the operations in Figure 2's
-     own fills: the colour is the label, so there is no legend (§6.2), and
-     the strip is in the same place at every station (§5.2). -->
-<div id="chrome">
-  <span id="dots" style="display:flex"></span>
-  <button class="txt" id="pause" type="button" aria-pressed="false">pause motion</button>
-  <button class="txt opt" id="reset" type="button">reset</button>
-  <a class="txt opt" href="#end">the paper in full</a>
-</div>
-
+<!-- §5.2 / §4.13. There are exactly two elements on this page that move
+     without being asked: the opening matrix and the positional field.
+     Each carries an identical pause control docked to the bottom-left of
+     its own canvas — Ciechanowski's position, at the thing being paused.
+     Everything else here moves only when the reader moves it, so a
+     viewport-fixed strip would be an instrument with nothing to read. -->
 <script src="divide.js"></script>
 </body>
 </html>

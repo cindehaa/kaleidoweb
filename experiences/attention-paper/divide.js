@@ -57,6 +57,7 @@ const N = TOK.length;
 const DK = 64;                                  // p20: d_k = d_v = d_model/h = 512/8 = 64
 const H = 8;                                    // p20: h = 8 parallel attention heads
 const HEAD_HEX = ['#1F77B4', '#FF7E0E', '#2C9F2C', '#D52728', '#9367BC', '#8B554A', '#E277C2', '#7E7E7E'];
+const HEAD_RGB = HEAD_HEX.map((h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)));
 
 /* eq19 / eq20, at the width of one head. The paper writes them at
    d_model; we evaluate them at 64 because that is the width of the
@@ -213,15 +214,22 @@ function station2() {
 /* ══ MOVEMENT 3 — the divisor ════════════════════════════════════════ */
 function station3() {
   const sl = $('#divsl'), field = $('#field'), val = $('#divval');
-  // build 9 rows of 9 bars
-  field.innerHTML = TOK.map((t, i) =>
-    '<div class="frow" data-i="' + i + '"><span class="fl">' + t + '</span><span class="fbars">' +
-    Array.from({ length: N }).map(() => '<span class="fbar"></span>').join('') + '</span></div>').join('');
+  // nine rows of nine bars, at a fixed scale: the full 78px is a weight
+  // of 1, so the rows are comparable to each other and across divisors.
+  const FH = matchMedia('(max-width:900px)').matches ? 52 : 62;
+  field.innerHTML =
+    '<div class="fhead"><span class="fl"></span><span class="fbars">' +
+    TOK.map((t) => '<span class="fk">' + t + '</span>').join('') + '</span></div>' +
+    TOK.map((t, i) =>
+      '<div class="frow" data-i="' + i + '"><span class="fl">' + t + '</span><span class="fbars">' +
+      Array.from({ length: N }).map(() => '<span class="fbar"></span>').join('') + '</span></div>').join('') +
+    '<div class="funif"><span class="fl"></span><span class="fu app">' +
+    'the dashed line is 1/9 — the weight every token would carry if the row were flat</span></div>';
   const bars = $$('.frow', field).map((r) => $$('.fbar', r));
   sl.addEventListener('input', () => change({ div: +sl.value }));
   listeners.push(() => {
     const W = weights(S.h, S.div, false, S.pe);
-    for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) bars[i][j].style.height = (2 + 24 * W[i][j]) + 'px';
+    for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) bars[i][j].style.height = Math.max(1, FH * W[i][j]) + 'px';
     $$('.frow', field).forEach((r, i) => r.classList.toggle('self', i === S.qi));
     if (+sl.value !== S.div) sl.value = S.div;
     val.textContent = S.div;
@@ -274,10 +282,18 @@ function station5() {
       out += '</tr>';
       for (let i = 0; i < N; i++) {
         out += '<tr' + (i === S.qi ? ' class="on"' : '') + '><th class="rowh">' + TOK[i] + '</th>';
+        // The cell carries the colour of the head that produced it, faded
+        // toward the page by its own weight — which is how the authors'
+        // own Figures 3-5 draw a head's weights (§0.3: the non-subject
+        // heads survive in those PDFs as alpha-faded tints of the same
+        // eight values). Grey here would make the numeric view and the
+        // line view two different pictures of one row.
+        const hc = HEAD_RGB[S.h];
         for (let j = 0; j < N; j++) {
-          const w = W[i][j];
-          const ink = Math.round(255 - 205 * Math.min(1, w * 2.2));
-          out += '<td style="background:rgb(' + ink + ',' + ink + ',' + ink + ')"><span style="color:' + (ink < 120 ? '#fff' : '#000') + '">' + w.toFixed(2) + '</span></td>';
+          const w = W[i][j], t = Math.min(1, w * 2.2);
+          const r = Math.round(255 + (hc[0] - 255) * t), g2 = Math.round(255 + (hc[1] - 255) * t), b2 = Math.round(255 + (hc[2] - 255) * t);
+          const lum = 0.299 * r + 0.587 * g2 + 0.114 * b2;
+          out += '<td style="background:rgb(' + r + ',' + g2 + ',' + b2 + ')"><span style="color:' + (lum < 132 ? '#fff' : '#000') + '">' + w.toFixed(2) + '</span></td>';
         }
         out += '</tr>';
       }
@@ -378,13 +394,16 @@ function station8() {
 }
 
 /* ══ MOVEMENT 9 — place it, then look ════════════════════════════════ */
-const T2 = [                                   // Table 2, EN-DE column, as printed
-  { m: 'GNMT + RL [38]', b: 24.6, c: 2.3e19 },
-  { m: 'ConvS2S [9]', b: 25.16, c: 9.6e18 },
-  { m: 'MoE [32]', b: 26.03, c: 2.0e19 },
-  { m: 'GNMT + RL Ensemble [38]', b: 26.30, c: 1.8e20 },
-  { m: 'ConvS2S Ensemble [9]', b: 26.36, c: 7.7e19 },
-  { m: 'Transformer (big)', b: 28.4, c: 2.3e19, ours: true },
+// Table 2, EN-DE column, as printed. `sd` is the label's side and `dy`
+// its offset: six records on one plane, placed by hand, because two of
+// the ensembles are 0.06 BLEU apart and no automatic rule reads better.
+const T2 = [
+  { m: 'GNMT + RL [38]', b: 24.6, c: 2.3e19, sd: 1, dy: 5 },
+  { m: 'ConvS2S [9]', b: 25.16, c: 9.6e18, sd: 1, dy: 5 },
+  { m: 'MoE [32]', b: 26.03, c: 2.0e19, sd: 1, dy: 19 },
+  { m: 'GNMT + RL Ensemble [38]', b: 26.30, c: 1.8e20, sd: 1, dy: 5 },
+  { m: 'ConvS2S Ensemble [9]', b: 26.36, c: 7.7e19, sd: -1, dy: -13 },
+  { m: 'Transformer (big)', b: 28.4, c: 2.3e19, ours: true, sd: 1, dy: 5 },
 ];
 const BASE = { m: 'Transformer (base model)', b: 27.3, c: 3.3e18, ours: true };
 
@@ -407,7 +426,8 @@ function station9() {
   let recs = '';
   T2.forEach((r) => {
     recs += '<g class="rev' + (r.ours ? ' hid ours-g' : '') + '"><circle class="' + (r.ours ? 'ours' : 'rec') + '" cx="' + x(r.c) + '" cy="' + y(r.b) + '" r="5"/>' +
-      '<text class="' + (r.ours ? 'big' : '') + '" x="' + (x(r.c) + 10) + '" y="' + (y(r.b) + 5) + '">' + r.m + '</text></g>';
+      '<text class="' + (r.ours ? 'big' : '') + '" text-anchor="' + (r.sd < 0 ? 'end' : 'start') + '" x="' +
+      (x(r.c) + r.sd * 10) + '" y="' + (y(r.b) + r.dy) + '">' + r.m + '</text></g>';
   });
   recs += '<g class="rev hid ours-g"><circle class="ours" cx="' + x(BASE.c) + '" cy="' + y(BASE.b) + '" r="6"/>' +
     '<text class="big" x="' + (x(BASE.c) + 12) + '" y="' + (y(BASE.b) + 5) + '">Transformer (base) · 27.3 BLEU · 3.3·10<tspan baseline-shift="super" font-size="10">18</tspan></text></g>';
@@ -521,28 +541,37 @@ function envOpening() {
 }
 
 /* ══ ENVIRONMENT 2 — the coda. eq19/eq20, evaluated. ═════════════════
-   512 dimensions across, 128 positions down, drawn as ink density:
-   -1 white, 0 mid, +1 black. It is a rendering of a formula the paper
-   prints, not a picture of anything. It drifts one position per second
-   so that the geometric progression of wavelengths is visible as
-   motion; pausing it loses nothing. */
+   The claim in the prose is "wavelengths in geometric progression from
+   2*pi to 10000*2*pi", so the axes are chosen to make a progression
+   visible: POSITION across, DIMENSION down, one row per sine dimension.
+   The top row has a period of 2*pi positions and the bottom row has a
+   period of 10000*2*pi, and between them the wave visibly lengthens.
+   (Dimension against position, which is the usual plot, puts sin beside
+   cos at every wavelength and returns a moire.)
+   Colour: +1 is #1F77B4, -1 is #D52728, 0 is the page — cycle indices 0
+   and 3 of the eight head colours measured out of the figure PDFs.
+   It drifts one position per second; pausing it loses nothing. */
 function envPositional() {
   const cv = $('#pefield'); if (!cv) return;
-  const D = 512, P = 160;
+  const POS = [0x1F, 0x77, 0xB4], NEG = [0xD5, 0x27, 0x28];
+  const D = 512;            // d_model, p28
+  const ROWS = D / 2;       // the 256 sine dimensions; the cosines are the
+  const P = 420;            // same wavelengths a quarter-cycle over
   const ctx = cv.getContext('2d');
-  cv.width = D; cv.height = P;
-  const img = ctx.createImageData(D, P);
+  cv.width = P; cv.height = ROWS;
+  const img = ctx.createImageData(P, ROWS);
   let off = 0, raf = 0, visible = false;
   function paint() {
-    for (let p = 0; p < P; p++) {
-      const pos = p + off;
-      for (let i = 0; i < D; i += 2) {
-        const w = Math.pow(10000, i / D);
-        const s = Math.sin(pos / w), c = Math.cos(pos / w);
-        for (const [d, val] of [[i, s], [i + 1, c]]) {
-          const k = (p * D + d) * 4, g = Math.round(255 - (val + 1) / 2 * 235);
-          img.data[k] = g; img.data[k + 1] = g; img.data[k + 2] = g; img.data[k + 3] = 255;
-        }
+    for (let r = 0; r < ROWS; r++) {
+      const w = Math.pow(10000, (2 * r) / D);      // eq19: 10000^(2i/d_model)
+      for (let p = 0; p < P; p++) {
+        const val = Math.sin((p + off) / w);
+        const k = (r * P + p) * 4, t = Math.abs(val);
+        const c1 = val >= 0 ? POS : NEG;
+        img.data[k] = Math.round(255 + (c1[0] - 255) * t);
+        img.data[k + 1] = Math.round(255 + (c1[1] - 255) * t);
+        img.data[k + 2] = Math.round(255 + (c1[2] - 255) * t);
+        img.data[k + 3] = 255;
       }
     }
     ctx.putImageData(img, 0, 0);
@@ -598,32 +627,18 @@ function folds() {
   });
 }
 
+/* §5.2 — one pause control per animated canvas, identical construction,
+   docked bottom-left of the canvas. Both drive the same state, so
+   pausing either pauses both and the two labels stay in agreement. */
 function chrome() {
-  const dotbox = $('#dots');
-  const stations = $$('section[data-st]');
-  const dots = stations.map((s) => {
-    const b = document.createElement('button');
-    b.type = 'button'; b.className = 'go'; b.style.background = s.dataset.fill || '#fff';
-    b.title = s.dataset.name; b.setAttribute('aria-label', s.dataset.name);
-    b.addEventListener('click', () => s.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' }));
-    dotbox.appendChild(b);
-    return b;
-  });
-  const pause = $('#pause');
-  pause.addEventListener('click', () => {
-    change({ paused: !S.paused });
-    pause.setAttribute('aria-pressed', String(S.paused));
-    pause.textContent = S.paused ? 'motion paused' : 'pause motion';
-  });
-  const reset = $('#reset');
-  reset.addEventListener('click', () => change({ qi: 4, kj: 1, h: 0, div: 8, masked: false, lines: false, pe: false }));
-  const io = new IntersectionObserver((es) => {
-    es.forEach((e) => {
-      const i = stations.indexOf(e.target);
-      if (i >= 0 && e.isIntersecting) dots.forEach((d, k) => d.setAttribute('aria-current', String(k === i)));
+  const btns = $$('[data-pause]');
+  btns.forEach((b) => b.addEventListener('click', () => change({ paused: !S.paused })));
+  listeners.push(() => {
+    btns.forEach((b) => {
+      b.setAttribute('aria-pressed', String(S.paused));
+      b.textContent = S.paused ? 'paused' : 'pause';
     });
-  }, { rootMargin: '-45% 0px -45% 0px' });
-  stations.forEach((s) => io.observe(s));
+  });
 }
 
 /* ── boot ─────────────────────────────────────────────────────────── */

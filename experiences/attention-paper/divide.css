@@ -145,8 +145,14 @@ body{
 ::selection{background:var(--op-scale);color:var(--ink)}
 
 /* ── the two measures ──────────────────────────────────────────────── */
-.col{width:var(--arg);max-width:calc(100vw - 40px);margin-left:var(--marg)}
-.wide{width:var(--plate);max-width:calc(100vw - 40px);margin-left:var(--marg)}
+/* the margin is part of the measure: clamp against what is left of the
+   viewport after it, not against the viewport, or a laptop-width window
+   pushes the evidence column off the right edge. */
+.col{width:var(--arg);max-width:calc(100vw - var(--marg) - 24px);margin-left:var(--marg)}
+.wide{width:var(--plate);max-width:calc(100vw - var(--marg) - 24px);margin-left:var(--marg)}
+/* an evidence block that breaks out from inside the argument column is
+   already at the margin; it must not be indented by it a second time. */
+.col .wide{margin-left:0}
 section{position:relative}
 
 /* ── the apparatus register (§2.6, CONDITIONAL satisfied) ────────────
@@ -230,21 +236,54 @@ a.ext:hover{background:var(--stack)}
 #m0{padding:0 0 4px}
 .titlebox{border-top:var(--rule-title) solid var(--ink);
   border-bottom:var(--rule) solid var(--ink);margin:0 0 0;padding:52px 0 46px}
+/* The equation is set the way TeX sets a display: two lines broken at the
+   relation, the fraction built from three stacked boxes rather than from
+   an inline-flex that has to guess its own height, and the delimiters
+   drawn (LM Roman has no extensible parenthesis — cmex does, and cmex is
+   not in the woff). Each tint box wraps ONLY its own term, so the colour
+   legend the headline teaches lands on the operator it names. */
 .eqtitle{
-  font-family:var(--lm);font-size:var(--t-display);line-height:.94;
-  letter-spacing:-.028em;margin-left:var(--marg);white-space:nowrap;
+  font-family:var(--lm);font-size:var(--t-display);line-height:1;
+  letter-spacing:-.028em;margin-left:var(--marg);
 }
-.eqtitle .tint{padding:0 .06em;border-radius:.05em}
+.eqtitle .l1{display:block;line-height:1.04;white-space:nowrap}
+.eqtitle .l2{
+  display:flex;align-items:center;line-height:1.04;
+  margin-top:.2em;white-space:nowrap;
+}
+/* the tint box is the term's box and nothing more: LM Roman's content
+   area is 1.42em, which would put the QK^T fill through line one's
+   descenders and the radical's fill through the rule below. */
+.eqtitle .tint{padding:.03em .055em .05em;border-radius:.05em;
+  display:inline-block;vertical-align:baseline;line-height:1.06}
 .eqtitle .t-mm{background:var(--op-matmul)}
 .eqtitle .t-sm{background:var(--op-softmax)}
 .eqtitle .t-sc{background:var(--op-scale)}
-.eqtitle .l2{display:block;margin-top:.05em}
+/* the extensible delimiters, drawn, stroke held at a constant weight */
+.eqtitle .par{width:.30em;height:2.14em;flex:none;margin:0 .015em;overflow:visible}
+.eqtitle .par path{fill:none;stroke:currentColor;stroke-width:2.7;
+  vector-effect:non-scaling-stroke;stroke-linecap:round}
+.eqtitle .par.flip{transform:scaleX(-1)}
+/* the fraction: numerator box, rule, denominator box */
+.eqtitle .frac{display:flex;flex-direction:column;align-items:center;
+  margin:0 .06em;vertical-align:baseline}
+.eqtitle .frac>.fnum,.eqtitle .frac>.fden{display:block;padding:0;border:0}
+.eqtitle .fbar{display:block;width:100%;height:.042em;background:currentColor;
+  margin:.06em 0 .14em}
+.eqtitle .sqrt>svg{height:1.02em}
+.eqtitle .rcd{height:1.02em;line-height:1.12em}
+.eqtitle .rel{margin-left:.1em}
 #m0 .meta{margin-top:26px;display:flex;gap:40px;flex-wrap:wrap;align-items:baseline}
 
 /* the opening environment: the 9x9 matrix of the sentence computing
    itself once, then still. One 2D canvas, ~80 lines of JS, no WebGL. */
 #envmat{display:block;width:100%;height:230px}
-.envwrap{margin:26px 0 0;position:relative}
+/* the two environment moments are plates (§4.3): the canvas goes edge to
+   edge, and only its caption returns to the margin the prose keeps. */
+.envwrap{margin:26px 0 0;width:100%;max-width:none}
+.envwrap>.app{display:block;margin-left:var(--marg);margin-right:var(--marg);
+  max-width:var(--plate)}
+.cvbox{position:relative}
 
 /* ══ station chrome ══════════════════════════════════════════════ */
 .station{padding:96px 0 0}
@@ -269,7 +308,8 @@ a.ext:hover{background:var(--stack)}
 
 /* ── vector strips: 64 components, four shown ───────────────────── */
 .vecs{display:grid;grid-template-columns:auto auto auto auto;gap:2px 20px;
-  align-items:baseline;margin:14px 0 0;font-variant-numeric:tabular-nums}
+  align-items:baseline;margin:14px 0 0;font-variant-numeric:tabular-nums;
+  overflow-x:auto;padding-bottom:6px}
 .vec{font-family:var(--lm);font-size:var(--t9);line-height:1.5;white-space:nowrap}
 .vec .lb{font-family:var(--mono);font-size:var(--t7);color:var(--ink-app)}
 
@@ -309,14 +349,38 @@ table.mat tbody tr:last-child td{border-bottom:.08em solid var(--ink)}
 /* ── the scale plate: the distribution renormalising, live ──────── */
 .plate{padding:110px 0 96px;margin:96px 0 0;background:var(--stack)}
 .plate.white{background:var(--paper)}
-.field{margin:30px 0 0}
-.frow{display:flex;align-items:center;gap:10px;margin-bottom:5px}
-.frow .fl{font-family:var(--lm);font-size:var(--t9);width:86px;text-align:right;
-  color:var(--ink-fig);flex:none}
-.fbars{display:flex;gap:2px;flex:1;height:26px;align-items:flex-end}
-.fbar{flex:1;background:var(--op-softmax);border-top:1px solid var(--ink);
-  min-height:1px;transition:height var(--t-ack) linear}
-.frow.self .fbar{background:var(--op-scale)}
+/* Nine rows, nine columns, drawn at a fixed scale where the full row
+   height is a weight of 1. The dashed datum is 1/9 — the uniform
+   distribution. Below it a row is attending; a row that rises off it is
+   choosing. That datum is what makes the divisor legible: it is the only
+   fixed thing on a plate where everything else renormalises. */
+.field{margin:34px 0 0}
+.fhead{display:flex;align-items:flex-end;gap:12px;margin:0 0 7px}
+.fhead .fl{width:92px;flex:none}
+.fhead .fbars{display:flex;gap:3px;flex:1;height:auto;border:0}
+.fhead .fbars::after{display:none}
+.fk{flex:1;font-family:var(--lm);font-size:var(--t9);color:var(--ink-fig);
+  text-align:center;line-height:1.2}
+.frow{display:flex;align-items:flex-end;gap:12px;margin-bottom:11px}
+.frow .fl{font-family:var(--lm);font-size:var(--t9);width:92px;text-align:right;
+  color:var(--ink-fig);flex:none;line-height:1.2;padding-bottom:3px}
+.fbars{display:flex;gap:3px;flex:1;height:62px;align-items:flex-end;
+  position:relative;border-bottom:1px solid var(--ink)}
+.fbars::after{content:"";position:absolute;left:0;right:0;bottom:6.9px;
+  border-top:1px dashed var(--ink-rule);pointer-events:none}
+/* flat opaque fill inside a black edge — every filled box in every
+   figure in this paper is drawn that way, and nothing else reads on a
+   #F3F3F4 plate at a weight of 0.11. */
+.fbar{flex:1;background:var(--op-softmax);min-height:2px;
+  border-top:2px solid var(--ink);
+  transition:height var(--t-ack) linear}
+/* the selected query row is marked in ink, not in a second fill: the
+   five operation colours are variable names and cannot be borrowed. */
+.frow.self .fl{color:var(--ink);font-weight:700}
+.frow.self .fbars{border-bottom-width:3px}
+.funif{display:flex;gap:12px;margin:8px 0 0}
+.funif .fl{width:92px;flex:none}
+.funif .fu{flex:1}
 
 /* ── controls. One strip, same construction everywhere. ─────────── */
 .ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:24px 0 0}
@@ -385,7 +449,7 @@ table.bt tr.unpub td:first-child::before{content:"% ";color:var(--red);
 #plane .rev{transition:opacity var(--t-absorb) var(--softmax)}
 
 /* ── the coda field ─────────────────────────────────────────────── */
-#pefield{display:block;width:100%;height:340px;image-rendering:pixelated}
+#pefield{display:block;width:100%;height:430px}
 
 /* ── folds: subordinated, one level, find-in-page reachable (§7.5) ─ */
 .fold{margin:22px 0 0;border-top:var(--rule) solid var(--ink)}
@@ -400,6 +464,9 @@ table.bt tr.unpub td:first-child::before{content:"% ";color:var(--red);
 .fold>button .fd{margin-left:auto;color:var(--ink-app)}
 .foldb{padding:6px 0 26px}
 .foldb .src-sec{max-width:var(--arg)}
+/* a displayed equation lifted whole out of the source is as wide as the
+   author set it; let it scroll in its own box rather than push the page */
+.foldb p.eq{overflow-x:auto;overflow-y:hidden;padding-bottom:4px}
 .src-h{font-family:var(--mono);font-size:var(--t7);color:var(--ink-app);
   margin:0 0 10px}
 .foldb p{font-size:var(--t9);line-height:1.62}
@@ -422,35 +489,54 @@ math{font-family:var(--lm),"Latin Modern Math",math;font-size:1.02em}
 .unpub .pct{font-family:var(--mono);color:var(--red);font-size:var(--t7)}
 .warnline{font-family:var(--mono);font-size:var(--t7);color:var(--red)}
 
-/* ── the persistent control strip. Same position at every station.
-      Its nine squares are the operations, in Figure 2's own fills:
-      the colour is the label, so there is no legend box (§6.2). ─── */
-#chrome{
-  position:fixed;left:0;bottom:0;z-index:40;display:flex;align-items:stretch;
-  background:var(--paper);border-top:var(--rule) solid var(--ink);
-  border-right:var(--rule) solid var(--ink);
+/* ── the pause control (§5.2). Not fixed to the viewport: docked to the
+      bottom-left of the canvas it pauses, in the same construction at
+      both of them. Nothing else on this page moves unasked, so there is
+      no third one and no persistent strip. ─────────────────────────── */
+.cpause{
+  position:absolute;left:0;bottom:0;z-index:6;cursor:pointer;
+  font-family:var(--mono);font-size:var(--t7);line-height:1.3;
+  color:var(--ink-app);background:var(--paper);
+  border:var(--rule) solid var(--ink);border-left:0;border-bottom:0;
+  border-radius:0;padding:4px 12px 4px 10px;
 }
-#chrome button{background:none;border:0;cursor:pointer;padding:0}
-#chrome .go{width:26px;height:26px;border-right:var(--rule) solid var(--ink)}
-#chrome .go[aria-current="true"]{box-shadow:inset 0 0 0 3px var(--ink)}
-#chrome .txt{font-family:var(--mono);font-size:var(--t7);color:var(--ink-app);
-  padding:4px 12px 3px;border-right:var(--rule) solid var(--ink);white-space:nowrap}
-#chrome .txt:hover{color:var(--ink)}
-@media (max-width:760px){#chrome .txt.opt{display:none}}
+.cpause:hover{color:var(--ink)}
+.cpause[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+/* ── between a laptop and the design width, the paper's 1in margin is
+      the first thing to give: the measure is the reading decision, the
+      margin is only the page's edge. ─────────────────────────────── */
+@media (max-width:1240px){:root{--marg:76px}}
+@media (max-width:1040px){:root{--marg:52px;--t-display:96px}}
 
 /* ── responsive: 390x844 ───────────────────────────────────────── */
 @media (max-width:900px){
   :root{--marg:20px;--t-display:44px;--t14:22px;--t12:19.5px;--t10:17.5px}
   body{font-size:var(--t10);line-height:1.6}
   .col,.wide{width:auto;margin-left:var(--marg);margin-right:var(--marg);max-width:none}
-  .eqtitle{white-space:normal;letter-spacing:-.02em;margin-right:20px}
+  .eqtitle{letter-spacing:-.02em;margin-right:20px}
+  .eqtitle .l1{font-size:min(44px,10.6vw)}
   .titlebox{padding:30px 0 28px}
   .station{padding:64px 0 0}
   .plate{padding:60px 0 56px;margin-top:56px}
-  .vecs{grid-template-columns:auto auto;gap:2px 16px}
+  /* a 64-component vector does not fit 350px at any size worth reading;
+     one row per vector, scrolling inside its own box. */
+  .vecs{grid-template-columns:auto;gap:4px;overflow-x:auto;padding-bottom:6px}
   #envmat{height:150px}
-  #pefield{height:220px}
+  #pefield{height:260px}
   input[type=range]{width:100%}
+  /* nine columns of an attention matrix will not fit 350px at reading
+     size; the heat view compacts to fit rather than scrolling, because
+     it is the one matrix whose shape is the argument. The signed
+     dot-product tables keep their size and scroll. */
+  .heat td{min-width:30px;height:27px}
+  .heat td span{font-size:9.6px}
+  table.mat th{font-size:11.4px;padding:0 5px 4px}
+  table.mat th.rowh{padding-right:7px}
+  .frow .fl,.fhead .fl,.funif .fl{width:52px}
+  .fk{font-size:11.4px}
+  .fbars{height:52px}
+  .fbars::after{bottom:5.8px}
 }
 
 /* ── §5.8: reduced motion collapses every animation to its final
