@@ -1,0 +1,460 @@
+/* ══════════════════════════════════════════════════════════════════════
+   DIVIDE BY EIGHT — "Attention Is All You Need", arXiv:1706.03762v7
+   ----------------------------------------------------------------------
+   The page is Figure 2 unrolled to the height of the document, executing.
+
+   Every value below was read out of a file (§0.2 derivation test):
+     · benchmarks/attention-paper/figures/ModalNet-19.png  (Figure 2 left)
+     · benchmarks/attention-paper/figures/ModalNet-20.png  (Figure 2 right)
+     · benchmarks/attention-paper/figures/ModalNet-21.png  (Figure 1)
+     · nips_2017.sty and ms.tex, as surveyed in CONCEPTS.md §0
+     · vis/making_more_difficult5_new.pdf `rg` operators (the head colours)
+
+   NINE-SLOT MATERIAL RECORD → the web decision each produced
+   substrate   white letterpaper, text block 5.5x9in. Modal pixel of
+               ModalNet-21.png is #FFFFFF at 62.65% of the image.
+               → --paper #FFFFFF. Not cream. Not bone. The second ground
+                 is the Nx stack backdrop, #F3F3F4 at 14.57%.
+   marking     body ink pure black (#000000, 8.49% of Fig. 1); figure text
+               #202020. Flat opaque fills, no gradient in any figure.
+               → no rgba ramps for ink; fills are the figures' own fills.
+   letterforms nips_2017.sty:38 \renewcommand{\rmdefault}{ptm}; no math-font
+               package is loaded, so the mathematics is Computer Modern and
+               \texttt is Computer Modern Typewriter.
+               → prose = STIX Two Text (Times lineage, cut for scientific
+                 publishing). mathematics, display and machine addresses =
+                 Latin Modern (the Computer Modern lineage), in the two
+                 roles the document itself assigns it.
+   boundary    TWO registers, and neither is a hairline-only system:
+               \hrule height 4\p@ over the title box, \hrule height 1\p@
+               under it, \specialrule{1pt} isolating the Transformer's own
+               rows in Table 2, booktabs 0.08em/0.05em inside tables.
+               → --rule-title 4px, --rule 1px, --rule-tb .08em/.05em.
+   axis        prose LTR single column; the paper's own attention figures
+               are rotated 90 degrees, tokens set bottom-to-top.
+               → the bipartite view of our computation is rotated, exactly
+                 as the authors set theirs.
+   numerals    Tables 2-4 compare down columns, best-in-column bolded.
+               → tabular lining figures everywhere a number is compared.
+   one colour  ms.tex: \textcolor{red} — pure LaTeX red, #FF0000, used
+               twice in the document's life (the v7 permission banner and
+               the \todo macro).
+               → #FF0000 is reserved for two things and nothing else: the
+                 -inf of the mask, and the mark on unpublished manuscript.
+   format      text block 5.5x9in; 1in margins.
+               → page scale 1.9px per point (body 10pt -> 19px, clearing
+                 the §2.8 reading floor). Left margin 137px = the paper's
+                 1in at that scale. THE ONE STATED DEVIATION: the measure.
+                 5.5in at 1.9px/pt is 752px, which is the paper's own 88
+                 characters per line — a page-limit artifact, not a reading
+                 decision. We hold 70 characters: --arg 668px.
+   mistakes    preserved and shown, not corrected (end matter).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── the two families ────────────────────────────────────────────────
+   STIX Two Text: the Times lineage the paper's \rmdefault resolves to,
+   in the cut made for scientific publishing. It is a near miss and the
+   miss is stated: ptm is URW Nimbus Roman (Adobe Times); STIX Two is a
+   Times New Roman lineage. Both are Times; neither is the other.
+   Latin Modern: Computer Modern, the face of this document's
+   mathematics and of its \texttt addresses. Never used for body prose —
+   body prose in Computer Modern is the LaTeX-nostalgia costume. */
+@font-face{font-family:"STIXTwo";src:url(assets/fonts/stix-two-text-latin-400-normal.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"STIXTwo";src:url(assets/fonts/stix-two-text-latin-400-italic.woff2) format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"STIXTwo";src:url(assets/fonts/stix-two-text-latin-700-normal.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"LM";src:url(assets/fonts/TypoPRO-LatinModernRoman-Regular.woff) format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"LM";src:url(assets/fonts/TypoPRO-LatinModernRoman-Italic.woff) format('woff');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"LM";src:url(assets/fonts/TypoPRO-LatinModernRoman-Bold.woff) format('woff');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"LMMono";src:url(assets/fonts/TypoPRO-LatinModernMono-Regular.woff) format('woff');font-weight:400;font-style:normal;font-display:swap}
+
+:root{
+  /* grounds — sampled, not chosen (§6.10) */
+  --paper:#FFFFFF;      /* ModalNet-21.png modal pixel, 62.65% of the image */
+  --stack:#F3F3F4;      /* the Nx stack backdrop, ModalNet-21.png y480-1612 */
+
+  /* ink — flat. A figure fill in this paper has no alpha. */
+  --ink:#000000;        /* 8.49% of Fig. 1: outlines, arrows, type */
+  --ink-fig:#202020;    /* figure text, measured rg operator in vis/*.pdf */
+  --ink-app:#4A4A4A;    /* apparatus register. 9.0:1 on white at 13.3px */
+  --ink-rule:#B9B9BB;   /* the light printed rule inside tables */
+
+  /* the five operations of Figure 2, in the order the figure stacks them.
+     Measured off ModalNet-19.png at the named y-bands. Assigned once. */
+  --op-matmul:#C5BEDF;  /* MatMul   y76-150 and y654-728 */
+  --op-softmax:#CCE7CF; /* SoftMax  y221-295 */
+  --op-mask:#F9CBDF;    /* Mask     y364-438 */
+  --op-scale:#FDF9C0;   /* Scale    y507-581 */
+  --op-linear:#E8EEEB;  /* Linear   ModalNet-20.png */
+  /* Figure 1's own fills, for the block that contains all of the above */
+  --mha:#FFE2BB;        /* Multi-Head Attention, 4.22% of Fig. 1 */
+  --ffn:#C2E8F7;        /* Feed Forward */
+  --emb:#FCE0E1;        /* Input/Output Embedding */
+  --addnorm:#F2F4C1;    /* Add & Norm */
+
+  /* the eight heads. Literal rg operators decompressed out of
+     vis/making_more_difficult5_new.pdf: matplotlib tab10, displaced
+     <=1/255 per channel by an Illustrator CS6 round-trip. Head i has a
+     knowable colour, and this is it. */
+  --h0:#1F77B4; --h1:#FF7E0E; --h2:#2C9F2C; --h3:#D52728;
+  --h4:#9367BC; --h5:#8B554A; --h6:#E277C2; --h7:#7E7E7E;
+
+  /* the one colour. ms.tex \textcolor{red}. 100% saturation.
+     Reserved for -inf and for unpublished manuscript. Nothing else. */
+  --red:#FF0000;
+
+  /* rules — two registers, both cited, neither of them a house hairline */
+  --rule-title:4px;     /* nips_2017.sty:269  \hrule height 4\p@ */
+  --rule:1px;           /* nips_2017.sty:276  \hrule height 1\p@ */
+
+  /* format. Page scale 1.9px per point. */
+  --marg:137px;         /* the paper's 1in margin at 1.9px/pt */
+  --arg:668px;          /* stated deviation: 70 characters, not the paper's 88 */
+  --plate:1160px;       /* evidence ceiling: three log decades of Table 2 + labels */
+
+  /* type scale, from nips_2017.sty:116-137 "font sizes with reduced
+     leading": 6/7/9/10/12/14/17/20/25pt, at 1.9px/pt. Unevenly stepped
+     natively (§2.5) — we keep the paper's steps and add one display size,
+     which is ours and is marked as ours by being the only size not in
+     the document's own scale. */
+  --t6:11.4px; --t7:13.3px; --t9:17.1px; --t10:19px; --t12:22.8px;
+  --t14:26.6px; --t17:32.3px; --t20:38px; --t25:47.5px;
+  --t-display:118px;    /* ours. 6.2x body — the equation is the title. */
+
+  --serif:"STIXTwo","Nimbus Roman",Times,"Times New Roman",serif;
+  --lm:"LM","Latin Modern Roman",Times,serif;
+  --mono:"LMMono","Latin Modern Mono",ui-monospace,monospace;
+
+  /* MOTION. The easing is softmax itself:
+     p -> exp(kp)/(exp(kp)+exp(k(1-p))) at k=6, fitted to a cubic bezier.
+     An S with symmetric shoulders, because that is the shape of the
+     function this page is about. Not Material's curve. */
+  --softmax:cubic-bezier(.62,0,.38,1);
+  --t-ack:160ms;        /* acknowledged: selection, hover */
+  --t-morph:300ms;      /* this became that: numbers <-> lines */
+  --t-absorb:900ms;     /* absorb this: a scale change */
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--serif);font-size:var(--t10);line-height:1.66;
+  font-synthesis-weight:none;overflow-x:hidden;
+  text-rendering:optimizeLegibility;
+}
+::selection{background:var(--op-scale);color:var(--ink)}
+
+/* ── the two measures ──────────────────────────────────────────────── */
+.col{width:var(--arg);max-width:calc(100vw - 40px);margin-left:var(--marg)}
+.wide{width:var(--plate);max-width:calc(100vw - 40px);margin-left:var(--marg)}
+section{position:relative}
+
+/* ── the apparatus register (§2.6, CONDITIONAL satisfied) ────────────
+   The document addresses itself by section number, paragraph, equation
+   number and footnote; its machine addresses are set in \texttt, which
+   in this document is Computer Modern Typewriter. So: Latin Modern Mono,
+   13.3px (= the paper's 7pt at our page scale), sentence case, no
+   letterspacing, #4A4A4A on white = 9.0:1. It carries what the design
+   cannot show: the paragraph a claim came from. */
+.app{
+  font-family:var(--mono);font-size:var(--t7);line-height:1.5;
+  color:var(--ink-app);letter-spacing:0;font-variant-numeric:tabular-nums;
+}
+.app a{color:var(--ink-app)}
+.ours{color:var(--ink-app)}
+/* generated / computed here rather than read from the paper (§7.1) */
+.ours::before{content:"";display:inline-block;width:.62em;height:.62em;
+  border:1px solid var(--ink-app);margin-right:.42em;vertical-align:.02em}
+
+/* ── prose ─────────────────────────────────────────────────────────── */
+p{margin:0 0 .85em}
+.lede{font-size:var(--t12);line-height:1.5;margin-bottom:1.1em}
+.claim{font-family:var(--serif);font-size:var(--t14);line-height:1.2;
+  font-weight:400;letter-spacing:-.012em;margin:0 0 .55em}
+h1,h2,h3{font-weight:400;margin:0}
+em{font-style:italic}
+b,strong{font-weight:700}
+.q{font-style:italic}
+sub,sup{font-size:.66em;line-height:0}
+.n{font-variant-numeric:tabular-nums}
+.mth{font-family:var(--lm);font-style:italic}
+.mth .up{font-style:normal}
+
+/* ── §6.8, three link jobs, distinguished by rule, not hue: hue is
+      spoken for by the five operations and the eight heads ────────── */
+a{color:inherit}
+a.st{text-decoration:none;border-bottom:1px solid var(--ink-app);cursor:pointer}
+a.st:hover{border-bottom-color:var(--ink)}
+a.ext{text-decoration:none;border-bottom:2px solid var(--ink)}
+a.ext:hover{background:var(--stack)}
+
+/* ── the Figure 2 box, reproduced ───────────────────────────────────
+   ModalNet-19.png: fill 74px tall inside a 9px black stroke, outer
+   corner radius ~14px on a 92px outer height = 0.152. Flat fill, no
+   shadow, no gradient, because no figure in this paper has one. */
+.op{
+  display:inline-block;border:3px solid var(--ink);border-radius:6px;
+  padding:1px 12px 2px;font-family:var(--lm);font-size:var(--t10);
+  line-height:1.34;background:var(--paper);white-space:nowrap;
+}
+.op.matmul{background:var(--op-matmul)}
+.op.softmax{background:var(--op-softmax)}
+.op.mask{background:var(--op-mask)}
+.op.scale{background:var(--op-scale)}
+.op.linear{background:var(--op-linear)}
+.op.mha{background:var(--mha)}
+.op.big{font-size:var(--t12);padding:3px 16px 4px;border-radius:8px}
+
+/* ── radical and infinity: neither glyph is in either of the two
+      families' cut, so both are drawn, the way TeX draws a radical —
+      a sign plus a rule over the radicand ───────────────────────── */
+.sqrt{display:inline-flex;align-items:flex-end;white-space:nowrap}
+.sqrt>svg{width:.56em;height:1.14em;flex:none;overflow:visible}
+.sqrt>svg path{fill:none;stroke:currentColor;stroke-width:10;
+  stroke-linecap:butt;stroke-linejoin:miter}
+.rcd{border-top:.06em solid currentColor;height:1.14em;line-height:1.24em;
+  padding:0 .1em 0 .06em;display:inline-block}
+/* U+2212 is in neither family's cut, and a hyphen is not a minus. */
+.mn{display:inline-block;width:.56em;height:.072em;background:currentColor;
+  vertical-align:.26em;margin-right:.07em}
+.inf{display:inline-block;width:1.05em;height:.56em;vertical-align:.02em}
+.inf path{fill:none;stroke:currentColor;stroke-width:2.1;vector-effect:non-scaling-stroke}
+
+/* ── fractions, hand-set. No MathJax, no KaTeX. ─────────────────── */
+.frac{display:inline-flex;flex-direction:column;align-items:center;
+  vertical-align:-.52em;margin:0 .1em}
+.frac>.fnum{padding:0 .18em .04em;border-bottom:.048em solid currentColor}
+.frac>.fden{padding:.06em .18em 0}
+
+/* ══ MOVEMENT 0 — the equation is the title ══════════════════════ */
+#m0{padding:0 0 4px}
+.titlebox{border-top:var(--rule-title) solid var(--ink);
+  border-bottom:var(--rule) solid var(--ink);margin:0 0 0;padding:52px 0 46px}
+.eqtitle{
+  font-family:var(--lm);font-size:var(--t-display);line-height:.94;
+  letter-spacing:-.028em;margin-left:var(--marg);white-space:nowrap;
+}
+.eqtitle .tint{padding:0 .06em;border-radius:.05em}
+.eqtitle .t-mm{background:var(--op-matmul)}
+.eqtitle .t-sm{background:var(--op-softmax)}
+.eqtitle .t-sc{background:var(--op-scale)}
+.eqtitle .l2{display:block;margin-top:.05em}
+#m0 .meta{margin-top:26px;display:flex;gap:40px;flex-wrap:wrap;align-items:baseline}
+
+/* the opening environment: the 9x9 matrix of the sentence computing
+   itself once, then still. One 2D canvas, ~80 lines of JS, no WebGL. */
+#envmat{display:block;width:100%;height:230px}
+.envwrap{margin:26px 0 0;position:relative}
+
+/* ══ station chrome ══════════════════════════════════════════════ */
+.station{padding:96px 0 0}
+.station>.col>.head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+.station .claim{margin-top:6px}
+.pale{color:var(--ink-app)}
+
+/* ── the token row ──────────────────────────────────────────────── */
+.tokrow{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 8px}
+.tok{
+  font-family:var(--lm);font-size:var(--t12);line-height:1.3;
+  padding:4px 11px 5px;border:1px solid var(--ink);background:var(--paper);
+  cursor:pointer;color:var(--ink);
+  transition:background var(--t-ack) var(--softmax);
+}
+.tok:hover{background:var(--stack)}
+.tok[aria-pressed="true"]{background:var(--op-matmul);border-width:3px;padding:2px 9px 3px}
+.tok .ix{font-size:var(--t7);color:var(--ink-app);font-family:var(--mono);
+  margin-left:.5em;vertical-align:.12em}
+.tok[aria-pressed="true"] .ix{color:var(--ink)}
+.tok.dup{border-bottom:3px double var(--ink)}
+
+/* ── vector strips: 64 components, four shown ───────────────────── */
+.vecs{display:grid;grid-template-columns:auto auto auto auto;gap:2px 20px;
+  align-items:baseline;margin:14px 0 0;font-variant-numeric:tabular-nums}
+.vec{font-family:var(--lm);font-size:var(--t9);line-height:1.5;white-space:nowrap}
+.vec .lb{font-family:var(--mono);font-size:var(--t7);color:var(--ink-app)}
+
+/* ── the arithmetic panel ───────────────────────────────────────── */
+.arith{
+  background:var(--stack);padding:20px 22px 22px;margin:22px 0 0;
+  font-variant-numeric:tabular-nums;
+}
+.arith .ln{font-family:var(--lm);font-size:var(--t9);line-height:1.72;
+  white-space:nowrap;overflow-x:auto}
+.arith .tot{border-top:.08em solid var(--ink);margin-top:6px;padding-top:6px;
+  display:inline-block}
+
+/* ── matrices. The second measure is the DATA's: n cells wide. ──── */
+.matwrap{margin:26px 0 0;overflow-x:auto;padding-bottom:6px}
+table.mat{border-collapse:collapse;font-variant-numeric:tabular-nums;
+  font-family:var(--lm);font-size:var(--t9);line-height:1.1}
+table.mat th{font-weight:400;color:var(--ink-fig);font-size:var(--t7);
+  font-family:var(--mono);text-align:right;padding:2px 7px;white-space:nowrap}
+table.mat th.rowh{text-align:right;padding-right:11px}
+table.mat td{
+  text-align:right;padding:3px 8px;min-width:56px;
+  border-top:.05em solid var(--ink-rule);color:var(--ink);
+}
+table.mat tr.on td{background:var(--stack)}
+table.mat td.masked{color:var(--red)}
+table.mat td.dim{color:#9A9A9A}
+table.mat tbody tr:first-child td{border-top:.08em solid var(--ink)}
+table.mat tbody tr:last-child td{border-bottom:.08em solid var(--ink)}
+.cellbar{display:block;height:3px;background:var(--op-softmax);margin-top:2px}
+
+/* ── heat cells (weights as ink density, the paper's own picture) ── */
+.heat td{min-width:40px;padding:0;border:none;height:34px;position:relative}
+.heat td span{position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;font-size:var(--t6)}
+
+/* ── the scale plate: the distribution renormalising, live ──────── */
+.plate{padding:110px 0 96px;margin:96px 0 0;background:var(--stack)}
+.plate.white{background:var(--paper)}
+.field{margin:30px 0 0}
+.frow{display:flex;align-items:center;gap:10px;margin-bottom:5px}
+.frow .fl{font-family:var(--lm);font-size:var(--t9);width:86px;text-align:right;
+  color:var(--ink-fig);flex:none}
+.fbars{display:flex;gap:2px;flex:1;height:26px;align-items:flex-end}
+.fbar{flex:1;background:var(--op-softmax);border-top:1px solid var(--ink);
+  min-height:1px;transition:height var(--t-ack) linear}
+.frow.self .fbar{background:var(--op-scale)}
+
+/* ── controls. One strip, same construction everywhere. ─────────── */
+.ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin:24px 0 0}
+button,input[type=range]{font-family:var(--mono);font-size:var(--t7);color:var(--ink)}
+button.b{
+  background:var(--paper);border:1px solid var(--ink);border-radius:0;
+  padding:5px 12px 6px;cursor:pointer;line-height:1.3;
+}
+button.b:hover{background:var(--stack)}
+button.b[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+button.b:focus-visible,.tok:focus-visible,a:focus-visible{outline:2px solid var(--h0);outline-offset:2px}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;height:26px;background:transparent;
+  width:320px;max-width:60vw;cursor:pointer
+}
+input[type=range]::-webkit-slider-runnable-track{height:3px;background:var(--ink)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:26px;
+  background:var(--op-scale);border:3px solid var(--ink);margin-top:-12px}
+.slval{font-family:var(--lm);font-size:var(--t20);line-height:1;
+  font-variant-numeric:tabular-nums}
+.hint{font-family:var(--mono);font-size:var(--t7);color:var(--ink-app)}
+
+/* ── head selector: the colour IS the label (§6.2) ──────────────── */
+.heads{display:flex;gap:5px;margin:20px 0 0;flex-wrap:wrap}
+.hd{width:52px;height:34px;border:1px solid var(--ink);cursor:pointer;
+  font-family:var(--mono);font-size:var(--t7);color:var(--paper);
+  display:flex;align-items:flex-end;justify-content:flex-end;padding:0 4px 2px}
+.hd[aria-pressed="true"]{border-width:3px;padding:0 2px 0}
+
+/* ── figures at prose width (§3.6) ──────────────────────────────── */
+figure{margin:30px 0 0}
+figure img{display:block;max-width:100%;height:auto;image-rendering:auto}
+figcaption{margin-top:10px;font-family:var(--mono);font-size:var(--t7);
+  line-height:1.5;color:var(--ink-app);max-width:520px}
+.figbox{position:relative;display:inline-block;line-height:0}
+.lit{position:absolute;border:3px solid var(--ink);background:transparent;
+  box-shadow:0 0 0 9999px rgba(255,255,255,.72);pointer-events:none;
+  opacity:0;transition:opacity var(--t-ack) var(--softmax)}
+.lit.on{opacity:1}
+
+/* ── tables, in the paper's own rules ───────────────────────────── */
+table.bt{border-collapse:collapse;font-variant-numeric:tabular-nums;
+  font-size:var(--t9);line-height:1.28;width:100%}
+table.bt th{font-weight:400;text-align:left;padding:5px 14px 6px 0;
+  border-bottom:.08em solid var(--ink);font-family:var(--mono);
+  font-size:var(--t7);color:var(--ink-fig);vertical-align:bottom}
+table.bt td{padding:4px 14px 5px 0;border-top:.05em solid var(--ink-rule)}
+table.bt tr.top td{border-top:1px solid var(--ink)}  /* \specialrule{1pt} */
+table.bt tr:last-child td{border-bottom:.08em solid var(--ink)}
+table.bt .num{text-align:right;font-family:var(--lm)}
+table.bt b{font-weight:700}
+table.bt tr.unpub td{color:var(--ink-app)}
+table.bt tr.unpub td:first-child::before{content:"% ";color:var(--red);
+  font-family:var(--mono)}
+
+/* ── the cost plane ─────────────────────────────────────────────── */
+#plane{display:block;width:100%;height:auto;overflow:visible}
+#plane text{font-family:var(--serif);font-size:13px;fill:var(--ink-fig)}
+#plane text.big{font-size:15px;fill:var(--ink)}
+#plane .grid{stroke:var(--ink-rule);stroke-width:1}
+#plane .ax{stroke:var(--ink);stroke-width:1}
+#plane circle.rec{fill:var(--h7)}
+#plane circle.ours{fill:var(--h3)}
+#plane .guess{fill:var(--paper);stroke:var(--ink);stroke-width:3}
+#plane .hid{opacity:0}
+#plane .rev{transition:opacity var(--t-absorb) var(--softmax)}
+
+/* ── the coda field ─────────────────────────────────────────────── */
+#pefield{display:block;width:100%;height:340px;image-rendering:pixelated}
+
+/* ── folds: subordinated, one level, find-in-page reachable (§7.5) ─ */
+.fold{margin:22px 0 0;border-top:var(--rule) solid var(--ink)}
+.fold>button{
+  display:flex;width:100%;gap:12px;align-items:baseline;background:none;
+  border:0;padding:9px 0 10px;cursor:pointer;text-align:left;
+  font-family:var(--mono);font-size:var(--t7);color:var(--ink-app);
+}
+.fold>button:hover{color:var(--ink)}
+.fold>button .pm{font-family:var(--lm);font-size:var(--t10);line-height:1;
+  width:14px;flex:none;color:var(--ink)}
+.fold>button .fd{margin-left:auto;color:var(--ink-app)}
+.foldb{padding:6px 0 26px}
+.foldb .src-sec{max-width:var(--arg)}
+.src-h{font-family:var(--mono);font-size:var(--t7);color:var(--ink-app);
+  margin:0 0 10px}
+.foldb p{font-size:var(--t9);line-height:1.62}
+.foldb p.eq{text-align:center;margin:1.1em 0;position:relative}
+.foldb p.eq .eqn{position:absolute;right:0;font-family:var(--mono);
+  font-size:var(--t7);color:var(--ink-app)}
+.foldb p.cap{font-family:var(--mono);font-size:var(--t7);color:var(--ink-app)}
+math{font-family:var(--lm),"Latin Modern Math",math;font-size:1.02em}
+
+/* ── end matter ─────────────────────────────────────────────────── */
+#end{padding:110px 0 140px;margin-top:110px;border-top:var(--rule-title) solid var(--ink)}
+#end h2{font-family:var(--serif);font-size:var(--t14);line-height:1.2;margin:0 0 8px}
+#end h3{font-family:var(--serif);font-size:var(--t12);margin:56px 0 10px}
+#end dl{margin:14px 0 0}
+#end dt{font-family:var(--mono);font-size:var(--t7);color:var(--ink-app);margin-top:16px}
+#end dd{margin:2px 0 0;font-size:var(--t9);line-height:1.6}
+/* unpublished manuscript: the mark is red, the text stays black and
+   readable. ms.tex:41 \newcommand\todo[1]{\textcolor{red}{[[#1]]}} */
+.unpub{border-left:3px solid var(--red);padding-left:18px;margin:18px 0 0}
+.unpub .pct{font-family:var(--mono);color:var(--red);font-size:var(--t7)}
+.warnline{font-family:var(--mono);font-size:var(--t7);color:var(--red)}
+
+/* ── the persistent control strip. Same position at every station.
+      Its nine squares are the operations, in Figure 2's own fills:
+      the colour is the label, so there is no legend box (§6.2). ─── */
+#chrome{
+  position:fixed;left:0;bottom:0;z-index:40;display:flex;align-items:stretch;
+  background:var(--paper);border-top:var(--rule) solid var(--ink);
+  border-right:var(--rule) solid var(--ink);
+}
+#chrome button{background:none;border:0;cursor:pointer;padding:0}
+#chrome .go{width:26px;height:26px;border-right:var(--rule) solid var(--ink)}
+#chrome .go[aria-current="true"]{box-shadow:inset 0 0 0 3px var(--ink)}
+#chrome .txt{font-family:var(--mono);font-size:var(--t7);color:var(--ink-app);
+  padding:4px 12px 3px;border-right:var(--rule) solid var(--ink);white-space:nowrap}
+#chrome .txt:hover{color:var(--ink)}
+@media (max-width:760px){#chrome .txt.opt{display:none}}
+
+/* ── responsive: 390x844 ───────────────────────────────────────── */
+@media (max-width:900px){
+  :root{--marg:20px;--t-display:44px;--t14:22px;--t12:19.5px;--t10:17.5px}
+  body{font-size:var(--t10);line-height:1.6}
+  .col,.wide{width:auto;margin-left:var(--marg);margin-right:var(--marg);max-width:none}
+  .eqtitle{white-space:normal;letter-spacing:-.02em;margin-right:20px}
+  .titlebox{padding:30px 0 28px}
+  .station{padding:64px 0 0}
+  .plate{padding:60px 0 56px;margin-top:56px}
+  .vecs{grid-template-columns:auto auto;gap:2px 16px}
+  #envmat{height:150px}
+  #pefield{height:220px}
+  input[type=range]{width:100%}
+}
+
+/* ── §5.8: reduced motion collapses every animation to its final
+      frame. Nothing is lost, because the final frame is the number. ─ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:1ms!important;animation-duration:1ms!important}
+}
